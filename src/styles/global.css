@@ -1,1 +1,72 @@
-@import "tailwindcss";
+@import 'tailwindcss';
+
+@theme {
+	--font-space-grotesk: 'Space Grotesk', sans-serif;
+	--font-inter: 'Inter', sans-serif;
+
+	--spacing: 0.0625rem; /* 1px */
+
+	--z-header: 100;
+	--z-modal: 200;
+}
+
+/*
+*	Utilitys
+*	https://tailwindcss.com/docs/adding-custom-styles#functional-utilities
+*/
+@utility container {
+	margin-inline: auto;
+}
+
+@utility text-* {
+	font-size: --spacing(--value(number));
+	line-height: --spacing(--modifier(number));
+	/* prettier-ignore */
+	font-size: --value(--spacing-*);
+	/* prettier-ignore */
+	line-height: --modifier([length], [*]);
+}
+
+@utility font-palt {
+	font-feature-settings: 'palt' 1;
+}
+
+@utility rounded-* {
+	border-radius: --spacing(--value(number));
+}
+
+@utility z-* {
+	/* prettier-ignore */
+	z-index: --value(--z-*);
+}
+
+@utility clip-path-* {
+	/* prettier-ignore */
+	clip-path: --value(--clip-path-*);
+}
+
+@utility scrollbar-hidden {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}
+
+html {
+	scroll-behavior: smooth;
+
+	&,
+	* {
+		scrollbar-width: thin;
+	}
+
+	@media (width <= 400px) {
+		font-size: 4vw;
+	}
+
+	@media (width >= 2000px) {
+		font-size: 0.8vw;
+	}
+}
