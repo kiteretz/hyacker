@@ -1,4 +1,5 @@
 ---
+// import { twMerge } from 'tailwind-merge';
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
@@ -6,7 +7,7 @@ const posts = await getCollection('posts');
 const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
 ---
 
-<Layout title="タグ一覧">
+<Layout title="タグ一覧" className="tag-archive">
   <h2>タグ一覧</h2>
   <ul>
     {

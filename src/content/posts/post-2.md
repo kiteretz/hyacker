@@ -1,7 +1,7 @@
 ---
 title: JavaScript で文字列の長さを取得するには？
 description: JavaScript で文字列の長さを取得するには？について学びます
-pubDate: 2025-6-12
+pubDate: 2025-7-3
 author: とも
 image:
   url: /assets/posts/background.svg

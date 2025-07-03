@@ -17,16 +17,18 @@ const { Content } = await entry.render();
 const { title, description, pubDate, author, image, tags } = entry.data;
 ---
 
-<Layout title={title}>
+<Layout title={title} className="post">
   <article>
     <h2>{title}</h2>
     <p>{description}</p>
-    <p>{pubDate}</p>
+    <p>{pubDate.toISOString().slice(0, 10)}</p>
     <p>{author}</p>
     {image && <img src={image?.url} alt={image?.alt} />}
     <ul>
       {(tags ?? []).map((tag: string) => <li>{tag}</li>)}
     </ul>
-    <Content />
+    <div class="content-wrapper">
+      <Content />
+    </div>
   </article>
 </Layout>
