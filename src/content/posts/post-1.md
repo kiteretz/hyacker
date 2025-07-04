@@ -1,12 +1,16 @@
 ---
-title: 'グリッドレイアウトを使って親要素に対して子要素を上下中央に揃えて配置するための方法は？'
-description: 'グリッドレイアウトを使って親要素に対して子要素を上下中央に揃えて配置するための方法について学びます'
-pubDate: 2025-6-11
-author: 'とも'
+title: グリッドレイアウトを使って親要素に対して子要素を上下中央に揃えて配置するための方法は？
+description: グリッドレイアウトを使って親要素に対して子要素を上下中央に揃えて配置するための方法について学びます
+upDate: 2025-06-11
+pubDate: 2025-06-11
+author: とも
 image:
-  url: '/assets/posts/background.svg'
-  alt: '背景の画像'
-tags: ['HTML', 'JavaScript', '日本語タグ']
+  url: /assets/posts/background.svg
+  alt: 背景の画像
+tags:
+  - HTML
+  - JavaScript
+  - 日本語タグ
 ---
 
 ## 回答（見出し2）

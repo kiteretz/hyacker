@@ -1,4 +1,5 @@
 ---
+// .mdのfrontmatterを増やす場合は、content.config.tsも更新する
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 
@@ -14,18 +15,27 @@ const { entry } = Astro.props as {
   entry: { data: any; render: () => Promise<{ Content: any }> };
 };
 const { Content } = await entry.render();
-const { title, description, pubDate, author, image, tags } = entry.data;
+const { title, description, upDate, pubDate, author, image, tags } = entry.data;
 ---
 
 <Layout title={title} className="post">
   <article>
     <h2>{title}</h2>
     <p>{description}</p>
+    <p>{upDate.toISOString().slice(0, 10)}</p>
     <p>{pubDate.toISOString().slice(0, 10)}</p>
     <p>{author}</p>
     {image && <img src={image?.url} alt={image?.alt} />}
     <ul>
-      {(tags ?? []).map((tag: string) => <li>{tag}</li>)}
+      {
+        (tags ?? []).map((tag: string) => {
+          return (
+            <li>
+              <a href={`/tags/${tag}`}>{tag}</a>
+            </li>
+          );
+        })
+      }
     </ul>
     <div class="content-wrapper">
       <Content />
