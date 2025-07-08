@@ -3,20 +3,38 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
+import type { CollectionKey } from 'astro:content';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
 
-  return posts.map((entry: any) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  // 投稿を日付順にソート（新しい順）
+  const sortedPosts = posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
+  // 古い順にソート
+  // const sortedPosts = posts.sort((a, b) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime());
+  // タイトル順にソート
+  // const sortedPosts = posts.sort((a, b) => a.data.title.localeCompare(b.data.title));
+  // 更新日順にソート
+  // const sortedPosts = posts.sort((a, b) => new Date(b.data.upDate).getTime() - new Date(a.data.upDate).getTime());
+
+  return sortedPosts.map((entry: any, index: number) => {
+    // 前後の投稿を取得
+    const prev = index > 0 ? sortedPosts[index - 1] : null;
+    const next = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null;
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, prev, next },
+    };
+  });
 }
 
 type Props = {
   entry: CollectionEntry<'posts'>;
+  prev: CollectionEntry<'posts'> | null;
+  next: CollectionEntry<'posts'> | null;
 };
-const { entry } = Astro.props as Props;
+const { entry, prev, next } = Astro.props as Props;
 
 // render結果を分割代入で取得
 const { Content, headings = [] } = await entry.render();
@@ -52,6 +70,10 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
     </div>
     <div class="content-wrapper">
       <Content />
+    </div>
+    <div>
+      {prev && <a href={`/post/${prev.slug}`}>Prev</a>}
+      {next && <a href={`/post/${next.slug}`}>Next</a>}
     </div>
   </article>
 </Layout>
