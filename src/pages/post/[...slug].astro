@@ -3,7 +3,7 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
-import type { CollectionKey } from 'astro:content';
+import PostNavigation from '../../components/PostNavigation.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -71,9 +71,6 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
     <div class="content-wrapper">
       <Content />
     </div>
-    <div>
-      {prev && <a href={`/post/${prev.slug}`}>Prev</a>}
-      {next && <a href={`/post/${next.slug}`}>Next</a>}
-    </div>
+    <PostNavigation prev={prev} next={next} />
   </article>
 </Layout>
