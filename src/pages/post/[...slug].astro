@@ -1,34 +1,44 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
-import { getCollection } from 'astro:content';
+import { getCollection, type CollectionEntry } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
+
   return posts.map((entry: any) => ({
     params: { slug: entry.slug },
     props: { entry },
   }));
 }
 
-const { entry } = Astro.props as {
-  entry: { data: any; render: () => Promise<{ Content: any }> };
+type Props = {
+  entry: CollectionEntry<'posts'>;
 };
-const { Content } = await entry.render();
-const { title, description, upDate, pubDate, author, image, tags } = entry.data;
+const { entry } = Astro.props as Props;
+
+// render結果を分割代入で取得
+const { Content, headings = [] } = await entry.render();
+
+// データを分割代入で取得（デフォルト値設定）
+const { title, description, upDate, pubDate, author, image, tags = [] } = entry.data;
+
+// 日付フォーマット用のヘルパー関数
+const formatDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
 <Layout title={title} className="post">
   <article>
     <h2>{title}</h2>
     <p>{description}</p>
-    <p>{upDate.toISOString().slice(0, 10)}</p>
-    <p>{pubDate.toISOString().slice(0, 10)}</p>
+    <time datetime={upDate.toISOString()}>{formatDate(upDate)}</time>
+    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
     <p>{author}</p>
     {image && <img src={image?.url} alt={image?.alt} />}
     <ul>
       {
-        (tags ?? []).map((tag: string) => {
+        (tags ?? []).map((tag: string | undefined) => {
           return (
             <li>
               <a href={`/tags/${tag}`}>{tag}</a>
@@ -37,6 +47,9 @@ const { title, description, upDate, pubDate, author, image, tags } = entry.data;
         })
       }
     </ul>
+    <div>
+      <TableOfContents headings={headings} />
+    </div>
     <div class="content-wrapper">
       <Content />
     </div>
