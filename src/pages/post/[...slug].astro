@@ -1,6 +1,7 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { twMerge } from 'tailwind-merge';
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import PostNavigation from '../../components/PostNavigation.astro';
@@ -47,30 +48,35 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
 <Layout title={title} className="post">
-  <article>
-    <h2>{title}</h2>
+  <article class={twMerge('')}>
+    <h2 class="">{title}</h2>
     <p>{description}</p>
-    <time datetime={upDate.toISOString()}>{formatDate(upDate)}</time>
-    <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
     <p>{author}</p>
     {image && <img src={image?.url} alt={image?.alt} />}
-    <ul>
-      {
-        (tags ?? []).map((tag: string | undefined) => {
-          return (
-            <li>
-              <a href={`/tags/${tag}`}>{tag}</a>
-            </li>
-          );
-        })
-      }
-    </ul>
-    <div>
-      <TableOfContents headings={headings} />
-    </div>
-    <div class="content-wrapper">
+    <div class="">
       <Content />
     </div>
+    <aside>
+      <div>
+        <time datetime={upDate.toISOString()}>{formatDate(upDate)}</time>
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        <ul>
+          {
+            (tags ?? []).map((tag: string | undefined) => {
+              return (
+                <li>
+                  <a href={`/tags/${tag}`}>{tag}</a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+      <div>
+        <h3>Table of Contents</h3>
+        <TableOfContents headings={headings} />
+      </div>
+    </aside>
     <PostNavigation prev={prev} next={next} />
   </article>
 </Layout>
