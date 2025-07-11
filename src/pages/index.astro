@@ -1,16 +1,45 @@
 ---
+import { twMerge } from 'tailwind-merge';
 import Layout from '../layouts/Layout.astro';
 import SearchForm from '../components/SearchForm.astro';
 ---
 
 <Layout title="hyacker -- クリエイターのための百科事典">
-  <div>
-    <div class="">
-      <h1>
-        <span>クリエイターのための百科事典</span>
-        <span>The Encyclopedia for Creators</span>
+  <div class="">
+    <div class="h-640 container grid place-content-center gap-y-24 border-x px-24">
+      <h1 class={twMerge('grid gap-y-24 font-medium leading-[0.9] text-neutral-900')}>
+        <span class="text-144">The Encyclopedia for Creators</span>
+        <span class="text-20 font-semibold leading-tight">クリエイターのための百科事典</span>
       </h1>
-      <SearchForm />
+      <div class="max-w-400 w-full">
+        <SearchForm />
+      </div>
     </div>
   </div>
+  {
+    [
+      {
+        title: 'Editor’s picks',
+        description: 'Editor’s picks',
+      },
+      {
+        title: 'HTML',
+        description: 'HTML',
+      },
+      {
+        title: 'CSS',
+        description: 'CSS',
+      },
+      {
+        title: 'JavaScript',
+        description: 'JavaScript',
+      },
+    ].map((items, index) => (
+      <section class="border-t">
+        <div class="container border-x">
+          <h2>{items.title}</h2>
+        </div>
+      </section>
+    ))
+  }
 </Layout>
