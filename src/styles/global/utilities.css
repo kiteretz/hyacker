@@ -2,8 +2,16 @@
 *	Utilitys
 *	https://tailwindcss.com/docs/adding-custom-styles#functional-utilities
 */
+
 @utility container {
+	max-width: var(--container);
 	margin-inline: auto;
+}
+
+@utility container-* {
+	max-width: --spacing(--value(number));
+	margin-inline: auto;
+	width: 100%;
 }
 
 @utility text-* {

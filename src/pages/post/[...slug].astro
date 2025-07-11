@@ -1,6 +1,7 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
 import { getCollection, type CollectionEntry } from 'astro:content';
+import { styles } from '../../lib/styles';
 import { twMerge } from 'tailwind-merge';
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
@@ -48,15 +49,17 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
 <Layout title={title} className="post">
-  <article class={twMerge('')}>
-    <h2 class="">{title}</h2>
-    <p>{description}</p>
-    <p>{author}</p>
-    {image && <img src={image?.url} alt={image?.alt} />}
-    <div class="">
+  <article class={twMerge('container grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
+    <div class={twMerge('col-span-8 border-l')}>
+      <h2 class="">{title}</h2>
+      <p>{description}</p>
+      <p>{author}</p>
+      {image && <img src={image?.url} alt={image?.alt} />}
+    </div>
+    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-l border-t')}>
       <Content />
     </div>
-    <aside>
+    <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
       <div>
         <time datetime={upDate.toISOString()}>{formatDate(upDate)}</time>
         <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
@@ -72,11 +75,16 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
           }
         </ul>
       </div>
-      <div>
+      <div class={twMerge('border-t')}>
         <h3>Table of Contents</h3>
         <TableOfContents headings={headings} />
       </div>
     </aside>
-    <PostNavigation prev={prev} next={next} />
+    <PostNavigation prev={prev} next={next} className="col-span-12 row-start-3 border-x border-t" />
   </article>
+  <section class={twMerge('border-t')}>
+    <div class={twMerge('container border-x')}>
+      <h2>Related posts</h2>
+    </div>
+  </section>
 </Layout>

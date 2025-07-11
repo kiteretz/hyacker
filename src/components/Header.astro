@@ -4,7 +4,7 @@ import Nav from './Nav.astro';
 import SearchForm from './SearchForm.astro';
 ---
 
-<header class={twMerge('border-b border-solid border-black')}>
+<header class={twMerge('border-b')}>
   <div class="flex items-center px-16 py-12 md:gap-24">
     <div aria-label="hyacker">
       <a href="/">
@@ -25,6 +25,8 @@ import SearchForm from './SearchForm.astro';
       </a>
     </div>
     <Nav className="grow" />
-    <SearchForm className="w-320" />
+    <div class="max-w-294 w-full">
+      <SearchForm />
+    </div>
   </div>
 </header>

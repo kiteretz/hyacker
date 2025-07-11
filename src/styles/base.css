@@ -1,14 +1,7 @@
 :root {
-	@media (width <= 400px) {
-		font-size: 4vw;
-	}
-
-	@media (width >= 2000px) {
-		font-size: 0.8vw;
-	}
-
 	/* --header-height: 3.5rem; */
 	--cw: calc((100vw - var(--scrollbar-width, 0px)) / 100);
+	--gutter: 1.5rem; /* 24px */
 	--col-1: calc((100 * var(--cw) - var(--gutter) * 7) / 6);
 	--col-2: calc(var(--col-1) * 2 + var(--gutter));
 	--col-3: calc(var(--col-1) * 3 + var(--gutter) * 2);
@@ -22,7 +15,7 @@
 	--col-11: var(--col-6);
 	--col-12: var(--col-6);
 
-	@media (width >= theme(--breakpoint-lg)) {
+	@media (width >= theme(breakpoint.lg)) {
 		/* --header-height: 5.125rem; */
 		--col-1: min((100 * var(--cw) - var(--gutter) * 13) / 12, 4rem);
 		--col-2: min(var(--col-1) * 2 + var(--gutter), 11rem);
@@ -45,5 +38,13 @@ html {
 	&,
 	* {
 		scrollbar-width: thin;
+	}
+
+	@media (width <= 400px) {
+		font-size: 4vw;
+	}
+
+	@media (width >= 2000px) {
+		font-size: 0.8vw;
 	}
 }
