@@ -1,15 +1,17 @@
 ---
 import '../styles/global/index.css';
 import { twMerge } from 'tailwind-merge';
+import { siteConfig } from '../config/site';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
 export interface Props {
-  title: string;
+  title?: string;
+  description?: string;
   className?: string;
 }
 
-const { title, className } = Astro.props;
+const { title, description, className } = Astro.props;
 ---
 
 <!doctype html>
@@ -17,15 +19,23 @@ const { title, className } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="keywords" content={siteConfig.keywords} />
+    <meta name="description" content={description ?? siteConfig.description} />
+    <meta name="author" content="hyacker" />
+    <meta property="og:title" content={title ?? siteConfig.title} />
+    <meta property="og:description" content={description ?? siteConfig.description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteConfig.url} />
+    <meta property="og:image" content="/ogp.png" />
+    <meta property="og:site_name" content="hyacker" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <!-- <meta name="generator" content={Astro.generator} /> -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap"
       rel="stylesheet"
     />
-    <title>{title}</title>
+    <title>{title ?? siteConfig.title}</title>
   </head>
   <body class={twMerge('font-palt min-h-screen antialiased', className)}>
     <Header />

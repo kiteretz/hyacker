@@ -1,7 +1,7 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { styles } from '../../lib/styles';
+import { cn } from '../../utils/cn';
 import { twMerge } from 'tailwind-merge';
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
@@ -48,10 +48,10 @@ const { title, description, upDate, pubDate, author, image, tags = [] } = entry.
 const formatDate = (date: Date) => date.toISOString().slice(0, 10);
 ---
 
-<Layout title={title} className="post">
+<Layout title={title} description={description} className="post">
   <article class={twMerge('container grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
     <div class={twMerge('col-span-8 border-l')}>
-      <h2 class="">{title}</h2>
+      <h2>{title}</h2>
       <p>{description}</p>
       <p>{author}</p>
       {image && <img src={image?.url} alt={image?.alt} />}
