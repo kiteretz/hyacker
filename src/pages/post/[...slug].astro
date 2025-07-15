@@ -6,6 +6,7 @@ import { twMerge } from 'tailwind-merge';
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import PostNavigation from '../../components/PostNavigation.astro';
+import SocialIcon from '../../components/SocialIcon.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -56,8 +57,13 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
       <p>{author}</p>
       {image && <img src={image?.url} alt={image?.alt} />}
     </div>
-    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-l border-t')}>
-      <Content />
+    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-l border-t', 'flex')}>
+      <aside class="shrink">
+        <SocialIcon />
+      </aside>
+      <div>
+        <Content />
+      </div>
     </div>
     <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
       <div>
