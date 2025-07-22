@@ -1,19 +1,14 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
+import { getSortedPosts } from '../../lib/sortedPosts'
 
-const posts = await getCollection('posts');
-
-const sortedPosts = posts.sort((a: (typeof posts)[number], b: (typeof posts)[number]) => {
-  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
-});
+const posts = await getSortedPosts();
 ---
 
 <Layout title="記事一覧" className="post-archive">
   <h2>Archives</h2>
   <ul>
-    {
-      sortedPosts.map((post: any) => (
+    { posts.map(post => (
         <li>
           <a href={`/post/${post.slug}`}>{post.data.title}</a>
         </li>
