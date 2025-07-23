@@ -5,8 +5,7 @@ import { defineCollection, z } from 'astro:content';
 // https://docs.astro.build/en/guides/content-collections
 // プロパティを追加したら、以下にも追記＆開発サーバー再起動で適用
 const posts = defineCollection({
-  // type: 'content',
-  // loader: glob({ pattern: '*.md', base: './src/content/posts' }),
+  loader: glob({ pattern: "**/[^_]*.md", base: "./content" }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
