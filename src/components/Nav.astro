@@ -1,57 +1,35 @@
 ---
 import { twMerge } from 'tailwind-merge';
+import { getAllTags } from '../lib/allTags';
 
 export interface Props {
   className?: string;
 }
 
 const { className } = Astro.props;
+const tags = await getAllTags();
+
+const naviItems: { label: string, href: string }[] = [
+  {
+    label: 'Posts',
+    href: '/post/',
+  },
+  {
+    label: 'Tags',
+    href: '/tags/',
+  },
+  ...tags.slice(0,3).map( ( {name} ) => {
+    return { label: name, href: `/tags/${name}/` }
+  } )
+];
 ---
 
 <nav class={twMerge('', className)}>
   <ul class="flex flex-wrap items-center gap-8">
-    {
-      [
-        {
-          label: 'Posts',
-          href: '/post/',
-        },
-        {
-          label: 'Tags',
-          href: '/tags/',
-        },
-        {
-          label: 'HTML',
-          href: '/',
-        },
-        {
-          label: 'CSS',
-          href: '/',
-        },
-        {
-          label: 'JavaScript',
-          href: '/',
-        },
-        {
-          label: 'WordPress',
-          href: '/',
-        },
-        {
-          label: 'Figma',
-          href: '/',
-        },
-        {
-          label: 'Illustrator',
-          href: '/',
-        },
-        {
-          label: 'Photoshop',
-          href: '/',
-        },
-      ].map(({ label, href }) => (
-        <li>
-          <a href={href}>{label}</a>
-        </li>
+    { naviItems.map(({ label, href }) => (
+      <li>
+        <a href={href}>{label}</a>
+      </li>
       ))
     }
   </ul>
