@@ -12,13 +12,13 @@ import SocialIcon from '../../components/SocialIcon.astro';
 // 前後ページの移動のため、current に加え、prev,next のCollectionEntryを返す.
 export async function getStaticPaths() {
   const posts = await getSortedPosts();
-  return posts.map((current: CollectionEntry, index: number) => {
+  return posts.map(( current, index ) => {
     const prev = index > 0 ? posts[index - 1] : undefined;
     const next = index < posts.length - 1 ? posts[index + 1] : undefined;
 
     return {
       params: { slug: current.slug },
-      props: { current, prev, next },
+      props: { entry: current, prev: prev, next: next },
     };
   });
 }
@@ -30,7 +30,7 @@ type Props = {
 };
 
 // render結果を分割代入で取得
-const { current: entry, prev, next } = Astro.props as Props;
+const { entry, prev, next } = Astro.props as Props;
 const { Content, headings = [] } = await entry.render();
 
 // データを分割代入で取得（デフォルト値設定）
