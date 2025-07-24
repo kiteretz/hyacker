@@ -1,8 +1,8 @@
 ---
-import { getAllTags } from '../../lib/allTags';
+import { getPostsByTag } from '../../lib/postsByTag';
 import Layout from '../../layouts/Layout.astro';
 
-const tags = await getAllTags();
+const tags = await getPostsByTag();
 ---
 
 <Layout title="タグ一覧" className="tag-archive">
@@ -11,6 +11,7 @@ const tags = await getAllTags();
     {
       tags.map((tag) => (
         <li>
+          {/* 投稿件数出力は確認用なので、不要なら削除 */}
           <a href={`/tags/${tag.name}`}>{tag.name}:{tag.posts.length}</a>
         </li>
       ))

@@ -1,13 +1,13 @@
 import type { CollectionEntry } from 'astro:content';
-import { getCollection } from 'astro:content';
+import { getSortedPosts } from './sortedPosts';
 
 type tag = {
   name: string,
   posts: CollectionEntry<'posts'>[]
 }
 
-export const getAllTags = async (): Promise<tag[]> => {
-  const posts = await getCollection('posts');
+export const getPostsByTag = async (): Promise<tag[]> => {
+  const posts = await getSortedPosts();
   const uniqTags = new Set<string>( posts
     .flatMap( ({data}) => data.tags )
     .filter( (tag): tag is string => typeof tag === 'string' )

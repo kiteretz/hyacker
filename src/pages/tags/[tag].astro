@@ -1,10 +1,9 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from '../../layouts/Layout.astro';
-import { getAllTags }from '../../lib/allTags';
+import { getPostsByTag }from '../../lib/postsByTag';
 
 export async function getStaticPaths() {
-  const tags = await getAllTags();
+  const tags = await getPostsByTag();
 
   return tags.map( (tag) => {
       return {

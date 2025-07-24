@@ -2,19 +2,19 @@
 import { twMerge } from 'tailwind-merge';
 import Layout from '../layouts/Layout.astro';
 import SearchForm from '../components/SearchForm.astro';
-import PostsByTag from '..//components/PostsByTag.astro';
+import SectionByTag from '../components/SectionByTag.astro';
 import type { CollectionEntry } from 'astro:content';
-import { getAllTags } from '../lib/allTags';
+import { getPostsByTag } from '../lib/postsByTag';
 
-type sectionItem = {
+export type SectionItem = {
   title: string,
   description?: string
   posts: CollectionEntry<'posts'>[]
 }
 
-const tags = await getAllTags();
+const tags = await getPostsByTag();
 
-const sections: sectionItem[] = [
+const sections: SectionItem[] = [
   {
     title: 'Editor’s picks',
     description: 'Editor’s picks',
@@ -41,7 +41,7 @@ const sections: sectionItem[] = [
     </div>
   </div>
   {sections.map(({title,posts})=>
-    <PostsByTag title={title} posts={posts} />
+    <SectionByTag title={title} posts={posts} />
     )
   }
 </Layout>

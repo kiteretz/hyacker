@@ -1,13 +1,13 @@
 ---
 import { twMerge } from 'tailwind-merge';
-import { getAllTags } from '../lib/allTags';
+import { getPostsByTag } from '../lib/postsByTag';
 
 export interface Props {
   className?: string;
 }
 
 const { className } = Astro.props;
-const tags = await getAllTags();
+const tags = await getPostsByTag();
 
 const naviItems: { label: string, href: string }[] = [
   {
