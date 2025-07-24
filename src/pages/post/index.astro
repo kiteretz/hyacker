@@ -10,7 +10,7 @@ const posts = await getSortedPosts();
   <ul>
     { posts.map(post => (
         <li>
-          <a href={`/post/${post.slug}`}>{post.data.title}</a>
+          <a href={`/post/${post.id}`}>{post.data.title}</a>
         </li>
       ))
     }
