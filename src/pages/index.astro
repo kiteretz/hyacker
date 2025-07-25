@@ -1,16 +1,16 @@
 ---
 import { twMerge } from 'tailwind-merge';
-import Layout from '../layouts/Layout.astro';
-import SearchForm from '../components/SearchForm.astro';
-import SectionByTag from '../components/SectionByTag.astro';
-import type { CollectionEntry } from 'astro:content';
-import { getPostsByTag } from '../lib/postsByTag';
 
 export type SectionItem = {
   title: string,
   description?: string
   posts: CollectionEntry<'posts'>[]
 }
+import Layout from '@layouts/Layout.astro';
+import SearchForm from '@components/SearchForm.astro';
+import SectionByTag  from '@components/SectionByTag.astro';
+import type { SectionItem } from '@components/SectionByTag.astro';
+import { getPostsByTag } from '@libs/postsByTag';
 
 const tags = await getPostsByTag();
 

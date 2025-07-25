@@ -1,6 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { getSortedPosts } from '../../lib/sortedPosts'
+import Layout from '@layouts/Layout.astro';
+import { getSortedPosts } from '@libs/sortedPosts'
 
 const posts = await getSortedPosts();
 ---

@@ -1,6 +1,6 @@
 ---
-import Layout from '../../layouts/Layout.astro';
-import { getPostsByTag }from '../../lib/postsByTag';
+import Layout from '@layouts/Layout.astro';
+import { getPostsByTag }from '@libs/postsByTag';
 
 export async function getStaticPaths() {
   const tags = await getPostsByTag();

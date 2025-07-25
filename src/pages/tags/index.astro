@@ -1,6 +1,6 @@
 ---
-import { getPostsByTag } from '../../lib/postsByTag';
-import Layout from '../../layouts/Layout.astro';
+import { getPostsByTag } from '@libs/postsByTag';
+import Layout from '@layouts/Layout.astro';
 
 const tags = await getPostsByTag();
 ---

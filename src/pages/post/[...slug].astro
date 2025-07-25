@@ -1,17 +1,14 @@
 ---
 import { type CollectionEntry } from 'astro:content';
-import { cn } from '../../utils/cn';
 import { twMerge } from 'tailwind-merge';
-import Layout from '../../layouts/Layout.astro';
-import { getSortedPosts } from '../../lib/sortedPosts';
-import TableOfContents from '../../components/TableOfContents.astro';
-import PostNavigation from '../../components/PostNavigation.astro';
-import SocialIcon from '../../components/SocialIcon.astro';
-import { getEntry } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import { getSortedPosts } from '@libs/sortedPosts';
+import TableOfContents from '@components/TableOfContents.astro';
+import PostNavigation from '@components/PostNavigation.astro';
+import SocialIcon from '@components/SocialIcon.astro';
 import { render } from 'astro:content';
 
-
-// 前後ページの移動のため、current に加え、prev,next のCollectionEntryを返す.
+// 前後ページの移動のため、各entryに加え、prev,next のCollectionEntryを返す.
 export async function getStaticPaths() {
   const posts = await getSortedPosts();
   return posts.map(( entry, index ) => {
