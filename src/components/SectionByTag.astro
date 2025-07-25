@@ -1,6 +1,12 @@
 ---
 import Card from './Card.astro'
-import { type SectionItem } from '../pages/index.astro'
+import type { CollectionEntry } from 'astro:content'
+
+export type SectionItem = {
+  title: string,
+  description?: string
+  posts: CollectionEntry<'posts'>[]
+}
 
 interface Props extends SectionItem {};
 
