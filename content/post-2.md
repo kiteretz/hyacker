@@ -12,6 +12,7 @@ tags:
   - Next.js
   - Nuxt.js
   - HTML
+status: draft
 ---
 
 ## 回答（見出し2）

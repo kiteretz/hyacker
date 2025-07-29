@@ -19,6 +19,7 @@ const posts = defineCollection({
       })
       .optional(),
     tags: z.array(z.string().optional()),
+    status: z.string()
   }),
 });
 
