@@ -1,0 +1,51 @@
+/*
+*	Utilitys
+*	https://tailwindcss.com/docs/adding-custom-styles#functional-utilities
+*/
+
+@utility container {
+	max-width: var(--container);
+	margin-inline: auto;
+}
+
+@utility container-* {
+	max-width: --spacing(--value(number));
+	margin-inline: auto;
+	width: 100%;
+}
+
+@utility text-* {
+	font-size: --spacing(--value(number));
+	line-height: --spacing(--modifier(number));
+	/* prettier-ignore */
+	font-size: --value(--spacing-*);
+	/* prettier-ignore */
+	line-height: --modifier([length], [*]);
+}
+
+@utility font-palt {
+	font-feature-settings: 'palt' 1;
+}
+
+@utility rounded-* {
+	border-radius: --spacing(--value(number));
+}
+
+@utility z-* {
+	/* prettier-ignore */
+	z-index: --value(--z-*);
+}
+
+@utility clip-path-* {
+	/* prettier-ignore */
+	clip-path: --value(--clip-path-*);
+}
+
+@utility scrollbar-hidden {
+	-ms-overflow-style: none;
+	scrollbar-width: none;
+
+	&::-webkit-scrollbar {
+		display: none;
+	}
+}

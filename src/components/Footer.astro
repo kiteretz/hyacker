@@ -1,0 +1,42 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<footer class={twMerge('sticky top-[100vh] border-t border-solid border-black', className)}>
+  <div class="container flex flex-row-reverse items-center justify-between border-x border-black">
+    <nav>
+      <ul class="flex items-center gap-8">
+        {
+          [
+            {
+              label: 'About',
+              href: '/about/',
+            },
+            {
+              label: 'Terms',
+              href: '/',
+            },
+            {
+              label: 'X(Twitter) ',
+              href: '/',
+              target: '_blank',
+            },
+          ].map(({ label, href, target }) => (
+            <li>
+              <a href={href} target={target}>
+                {label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <small>© 2025 hyacker</small>
+  </div>
+</footer>

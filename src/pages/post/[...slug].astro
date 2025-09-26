@@ -1,0 +1,86 @@
+---
+// .mdのfrontmatterを増やす場合は、content.config.tsも更新する
+import { getCollection, type CollectionEntry } from 'astro:content';
+import { sortOptions } from '../../utils/sort';
+// import { cn } from '../../utils/cn';
+import { twMerge } from 'tailwind-merge';
+
+import Layout from '../../layouts/Layout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import PostNavigation from '../../components/PostNavigation.astro';
+import SocialIcon from '../../components/SocialIcon.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts');
+  const sortedPosts = posts.sort(sortOptions.dateDesc);
+
+  return sortedPosts.map((entry: any, index: number) => {
+    const prev = index > 0 ? sortedPosts[index - 1] : null;
+    const next = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null;
+
+    return {
+      params: { slug: entry.slug },
+      props: { entry, prev, next },
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'posts'>;
+  prev: CollectionEntry<'posts'> | null;
+  next: CollectionEntry<'posts'> | null;
+}
+
+const { entry, prev, next } = Astro.props;
+const { Content, headings = [] } = await entry.render();
+const { title, description, upDate, pubDate, author, image, tags = [] } = entry.data;
+
+// 日付フォーマット用のヘルパー関数
+const formatDate = (date: Date) => date.toISOString().slice(0, 10);
+---
+
+<Layout title={title} description={description} className="post">
+  <article class={twMerge('container grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
+    <div class={twMerge('col-span-8 border-l')}>
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <p>{author}</p>
+      {image && <img src={image?.url} alt={image?.alt} />}
+    </div>
+    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-l border-t', 'flex')}>
+      <aside class="shrink">
+        <SocialIcon />
+      </aside>
+      <div>
+        <Content />
+      </div>
+    </div>
+    <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
+      <div>
+        <time datetime={upDate.toISOString()}>{formatDate(upDate)}</time>
+        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        <ul>
+          {
+            (tags ?? []).map((tag: string | undefined) => {
+              return (
+                <li>
+                  <a href={`/tags/${tag}`}>{tag}</a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </div>
+      <div class={twMerge('border-t')}>
+        <h3>Table of Contents</h3>
+        <TableOfContents headings={headings} />
+      </div>
+    </aside>
+    <PostNavigation prev={prev} next={next} className="col-span-12 row-start-3 border-x border-t" />
+  </article>
+  <section class={twMerge('border-t')}>
+    <div class={twMerge('container border-x')}>
+      <h2>Related posts</h2>
+    </div>
+  </section>
+</Layout>

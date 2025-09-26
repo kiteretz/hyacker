@@ -1,0 +1,12 @@
+@theme {
+	--container: 81rem; /* 1296px */
+
+	--font-space-grotesk: 'Space Grotesk', sans-serif;
+	--font-inter: 'Inter', sans-serif;
+
+	--spacing: 0.0625rem; /* 1px */
+	/* --spacing-<px@400px>-<px@1024px> */
+
+	--z-header: 100;
+	--z-modal: 200;
+}

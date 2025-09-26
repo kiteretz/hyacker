@@ -1,0 +1,58 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+export interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
+---
+
+<nav class={twMerge('', className)}>
+  <ul class="flex flex-wrap items-center gap-8">
+    {
+      [
+        {
+          label: 'Posts',
+          href: '/post/',
+        },
+        {
+          label: 'Tags',
+          href: '/tags/',
+        },
+        {
+          label: 'HTML',
+          href: '/',
+        },
+        {
+          label: 'CSS',
+          href: '/',
+        },
+        {
+          label: 'JavaScript',
+          href: '/',
+        },
+        {
+          label: 'WordPress',
+          href: '/',
+        },
+        {
+          label: 'Figma',
+          href: '/',
+        },
+        {
+          label: 'Illustrator',
+          href: '/',
+        },
+        {
+          label: 'Photoshop',
+          href: '/',
+        },
+      ].map(({ label, href }) => (
+        <li>
+          <a href={href}>{label}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>

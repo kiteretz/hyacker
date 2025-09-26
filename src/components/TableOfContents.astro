@@ -1,0 +1,52 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface NestedHeading extends MarkdownHeading {
+  subheadings: NestedHeading[];
+}
+
+interface Props {
+  headings: MarkdownHeading[];
+  depth?: number;
+}
+
+const { headings, depth = 1 } = Astro.props;
+
+function buildHierarchy(headings: MarkdownHeading[]): NestedHeading[] {
+  const result: NestedHeading[] = [];
+  const stack: NestedHeading[] = [];
+
+  for (const heading of headings) {
+    const nestedHeading: NestedHeading = { ...heading, subheadings: [] };
+
+    // 現在の見出しより深い階層をスタックから削除
+    while (stack.length > 0 && stack[stack.length - 1].depth >= heading.depth) {
+      stack.pop();
+    }
+
+    // 親が存在する場合は親の子として追加、そうでなければルートに追加
+    if (stack.length === 0) {
+      result.push(nestedHeading);
+    } else {
+      stack[stack.length - 1].subheadings.push(nestedHeading);
+    }
+    stack.push(nestedHeading);
+  }
+  return result;
+}
+
+const hierarchy = depth === 1 ? buildHierarchy(headings) : (headings as NestedHeading[]);
+---
+
+{
+  hierarchy && hierarchy.length > 0 && (
+    <ol class={depth > 1 ? 'pl-4' : ''}>
+      {hierarchy.map(({ slug, text, subheadings }) => (
+        <li>
+          <a href={`#${slug}`}>{text}</a>
+          {subheadings.length > 0 && <Astro.self headings={subheadings} depth={depth + 1} />}
+        </li>
+      ))}
+    </ol>
+  )
+}

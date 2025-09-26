@@ -1,0 +1,36 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="hyacker について" className="about">
+  <section>
+    <h2>hyacker について</h2>
+    <p>
+      この利用規約（以下、「本規約」といいます。）は、株式会社キテレツ（以下、「当社」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。
+    </p>
+    <h3>運営会社</h3>
+    <dl>
+      {
+        [
+          {
+            name: '会社名',
+            value: '株式会社キテレツ',
+          },
+          {
+            name: '所在地',
+            value: '555-0012 大阪市西淀川区御幣島 1-18-12',
+          },
+          {
+            name: 'URL',
+            value: 'https://kiteretz.com/',
+          },
+        ].map(({ name, value }) => (
+          <div>
+            <dt>{name}</dt>
+            <dd>{value}</dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+</Layout>
