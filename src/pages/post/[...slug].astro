@@ -32,7 +32,7 @@ type Props = {
   prev: CollectionEntry<'posts'> | null;
   next: CollectionEntry<'posts'> | null;
 };
-const { entry, prev, next } = Astro.props as Props;
+const { entry, prev, next } = Astro.props;
 
 // render結果を分割代入で取得
 const { Content, headings = [] } = await entry.render();
