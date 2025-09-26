@@ -12,11 +12,9 @@ import SocialIcon from '../../components/SocialIcon.astro';
 
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
-
-  // 投稿を日付順にソート
   const sortedPosts = posts.sort(sortOptions.dateDesc);
+
   return sortedPosts.map((entry: any, index: number) => {
-    // 前後の投稿を取得
     const prev = index > 0 ? sortedPosts[index - 1] : null;
     const next = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null;
 
