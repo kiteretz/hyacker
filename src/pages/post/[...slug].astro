@@ -25,11 +25,11 @@ export async function getStaticPaths() {
   });
 }
 
-type Props = {
+interface Props {
   entry: CollectionEntry<'posts'>;
   prev: CollectionEntry<'posts'> | null;
   next: CollectionEntry<'posts'> | null;
-};
+}
 
 const { entry, prev, next } = Astro.props;
 const { Content, headings = [] } = await entry.render();
