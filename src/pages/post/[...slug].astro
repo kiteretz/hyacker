@@ -32,12 +32,9 @@ type Props = {
   prev: CollectionEntry<'posts'> | null;
   next: CollectionEntry<'posts'> | null;
 };
+
 const { entry, prev, next } = Astro.props as Props;
-
-// render結果を分割代入で取得
 const { Content, headings = [] } = await entry.render();
-
-// データを分割代入で取得（デフォルト値設定）
 const { title, description, upDate, pubDate, author, image, tags = [] } = entry.data;
 
 // 日付フォーマット用のヘルパー関数

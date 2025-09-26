@@ -4,11 +4,8 @@
 import type { CollectionEntry } from 'astro:content';
 
 export type PostEntry = CollectionEntry<'posts'>;
-
-// ソート関数の型定義
 export type SortFunction = (a: PostEntry, b: PostEntry) => number;
 
-// ソート方式の選択肢
 export const sortOptions = {
   dateDesc: (a: PostEntry, b: PostEntry) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
   dateAsc: (a: PostEntry, b: PostEntry) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime(),
@@ -16,7 +13,6 @@ export const sortOptions = {
   updateDate: (a: PostEntry, b: PostEntry) => new Date(b.data.upDate).getTime() - new Date(a.data.upDate).getTime(),
 } as const;
 
-// ソート方式の型
 export type SortType = keyof typeof sortOptions;
 
 // UI表示用の日本語説明
@@ -27,7 +23,6 @@ export const sortDescriptions = {
   updateDate: '更新日順',
 } as const;
 
-// メイン関数：投稿をソートする
 export function sortPosts(posts: PostEntry[], sortType: SortType = 'dateDesc'): PostEntry[] {
   return [...posts].sort(sortOptions[sortType]);
 }
