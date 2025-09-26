@@ -1,8 +1,10 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { cn } from '../../utils/cn';
+import { sortOptions } from '../../utils/sort';
+// import { cn } from '../../utils/cn';
 import { twMerge } from 'tailwind-merge';
+
 import Layout from '../../layouts/Layout.astro';
 import TableOfContents from '../../components/TableOfContents.astro';
 import PostNavigation from '../../components/PostNavigation.astro';
@@ -11,15 +13,8 @@ import SocialIcon from '../../components/SocialIcon.astro';
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
 
-  // 投稿を日付順にソート（新しい順）
-  const sortedPosts = posts.sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime());
-  // 古い順にソート
-  // const sortedPosts = posts.sort((a, b) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime());
-  // タイトル順にソート
-  // const sortedPosts = posts.sort((a, b) => a.data.title.localeCompare(b.data.title));
-  // 更新日順にソート
-  // const sortedPosts = posts.sort((a, b) => new Date(b.data.upDate).getTime() - new Date(a.data.upDate).getTime());
-
+  // 投稿を日付順にソート
+  const sortedPosts = posts.sort(sortOptions.dateDesc);
   return sortedPosts.map((entry: any, index: number) => {
     // 前後の投稿を取得
     const prev = index > 0 ? sortedPosts[index - 1] : null;

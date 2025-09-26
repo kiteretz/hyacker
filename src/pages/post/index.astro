@@ -1,18 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
-import type { CollectionEntry } from 'astro:content';
+import { sortOptions } from '../../utils/sort';
 
 import Layout from '../../layouts/Layout.astro';
 
-// 型エイリアスで簡潔に
-type Post = CollectionEntry<'posts'>;
-
 const posts = await getCollection('posts');
 
-// CollectionEntryを使用して型安全性を向上
-const sortedPosts = posts.sort((a: Post, b: Post) => {
-  return b.data.pubDate.getTime() - a.data.pubDate.getTime();
-});
+// 投稿を日付順にソート
+const sortedPosts = posts.sort(sortOptions.dateDesc);
 ---
 
 <Layout title="記事一覧" className="post-archive">
