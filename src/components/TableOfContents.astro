@@ -12,7 +12,7 @@ interface Props {
 
 const { headings, depth = 1 } = Astro.props;
 
-// 階層構造を正しく構築する関数
+// 階層構造を構築する関数
 function buildHierarchy(headings: MarkdownHeading[]): NestedHeading[] {
   const result: NestedHeading[] = [];
   const stack: NestedHeading[] = [];
