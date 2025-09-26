@@ -1,3 +1,6 @@
+/**
+ * 投稿をソートする
+ */
 import type { CollectionEntry } from 'astro:content';
 
 export type PostEntry = CollectionEntry<'posts'>;
@@ -16,7 +19,7 @@ export const sortOptions = {
 // ソート方式の型
 export type SortType = keyof typeof sortOptions;
 
-// ソート方式の説明（オプション）
+// UI表示用の日本語説明
 export const sortDescriptions = {
   dateDesc: '投稿日順（新しい順）',
   dateAsc: '投稿日順（古い順）',
@@ -29,7 +32,7 @@ export function sortPosts(posts: PostEntry[], sortType: SortType = 'dateDesc'): 
   return [...posts].sort(sortOptions[sortType]);
 }
 
-// 複数のソート条件を組み合わせる場合（高度な使用例）
+// 複数のソート条件を組み合わせる場合（例：タイトル順 → 日付順）
 export function sortPostsMultiple(posts: PostEntry[], primarySort: SortType, secondarySort?: SortType): PostEntry[] {
   return [...posts].sort((a, b) => {
     const primaryResult = sortOptions[primarySort](a, b);
