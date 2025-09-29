@@ -3,10 +3,8 @@ import { twMerge } from 'tailwind-merge';
 import Layout from '@layouts/Layout.astro';
 import SearchForm from '@components/SearchForm.astro';
 import SectionByTag  from '@components/SectionByTag.astro';
-import type { SectionItem } from '@components/SectionByTag.astro';
 import { getPostsByTag } from '@libs/postsByTag';
-
----
+import type { SectionItem } from '@components/SectionByTag.astro';
 
 const tags = await getPostsByTag();
 
@@ -16,7 +14,7 @@ const sections: SectionItem[] = [
     description: 'Editor’s picks',
     posts: []
   },
-  ...tags.slice(0,2).map( ({name,posts}) => {
+  ...tags.slice(0,2).map( ({name, posts}) => {
     return {
       title: name,
       posts: posts
