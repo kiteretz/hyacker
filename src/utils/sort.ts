@@ -3,18 +3,6 @@
  */
 import type { CollectionEntry } from 'astro:content';
 
-export type PostEntry = CollectionEntry<'posts'>;
-export type SortFunction = (a: PostEntry, b: PostEntry) => number;
-
-export const sortOptions = {
-  dateDesc: (a: PostEntry, b: PostEntry) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
-  dateAsc: (a: PostEntry, b: PostEntry) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime(),
-  title: (a: PostEntry, b: PostEntry) => a.data.title.localeCompare(b.data.title),
-  updateDate: (a: PostEntry, b: PostEntry) => new Date(b.data.upDate).getTime() - new Date(a.data.upDate).getTime(),
-} as const;
-
-export type SortType = keyof typeof sortOptions;
-
 // UI表示用の日本語説明
 export const sortDescriptions = {
   dateDesc: '投稿日順（新しい順）',
@@ -22,6 +10,22 @@ export const sortDescriptions = {
   title: 'タイトル順',
   updateDate: '更新日順',
 } as const;
+
+// ソート関数
+type PostEntry = CollectionEntry<'posts'>;
+type SortFunction = (a: PostEntry, b: PostEntry) => number;
+type SortOptions = {
+  [name: string] : SortFunction,
+}
+
+const sortOptions: SortOptions = {
+  dateDesc: (a: PostEntry, b: PostEntry) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
+  dateAsc: (a: PostEntry, b: PostEntry) => new Date(a.data.pubDate).getTime() - new Date(b.data.pubDate).getTime(),
+  title: (a: PostEntry, b: PostEntry) => a.data.title.localeCompare(b.data.title),
+  updateDate: (a: PostEntry, b: PostEntry) => new Date(b.data.upDate).getTime() - new Date(a.data.upDate).getTime(),
+} as const;
+
+type SortType = keyof typeof sortOptions;
 
 export function sortPosts(posts: PostEntry[], sortType: SortType = 'dateDesc'): PostEntry[] {
   return [...posts].sort(sortOptions[sortType]);
