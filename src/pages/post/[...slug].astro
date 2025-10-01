@@ -1,6 +1,6 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { type CollectionEntry } from 'astro:content';
 import { twMerge } from 'tailwind-merge';
 import Layout from '@layouts/Layout.astro';
 import TableOfContents from '@components/TableOfContents.astro';
@@ -8,14 +8,13 @@ import PostNavigation from '@components/PostNavigation.astro';
 import SocialIcon from '@components/SocialIcon.astro';
 import { render } from 'astro:content';
 // import { cn } from '../../utils/cn';
-import { sortOptions } from '../../utils/sort';
+import { getSortedPosts } from '@libs/sortedPosts';
 
 // 前後ページの移動のため、各entryに加え、prev,next のCollectionEntryを返す.
 export async function getStaticPaths() {
-  const posts = await getCollection('posts');
-  const sortedPosts = posts.sort(sortOptions.dateDesc);
+const sortedPosts = await getSortedPosts();
 
-  return sortedPosts.map((entry: any, index: number) => {
+  return sortedPosts.map( (entry, index) => {
     const prev = index > 0 ? sortedPosts[index - 1] : null;
     const next = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null;
 
