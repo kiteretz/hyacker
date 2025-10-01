@@ -1,10 +1,27 @@
 ---
 import { twMerge } from 'tailwind-merge';
+import Layout from '@layouts/Layout.astro';
+import SearchForm from '@components/SearchForm.astro';
+import SectionByTag  from '@components/SectionByTag.astro';
+import { getPostsByTag } from '@libs/postsByTag';
+import type { SectionItem } from '@components/SectionByTag.astro';
 
-import Layout from '../layouts/Layout.astro';
-import SearchForm from '../components/SearchForm.astro';
+const tags = await getPostsByTag();
+
+const sections: SectionItem[] = [
+  {
+    title: 'Editor’s picks',
+    description: 'Editor’s picks',
+    posts: []
+  },
+  ...tags.slice(0,2).map( ({name, posts}) => {
+    return {
+      title: name,
+      posts: posts
+    }
+  })
+]
 ---
-
 <Layout>
   <div>
     <div class="h-640 container grid place-content-center gap-y-24 border-x px-24">
@@ -17,30 +34,8 @@ import SearchForm from '../components/SearchForm.astro';
       </div>
     </div>
   </div>
-  {
-    [
-      {
-        title: 'Editor’s picks',
-        description: 'Editor’s picks',
-      },
-      {
-        title: 'HTML',
-        description: 'HTML',
-      },
-      {
-        title: 'CSS',
-        description: 'CSS',
-      },
-      {
-        title: 'JavaScript',
-        description: 'JavaScript',
-      },
-    ].map((items, index) => (
-      <section class="border-t">
-        <div class="container border-x">
-          <h2>{items.title}</h2>
-        </div>
-      </section>
-    ))
+  {sections.map(({title,posts})=>
+    <SectionByTag title={title} posts={posts} />
+    )
   }
 </Layout>

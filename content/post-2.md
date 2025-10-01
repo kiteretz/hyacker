@@ -1,16 +1,18 @@
 ---
-title: オブジェクト定義時にプロパティ名として変数や計算した値を使うには？
-description: オブジェクト定義時にプロパティ名として変数や計算した値を使うには？について学びます
-upDate: 
-pubDate: 2025-09-26
+title: JavaScript で文字列の長さを取得するには？
+description: JavaScript で文字列の長さを取得するには？について学びます
+upDate: 2025-07-03
+pubDate: 2025-06-12
 author: とも
 image:
   url: /assets/posts/background.svg
   alt: 背景の画像
 tags:
   - 日本語タグ
-  - JavaScript
-  - CSS
+  - Next.js
+  - Nuxt.js
+  - HTML
+status: draft
 ---
 
 ## 回答（見出し2）

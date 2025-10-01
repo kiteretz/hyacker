@@ -1,0 +1,22 @@
+---
+import Card from './Card.astro'
+import type { CollectionEntry } from 'astro:content'
+
+export type SectionItem = {
+  title: string,
+  description?: string
+  posts: CollectionEntry<'posts'>[]
+}
+
+interface Props extends SectionItem {};
+
+const { title, posts } = Astro.props
+---
+<section class="border-t">
+  <div class="container border-x">
+    <h2>{title}</h2>
+    { posts.slice(0,3).map( (post) => (
+      <Card post={post}/>
+    ))}
+  </div>
+</section>

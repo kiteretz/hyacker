@@ -1,11 +1,8 @@
 ---
-// import { twMerge } from 'tailwind-merge';
-import { getCollection } from 'astro:content';
+import { getPostsByTag } from '@libs/postsByTag';
+import Layout from '@layouts/Layout.astro';
 
-import Layout from '../../layouts/Layout.astro';
-
-const posts = await getCollection('posts');
-const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
+const tags = await getPostsByTag();
 ---
 
 <Layout title="タグ一覧" className="tag-archive">
@@ -14,7 +11,8 @@ const tags = [...new Set(posts.flatMap((post) => post.data.tags))];
     {
       tags.map((tag) => (
         <li>
-          <a href={`/tags/${tag}`}>{tag}</a>
+          {/* 投稿件数出力は確認用なので、不要なら削除 */}
+          <a href={`/tags/${tag.name}`}>{tag.name}:{tag.posts.length}</a>
         </li>
       ))
     }
