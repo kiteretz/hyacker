@@ -7,5 +7,4 @@ export const getSortedPosts = async (): Promise<CollectionEntry<'posts'>[]> => {
   });
 
   return sortPosts( posts, 'dateDesc' );
-  })
 }
