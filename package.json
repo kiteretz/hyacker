@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "astro dev --open",
-    "build": "astro build",
+    "build": "astro build && pagefind --site dist",
     "check": "astro check",
     "preview": "astro preview",
     "astro": "astro"
