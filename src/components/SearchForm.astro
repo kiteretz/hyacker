@@ -10,7 +10,7 @@ const { className } = Astro.props;
 
 <form action="">
   <label class={twMerge('relative flex items-center', className)}>
-    <input type="search" placeholder="Search" name="search" class="w-full rounded-full border bg-white px-16 py-4" />
+    <input type="search" id="search-input" placeholder="Search" name="search" class="w-full rounded-full border bg-white px-16 py-4" />
     <button
       class={twMerge(
         'absolute right-4 flex aspect-square w-28 shrink items-center justify-center rounded-full bg-black text-white'
