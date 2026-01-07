@@ -49,14 +49,32 @@ const { title, description, className } = Astro.props;
   <script is:inline>
     ( async () => {
 
-      const search = async (e) => {
+      const showResult = async (e) => {
         const search = await pagefind.search(e.data)
-        if( search ){
-          search.results?.forEach( async (result) => {
-            const data = await result.data()
-            console.log( data )
-          })
+
+        if( ! search ){
+          return
         }
+
+        // 検索結果を表示するタグを取得
+        const target = document.querySelector('main section')
+
+        while(target.firstChild){
+          target.removeChild(target.firstChild);
+        }
+
+        search.results?.forEach( async (result) => {
+          const data = await result.data()
+          const resultCard = cardHtml(data.url, data.meta.title)
+          target.insertAdjacentHTML( 'beforeend', resultCard )
+        })
+      }
+
+      const cardHtml = ( href, title ) => {
+        const id = href.split('/').at(-1)
+        return `<div>
+            <p><a href="/post/${id}/">${title}</p>
+          </div>`
       }
 
       //Pagefind を初期化して、検索実行関数をセット
@@ -64,7 +82,7 @@ const { title, description, className } = Astro.props;
       await pagefind.init()
 
       //右上の検索欄のみ動作します
-      document.getElementById('search-input').addEventListener('input', search)
+      document.getElementById('search-input').addEventListener('input',showResult)
     })()
 
 
