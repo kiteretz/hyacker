@@ -48,6 +48,11 @@ const { title, description, className } = Astro.props;
   </body>
   <script is:inline>
     ( async () => {
+      const cardHtml = ( href, title ) => {
+        return `<div>
+            <p><a href="${href}">${title}</p>
+          </div>`
+      }
 
       const showResult = async (e) => {
         const search = await pagefind.search(e.data)
@@ -68,13 +73,6 @@ const { title, description, className } = Astro.props;
           const resultCard = cardHtml(data.url, data.meta.title)
           target.insertAdjacentHTML( 'beforeend', resultCard )
         })
-      }
-
-      const cardHtml = ( href, title ) => {
-        const id = href.split('/').at(-1)
-        return `<div>
-            <p><a href="/post/${id}/">${title}</p>
-          </div>`
       }
 
       //Pagefind を初期化して、検索実行関数をセット
