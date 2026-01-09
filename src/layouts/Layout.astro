@@ -46,27 +46,4 @@ const { title, description, className } = Astro.props;
     </main>
     <Footer />
   </body>
-  <script is:inline>
-    ( async () => {
-
-      const search = async (e) => {
-        const search = await pagefind.search(e.data)
-        if( search ){
-          search.results?.forEach( async (result) => {
-            const data = await result.data()
-            console.log( data )
-          })
-        }
-      }
-
-      //Pagefind を初期化して、検索実行関数をセット
-      const pagefind = await import('/pagefind/pagefind.js')
-      await pagefind.init()
-
-      //右上の検索欄のみ動作します
-      document.getElementById('search-input').addEventListener('input', search)
-    })()
-
-
-  </script>
 </html>
