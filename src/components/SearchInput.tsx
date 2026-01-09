@@ -18,7 +18,7 @@ const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
       if( import.meta.env.DEV ) return
       const pagefind = (await import(/* @vite-ignore */ pagefindPath))
       await pagefind.init();
-      pagefind( pagefind )
+      setPagefind( pagefind )
     }
 
     init()
