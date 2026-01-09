@@ -1,10 +1,10 @@
-import type { CollectionEntry } from 'astro:content';
-import React, { type FC, type SetStateAction, useEffect, useState, useRef } from 'react'
+import React, { type FC, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
+import type { CardProps } from '@components/Card';
 
 interface Props {
   className?: string;
-  setResults?: React.Dispatch<React.SetStateAction<any>>
+  setResults: React.Dispatch<React.SetStateAction<any>>
 }
 
 const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
@@ -27,10 +27,18 @@ const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
   // form の onSubmit で検索実行＆結果表示
   const handleSearch = async () => {
     const search = await pagefind?.search(query);
-    //const results = search.map(({data,meta})=>{
-    //})
-    // setResults(...results)
-    console.log(search)
+
+    const results: CardProps[] = await Promise
+      .all( search.results.map( async (r: any) => {
+          const data = await r.data()
+          return {
+            href: data.url,
+            title: data.meta.title
+          }
+      })
+    )
+
+    setResults(results)
   }
 
   // ビルドしないとPagefindのインデックスやJSが読み込めない

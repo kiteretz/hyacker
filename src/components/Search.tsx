@@ -1,14 +1,19 @@
+import Card, { type CardProps } from '@components/Card'
 import React, { type FC, useState } from 'react'
 import SearchInput from '@components/SearchInput'
 
 const SearchSection:FC = () => {
-  //TODO: Result の型定義
-  const [results, setResults] = useState<any[]>([]);
+  const [results, setResults] = useState<CardProps[] | undefined>([]);
 
   return (
     <>
       <SearchInput setResults={setResults} />
-      <div>Result</div>
+      <div>
+        { results && results.map((result)=>{
+            return <Card {...result}/>
+          })
+        }
+      </div>
     </>
   )
 }

@@ -1,12 +1,15 @@
-import type { CollectionEntry } from 'astro:content';
+import type { FC } from 'react';
 
-const Card = ( post: CollectionEntry<'posts'> ) => {
-  const { id, data } = post
-  const { title } = data
+type Props = {
+  href: string,
+  title: string,
+  img?: string
+}
 
+const Card:FC<Props> = ( { href, title, img } ) => {
   return (
     <div>
-      <p><a href={`/post/${id}/`} />{title}</p>
+      <p><a href={href} />{title}</p>
     </div>
   )
 }
