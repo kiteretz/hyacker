@@ -1,17 +1,19 @@
 import React, { type FC, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
-import type { CardProps } from '@components/Card';
+import type { Card } from './Card';
+import { useSetAtom } from 'jotai';
+import { resultsAtom } from '@libs/jotai';
 
 interface Props {
   className?: string;
-  setResults: React.Dispatch<React.SetStateAction<any>>
 }
 
-const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
+const SearchInput:FC<Props> = ({ className } :Props ) => {
   const [ pagefind, setPagefind ] = useState(null)
 
   const pagefindPath = '/pagefind/pagefind.js'
 
+  // Pagefind インスタンスの初期化
   useEffect( () => {
     const init = async () => {
       if( import.meta.env.DEV ) return
@@ -24,10 +26,11 @@ const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
   }, [])
 
   // form の onSubmit で検索実行＆結果表示
+  const setResults = useSetAtom(resultsAtom)
   const execSearch = async (query:string) => {
     const search = await pagefind?.search(query);
 
-    const results: CardProps[] = await Promise
+    const results: Card[] = await Promise
       .all( search.results.map( async (r: any) => {
           const data = await r.data()
           return {
