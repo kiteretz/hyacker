@@ -8,7 +8,6 @@ interface Props {
 }
 
 const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
-  const [ query, setQuery] = useState<string>("");
   const [ pagefind, setPagefind ] = useState(null)
 
   const pagefindPath = '/pagefind/pagefind.js'
@@ -25,7 +24,7 @@ const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
   }, [])
 
   // form の onSubmit で検索実行＆結果表示
-  const handleSearch = async () => {
+  const execSearch = async (query:string) => {
     const search = await pagefind?.search(query);
 
     const results: CardProps[] = await Promise
@@ -41,34 +40,29 @@ const SearchInput:FC<Props> = ({ className, setResults } :Props ) => {
     setResults(results)
   }
 
-  // ビルドしないとPagefindのインデックスやJSが読み込めない
+  // ビルドしないとPagefindのインデックスやJSが生成されない
   // 開発環境では適当に0～3つのPostを返す
-  const handleSearchStub = () => {
+  const setDummyResult = () => {
     console.log('for Dev')
   }
 
-  const onSubmitHandle = () => {
+  const onInputHandle = (query: string) => {
     if( import.meta.env.PROD){
-      handleSearch()
+      execSearch(query)
     } else {
-      handleSearchStub()
+      setDummyResult()
     }
   }
 
   return (
-      <form
-        onSubmit={(e)=> {
-          e.preventDefault()
-          onSubmitHandle()
-        }}
-      >
+      <form>
       <label className={twMerge('relative flex items-center', className)}>
         <input
           className="w-full rounded-full border bg-white px-16 py-4"
           name="search"
           placeholder="Search"
           type="search"
-          onInput={(e) => setQuery(e.currentTarget.value)}
+          onInput={(e) => onInputHandle(e.currentTarget.value)}
         />
         <button
           className={twMerge(
