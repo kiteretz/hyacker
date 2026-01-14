@@ -12,7 +12,7 @@ import { getSortedPosts } from '@libs/sortedPosts';
 
 // 前後ページの移動のため、各entryに加え、prev,next のCollectionEntryを返す.
 export async function getStaticPaths() {
-const sortedPosts = await getSortedPosts();
+  const sortedPosts = await getSortedPosts();
 
   return sortedPosts.map( (entry, index) => {
     const prev = index > 0 ? sortedPosts[index - 1] : null;
