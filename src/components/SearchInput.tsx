@@ -58,7 +58,7 @@ const SearchInput:FC<Props> = ({ className } :Props ) => {
   }
 
   return (
-      <form>
+      <form onSubmit={(e)=>e.preventDefault()}>
       <label className={twMerge('relative flex items-center', className)}>
         <input
           className="w-full rounded-full border bg-white px-16 py-4"
