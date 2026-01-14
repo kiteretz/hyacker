@@ -1,8 +1,9 @@
-import React, { type FC, useEffect, useState } from 'react'
+import { type FC, useEffect, useState } from 'react'
 import { twMerge } from 'tailwind-merge'
 import type { Card } from './Card';
 import { useSetAtom } from 'jotai';
 import { resultsAtom } from '@libs/jotai';
+import dummyResult from '@libs/dummyResult';
 
 interface Props {
   className?: string;
@@ -46,7 +47,7 @@ const SearchInput:FC<Props> = ({ className } :Props ) => {
   // ビルドしないとPagefindのインデックスやJSが生成されない
   // 開発環境では適当に0～3つのPostを返す
   const setDummyResult = () => {
-    console.log('for Dev')
+    setResults(dummyResult())
   }
 
   const onInputHandle = (query: string) => {
