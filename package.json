@@ -15,11 +15,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
-    "@astrojs/mdx": "^4.3.0",
-    "@astrojs/rss": "^4.0.12",
+    "@astrojs/check": "0.9.6-beta.1",
+    "@astrojs/mdx": "5.0.0-beta.1",
+    "@astrojs/rss": "4.0.15-beta.1",
     "@tailwindcss/vite": "^4.1.11",
-    "astro": "^5.10.2",
+    "astro": "6.0.0-beta.1",
     "jotai": "^2.16.1",
     "pagefind": "^1.4.0",
     "tailwind-merge": "^3.3.1",
@@ -27,7 +27,7 @@
     "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@astrojs/react": "^4.4.2",
+    "@astrojs/react": "5.0.0-beta.1",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
     "@typescript-eslint/parser": "^8.35.1",
