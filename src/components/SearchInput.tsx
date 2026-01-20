@@ -10,7 +10,7 @@ interface Props {
 }
 
 const SearchInput:FC<Props> = ({ className } :Props ) => {
-  const [ pagefind, setPagefind ] = useState(null)
+  const [ pagefind, setPagefind ] = useState<any>(null)
 
   const pagefindPath = '/pagefind/pagefind.js'
 
@@ -26,10 +26,10 @@ const SearchInput:FC<Props> = ({ className } :Props ) => {
     init()
   }, [])
 
-  // form の onSubmit で検索実行＆結果表示
   const setResults = useSetAtom(resultsAtom)
+
   const execSearch = async (query:string) => {
-    const search = await pagefind?.search(query);
+    const search = await pagefind.search(query)
 
     const results: Card[] = await Promise
       .all( search.results.map( async (r: any) => {
