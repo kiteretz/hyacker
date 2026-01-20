@@ -1,5 +1,5 @@
 ---
-import Card from './Card.astro'
+import Card from '@components/Card'
 import type { CollectionEntry } from 'astro:content'
 
 export type SectionItem = {
@@ -15,8 +15,13 @@ const { title, posts } = Astro.props
 <section class="border-t">
   <div class="container border-x">
     <h2>{title}</h2>
-    { posts.slice(0,3).map( (post) => (
-      <Card post={post}/>
-    ))}
+    { posts.slice(0,3).map( (post) =>{
+      return (
+        <Card
+          href={`/post/${post.id}`}
+          title={post.data.title}
+        />
+      )})
+    }
   </div>
 </section>

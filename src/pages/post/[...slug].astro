@@ -12,7 +12,7 @@ import { getSortedPosts } from '@libs/sortedPosts';
 
 // 前後ページの移動のため、各entryに加え、prev,next のCollectionEntryを返す.
 export async function getStaticPaths() {
-const sortedPosts = await getSortedPosts();
+  const sortedPosts = await getSortedPosts();
 
   return sortedPosts.map( (entry, index) => {
     const prev = index > 0 ? sortedPosts[index - 1] : null;
@@ -51,8 +51,8 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
       <aside class="shrink">
         <SocialIcon />
       </aside>
-      <div>
-        <Content />
+      <div data-pagefind-body>
+        <Content/>
       </div>
     </div>
     <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
