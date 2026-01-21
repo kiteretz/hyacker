@@ -19,8 +19,8 @@ const posts = defineCollection({
         alt: z.string(),
       })
       .optional(),
-    tags: z.array(z.string().optional()),
-    status: z.string()
+    tags: z.array(z.string()).nullable(),
+    status: z.string().nullable()
   }),
 });
 
