@@ -1,0 +1,10 @@
+---
+import Layout from '@layouts/Layout.astro';
+import SearchResults from '@components/SearchResults.tsx'
+---
+
+<Layout title="Explorer hyacker " className="about">
+  <section>
+    <SearchResults client:load/>
+  </section>
+</Layout>

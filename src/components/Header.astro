@@ -2,7 +2,7 @@
 // import { twMerge } from 'tailwind-merge';
 
 import Nav from './Nav.astro';
-import SearchForm from './SearchForm.astro';
+import SearchInput from './SearchInput';
 ---
 
 <header class="border-b">
@@ -27,7 +27,7 @@ import SearchForm from './SearchForm.astro';
     </div>
     <Nav className="grow" />
     <div class="max-w-294 w-full">
-      <SearchForm />
+      <SearchInput client:load />
     </div>
   </div>
 </header>
