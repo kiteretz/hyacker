@@ -9,7 +9,7 @@ export interface Props {
 const { className } = Astro.props;
 const tags = await getPostsByTag();
 
-const naviItems: { label: string, href: string }[] = [
+const naviItems: { label: string; href: string }[] = [
   {
     label: 'Posts',
     href: '/post/',
@@ -18,18 +18,19 @@ const naviItems: { label: string, href: string }[] = [
     label: 'Tags',
     href: '/tags/',
   },
-  ...tags.slice(0,3).map( ( {name} ) => {
-    return { label: name, href: `/tags/${name}/` }
-  } )
+  ...tags.slice(0, 3).map(({ name }) => {
+    return { label: name, href: `/tags/${name}/` };
+  }),
 ];
 ---
 
 <nav class={twMerge('', className)}>
   <ul class="flex flex-wrap items-center gap-8">
-    { naviItems.map(({ label, href }) => (
-      <li>
-        <a href={href}>{label}</a>
-      </li>
+    {
+      naviItems.map(({ label, href }) => (
+        <li>
+          <a href={href}>{label}</a>
+        </li>
       ))
     }
   </ul>

@@ -1,17 +1,22 @@
-import rss, { pagesGlobToRssItems } from '@astrojs/rss';
-import { siteInfo } from '../constant';
+import rss from '@astrojs/rss';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../constant';
 
 export async function GET(context) {
-  // _ で始まるファイルはテンプレートなどのため除外
-  const allMdFiles = Object.fromEntries(
-    Object.entries(import.meta.glob('./**/*.md')).filter(([path]) => !/\/__[^/]*\.md$/.test(path)),
-  );
+  const posts = await getCollection('posts', ({ data }) => {
+    return import.meta.env.PROD ? data.status === 'publish' : true
+  });
 
   return rss({
-    title: siteInfo.title,
-    description: siteInfo.description,
-    site: siteInfo.url,
-    items: await pagesGlobToRssItems(allMdFiles),
+    title: siteConfig.title,
+    description: siteConfig.description,
+    site: siteConfig.url,
+    items: posts.map((post) => ({
+      title: post.data.title,
+      pubDate: post.data.pubDate,
+      description: post.data.description,
+      link: `/post/${post.id}/`,
+    })),
     customData: `<language>ja</language>`,
   });
 }
