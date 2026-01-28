@@ -1,7 +1,7 @@
 import { type FC, useEffect, useState } from 'react'
 import type { Card } from './Card';
-import { useSetAtom } from 'jotai';
-import { resultsAtom } from '@libs/jotai';
+import { useSetAtom, useAtom } from 'jotai';
+import { resultsAtom, queryAtom } from '@libs/jotai';
 import dummyResult from '@libs/dummyResult';
 
 const SearchInput:FC = () => {
@@ -22,6 +22,8 @@ const SearchInput:FC = () => {
   }, [])
 
   const setResults = useSetAtom(resultsAtom)
+  const [ query, setQuery ] = useAtom(queryAtom)
+  const [ isInputting, setInputting ] = useState<boolean>(false)
 
   const execSearch = async (query:string) => {
     const search = await pagefind.search(query)
@@ -45,7 +47,17 @@ const SearchInput:FC = () => {
     setResults(dummyResult())
   }
 
+  const shouldDisable = ! isInputting && query !== ''
+
   const onInputHandle = (query: string) => {
+    setQuery(query)
+
+    if( query === '' ){
+      setInputting(false)
+    } else {
+      setInputting(true)
+    }
+
     if( import.meta.env.PROD){
       execSearch(query)
     } else {
