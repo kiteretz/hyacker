@@ -1,15 +1,10 @@
 import { type FC, useEffect, useState } from 'react'
-import { twMerge } from 'tailwind-merge'
 import type { Card } from './Card';
 import { useSetAtom } from 'jotai';
 import { resultsAtom } from '@libs/jotai';
 import dummyResult from '@libs/dummyResult';
 
-interface Props {
-  className?: string;
-}
-
-const SearchInput:FC<Props> = ({ className } :Props ) => {
+const SearchInput:FC = () => {
   const [ pagefind, setPagefind ] = useState<any>(null)
 
   const pagefindPath = '/pagefind/pagefind.js'
@@ -59,30 +54,14 @@ const SearchInput:FC<Props> = ({ className } :Props ) => {
   }
 
   return (
-      <form onSubmit={(e)=>e.preventDefault()}>
-      <label className={twMerge('relative flex items-center', className)}>
-        <input
-          className="w-full rounded-full border bg-white px-16 py-4"
-          name="search"
-          placeholder="Search"
-          type="search"
-          onInput={(e) => onInputHandle(e.currentTarget.value)}
-        />
-        <button
-          className={twMerge(
-            'absolute right-4 flex aspect-square w-28 shrink items-center justify-center rounded-full bg-black text-white'
-          )}>
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" className="w-12">
-            <path
-              stroke="currentColor"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M8.25 14.25a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm7.5 1.5-3.263-3.262"></path>
-          </svg>
-        </button>
-      </label>
-    </form>
+    <input
+      className="w-full rounded-full border bg-white px-16 py-4"
+      name="search"
+      placeholder="Search"
+      type="search"
+      onInput={(e) => onInputHandle(e.currentTarget.value)}
+      disabled={ shouldDisable }
+    />
   )
 }
 
