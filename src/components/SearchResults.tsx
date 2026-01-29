@@ -1,7 +1,7 @@
 import Card from '@components/Card'
 import { resultsAtom } from '@libs/jotai'
 import { useAtomValue } from 'jotai'
-import React, { type FC  } from 'react'
+import { type FC  } from 'react'
 
 const SearchResults:FC = () => {
   const results = useAtomValue(resultsAtom)

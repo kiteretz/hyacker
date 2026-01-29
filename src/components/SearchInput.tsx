@@ -1,33 +1,18 @@
-import { type FC, useEffect, useState } from 'react'
+import { type FC, useState } from 'react'
 import type { Card } from './Card';
-import { useSetAtom, useAtom } from 'jotai';
-import { resultsAtom, queryAtom } from '@libs/jotai';
+import { useSetAtom, useAtom, useAtomValue } from 'jotai';
+import { resultsAtom, queryAtom, pageFindAtom } from '@libs/jotai';
 import dummyResult from '@libs/dummyResult';
 
 const SearchInput:FC = () => {
-  const [ pagefind, setPagefind ] = useState<any>(null)
-
-  const pagefindPath = '/pagefind/pagefind.js'
-
-  // Pagefind インスタンスの初期化
-  useEffect( () => {
-    const init = async () => {
-      if( import.meta.env.DEV ) return
-      const pagefind = (await import(/* @vite-ignore */ pagefindPath))
-      await pagefind.init();
-      setPagefind( pagefind )
-    }
-
-    init()
-  }, [])
 
   const setResults = useSetAtom(resultsAtom)
   const [ query, setQuery ] = useAtom(queryAtom)
   const [ isInputting, setInputting ] = useState<boolean>(false)
 
+  const pagefind = useAtomValue(pageFindAtom)
   const execSearch = async (query:string) => {
     const search = await pagefind.search(query)
-
     const results: Card[] = await Promise
       .all( search.results.map( async (r: any) => {
           const data = await r.data()
