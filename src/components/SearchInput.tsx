@@ -48,7 +48,7 @@ const SearchInput:FC = () => {
 
   return (
     <input
-      className="w-full rounded-full border bg-white px-16 py-4"
+      className="w-full rounded-full border bg-white px-16 py-4 disabled:bg-gray-200"
       name="search"
       placeholder="Search"
       type="search"
