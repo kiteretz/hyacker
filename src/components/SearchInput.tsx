@@ -26,12 +26,6 @@ const SearchInput:FC = () => {
     setResults(results)
   }
 
-  // ビルドしないとPagefindのインデックスやJSが生成されない
-  // 開発環境では適当に0～3つのPostを返す
-  const setDummyResult = () => {
-    setResults(dummyResult())
-  }
-
   const shouldDisable = ! isInputting && query !== ''
 
   const onInputHandle = (query: string) => {
@@ -46,7 +40,9 @@ const SearchInput:FC = () => {
     if( import.meta.env.PROD){
       execSearch(query)
     } else {
-      setDummyResult()
+      // ビルドしないとPagefindのインデックスやJSが生成されない
+      // 開発環境では適当に0～3つのPostを返す
+      setResults(dummyResult())
     }
   }
 
