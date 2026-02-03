@@ -20,7 +20,7 @@ pageFindAtom.onMount = (setAtom) => {
   setAtom( pagefind )
 }
 
-export const resultsAtom = atom<any>('')
+export const resultsAtom = atom<Card[]>([])
 
 export const queryAtom = atom<string>('')
 
