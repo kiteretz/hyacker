@@ -22,5 +22,7 @@ pageFindAtom.onMount = (setAtom) => {
 
 export const resultsAtom = atom<Card[]>([])
 
-export const queryAtom = atom<string>('')
+// SearchInput に何か文字が入力されたら True、空欄になったら False
+export const existActiveInputAtom = atom<boolean>()
+
 

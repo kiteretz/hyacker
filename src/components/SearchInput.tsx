@@ -1,19 +1,22 @@
 import { type FC, useState } from 'react'
-import type { Card } from './Card';
 import { useSetAtom, useAtom, useAtomValue } from 'jotai';
-import { resultsAtom, queryAtom, pageFindAtom } from '@libs/jotai';
+import { resultsAtom, pageFindAtom, existActiveInputAtom } from '@libs/jotai';
 import dummyResult from '@libs/dummyResult';
 
 const SearchInput:FC = () => {
 
-  const setResults = useSetAtom(resultsAtom)
-  const [ query, setQuery ] = useAtom(queryAtom)
+  // SearchInput の有効・無効を処理するためのフラグ群
   const [ isInputting, setInputting ] = useState<boolean>(false)
+  const [ existActiveInput, setActiveInput ] = useAtom(existActiveInputAtom)
+  const shouldDisable = existActiveInput && ! isInputting
 
+  // 検索処理のための Atom 群
   const pagefind = useAtomValue(pageFindAtom)
-  const execSearch = async (query:string) => {
+  const setResults = useSetAtom(resultsAtom)
+
+  const execSearch = async (query: string) => {
     const search = await pagefind.search(query)
-    const results: Card[] = await Promise
+    const results = await Promise
       .all( search.results.map( async (r: any) => {
           const data = await r.data()
           return {
@@ -26,14 +29,13 @@ const SearchInput:FC = () => {
     setResults(results)
   }
 
-  const shouldDisable = ! isInputting && query !== ''
-
   const onInputHandle = (query: string) => {
-    setQuery(query)
 
     if( query === '' ){
+      setActiveInput(false)
       setInputting(false)
     } else {
+      setActiveInput(true)
       setInputting(true)
     }
 
