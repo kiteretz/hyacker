@@ -1,3 +1,5 @@
+// ビルドしないとPagefindのインデックスやJSが生成されない
+// 開発環境では適当に0～3つのPostを返す
 const dummyResult = () => {
   const max = Math.ceil( ( Math.random() * 10 ) ) - 3
   const stub = [
