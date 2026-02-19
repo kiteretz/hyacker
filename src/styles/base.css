@@ -44,7 +44,11 @@ html {
 		font-size: 4vw;
 	}
 
-	@media (width >= 2000px) {
-		font-size: 0.8vw;
+	@media (width >= 1600px) {
+		font-size: 1vw;
 	}
+
+	/* @media (width >= 2000px) {
+		font-size: 0.8vw;
+	} */
 }
