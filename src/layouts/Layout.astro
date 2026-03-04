@@ -1,5 +1,5 @@
 ---
-import '../styles/global/index.css';
+import '../styles/index.css';
 
 import { twMerge } from 'tailwind-merge';
 import { siteInfo } from '../constant';
@@ -34,12 +34,12 @@ const { title, description, className } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Space+Grotesk:wght@300..700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Noto+Sans+JP:wght@100..900&family=Space+Grotesk:wght@300..700&display=swap"
       rel="stylesheet"
     />
     <title>{title ?? siteInfo.title}</title>
   </head>
-  <body class={twMerge('font-palt min-h-screen antialiased', className)}>
+  <body class={twMerge('font-palt min-h-screen antialiased font-sans', className)}>
     <Header />
     <main>
       <slot />
