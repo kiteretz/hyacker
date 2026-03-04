@@ -1,11 +1,45 @@
 @theme {
+	--spacing: 0.0625rem; /* 1px */
+	--spacing-gutter: clamp(1rem, 2.5 * var(--cw), 2rem);
+	--spacing-gutter-0.5: calc(var(--spacing-gutter) * 0.5);
+	--spacing-gutter-0.75: calc(var(--spacing-gutter) * 0.75);
+	--spacing-gutter-1.5: calc(var(--spacing-gutter) * 1.5);
+	--spacing-gutter-2: calc(var(--spacing-gutter) * 2);
+	--spacing-gutter-2.5: calc(var(--spacing-gutter) * 2.5);
+	--spacing-gutter-3: calc(var(--spacing-gutter) * 3);
+	--spacing-col-1: var(--col-1);
+	--spacing-col-2: var(--col-2);
+	--spacing-col-3: var(--col-3);
+	--spacing-col-4: var(--col-4);
+	--spacing-col-5: var(--col-5);
+	--spacing-col-6: var(--col-6);
+	--spacing-col-7: var(--col-7);
+	--spacing-col-8: var(--col-8);
+	--spacing-col-9: var(--col-9);
+	--spacing-col-10: var(--col-10);
+	--spacing-col-11: var(--col-11);
+	--spacing-col-12: var(--col-12);
+	--spacing-col-1-container: calc(var(--col-1) + var(--spacing-gutter) * 2);
+	--spacing-col-2-container: calc(var(--col-2) + var(--spacing-gutter) * 2);
+	--spacing-col-3-container: calc(var(--col-3) + var(--spacing-gutter) * 2);
+	--spacing-col-4-container: calc(var(--col-4) + var(--spacing-gutter) * 2);
+	--spacing-col-5-container: calc(var(--col-5) + var(--spacing-gutter) * 2);
+	--spacing-col-6-container: calc(var(--col-6) + var(--spacing-gutter) * 2);
+	--spacing-col-7-container: calc(var(--col-7) + var(--spacing-gutter) * 2);
+	--spacing-col-8-container: calc(var(--col-8) + var(--spacing-gutter) * 2);
+	--spacing-col-9-container: calc(var(--col-9) + var(--spacing-gutter) * 2);
+	--spacing-col-10-container: calc(var(--col-10) + var(--spacing-gutter) * 2);
+	--spacing-col-11-container: calc(var(--col-11) + var(--spacing-gutter) * 2);
+	--spacing-col-12-container: calc(var(--col-12) + var(--spacing-gutter) * 2);
+	--spacing-container: min(100%, 80rem);
+	/* --spacing-[px@400px]-[px@640px] */
+
 	--container: 81rem; /* 1296px */
 
+	--font-noto: "Local Noto Sans JP", "Noto Sans JP";
+	--font-sans: var(--font-noto), sans-serif;
+	--font-inter: 'Inter', var(--font-sans), sans-serif;
 	--font-space-grotesk: 'Space Grotesk', sans-serif;
-	--font-inter: 'Inter', sans-serif;
-
-	--spacing: 0.0625rem; /* 1px */
-	/* --spacing-<px@400px>-<px@1024px> */
 
 	--z-header: 100;
 	--z-modal: 200;

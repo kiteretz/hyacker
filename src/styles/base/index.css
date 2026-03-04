@@ -32,6 +32,13 @@
 	}
 }
 
+@font-face {
+	font-family: 'Local Noto Sans JP';
+	src: local('Noto Sans JP');
+	font-weight: 100 900;
+	font-style: normal;
+}
+
 html {
 	scroll-behavior: smooth;
 
