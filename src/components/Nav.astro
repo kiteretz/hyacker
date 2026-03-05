@@ -25,11 +25,13 @@ const naviItems: { label: string; href: string }[] = [
 ---
 
 <nav class={twMerge('', className)}>
-  <ul class="flex flex-wrap items-center">
+  <ul class="flex flex-wrap items-center justify-end">
     {
       naviItems.map(({ label, href }) => (
         <li>
-          <a href={href} class="font-medium px-16 py-8 font-inter text-16">{label}</a>
+          <a href={href} class="px-16 py-8 font-inter text-16 font-medium">
+            {label}
+          </a>
         </li>
       ))
     }

@@ -8,7 +8,7 @@ import SearchForm from './SearchForm.astro';
 
 <header class="border-b">
   <div class="flex items-center md:gap-16">
-    <div aria-label="hyacker">
+    <div aria-label="hyacker" class="pl-32">
       <a href="/">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 111 28" class="aspect-111/28 w-111">
           <title>{siteInfo.title}</title>
@@ -27,8 +27,8 @@ import SearchForm from './SearchForm.astro';
       </a>
     </div>
     <Nav className="grow" />
-    <div class="">
-      <SearchForm />
+    <div>
+      <SearchForm className="min-h-64" buttonClassName="right-16" />
     </div>
   </div>
 </header>

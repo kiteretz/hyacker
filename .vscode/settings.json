@@ -29,5 +29,6 @@
   },
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "tailwindCSS.experimental.configFile": "src/styles/index.css"
+  "tailwindCSS.experimental.configFile": "src/styles/index.css",
+  "tailwindCSS.classAttributes": ["class", "className", "class:list", ".*ClassName.*", ".*ClassNames.*"]
 }

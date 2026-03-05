@@ -4,15 +4,23 @@ import SearchInput from '@components/SearchInput';
 
 export interface Props {
   className?: string;
+  buttonClassName?: string;
+  iconClassName?: string;
+  inputClassName?: string;
 }
 
-const { className } = Astro.props;
+const { className, buttonClassName, iconClassName, inputClassName } = Astro.props;
 ---
 
-<label class={twMerge('relative flex items-center', '[&_input]:min-h-64', className)}>
-  <SearchInput client:load />
-  <button class={twMerge('absolute right-16 flex aspect-square w-32 shrink items-center justify-center')}>
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class="w-12">
+<label class={twMerge('relative flex items-center', className)}>
+  <SearchInput client:load className={inputClassName} />
+  <button
+    class={twMerge(
+      'absolute right-0 flex aspect-square w-32 shrink cursor-pointer items-center justify-center',
+      buttonClassName,
+    )}
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class={twMerge('w-12', iconClassName)}>
       <path
         stroke="currentColor"
         stroke-linecap="round"

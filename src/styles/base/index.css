@@ -38,6 +38,15 @@
 	font-weight: 100 900;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'KTRZ';
+	src:
+		url('/assets/fonts/KTRZ.woff') format('woff'),
+		url('/assets/fonts/KTRZ.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
 
 html {
 	scroll-behavior: smooth;

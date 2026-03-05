@@ -2,8 +2,8 @@
 import { twMerge } from 'tailwind-merge';
 import Layout from '@layouts/Layout.astro';
 import SearchForm from '@components/SearchForm.astro';
-import SectionByTag  from '@components/SectionByTag.astro';
-import SectionSearchResult from '@components/SectionSearchResult'
+import SectionByTag from '@components/SectionByTag.astro';
+import SectionSearchResult from '@components/SectionSearchResult';
 import { getPostsByTag } from '@libs/postsByTag';
 import type { SectionItem } from '@components/SectionByTag.astro';
 
@@ -13,31 +13,40 @@ const sections: SectionItem[] = [
   {
     title: 'Editor’s picks',
     description: 'Editor’s picks',
-    posts: []
+    posts: [],
   },
-  ...tags.slice(0,2).map( ({name, posts}) => {
+  ...tags.slice(0, 2).map(({ name, posts }) => {
     return {
       title: name,
-      posts: posts
-    }
-  })
-]
+      posts: posts,
+    };
+  }),
+];
 ---
+
 <Layout>
-  <div>
-    <div class="h-640 container grid place-content-center gap-y-24 border-x px-24">
-      <h1 class={twMerge('grid gap-y-24 font-medium leading-[0.9] text-neutral-900')}>
-        <span class="text-144 font-space-grotesk">The Encyclopedia for Creators</span>
-        <span class="text-20 font-semibold leading-tight">クリエイターのための百科事典</span>
-      </h1>
-      <div class="max-w-400 w-full">
-        <SearchForm />
-      </div>
+  <div class="relative z-0 grid h-640 grid-rows-[auto_1fr] overflow-hidden p-32 md:text-80-144">
+    <h1 class={twMerge('grid gap-y-24')}>
+      <span class="font-space-grotesk text-[1em] leading-[0.9] font-bold tracking-[-0.05em] text-fg-800 uppercase"
+        >The Encyclopedia <br />for Creators</span
+      >
+      <span class="text-32 leading-tight font-semibold">クリエイターのための百科事典</span>
+    </h1>
+    <div class="w-full self-end">
+      <SearchForm
+        className="h-128"
+        buttonClassName="size-128 rounded-full bg-fg-800"
+        iconClassName="w-56 text-white"
+        inputClassName="placeholder:font-inter placeholder:opacity-10 placeholder:absolute placeholder:translate-y-[-44%] placeholder:align-middle placeholder:text-160 placeholder:font-thin placeholder:tracking-[-0.05em]"
+      />
     </div>
+    <p
+      aria-hidden="true"
+      class="absolute top-0 left-1/2 -z-10 -translate-x-1/2 font-ktrz text-160 leading-none text-fg-800 opacity-[0.03]"
+    >
+      namehyacke<br />risfrom(hy<br />akka)+hack<br />erkiteretz
+    </p>
   </div>
   <SectionSearchResult client:load />
-  {sections.map(({title,posts})=>
-    <SectionByTag title={title} posts={posts} />
-    )
-  }
+  {sections.map(({ title, posts }) => <SectionByTag title={title} posts={posts} />)}
 </Layout>

@@ -32,14 +32,22 @@
 	--spacing-col-11-container: calc(var(--col-11) + var(--spacing-gutter) * 2);
 	--spacing-col-12-container: calc(var(--col-12) + var(--spacing-gutter) * 2);
 	--spacing-container: min(100%, 80rem);
-	/* --spacing-[px@400px]-[px@640px] */
+
+	/* --spacing-[px@768px]-[px@1280px] */
+	--spacing-80-144: clamp(5rem, -1rem + 12.5vw, 9rem);
+
+	--color-fg-400: oklch(70.9% 0 0); /* #a1a1a1 */
+	--color-fg-800: oklch(26.84% 0 0); /* #262626 */
 
 	--container: 81rem; /* 1296px */
 
-	--font-noto: "Local Noto Sans JP", "Noto Sans JP";
+	--font-noto: 'Local Noto Sans JP', 'Noto Sans JP';
 	--font-sans: var(--font-noto), sans-serif;
 	--font-inter: 'Inter', var(--font-sans), sans-serif;
 	--font-space-grotesk: 'Space Grotesk', sans-serif;
+	--font-ktrz: 'KTRZ';
+
+	--leading-relaxed: 1.75;
 
 	--z-header: 100;
 	--z-modal: 200;
