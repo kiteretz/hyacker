@@ -1,16 +1,17 @@
 ---
 // import { twMerge } from 'tailwind-merge';
+import { siteInfo } from '../constant';
 
 import Nav from './Nav.astro';
 import SearchForm from './SearchForm.astro';
 ---
 
 <header class="border-b">
-  <div class="flex items-center px-16 py-12 md:gap-24">
+  <div class="flex items-center md:gap-16">
     <div aria-label="hyacker">
       <a href="/">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 111 28" class="aspect-[111/28] w-[111px]">
-          <title>hyacker ロゴ</title>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 111 28" class="aspect-111/28 w-111">
+          <title>{siteInfo.title}</title>
           <g clip-path="url(#a)">
             <path
               fill="#000"
@@ -26,7 +27,7 @@ import SearchForm from './SearchForm.astro';
       </a>
     </div>
     <Nav className="grow" />
-    <div class="max-w-294 w-full">
+    <div class="">
       <SearchForm />
     </div>
   </div>

@@ -28,5 +28,6 @@
     "source.fixAll.eslint": "explicit"
   },
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "tailwindCSS.experimental.configFile": "src/styles/index.css"
 }

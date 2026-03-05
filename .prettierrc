@@ -11,7 +11,7 @@
       }
     }
   ],
-  "tailwindStylesheet": "src/styles/globals.css",
+  "tailwindStylesheet": "src/styles/index.css",
   "tailwindAttributes": ["class:list", "className"],
   "tailwindFunctions": ["twMerge", "clsx", "styles"]
 }
