@@ -16,7 +16,8 @@ const { className, buttonClassName, iconClassName, inputClassName } = Astro.prop
   <SearchInput client:load className={inputClassName} />
   <button
     class={twMerge(
-      'absolute right-0 flex aspect-square size-32 shrink cursor-pointer items-center justify-center',
+      'absolute right-0 flex aspect-square size-32 shrink cursor-pointer items-center justify-center transition duration-300 ease-in-out',
+      'hover:scale-110',
       buttonClassName,
     )}
   >
