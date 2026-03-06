@@ -29,7 +29,10 @@ const naviItems: { label: string; href: string }[] = [
     {
       naviItems.map(({ label, href }) => (
         <li>
-          <a href={href} class="px-16 py-8 font-inter text-16 font-medium">
+          <a
+            href={href}
+            class="px-16 py-8 font-inter text-16 font-medium transition duration-300 ease-in-out hover:opacity-70"
+          >
             {label}
           </a>
         </li>
