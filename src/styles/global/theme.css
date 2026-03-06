@@ -33,7 +33,16 @@
 	--spacing-col-12-container: calc(var(--col-12) + var(--spacing-gutter) * 2);
 	--spacing-container: min(100%, 80rem);
 
+	/* --spacing-[px@375px]-[px@768px] */
+	--spacing-10-34: clamp(0.625rem, -0.806rem + 6.11vw, 2.125rem);
+	--spacing-16-18: clamp(1rem, 0.881rem + 0.51vw, 1.125rem);
+	--spacing-24-56: clamp(1.5rem, -0.408rem + 8.14vw, 3.5rem);
+	--spacing-32-80: clamp(2rem, -0.863rem + 12.21vw, 5rem);
+	--spacing-64-128: clamp(4rem, 0.183rem + 16.28vw, 8rem);
+	--spacing-64-160: clamp(4rem, -1.725rem + 24.43vw, 10rem);
+
 	/* --spacing-[px@768px]-[px@1280px] */
+	--spacing-19-32: clamp(1.188rem, -0.031rem + 2.54vw, 2rem);
 	--spacing-80-144: clamp(5rem, -1rem + 12.5vw, 9rem);
 
 	--color-fg-400: oklch(70.9% 0 0); /* #a1a1a1 */

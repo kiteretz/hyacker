@@ -25,19 +25,20 @@ const sections: SectionItem[] = [
 ---
 
 <Layout>
-  <div class="relative z-0 grid h-640 grid-rows-[auto_1fr] overflow-hidden p-32 md:text-80-144">
+  <div class="relative z-0 grid h-640 grid-rows-[auto_1fr] overflow-hidden p-32">
     <h1 class={twMerge('grid gap-y-24')}>
-      <span class="font-space-grotesk text-[1em] leading-[0.9] font-bold tracking-[-0.05em] text-fg-800 uppercase"
+      <span
+        class="font-space-grotesk text-32-80 leading-[0.9] font-bold tracking-tighter text-fg-800 uppercase md:text-80-144"
         >The Encyclopedia <br />for Creators</span
       >
-      <span class="text-32 leading-tight font-semibold">クリエイターのための百科事典</span>
+      <span class="text-16-18 leading-tight font-semibold md:text-19-32">クリエイターのための百科事典</span>
     </h1>
     <div class="w-full self-end">
       <SearchForm
-        className="h-128"
-        buttonClassName="size-128 rounded-full bg-fg-800"
-        iconClassName="w-56 text-white"
-        inputClassName="placeholder:font-inter placeholder:opacity-10 placeholder:absolute placeholder:translate-y-[-44%] placeholder:align-middle placeholder:text-160 placeholder:font-thin placeholder:tracking-[-0.05em]"
+        className="tracking h-64-128"
+        buttonClassName="size-64-128 rounded-full bg-fg-800"
+        iconClassName="w-24-56 text-white"
+        inputClassName="placeholder:font-inter placeholder:opacity-10 placeholder:absolute placeholder:top-0 placeholder:-translate-y-10-34 placeholder:text-64-160 placeholder:font-thin placeholder:tracking-tighter"
       />
     </div>
     <p
