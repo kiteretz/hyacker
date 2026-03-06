@@ -1,25 +1,33 @@
-import Card from '@components/Card'
-import { existActiveInputAtom, resultsAtom } from '@libs/jotai'
-import { useAtomValue } from 'jotai'
-import { type FC  } from 'react'
+import Card from '@components/Card';
+import { existActiveInputAtom, resultsAtom } from '@libs/jotai';
+import { useAtomValue } from 'jotai';
+import { type FC } from 'react';
+import { twMerge } from 'tailwind-merge';
 
-const SearchResults:FC = () => {
-  const results = useAtomValue(resultsAtom)
-  const existActiveInput = useAtomValue(existActiveInputAtom)
+type Props = {
+  className?: string;
+};
 
-  return existActiveInput && (
-    <section className="border-t">
-      <div className="container border-x">
-        <h2>Search Results</h2>
-          { results.length === 0
-            ? <p>not found</p>
-            : results.map((result)=>{
-                return <Card {...result}/>
+const SearchResults: FC<Props> = ({ className }) => {
+  const results = useAtomValue(resultsAtom);
+  const existActiveInput = useAtomValue(existActiveInputAtom);
+
+  return (
+    existActiveInput && (
+      <section className={twMerge('bg-white', className)}>
+        <div>
+          <h2>Search Results</h2>
+          {results.length === 0 ? (
+            <p>not found</p>
+          ) : (
+            results.map((result) => {
+              return <Card {...result} />;
             })
-          }
-      </div>
-    </section>
-  )
-}
+          )}
+        </div>
+      </section>
+    )
+  );
+};
 
-export default SearchResults
+export default SearchResults;

@@ -1,27 +1,37 @@
 ---
-import Card from '@components/Card'
-import type { CollectionEntry } from 'astro:content'
+import Card from '@components/Card';
+import type { CollectionEntry } from 'astro:content';
 
 export type SectionItem = {
-  title: string,
-  description?: string
-  posts: CollectionEntry<'posts'>[]
-}
+  title: string;
+  description?: string;
+  posts: CollectionEntry<'posts'>[];
+};
 
-interface Props extends SectionItem {};
+interface Props extends SectionItem {}
 
-const { title, posts } = Astro.props
+const { title, posts } = Astro.props;
 ---
-<section class="border-t">
-  <div class="container border-x">
-    <h2>{title}</h2>
-    { posts.slice(0,3).map( (post) =>{
-      return (
-        <Card
-          href={`/post/${post.id}`}
-          title={post.data.title}
-        />
-      )})
-    }
+
+<section class="my-px">
+  <div class="grid grid-cols-[16.625rem_1fr]">
+    <div class="bg-white">
+      <h2>{title}</h2>
+    </div>
+    <div class="grid grid-cols-5">
+      {
+        posts.slice(0, 3).map((post) => {
+          return (
+            <Card
+              href={`/post/${post.id}`}
+              title={post.data.title}
+              date={post.data.pubDate}
+              tags={post.data.tags ?? []}
+              img={post.data.image?.url}
+            />
+          );
+        })
+      }
+    </div>
   </div>
 </section>

@@ -39,7 +39,12 @@ const { title, description, className } = Astro.props;
     />
     <title>{title ?? siteInfo.title}</title>
   </head>
-  <body class={twMerge('min-h-screen font-sans text-neutral-900 antialiased font-palt', className)}>
+  <body
+    class={twMerge(
+      'min-h-screen font-sans font-palt text-neutral-900 antialiased bg-fg-800',
+      className,
+    )}
+  >
     <Header />
     <main>
       <slot />

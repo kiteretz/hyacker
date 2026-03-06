@@ -8,13 +8,14 @@ import PostNavigation from '@components/PostNavigation.astro';
 import SocialIcon from '@components/SocialIcon.astro';
 import { render } from 'astro:content';
 // import { cn } from '../../utils/cn';
+import { formatDate } from '@utils/formatDate';
 import { getSortedPosts } from '@libs/sortedPosts';
 
 // 前後ページの移動のため、各entryに加え、prev,next のCollectionEntryを返す.
 export async function getStaticPaths() {
   const sortedPosts = await getSortedPosts();
 
-  return sortedPosts.map( (entry, index) => {
+  return sortedPosts.map((entry, index) => {
     const prev = index > 0 ? sortedPosts[index - 1] : null;
     const next = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null;
 
@@ -26,19 +27,17 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  entry: CollectionEntry<'posts'>,
-  prev: CollectionEntry<'posts'> | undefined,
-  next: CollectionEntry<'posts'> | undefined,
-};
+  entry: CollectionEntry<'posts'>;
+  prev: CollectionEntry<'posts'> | undefined;
+  next: CollectionEntry<'posts'> | undefined;
+}
 
 const { entry, prev, next } = Astro.props;
 const { Content, headings = [] } = await render(entry);
 
 const { title, description, upDate, pubDate, author, image, tags = [] } = entry.data;
-
-const formatDate = (date: Date) => date.toISOString().slice(0, 10);
-
 ---
+
 <Layout title={title} description={description} className="post">
   <article class={twMerge('container grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
     <div class={twMerge('col-span-8 border-l')}>
@@ -47,12 +46,12 @@ const formatDate = (date: Date) => date.toISOString().slice(0, 10);
       <p>{author}</p>
       {image && <img src={image?.url} alt={image?.alt} />}
     </div>
-    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-l border-t', 'flex')}>
+    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-t border-l', 'flex')}>
       <aside class="shrink">
         <SocialIcon />
       </aside>
       <div data-pagefind-body>
-        <Content/>
+        <Content />
       </div>
     </div>
     <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
