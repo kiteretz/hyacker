@@ -23,10 +23,10 @@ const { className, buttonClassName, iconClassName, inputClassName } = Astro.prop
     <!-- <span class={twMerge('absolute inset-0 block rounded-full bg-fg-800')}></span> -->
     {
       buttonClassName?.includes('js-hover-header-search-button') && (
-        <span class={twMerge('absolute inset-0 -z-10 block rounded-full bg-fg-800')} style="transform: scale(0);" />
+        <span class={twMerge('absolute inset-0 z-0 block rounded-full bg-fg-800')} style="transform: scale(0);" />
       )
     }
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class={twMerge('w-12', iconClassName)}>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class={twMerge('z-0 w-12', iconClassName)}>
       <path
         stroke="currentColor"
         stroke-linecap="round"
