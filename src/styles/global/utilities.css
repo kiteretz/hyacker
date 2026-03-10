@@ -3,10 +3,10 @@
 *	https://tailwindcss.com/docs/adding-custom-styles#functional-utilities
 */
 
-@utility container {
+/* @utility container {
 	max-width: var(--container);
 	margin-inline: auto;
-}
+} */
 
 @utility container-* {
 	max-width: --spacing(--value(number));
@@ -39,6 +39,11 @@
 @utility clip-path-* {
 	/* prettier-ignore */
 	clip-path: --value(--clip-path-*);
+}
+
+@utility writing-* {
+	/* prettier-ignore */
+	writing-mode: --value(--writing-mode-*);
 }
 
 @utility scrollbar-hidden {

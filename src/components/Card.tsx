@@ -11,17 +11,17 @@ export type Card = {
 
 const Card: FC<Card> = ({ href, title, date, tags, img }) => {
   return (
-    <a href={href} className="block bg-white p-8">
-      <h3>{title}</h3>
-      <p className="font-space-grotesk text-14 text-fg-400">{formatDate(date)}</p>
-      <ul className="flex flex-wrap font-inter text-14 text-fg-400">
+    <a href={href} className="ml-px grid min-h-367 grid-rows-[auto_auto_auto_1fr] bg-white p-8">
+      <h3 className="mb-8 px-8 text-18 font-semibold">{title}</h3>
+      <p className="px-8 font-space-grotesk text-14 text-fg-400">{formatDate(date)}</p>
+      <ul className="flex flex-wrap px-8 font-inter text-14 text-fg-400">
         {tags.map((tag) => (
           <li key={tag} className='after:mr-2 after:content-[","] last:after:content-none'>
-            <span className="">{tag}</span>
+            {tag}
           </li>
         ))}
       </ul>
-      {img && <img src={img} alt={title} className="rounded-8" />}
+      {img && <img src={img} alt={title} className="aspect-video self-end rounded-8 object-cover" />}
     </a>
   );
 };

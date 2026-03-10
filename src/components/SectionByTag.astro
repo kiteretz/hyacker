@@ -1,5 +1,6 @@
 ---
 import Card from '@components/Card';
+import { twMerge } from 'tailwind-merge';
 import type { CollectionEntry } from 'astro:content';
 
 export type SectionItem = {
@@ -14,13 +15,25 @@ const { title, posts } = Astro.props;
 ---
 
 <section class="my-px">
-  <div class="grid grid-cols-[16.625rem_1fr]">
-    <div class="bg-white">
-      <h2>{title}</h2>
-    </div>
-    <div class="grid grid-cols-5">
+  <div class="grid xl:grid-cols-[16.625rem_1fr]">
+    <a
+      href="#"
+      class={twMerge(
+        'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
+        'xl:flex-col xl:items-start xl:p-32',
+      )}
+    >
+      <h2 class="text-32 font-semibold tracking-tighter xl:writing-sideways-rl">{title}</h2>
+      <p class="flex items-center gap-x-4">
+        <span class="text-16 font-medium tracking-tight">View More</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="size-16">
+          <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8"></path>
+        </svg>
+      </p>
+    </a>
+    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {
-        posts.slice(0, 3).map((post) => {
+        posts.slice(0, 15).map((post) => {
           return (
             <Card
               href={`/post/${post.id}`}
@@ -28,6 +41,7 @@ const { title, posts } = Astro.props;
               date={post.data.pubDate}
               tags={post.data.tags ?? []}
               img={post.data.image?.url}
+              client:load
             />
           );
         })
