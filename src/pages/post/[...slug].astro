@@ -39,7 +39,7 @@ const { title, description, upDate, pubDate, author, image, tags = [] } = entry.
 ---
 
 <Layout title={title} description={description} className="post">
-  <article class={twMerge('container grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
+  <article class={twMerge('grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
     <div class={twMerge('col-span-8 border-l')}>
       <h2>{title}</h2>
       <p>{description}</p>
@@ -78,7 +78,7 @@ const { title, description, upDate, pubDate, author, image, tags = [] } = entry.
     <PostNavigation prev={prev} next={next} className="col-span-12 row-start-3 border-x border-t" />
   </article>
   <section class={twMerge('border-t')}>
-    <div class={twMerge('container border-x')}>
+    <div class={twMerge('border-x')}>
       <h2>Related posts</h2>
     </div>
   </section>
