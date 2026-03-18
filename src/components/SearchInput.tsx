@@ -49,7 +49,7 @@ const SearchInput: FC = () => {
   return (
     <input
       className="w-full bg-white px-16 py-4 disabled:bg-gray-200"
-      name="search"
+      name="keyword"
       placeholder="Search"
       type="search"
       onInput={(e) => onInputHandle(e.currentTarget.value)}

@@ -12,7 +12,7 @@ const SearchResults:FC = () => {
 
     const find = async () => {
       const query = new URLSearchParams(document.location.search || '')
-      const searchWord = query.get("search") || ''
+      const searchWord = query.get("keyword") || ''
       const search = await pagefind.search(searchWord);
 
       const results = await Promise.all(
