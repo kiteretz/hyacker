@@ -8,6 +8,8 @@ const SearchResults:FC = () => {
   const pagefind = useAtomValue(pageFindAtom)
 
   useEffect(()=>{
+    if( import.meta.env.DEV ) return
+
     const find = async () => {
       const query = new URLSearchParams(document.location.search || '')
       const searchWord = query.get("search") || ''
