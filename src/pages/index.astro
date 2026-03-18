@@ -35,7 +35,6 @@ const sections: SectionItem[] = [
       </div>
     </div>
   </div>
-  <SectionSearchResult client:load />
   {sections.map(({title,posts})=>
     <SectionByTag title={title} posts={posts} />
     )
