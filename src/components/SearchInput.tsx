@@ -1,4 +1,4 @@
-import { type FC, useState } from 'react';
+import { type FC, useState, useEffect } from 'react';
 import { useSetAtom, useAtom, useAtomValue } from 'jotai';
 import { resultsAtom, pageFindAtom, existActiveInputAtom } from '@libs/jotai';
 import dummyResult from '@libs/dummyResult';
@@ -9,6 +9,8 @@ type Props = {
 };
 
 const SearchInput: FC<Props> = ({ className }) => {
+  const [queried, setQueried] = useState<string>('');
+
   // SearchInput の有効・無効を処理するためのフラグ群
   const [isInputting, setInputting] = useState<boolean>(false);
   const [existActiveInput, setActiveInput] = useAtom(existActiveInputAtom);
@@ -32,6 +34,12 @@ const SearchInput: FC<Props> = ({ className }) => {
 
     setResults(results);
   };
+
+  useEffect(() => {
+    const query = new URLSearchParams(document.location.search || '');
+    const searchWord = query.get('keyword') || '';
+    setQueried(searchWord);
+  }, []);
 
   const onInputHandle = (query: string) => {
     if (query === '') {
@@ -59,11 +67,12 @@ const SearchInput: FC<Props> = ({ className }) => {
         'disabled:bg-gray-200',
         className,
       )}
-      name="search"
+      name="keyword"
       placeholder="Search"
       type="search"
       onInput={(e) => onInputHandle(e.currentTarget.value)}
       disabled={shouldDisable}
+      defaultValue={queried}
     />
   );
 };
