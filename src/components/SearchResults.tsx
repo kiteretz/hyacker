@@ -34,7 +34,12 @@ const SearchResults:FC = () => {
 
   }, [])
 
-  return results && (
+  return results.length === 0
+    ? (
+    <div>
+      該当する記事はありません
+    </div>
+    ) : (
     <div>
       { results.map((result)=>{
           return <Card {...result}/>
