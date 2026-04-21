@@ -2,6 +2,12 @@ import type { FC } from 'react';
 import { formatDate } from '@utils/formatDate';
 import { twMerge } from 'tailwind-merge';
 
+/**
+ * Card コンポーネントは Astro での HTML ビルド時と、検索結果の表示のために React から呼び出される
+ * 両対応にするために tsx ファイルとしている。
+ * また、Astro が読み出す MarkDown コンテンツと、Pagefind の検索結果の2つがデータソースになる。
+ */
+
 export type Card = {
   href: string;
   title: string;
