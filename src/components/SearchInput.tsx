@@ -28,6 +28,7 @@ const SearchInput: FC<Props> = ({ className }) => {
         return {
           href: data.url,
           title: data.meta.title,
+          date: data.meta.pubDate
         };
       }),
     );

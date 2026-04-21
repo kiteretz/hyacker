@@ -5,7 +5,7 @@ import { twMerge } from 'tailwind-merge';
 export type Card = {
   href: string;
   title: string;
-  date: Date;
+  date: Date | string;
   tags: string[];
   img?: string;
 };

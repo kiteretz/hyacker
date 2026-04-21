@@ -57,7 +57,7 @@ const { title, description, upDate, pubDate, author, image, tags = [] } = entry.
     <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
       <div>
         <time datetime={upDate.toISOString()}>{formatDate(upDate)}</time>
-        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
+        <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
         <ul>
           {
             (tags ?? []).map((tag: string | undefined) => {

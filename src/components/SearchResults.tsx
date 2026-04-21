@@ -21,6 +21,7 @@ const SearchResults:FC = () => {
           return {
             href: data.url,
             title: data.meta.title,
+            date: data.meta.pubDate
           };
         }),
       );
