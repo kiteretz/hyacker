@@ -16,7 +16,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img }) => {
       <h3 className="mb-8 px-8 text-18 font-semibold">{title}</h3>
       <p className="px-8 font-space-grotesk text-14 text-fg-400">{formatDate(date)}</p>
       <ul className="flex flex-wrap px-8 font-inter text-14 text-fg-400">
-        {tags.map((tag) => (
+        {tags?.map((tag) => (
           <li key={tag} className='after:mr-2 after:content-[","] last:after:content-none'>
             {tag}
           </li>
