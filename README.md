@@ -56,3 +56,7 @@ All commands are run from the root of the project, from a terminal:
 ## 👀 Want to learn more?
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## 更新
+
+`@types/react`を`19.2.15`にアップデートすると、`.astro`ファイルのテンプレート部分もReactの型で検査してしまいエラーが出るため、`19.2.14`でいったん固定
