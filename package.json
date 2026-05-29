@@ -20,7 +20,7 @@
     "@astrojs/rss": "^4.0.18",
     "@tailwindcss/vite": "^4.3.0",
     "astro": "^5.18.2",
-    "jotai": "^2.18.1",
+    "jotai": "^2.20.0",
 "pagefind": "^1.4.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0",
