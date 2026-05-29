@@ -5,7 +5,6 @@ import SearchForm from '@components/SearchForm.astro';
 import SectionByTag from '@components/SectionByTag.astro';
 import { getPostsByTag } from '@libs/postsByTag';
 import type { SectionItem } from '@components/SectionByTag.astro';
-// import type { ACTION_ERROR_CODES } from 'astro:actions';
 
 const tags = await getPostsByTag();
 
