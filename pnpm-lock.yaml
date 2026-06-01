@@ -23,6 +23,9 @@ importers:
       astro:
         specifier: ^5.18.2
         version: 5.18.2(@types/node@22.15.30)(jiti@2.6.1)(lightningcss@1.32.0)(rollup@4.42.0)(typescript@5.9.3)(yaml@2.9.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       jotai:
         specifier: ^2.20.0
         version: 2.20.0(@babel/core@7.28.5)(@babel/template@7.28.6)(@types/react@19.2.15)(react@19.2.6)
