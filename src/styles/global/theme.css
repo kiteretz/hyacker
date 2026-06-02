@@ -45,9 +45,6 @@
 	--spacing-19-32: clamp(1.188rem, -0.031rem + 2.54vw, 2rem);
 	--spacing-80-144: clamp(5rem, -1rem + 12.5vw, 9rem);
 
-	--color-fg-400: oklch(70.9% 0 0); /* #a1a1a1 */
-	--color-fg-800: oklch(26.84% 0 0); /* #262626 */
-
 	--breakpoint-xs: 20rem; /* 320px */
 	--breakpoint-sm: 30rem; /* 480px */
 	--breakpoint-md: 45rem; /* 720px */
