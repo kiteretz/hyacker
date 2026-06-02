@@ -21,7 +21,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img }) => {
     <a
       href={href}
       className={twMerge(
-        'mb-px ml-px grid min-h-367 grid-rows-[auto_auto_auto_1fr] bg-white p-8',
+        'grid min-h-367 grid-rows-[auto_auto_auto_1fr] bg-white p-8',
         'focus-visible:ring-2 focus-visible:ring-fg-800 focus-visible:outline-none focus-visible:ring-inset',
       )}
     >

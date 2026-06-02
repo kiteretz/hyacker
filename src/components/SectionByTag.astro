@@ -14,12 +14,12 @@ interface Props extends SectionItem {}
 const { title, posts } = Astro.props;
 ---
 
-<section class="">
-  <div class="grid xl:grid-cols-[16.625rem_1fr]">
+<section>
+  <div class="mb-px grid gap-px xl:grid-cols-[16.625rem_1fr]">
     <a
       href="#"
       class={twMerge(
-        'mb-px flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
+        'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
         'xl:flex-col xl:items-start xl:p-32',
       )}
     >
@@ -31,7 +31,7 @@ const { title, posts } = Astro.props;
         </svg>
       </p>
     </a>
-    <div class="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+    <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {
         posts.slice(0, 15).map((post) => {
           return (
