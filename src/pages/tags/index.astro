@@ -6,13 +6,15 @@ const tags = await getPostsByTag();
 ---
 
 <Layout title="タグ一覧" class="tag-archive">
-  <h2>タグ一覧</h2>
+  <h1>タグ一覧</h1>
   <ul>
     {
       tags.map((tag) => (
         <li>
           {/* 投稿件数出力は確認用なので、不要なら削除 */}
-          <a href={`/tags/${tag.name}`}>{tag.name}:{tag.posts.length}</a>
+          <a href={`/tags/${tag.name}`}>
+            {tag.name}:{tag.posts.length}
+          </a>
         </li>
       ))
     }

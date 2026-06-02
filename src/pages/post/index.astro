@@ -1,14 +1,15 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { getSortedPosts } from '@libs/sortedPosts'
+import { getSortedPosts } from '@libs/sortedPosts';
 
 const posts = await getSortedPosts();
 ---
 
 <Layout title="記事一覧" class="post-archive">
-  <h2>Archives</h2>
+  <h1>Archives</h1>
   <ul>
-    { posts.map(post => (
+    {
+      posts.map((post) => (
         <li>
           <a href={`/post/${post.id}`}>{post.data.title}</a>
         </li>
