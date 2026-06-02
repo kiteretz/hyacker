@@ -2,10 +2,10 @@
 import { twMerge } from 'tailwind-merge';
 
 export interface Props {
-  className?: string;
+  class?: string;
 }
 
-const { className } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
 <footer class={twMerge('sticky top-[100vh] bg-white', className)}>

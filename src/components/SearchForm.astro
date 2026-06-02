@@ -3,25 +3,25 @@ import { twMerge } from 'tailwind-merge';
 import SearchInput from '@components/SearchInput';
 
 export interface Props {
-  className?: string;
-  buttonClassName?: string;
-  iconClassName?: string;
-  inputClassName?: string;
+  class?: string;
+  buttonClass?: string;
+  iconClass?: string;
+  inputClass?: string;
 }
 
-const { className, buttonClassName, iconClassName, inputClassName } = Astro.props;
+const { class: className, buttonClass, iconClass, inputClass } = Astro.props;
 const isSearchPage = Astro.url.pathname === '/search/';
 const shouldDisable = isSearchPage ? true : false;
 ---
 
 <form action="/search/" method="get">
   <label class={twMerge('relative flex items-center', className)}>
-    <SearchInput client:load className={inputClassName} />
+    <SearchInput client:load className={inputClass} />
     <button
-      class={twMerge('absolute right-16 flex aspect-square w-32 shrink items-center justify-center', buttonClassName)}
+      class={twMerge('absolute right-16 flex aspect-square w-32 shrink items-center justify-center', buttonClass)}
       disabled={shouldDisable}
     >
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class={twMerge('w-12', iconClassName)}>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class={twMerge('w-12', iconClass)}>
         <path
           stroke="currentColor"
           stroke-linecap="round"

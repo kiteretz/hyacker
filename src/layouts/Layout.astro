@@ -10,10 +10,10 @@ import Footer from '../components/Footer.astro';
 export interface Props {
   title?: string;
   description?: string;
-  className?: string;
+  class?: string;
 }
 
-const { title, description, className } = Astro.props;
+const { title, description, class: className } = Astro.props;
 ---
 
 <!doctype html>

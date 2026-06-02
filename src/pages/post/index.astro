@@ -5,7 +5,7 @@ import { getSortedPosts } from '@libs/sortedPosts'
 const posts = await getSortedPosts();
 ---
 
-<Layout title="記事一覧" className="post-archive">
+<Layout title="記事一覧" class="post-archive">
   <h2>Archives</h2>
   <ul>
     { posts.map(post => (

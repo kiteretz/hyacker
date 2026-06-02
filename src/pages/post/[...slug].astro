@@ -38,7 +38,7 @@ const { Content, headings = [] } = await render(entry);
 const { title, description, upDate, pubDate, author, image, tags = [] } = entry.data;
 ---
 
-<Layout title={title} description={description} className="post">
+<Layout title={title} description={description} class="post">
   <article class={twMerge('grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
     <div class={twMerge('col-span-8 border-l')}>
       <h2>{title}</h2>
@@ -75,7 +75,7 @@ const { title, description, upDate, pubDate, author, image, tags = [] } = entry.
         <TableOfContents headings={headings} />
       </div>
     </aside>
-    <PostNavigation prev={prev} next={next} className="col-span-12 row-start-3 border-x border-t" />
+    <PostNavigation prev={prev} next={next} class="col-span-12 row-start-3 border-x border-t" />
   </article>
   <section class={twMerge('border-t')}>
     <div class={twMerge('border-x')}>

@@ -3,10 +3,10 @@ import { twMerge } from 'tailwind-merge';
 import { getPostsByTag } from '@libs/postsByTag';
 
 export interface Props {
-  className?: string;
+  class?: string;
 }
 
-const { className } = Astro.props;
+const { class: className } = Astro.props;
 const tags = await getPostsByTag();
 
 const naviItems: { label: string; href: string }[] = [

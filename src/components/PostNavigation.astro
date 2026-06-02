@@ -5,10 +5,10 @@ import { twMerge } from 'tailwind-merge';
 interface Props {
   prev: CollectionEntry<'posts'> | undefined;
   next: CollectionEntry<'posts'> | undefined;
-  className?: string;
+  class?: string;
 }
 
-const { prev, next, className } = Astro.props;
+const { prev, next, class: className } = Astro.props;
 ---
 
 <div class={twMerge('', className)}>
