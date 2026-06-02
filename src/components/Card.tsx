@@ -34,7 +34,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img }) => {
           </li>
         ))}
       </ul>
-      {img && <img src={img} width="" height="" alt={title} className="aspect-video self-end rounded-8 object-cover" />}
+      {img && <img src={img} width="" height="" alt="" className="aspect-video self-end rounded-8 object-cover" />}
     </a>
   );
 };
