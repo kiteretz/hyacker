@@ -24,7 +24,7 @@ const naviItems: { label: string; href: string }[] = [
 ];
 ---
 
-<nav class={twMerge('', className)}>
+<nav aria-label="グローバルナビゲーション" class={twMerge('', className)}>
   <ul class="flex flex-wrap items-center justify-end">
     {
       naviItems.map(({ label, href }) => (
