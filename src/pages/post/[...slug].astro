@@ -40,18 +40,18 @@ const { title, description, upDate, pubDate, author, image, tags = [] } = entry.
 
 <Layout title={title} description={description} className="post">
   <article class={twMerge('grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
-    <div class={twMerge('col-span-8 border-l')}>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <p>{author}</p>
-      {image && <img src={image?.url} alt={image?.alt} />}
-    </div>
-    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-t border-l', 'flex')}>
-      <aside class="shrink">
-        <SocialIcon />
-      </aside>
-      <div data-pagefind-body>
-        <Content />
+    <div data-pagefind-body>
+      <div class={twMerge('col-span-8 border-l')}>
+        <h1>{title}</h1>
+        <p>{description}</p>
+        <p data-pagefind-ignore>{author}</p>
+        {image && <img src={image?.url} alt={image?.alt} />}
+      </div>
+      <div class={twMerge('col-span-8 col-start-1 row-start-2 border-t border-l', 'flex')}>
+        <aside class="shrink">
+          <SocialIcon />
+        </aside>
+          <Content />
       </div>
     </div>
     <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
