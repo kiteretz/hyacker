@@ -54,3 +54,31 @@
 		display: none;
 	}
 }
+
+/* Typography plugin */
+@utility prose {
+	--tw-prose-body: var(--color-neutral-900);
+	--tw-prose-headings: var(--color-neutral-900);
+	--tw-prose-bold: var(--color-neutral-900);
+	--tw-prose-bullets: var(--color-neutral-900);
+	--tw-prose-counters: var(--color-neutral-900);
+
+	@apply max-w-none;
+
+	h2 {
+		@apply border-b pb-[0.25em] leading-normal text-24 lg:text-28;
+	}
+	h3 {
+		@apply leading-normal text-20 lg:text-24;
+	}
+	pre {
+		@apply rounded-16 p-16 lg:p-24;
+	}
+	code {
+		&::before,
+		&::after {
+			display: none;
+		}
+		text-wrap: nowrap;
+	}
+}
