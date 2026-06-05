@@ -1,0 +1,404 @@
+/* {property}-clamp-{min}/{max}: clamp over 480px–1280px viewport */
+
+/* Typography */
+@utility text-clamp-* {
+	font-size: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility leading-clamp-* {
+	line-height: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/* Size */
+@utility size-clamp-* {
+	width: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+	height: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility h-clamp-* {
+	height: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility min-h-clamp-* {
+	min-height: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility w-clamp-* {
+	width: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility max-w-clamp-* {
+	max-width: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/* Padding */
+@utility p-clamp-* {
+	padding: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility px-clamp-* {
+	padding-inline: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility py-clamp-* {
+	padding-block: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility pt-clamp-* {
+	padding-top: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility pb-clamp-* {
+	padding-bottom: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility pl-clamp-* {
+	padding-inline-start: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility pr-clamp-* {
+	padding-inline-end: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/* Margin */
+@utility m-clamp-* {
+	margin: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility mx-clamp-* {
+	margin-inline: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility -mx-clamp-* {
+	margin-inline: clamp(
+		calc(--modifier(number) * var(--spacing) * -1),
+		calc(
+				(--modifier(number) - --value(number)) / 8 * 1vw +
+					(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+			) *
+			-1,
+		calc(--value(number) * var(--spacing) * -1)
+	);
+}
+@utility my-clamp-* {
+	margin-block: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility -my-clamp-* {
+	margin-block: clamp(
+		calc(--modifier(number) * var(--spacing) * -1),
+		calc(
+				(--modifier(number) - --value(number)) / 8 * 1vw +
+					(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+			) *
+			-1,
+		calc(--value(number) * var(--spacing) * -1)
+	);
+}
+@utility mt-clamp-* {
+	margin-top: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility scroll-mt-clamp-* {
+	scroll-margin-top: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility mb-clamp-* {
+	margin-bottom: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility ml-clamp-* {
+	margin-inline-start: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility mr-clamp-* {
+	margin-inline-end: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/* Gap */
+@utility gap-clamp-* {
+	gap: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+@utility gap-x-clamp-* {
+	column-gap: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility gap-y-clamp-* {
+	row-gap: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/* Border radius */
+@utility rounded-clamp-* {
+	border-radius: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/* Position */
+@utility inset-clamp-* {
+	inset: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility inset-x-clamp-* {
+	inset-inline: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility inset-y-clamp-* {
+	inset-block: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility top-clamp-* {
+	top: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility right-clamp-* {
+	right: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility bottom-clamp-* {
+	bottom: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility left-clamp-* {
+	left: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/**
+ * Custom properties
+ */
+
+/* 汎用カスタムプロパティ */
+@utility clamp--* {
+	--clamp: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}
+
+/* 高さ用 */
+@utility clamp--h-* {
+	--h: clamp(
+		calc(--value(number) * var(--spacing)),
+		calc(
+			(--modifier(number) - --value(number)) / 8 * 1vw +
+				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+		),
+		calc(--modifier(number) * var(--spacing))
+	);
+}

@@ -19,7 +19,10 @@ const shouldDisable = isSearchPage ? true : false;
     <span class="sr-only">サイト内検索</span>
     <SearchInput client:load className={inputClass} />
     <button
-      class={twMerge('absolute right-16 flex aspect-square w-32 shrink items-center justify-center', buttonClass)}
+      class={twMerge(
+        'absolute right-16 flex aspect-square w-32 shrink-0 cursor-pointer items-center justify-center',
+        buttonClass,
+      )}
       disabled={shouldDisable}
       aria-label="検索"
     >

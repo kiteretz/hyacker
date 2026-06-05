@@ -28,7 +28,7 @@ const SearchInput: FC<Props> = ({ className }) => {
         return {
           href: data.url,
           title: data.meta.title,
-          date: data.meta.pubDate
+          date: data.meta.pubDate,
         };
       }),
     );
@@ -64,7 +64,7 @@ const SearchInput: FC<Props> = ({ className }) => {
     <input
       className={twMerge(
         'size-full h-[stretch] px-16 py-4',
-        'placeholder:font-inter placeholder:text-16 placeholder:leading-none placeholder:font-medium placeholder:text-fg-400',
+        'placeholder:font-inter placeholder:text-16 placeholder:leading-none placeholder:font-medium placeholder:text-neutral-400',
         'disabled:bg-gray-200',
         className,
       )}
