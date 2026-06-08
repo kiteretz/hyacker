@@ -49,6 +49,8 @@
 }
 
 html {
+	@apply scroll-p-[calc(var(--header-height)+1em)];
+
 	scroll-behavior: smooth;
 
 	&,
