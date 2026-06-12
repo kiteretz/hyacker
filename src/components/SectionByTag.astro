@@ -4,6 +4,8 @@ import { twMerge } from 'tailwind-merge';
 import type { CollectionEntry } from 'astro:content';
 
 export type SectionItem = {
+  index?: number;
+  href?: string;
   title: string;
   description?: string;
   posts: CollectionEntry<'posts'>[];
@@ -11,14 +13,15 @@ export type SectionItem = {
 
 interface Props extends SectionItem {}
 
-const { title, posts } = Astro.props;
+const { title, posts, index = 1, href = '#' } = Astro.props;
+const indexStr = String(index).padStart(2, '0');
 ---
 
 <section>
   <div class="mb-px grid gap-px xl:grid-cols-[16.625rem_1fr]">
     <div class="max-xl:sticky max-xl:top-(--header-height)" data-js-sticky-sidebar>
       <a
-        href="#"
+        href={href}
         class={twMerge(
           'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
           'xl:h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:items-start xl:p-32',
@@ -40,7 +43,7 @@ const { title, posts } = Astro.props;
           </svg>
           <span
             class="hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:text-160 xl:leading-none xl:font-bold xl:text-neutral-800 xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10"
-            >01</span
+            >{indexStr}</span
           >
         </p>
       </a>

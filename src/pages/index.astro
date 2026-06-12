@@ -20,12 +20,14 @@ const sections: SectionItem[] = [
         {
           title: editorsPicks.name,
           description: 'Editor’s Picks',
+          href: `/tags/${editorsPicks.name}/`,
           posts: editorsPicks.posts,
         },
       ]
     : []),
   ...otherTags.map(({ name, posts }) => ({
     title: name,
+    href: `/tags/${name}/`,
     posts,
   })),
 ];
@@ -55,5 +57,9 @@ const sections: SectionItem[] = [
       namehyacke<br />risfrom(hy<br />akka)+hack<br />erkiteretz
     </p>
   </div>
-  {sections.map(({ title, posts }) => <SectionByTag title={title} posts={posts} />)}
+  {
+    sections.map(({ title, posts, href }, index) => (
+      <SectionByTag title={title} posts={posts} href={href} index={index + 1} />
+    ))
+  }
 </Layout>
