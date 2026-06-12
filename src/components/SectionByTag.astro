@@ -16,25 +16,35 @@ const { title, posts } = Astro.props;
 
 <section>
   <div class="mb-px grid gap-px xl:grid-cols-[16.625rem_1fr]">
-    <a
-      href="#"
-      class={twMerge(
-        'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
-        'xl:flex-col xl:items-start xl:p-32',
-      )}
-    >
-      <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
-      <p class="flex items-center gap-x-4 xl:relative">
-        <span class="text-16 font-medium tracking-tight">View More</span>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="size-16">
-          <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8"></path>
-        </svg>
-        <span
-          class="hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:text-160 xl:leading-none xl:font-bold xl:text-neutral-800 xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10"
-          >01</span
-        >
-      </p>
-    </a>
+    <div class="max-xl:sticky max-xl:top-(--header-height)" data-js-sticky-sidebar>
+      <a
+        href="#"
+        class={twMerge(
+          'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
+          'xl:h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:items-start xl:p-32',
+        )}
+        data-js-sticky-sidebar-inner
+      >
+        <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
+        <p class="flex items-center gap-x-4 xl:relative">
+          <span class="text-16 font-medium tracking-tight">View More</span>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            fill="none"
+            viewBox="0 0 24 24"
+            class="size-16"
+          >
+            <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8"></path>
+          </svg>
+          <span
+            class="hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:text-160 xl:leading-none xl:font-bold xl:text-neutral-800 xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10"
+            >01</span
+          >
+        </p>
+      </a>
+    </div>
     <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {
         posts.slice(0, 15).map((post) => {
