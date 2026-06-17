@@ -9,50 +9,47 @@ interface Props {
 const { title, class: className } = Astro.props;
 ---
 
-<div class={twMerge('mb-px grid gap-px font-inter', className)}>
-  <div>
-    <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-[16.625rem_1fr]']}>
-      <!-- Left sidebar -->
-      <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-white']}>
-        <div
-          class="flex h-[max(calc(100svh-var(--header-height)),30rem)] flex-col items-end justify-between px-32 py-32 pb-8"
-        >
-          <slot name="sidebar-left" />
+<div class={twMerge('mb-px grid min-h-[calc(100svh-var(--header-height))] gap-px font-inter', className)}>
+  <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-[16.625rem_1fr]']}>
+    <!-- Left sidebar -->
+    <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-white']}>
+      {
+        Astro.slots.has('sidebar-left') && (
+          <div class="px-32 py-32 pb-8">
+            <slot name="sidebar-left" />
+          </div>
+        )
+      }
+    </div>
+
+    <!-- Content area: inner grid -->
+    <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-4 xl:grid-rows-[auto_1fr]', '2xl:grid-cols-5']}>
+      <!-- Header -->
+      <div
+        class:list={['bg-white p-16', 'md:p-32', 'xl:col-[1/-2] xl:row-1 xl:flex xl:items-center xl:justify-center']}
+      >
+        <h1 class="w-full max-w-5xl font-palt text-28 leading-normal font-bold md:text-40">
+          {title}
+        </h1>
+      </div>
+      <!-- Body -->
+      <div class:list={['bg-white px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
+        <div class="prose w-full">
+          <slot />
         </div>
       </div>
-
-      <!-- Content area: inner grid -->
-      <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-4 xl:grid-rows-[auto_1fr]', '2xl:grid-cols-5']}>
-        <!-- Header -->
-        <div
-          class:list={[
-            'bg-white p-16',
-            'md:p-32',
-            'xl:col-[1/-2] xl:row-1 xl:flex xl:items-center xl:justify-center',
-          ]}
-        >
-          <h1 class="w-full max-w-5xl font-palt text-28 leading-normal font-bold md:text-40">
-            {title}
-          </h1>
-        </div>
-        <!-- Body -->
-        <div class:list={['bg-white px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
-          <div class="prose w-full">
-            <slot />
-          </div>
-        </div>
-        <!-- Right sidebar -->
-        <div
-          class:list={[
-            'flex flex-wrap gap-16 bg-white p-16',
-            'md:flex-col md:gap-24 md:px-24 md:py-32',
-            'xl:col-[-2/-1] xl:row-span-full',
-          ]}
-        >
-          <slot name="sidebar-right" />
-        </div>
+      <!-- Right sidebar -->
+      <div
+        class:list={[
+          'bg-white',
+          'xl:col-[-2/-1] xl:row-span-full',
+          Astro.slots.has('sidebar-right') && 'p-16 md:px-24 md:py-32',
+        ]}
+      >
+        <slot name="sidebar-right" />
       </div>
     </div>
   </div>
+
   <slot name="bottom" />
 </div>
