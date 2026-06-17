@@ -31,16 +31,67 @@
 	--spacing-col-10-container: calc(var(--col-10) + var(--spacing-gutter) * 2);
 	--spacing-col-11-container: calc(var(--col-11) + var(--spacing-gutter) * 2);
 	--spacing-col-12-container: calc(var(--col-12) + var(--spacing-gutter) * 2);
-	--spacing-container: min(100%, 80rem);
-	/* --spacing-[px@400px]-[px@640px] */
+	/* --spacing-container: min(100%, 80rem); */
 
-	--container: 81rem; /* 1296px */
+	/* --spacing-[px@375px]-[px@768px] */
+	--spacing-10-34: clamp(0.625rem, -0.806rem + 6.11vw, 2.125rem);
+	--spacing-16-18: clamp(1rem, 0.881rem + 0.51vw, 1.125rem);
+	--spacing-24-56: clamp(1.5rem, -0.408rem + 8.14vw, 3.5rem);
+	--spacing-32-80: clamp(2rem, -0.863rem + 12.21vw, 5rem);
+	--spacing-64-128: clamp(4rem, 0.183rem + 16.28vw, 8rem);
+	--spacing-64-160: clamp(4rem, -1.725rem + 24.43vw, 10rem);
 
-	--font-noto: "Local Noto Sans JP", "Noto Sans JP";
+	/* --spacing-[px@768px]-[px@1280px] */
+	--spacing-19-32: clamp(1.188rem, -0.031rem + 2.54vw, 2rem);
+	--spacing-80-144: clamp(5rem, -1rem + 12.5vw, 9rem);
+
+	--breakpoint-xs: 20rem; /* 320px */
+	--breakpoint-sm: 30rem; /* 480px */
+	--breakpoint-md: 45rem; /* 720px */
+	--breakpoint-lg: 60rem; /* 960px */
+	--breakpoint-xl: 75rem; /* 1200px */
+	--breakpoint-2xl: 90rem; /* 1440px */
+
+	--font-noto: 'Local Noto Sans JP', 'Noto Sans JP';
 	--font-sans: var(--font-noto), sans-serif;
 	--font-inter: 'Inter', var(--font-sans), sans-serif;
 	--font-space-grotesk: 'Space Grotesk', sans-serif;
+	--font-ktrz: 'KTRZ';
+
+	--leading-relaxed: 1.75;
+
+	--writing-mode-sideways-rl: sideways-rl;
 
 	--z-header: 100;
 	--z-modal: 200;
+
+	--ease-css: ease; /* The CSS default built-in `ease` */
+	--ease-css-in: ease-in; /* The CSS built-in `ease-in` */
+	--ease-css-out: ease-out; /* The CSS built-in `ease-out` */
+	--ease-css-in-out: ease-in-out; /* The CSS built-in `ease-in-out` */
+	--ease-in-sine: cubic-bezier(0.12, 0, 0.39, 0);
+	--ease-out-sine: cubic-bezier(0.61, 1, 0.88, 1);
+	--ease-in-out-sine: cubic-bezier(0.37, 0, 0.63, 1);
+	--ease-in-quad: cubic-bezier(0.11, 0, 0.5, 0);
+	--ease-out-quad: cubic-bezier(0.5, 1, 0.89, 1);
+	--ease-in-out-quad: cubic-bezier(0.45, 0, 0.55, 1);
+	--ease-in-cubic: cubic-bezier(0.32, 0, 0.67, 0);
+	--ease-out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+	--ease-in-out-cubic: cubic-bezier(0.65, 0, 0.35, 1);
+	--ease-in-quart: cubic-bezier(0.5, 0, 0.75, 0);
+	--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--ease-in-out-quart: cubic-bezier(0.76, 0, 0.24, 1);
+	--ease-in-quint: cubic-bezier(0.64, 0, 0.78, 0);
+	--ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-in-out-quint: cubic-bezier(0.83, 0, 0.17, 1);
+	--ease-in-expo: cubic-bezier(0.7, 0, 0.84, 0);
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+	--ease-in-circ: cubic-bezier(0.55, 0, 1, 0.45);
+	--ease-out-circ: cubic-bezier(0, 0.55, 0.45, 1);
+	--ease-in-out-circ: cubic-bezier(0.85, 0, 0.15, 1);
+	--ease-in-back: cubic-bezier(0.36, 0, 0.66, -0.45);
+	--ease-out-back: cubic-bezier(0.34, 1.45, 0.64, 1);
+	--ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
+	--ease-rotate-text: var(--ease-out-circ);
 }

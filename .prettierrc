@@ -12,6 +12,6 @@
     }
   ],
   "tailwindStylesheet": "src/styles/index.css",
-  "tailwindAttributes": ["class:list", "className"],
+  "tailwindAttributes": ["class:list", "className", "buttonClassName", "iconClassName"],
   "tailwindFunctions": ["twMerge", "clsx", "styles"]
 }

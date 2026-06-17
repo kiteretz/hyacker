@@ -4,17 +4,16 @@ import { type CollectionEntry } from 'astro:content';
 import { twMerge } from 'tailwind-merge';
 import Layout from '@layouts/Layout.astro';
 import TableOfContents from '@components/TableOfContents.astro';
-import PostNavigation from '@components/PostNavigation.astro';
 import SocialIcon from '@components/SocialIcon.astro';
+import SectionByTag from '@components/SectionByTag.astro';
 import { render } from 'astro:content';
-// import { cn } from '../../utils/cn';
+import { formatDate } from '@utils/formatDate';
 import { getSortedPosts } from '@libs/sortedPosts';
 
-// 前後ページの移動のため、各entryに加え、prev,next のCollectionEntryを返す.
 export async function getStaticPaths() {
   const sortedPosts = await getSortedPosts();
 
-  return sortedPosts.map( (entry, index) => {
+  return sortedPosts.map((entry, index) => {
     const prev = index > 0 ? sortedPosts[index - 1] : null;
     const next = index < sortedPosts.length - 1 ? sortedPosts[index + 1] : null;
 
@@ -26,61 +25,138 @@ export async function getStaticPaths() {
 }
 
 interface Props {
-  entry: CollectionEntry<'posts'>,
-  prev: CollectionEntry<'posts'> | undefined,
-  next: CollectionEntry<'posts'> | undefined,
-};
+  entry: CollectionEntry<'posts'>;
+  prev: CollectionEntry<'posts'> | undefined;
+  next: CollectionEntry<'posts'> | undefined;
+}
 
-const { entry, prev, next } = Astro.props;
+const { entry } = Astro.props;
 const { Content, headings = [] } = await render(entry);
 
-const { title, description, upDate, pubDate, author, image, tags = [] } = entry.data;
+const { title, description, pubDate, tags } = entry.data;
+const currentTags = tags ?? [];
 
-const formatDate = (date: Date) => date.toISOString().slice(0, 10);
+// Related posts: タグが1つ以上一致する記事を最大5件取得
+const sortedPosts = await getSortedPosts();
+const relatedPosts = sortedPosts
+  .filter((p) => p.id !== entry.id && p.data.tags?.some((t: string) => currentTags.includes(t)))
+  .slice(0, 5);
 
+// h3見出し数を算出（左カラムのインデックス表示用）
+const h3Headings = headings.filter((h) => h.depth === 3);
+const headingCountStr = String(h3Headings.length || 1).padStart(2, '0');
 ---
-<Layout title={title} description={description} className="post">
-  <article class={twMerge('container grid grid-cols-12 grid-rows-[auto_auto_auto]')}>
-    <div class={twMerge('col-span-8 border-l')}>
-      <h2>{title}</h2>
-      <p>{description}</p>
-      <p>{author}</p>
-      {image && <img src={image?.url} alt={image?.alt} />}
-    </div>
-    <div class={twMerge('col-span-8 col-start-1 row-start-2 border-l border-t', 'flex')}>
-      <aside class="shrink">
-        <SocialIcon />
-      </aside>
-      <div data-pagefind-body>
-        <Content/>
+
+<Layout title={title} description={description} class="post">
+  <div class="grid gap-px font-inter">
+    <div>
+      <div class={twMerge('grid gap-px', 'grid-cols-1', 'xl:grid-cols-[16.625rem_1fr]')}>
+        <!-- Left sidebar: Share + Heading Index -->
+        <div class={twMerge('hidden', 'xl:flex xl:flex-col xl:bg-white')} data-js-sticky-sidebar>
+          <div
+            class="flex h-[max(calc(100svh-var(--header-height)),30rem)] flex-col items-end justify-between px-32 py-32 pb-8"
+            data-js-sticky-sidebar-inner
+          >
+            <!-- Share icons -->
+            <div class="pointer-events-auto flex flex-col items-end">
+              <SocialIcon />
+            </div>
+            <!-- Heading index -->
+            <div
+              class="flex flex-col font-space-grotesk font-features-['zero'] text-160 leading-none font-bold text-fg-800 tabular-nums opacity-10"
+            >
+              <p class="relative top-16" data-section-current>01</p>
+              <p data-heading-total>
+                {headingCountStr}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content area: inner grid -->
+        <div class={twMerge('grid gap-px', 'grid-cols-1', 'xl:grid-cols-4 xl:grid-rows-[auto_1fr]', '2xl:grid-cols-5')}>
+          <!-- Article Header -->
+          <div
+            class={twMerge(
+              'bg-white p-16',
+              'md:p-32',
+              'xl:col-[1/-2] xl:row-1 xl:flex xl:items-center xl:justify-center',
+            )}
+          >
+            <h1 class="w-full max-w-5xl font-palt text-28 leading-normal font-bold md:text-40">
+              {title}
+            </h1>
+          </div>
+
+          <!-- Published + Tags -->
+          <div
+            class={twMerge(
+              'flex flex-wrap gap-16 bg-white p-16',
+              'md:flex-col md:gap-24 md:px-24 md:py-32',
+              'xl:col-[-2/-1] xl:row-1',
+            )}
+          >
+            <div class="flex flex-col gap-12">
+              <p class="font-inter text-14 leading-none text-fg-400 uppercase">Published</p>
+              <p class="font-space-grotesk text-16 leading-tight">
+                <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
+              </p>
+            </div>
+            <div class="flex flex-col gap-12">
+              <p class="font-inter text-14 leading-none text-fg-400 uppercase">Tags</p>
+              <p class="text-16 leading-tight">
+                {
+                  currentTags.map((tag: string, i: number) => (
+                    <>
+                      <a href={`/tags/${tag}`} class="hover:underline">
+                        {tag}
+                      </a>
+                      {i < currentTags.length - 1 && ', '}
+                    </>
+                  ))
+                }
+              </p>
+            </div>
+          </div>
+
+          <!-- Mobile: Share icons -->
+          <div class="flex items-center justify-end bg-white px-16 py-8 xl:hidden">
+            <SocialIcon />
+          </div>
+
+          <!-- Article Body -->
+          <div class={twMerge('bg-white px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center')}>
+            <div class="prose w-full" data-pagefind-body>
+              <Content />
+            </div>
+          </div>
+
+          <!-- TOC + Ad -->
+          <div class={twMerge('bg-white', 'xl:relative xl:col-[-2/-1] xl:row-2')}>
+            <div
+              class="pointer-events-none sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] xl:flex xl:flex-col xl:justify-between"
+            >
+              <!-- TOC -->
+              <div class="pointer-events-auto flex flex-col gap-16 overflow-y-auto px-24 py-32">
+                <p class="font-inter text-14 leading-none text-fg-400 uppercase">Table of contents</p>
+                <TableOfContents headings={headings} />
+              </div>
+              <!-- Ad card -->
+              <div class="pointer-events-auto sticky bottom-0 -translate-y-px border-t border-fg-800 bg-white p-8">
+                <div class="flex flex-col gap-4">
+                  <div class="flex items-center justify-between p-8 leading-tight">
+                    <p class="font-inter text-14 text-fg-400">AD, PR</p>
+                  </div>
+                  <img src="https://placehold.co/250x188" alt="" class="w-full rounded-8" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-    <aside class={twMerge('col-span-4 col-start-9 row-span-2 row-start-1 grid grid-rows-subgrid border-x')}>
-      <div>
-        <time datetime={upDate.toISOString()}>{formatDate(upDate)}</time>
-        <time datetime={pubDate.toISOString()}>{formatDate(pubDate)}</time>
-        <ul>
-          {
-            (tags ?? []).map((tag: string | undefined) => {
-              return (
-                <li>
-                  <a href={`/tags/${tag}`}>{tag}</a>
-                </li>
-              );
-            })
-          }
-        </ul>
-      </div>
-      <div class={twMerge('border-t')}>
-        <h3>Table of Contents</h3>
-        <TableOfContents headings={headings} />
-      </div>
-    </aside>
-    <PostNavigation prev={prev} next={next} className="col-span-12 row-start-3 border-x border-t" />
-  </article>
-  <section class={twMerge('border-t')}>
-    <div class={twMerge('container border-x')}>
-      <h2>Related posts</h2>
-    </div>
-  </section>
+
+    <!-- Related Posts -->
+    <SectionByTag title="Related" posts={relatedPosts.slice(0, 5)} />
+  </div>
 </Layout>

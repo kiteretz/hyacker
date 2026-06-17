@@ -38,8 +38,19 @@
 	font-weight: 100 900;
 	font-style: normal;
 }
+@font-face {
+	font-family: 'KTRZ';
+	src:
+		url('/assets/fonts/KTRZ.woff') format('woff'),
+		url('/assets/fonts/KTRZ.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
 
 html {
+	@apply scroll-p-[calc(var(--header-height)+1em)];
+
 	scroll-behavior: smooth;
 
 	&,

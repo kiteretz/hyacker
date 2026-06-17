@@ -1,24 +1,24 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { getPostsByTag }from '@libs/postsByTag';
+import { getPostsByTag } from '@libs/postsByTag';
 
 export async function getStaticPaths() {
   const tags = await getPostsByTag();
 
-  return tags.map( (tag) => {
-      return {
-          params: { tag: tag.name },
-          props: { posts: tag.posts}
-        }
-    })
+  return tags.map((tag) => {
+    return {
+      params: { tag: tag.name },
+      props: { posts: tag.posts },
+    };
+  });
 }
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 ---
 
-<Layout title={tag} className="tag">
-  <h2>{tag}</h2>
+<Layout title={tag} class="tag">
+  <h1>{tag}</h1>
   <ul>
     {
       posts.map((post) => (

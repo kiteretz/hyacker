@@ -2,13 +2,18 @@ import { type FC, useState, useEffect } from 'react';
 import { useSetAtom, useAtom, useAtomValue } from 'jotai';
 import { resultsAtom, pageFindAtom, existActiveInputAtom } from '@libs/jotai';
 import dummyResult from '@libs/dummyResult';
+import { twMerge } from 'tailwind-merge';
 
-const SearchInput: FC = () => {
-  const [queried, setQueried] = useState<string>('')
+type Props = {
+  className?: string;
+};
+
+const SearchInput: FC<Props> = ({ className }) => {
+  const [queried, setQueried] = useState<string>('');
 
   // SearchInput の有効・無効を処理するためのフラグ群
-  const [isInputting, setInputting] = useState<boolean>(false)
-  const [existActiveInput, setActiveInput] = useAtom(existActiveInputAtom)
+  const [isInputting, setInputting] = useState<boolean>(false);
+  const [existActiveInput, setActiveInput] = useAtom(existActiveInputAtom);
   const shouldDisable = existActiveInput && !isInputting;
 
   // 検索処理のための Atom 群
@@ -23,6 +28,7 @@ const SearchInput: FC = () => {
         return {
           href: data.url,
           title: data.meta.title,
+          date: data.meta.pubDate,
         };
       }),
     );
@@ -30,11 +36,11 @@ const SearchInput: FC = () => {
     setResults(results);
   };
 
-  useEffect(()=>{
-    const query = new URLSearchParams(document.location.search || '')
-    const searchWord = query.get("keyword") || ''
-    setQueried(searchWord)
-  }, [])
+  useEffect(() => {
+    const query = new URLSearchParams(document.location.search || '');
+    const searchWord = query.get('keyword') || '';
+    setQueried(searchWord);
+  }, []);
 
   const onInputHandle = (query: string) => {
     if (query === '') {
@@ -56,7 +62,12 @@ const SearchInput: FC = () => {
 
   return (
     <input
-      className="w-full bg-white px-16 py-4 disabled:bg-gray-200"
+      className={twMerge(
+        'size-full h-[stretch] px-16 py-4',
+        'placeholder:font-inter placeholder:text-16 placeholder:leading-none placeholder:font-medium placeholder:text-neutral-400',
+        'disabled:bg-gray-200',
+        className,
+      )}
       name="keyword"
       placeholder="Search"
       type="search"

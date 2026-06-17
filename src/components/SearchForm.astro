@@ -3,18 +3,36 @@ import { twMerge } from 'tailwind-merge';
 import SearchInput from '@components/SearchInput';
 
 export interface Props {
-  className?: string;
+  class?: string;
+  buttonClass?: string;
+  iconClass?: string;
+  inputClass?: string;
 }
 
-const { className } = Astro.props;
-const isSearchPage = Astro.url.pathname === "/search/"
-const shouldDisable = isSearchPage ? true : false
+const { class: className, buttonClass, iconClass, inputClass } = Astro.props;
+const isSearchPage = Astro.url.pathname === '/search/';
+const shouldDisable = isSearchPage ? true : false;
 ---
+
 <form action="/search/" method="get">
-  <label class={twMerge('relative flex items-center', '[&_input]:min-h-64', className)}>
-    <SearchInput client:load />
-    <button class={twMerge('absolute right-16 flex aspect-square w-32 shrink items-center justify-center')} disabled={shouldDisable}>
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class="w-12">
+  <label class={twMerge('relative flex items-center', className)}>
+    <span class="sr-only">サイト内検索</span>
+    <SearchInput client:load className={inputClass} />
+    <button
+      class={twMerge(
+        'absolute right-16 flex aspect-square w-32 shrink-0 cursor-pointer items-center justify-center',
+        buttonClass,
+      )}
+      disabled={shouldDisable}
+      aria-label="検索"
+    >
+      <svg
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 18 18"
+        class={twMerge('w-12', iconClass)}
+      >
         <path
           stroke="currentColor"
           stroke-linecap="round"

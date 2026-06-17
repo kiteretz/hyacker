@@ -10,10 +10,10 @@ import Footer from '../components/Footer.astro';
 export interface Props {
   title?: string;
   description?: string;
-  className?: string;
+  class?: string;
 }
 
-const { title, description, className } = Astro.props;
+const { title, description, class: className } = Astro.props;
 ---
 
 <!doctype html>
@@ -38,8 +38,9 @@ const { title, description, className } = Astro.props;
       rel="stylesheet"
     />
     <title>{title ?? siteInfo.title}</title>
+    <script src="../scripts/index.ts"></script>
   </head>
-  <body class={twMerge('font-palt min-h-screen antialiased font-sans', className)}>
+  <body class={twMerge('min-h-screen bg-neutral-800 font-sans font-palt text-neutral-900 antialiased', className)}>
     <Header />
     <main>
       <slot />
