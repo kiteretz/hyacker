@@ -10,9 +10,6 @@ const tags = await getPostsByTag();
 // Editor's Picksを探す（タグがなければ undefined）
 const editorsPicks = tags.find((t) => t.name === "Editor's Picks");
 
-// Editor's Picksを除いた残りのタグを記事数の多い順に最大3つ取得
-const otherTags = tags.filter((t) => t.name !== "Editor's Picks").slice(0, 3);
-
 const sections: SectionItem[] = [
   ...(editorsPicks
     ? [
@@ -24,23 +21,14 @@ const sections: SectionItem[] = [
         },
       ]
     : []),
-  ...otherTags.map(({ name, posts }) => ({
-    title: name,
-    href: `/tags/${name}/`,
-    posts,
-  })),
 ];
 ---
 
 <Layout>
   <KV
-    title="The Encyclopedia <br />for Creators"
-    subTitle="クリエイターのための百科事典"
-    bgText="namehyacke<br />risfrom(hy<br />akka)+hack<br />erkiteretz"
+    title="404<br />Page Not Found"
+    subTitle="ページが見つかりません。<br />検索フォームをご利用ください。"
+    bgText="404_not_fo<br />und.404_no<br />t_found.40<br />4_not_foun"
   />
-  {
-    sections.map(({ title, posts, href }, index) => (
-      <SectionByTag title={title} posts={posts} href={href} index={index + 1} />
-    ))
-  }
+  {sections.map(({ title, posts, href }) => <SectionByTag title={title} posts={posts} href={href} />)}
 </Layout>
