@@ -65,7 +65,6 @@ const SearchInput: FC<Props> = ({ className }) => {
       className={twMerge(
         'size-full h-[stretch] px-16 py-4',
         'placeholder:font-inter placeholder:text-16 placeholder:leading-none placeholder:font-medium placeholder:text-neutral-400',
-        'disabled:bg-gray-200',
         className,
       )}
       name="keyword"
