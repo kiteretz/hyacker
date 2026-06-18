@@ -41,7 +41,7 @@ const { title, class: className } = Astro.props;
       <!-- Right sidebar -->
       <div
         class:list={[
-          'bg-white',
+          'bg-white max-xl:hidden',
           'xl:col-[-2/-1] xl:row-span-full',
           Astro.slots.has('sidebar-right') && 'p-16 md:px-24 md:py-32',
         ]}
