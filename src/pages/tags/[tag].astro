@@ -19,5 +19,5 @@ const { posts } = Astro.props;
 ---
 
 <Layout title={tag} class="tag">
-  <SectionByTag title={tag} posts={posts} href={`/tags/${tag}/`} />
+  <SectionByTag title={tag} posts={posts} href={`/tags/${tag}/`} showCount />
 </Layout>
