@@ -3,25 +3,11 @@ import Layout from '@layouts/Layout.astro';
 import KV from '@components/KV.astro';
 import SectionByTag from '@components/SectionByTag.astro';
 import { getPostsByTag } from '@libs/postsByTag';
-import type { SectionItem } from '@components/SectionByTag.astro';
 
 const tags = await getPostsByTag();
 
 // Editor's Picksを探す（タグがなければ undefined）
 const editorsPicks = tags.find((t) => t.name === "Editor's Picks");
-
-const sections: SectionItem[] = [
-  ...(editorsPicks
-    ? [
-        {
-          title: editorsPicks.name,
-          description: 'Editor’s Picks',
-          href: `/tags/${editorsPicks.name}/`,
-          posts: editorsPicks.posts,
-        },
-      ]
-    : []),
-];
 ---
 
 <Layout>
@@ -30,5 +16,9 @@ const sections: SectionItem[] = [
     subTitle="ページが見つかりません。<br />検索フォームをご利用ください。"
     bgText="404_not_fo<br />und.404_no<br />t_found.40<br />4_not_foun"
   />
-  {sections.map(({ title, posts, href }) => <SectionByTag title={title} posts={posts} href={href} />)}
+  {
+    editorsPicks && (
+      <SectionByTag title="Editor's Picks" posts={editorsPicks.posts} href={`/tags/${editorsPicks.name}/`} />
+    )
+  }
 </Layout>
