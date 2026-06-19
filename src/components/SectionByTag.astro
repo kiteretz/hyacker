@@ -10,11 +10,12 @@ export type SectionItem = {
   description?: string;
   posts: CollectionEntry<'posts'>[];
   showCount?: boolean;
+  showAll?: boolean;
 };
 
 interface Props extends SectionItem {}
 
-const { title, posts, index, href = '#', showCount = false } = Astro.props;
+const { title, posts, index, href = '#', showCount = false, showAll = false } = Astro.props;
 const indexStr = index !== undefined ? String(index).padStart(2, '0') : '';
 const countStr = String(posts.length).padStart(3, '0');
 ---
@@ -63,7 +64,7 @@ const countStr = String(posts.length).padStart(3, '0');
     </div>
     <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {
-        posts.slice(0, 15).map((post) => {
+        (showAll ? posts : posts.slice(0, 15)).map((post) => {
           return (
             <Card
               href={`/post/${post.id}`}
