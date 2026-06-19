@@ -37,20 +37,20 @@ const decorativeNumberClass =
         data-js-sticky-sidebar-inner
       >
         <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
-        <p class="flex items-center gap-x-4 xl:relative">
+        <p class="flex items-center gap-x-4 xl:relative xl:pb-24">
           {
             showCount ? (
               <span class:list={['xl:text-108 xl:text-neutral-900', decorativeNumberClass]}>{countStr}</span>
             ) : (
               <>
-                <span class="text-16 font-medium tracking-tight">View More</span>
+                <span class="text-16 leading-none font-medium tracking-tight xl:text-24">View More</span>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="24"
                   height="24"
                   fill="none"
                   viewBox="0 0 24 24"
-                  class="size-16"
+                  class="size-16 xl:size-24"
                 >
                   <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8" />
                 </svg>
