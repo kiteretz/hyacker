@@ -1,3 +1,9 @@
+/**
+ * Fetches and displays Pagefind search results based on the URL query parameter `?keyword=`.
+ * Uses Jotai (pageFindAtom, resultsAtom) to manage the Pagefind instance and result state.
+ * Falls back to dummyResult in development where the Pagefind index is unavailable.
+ */
+
 import Card from '@components/Card';
 import { pageFindAtom, resultsAtom } from '@libs/jotai';
 import { useAtom, useAtomValue } from 'jotai';
@@ -34,7 +40,7 @@ const SearchResults: FC = () => {
   }, []);
 
   return (
-    <div aria-live="polite">
+    <div aria-live="polite" className="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {results.length === 0 ? <p>該当する記事はありません</p> : results.map((result) => <Card {...result} />)}
     </div>
   );

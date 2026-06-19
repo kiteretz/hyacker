@@ -1,13 +1,13 @@
 ---
 import { twMerge } from 'tailwind-merge';
 
-export type SectionItem = {
+interface Props {
   index?: number;
   href?: string;
   title: string;
   showCount?: boolean;
   count?: number;
-};
+}
 
 const { title, count, index, href, showCount = false } = Astro.props;
 const Tag = href ? 'a' : 'div';
@@ -32,7 +32,9 @@ const decorativeNumberClass =
     <p class="flex items-center gap-x-4 xl:relative xl:pb-24">
       {
         showCount ? (
-          <span class:list={['xl:text-108 xl:text-neutral-900', decorativeNumberClass]}>{countStr}</span>
+          <slot name="count">
+            <span class:list={['xl:text-108 xl:text-neutral-900', decorativeNumberClass]}>{countStr}</span>
+          </slot>
         ) : (
           <>
             <span class="text-16 leading-none font-medium tracking-tight xl:text-24">View More</span>
