@@ -15,7 +15,9 @@ export type SectionItem = {
 
 interface Props extends SectionItem {}
 
-const { title, posts, index, href = '#', showCount = false, showAll = false } = Astro.props;
+const { title, posts, index, href, showCount = false, showAll = false } = Astro.props;
+const Tag = href ? 'a' : 'div';
+const linkProps = href ? { href } : {};
 const indexStr = index !== undefined ? String(index).padStart(2, '0') : '';
 const countStr = String(posts.length).padStart(3, '0');
 ---
@@ -23,8 +25,8 @@ const countStr = String(posts.length).padStart(3, '0');
 <section>
   <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
     <div class="max-xl:sticky max-xl:top-(--header-height) max-xl:border-b" data-js-sticky-sidebar>
-      <a
-        href={href}
+      <Tag
+        {...linkProps}
         class={twMerge(
           'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
           'xl:h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:items-start xl:p-32',
@@ -60,7 +62,7 @@ const countStr = String(posts.length).padStart(3, '0');
             )
           }
         </p>
-      </a>
+      </Tag>
     </div>
     <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {
