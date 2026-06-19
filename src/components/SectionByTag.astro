@@ -20,6 +20,9 @@ const Tag = href ? 'a' : 'div';
 const linkProps = href ? { href } : {};
 const indexStr = index !== undefined ? String(index).padStart(2, '0') : '';
 const countStr = String(posts.length).padStart(3, '0');
+
+const decorativeNumberClass =
+  'hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:leading-none xl:font-bold xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10';
 ---
 
 <section>
@@ -37,9 +40,7 @@ const countStr = String(posts.length).padStart(3, '0');
         <p class="flex items-center gap-x-4 xl:relative">
           {
             showCount ? (
-              <span class="hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:text-108 xl:leading-none xl:font-bold xl:text-neutral-900 xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10">
-                {countStr}
-              </span>
+              <span class:list={['xl:text-108 xl:text-neutral-900', decorativeNumberClass]}>{countStr}</span>
             ) : (
               <>
                 <span class="text-16 font-medium tracking-tight">View More</span>
@@ -56,13 +57,7 @@ const countStr = String(posts.length).padStart(3, '0');
               </>
             )
           }
-          {
-            indexStr && (
-              <span class="hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:text-160 xl:leading-none xl:font-bold xl:text-neutral-800 xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10">
-                {indexStr}
-              </span>
-            )
-          }
+          {indexStr && <span class:list={['xl:text-160 xl:text-neutral-800', decorativeNumberClass]}>{indexStr}</span>}
         </p>
       </Tag>
     </div>
