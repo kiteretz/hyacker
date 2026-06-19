@@ -1,0 +1,55 @@
+---
+import { twMerge } from 'tailwind-merge';
+
+export type SectionItem = {
+  index?: number;
+  href?: string;
+  title: string;
+  showCount?: boolean;
+  count?: number;
+};
+
+const { title, count, index, href, showCount = false } = Astro.props;
+const Tag = href ? 'a' : 'div';
+const linkProps = href ? { href } : {};
+const indexStr = index !== undefined ? String(index).padStart(2, '0') : '';
+const countStr = count !== undefined ? String(count).padStart(3, '0') : '';
+
+const decorativeNumberClass =
+  'hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:leading-none xl:font-bold xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10';
+---
+
+<div class="max-xl:sticky max-xl:top-(--header-height) max-xl:border-b" data-js-sticky-sidebar>
+  <Tag
+    {...linkProps}
+    class={twMerge(
+      'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
+      'xl:h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:items-start xl:p-32',
+    )}
+    data-js-sticky-sidebar-inner
+  >
+    <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
+    <p class="flex items-center gap-x-4 xl:relative xl:pb-24">
+      {
+        showCount ? (
+          <span class:list={['xl:text-108 xl:text-neutral-900', decorativeNumberClass]}>{countStr}</span>
+        ) : (
+          <>
+            <span class="text-16 leading-none font-medium tracking-tight xl:text-24">View More</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              fill="none"
+              viewBox="0 0 24 24"
+              class="size-16 xl:size-24"
+            >
+              <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8" />
+            </svg>
+          </>
+        )
+      }
+      {indexStr && <span class:list={['xl:text-160 xl:text-neutral-800', decorativeNumberClass]}>{indexStr}</span>}
+    </p>
+  </Tag>
+</div>
