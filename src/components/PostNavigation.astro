@@ -1,5 +1,4 @@
 ---
-import { twMerge } from 'tailwind-merge';
 import type { CollectionEntry } from 'astro:content';
 
 interface Props {
@@ -11,7 +10,7 @@ interface Props {
 const { prev, next, class: className } = Astro.props;
 ---
 
-<div class={twMerge('', className)}>
+<div class:list={[className]}>
   {prev && <a href={`/post/${prev.id}`}>Prev</a>}
   {next && <a href={`/post/${next.id}`}>Next</a>}
 </div>

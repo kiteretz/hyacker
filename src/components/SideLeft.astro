@@ -1,5 +1,4 @@
 ---
-import { twMerge } from 'tailwind-merge';
 
 interface Props {
   index?: number;
@@ -22,10 +21,10 @@ const decorativeNumberClass =
 <div class="max-xl:sticky max-xl:top-(--header-height) max-xl:border-b" data-js-sticky-sidebar>
   <Tag
     {...linkProps}
-    class={twMerge(
+    class:list={[
       'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
       'xl:h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:items-start xl:p-32',
-    )}
+    ]}
     data-js-sticky-sidebar-inner
   >
     <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
