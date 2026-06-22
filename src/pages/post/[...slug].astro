@@ -1,11 +1,15 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
 import { type CollectionEntry, render } from 'astro:content';
+
 import Layout from '@layouts/Layout.astro';
-import TableOfContents from '@components/TableOfContents.astro';
-import SocialIcon from '@components/SocialIcon.astro';
+
 import SectionByTag from '@components/SectionByTag.astro';
+import SocialIcon from '@components/SocialIcon.astro';
+import TableOfContents from '@components/TableOfContents.astro';
+
 import { getSortedPosts } from '@libs/sortedPosts';
+
 import { formatDate } from '@utils/formatDate';
 
 export async function getStaticPaths() {
@@ -61,7 +65,7 @@ const headingCountStr = String(h3Headings.length || 1).padStart(2, '0');
             </div>
             <!-- Heading index -->
             <div
-              class="flex flex-col font-space-grotesk font-features-['zero'] text-160 leading-none font-bold text-fg-800 tabular-nums opacity-10"
+              class="text-fg-800 flex flex-col font-space-grotesk font-features-['zero'] text-160 leading-none font-bold tabular-nums opacity-10"
             >
               <p class="relative top-16" data-section-current>01</p>
               <p data-heading-total>
@@ -95,13 +99,13 @@ const headingCountStr = String(h3Headings.length || 1).padStart(2, '0');
             ]}
           >
             <div class="flex flex-col gap-12">
-              <p class="font-inter text-14 leading-none text-fg-400 uppercase">Published</p>
+              <p class="text-fg-400 font-inter text-14 leading-none uppercase">Published</p>
               <p class="font-space-grotesk text-16 leading-tight">
                 <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
               </p>
             </div>
             <div class="flex flex-col gap-12">
-              <p class="font-inter text-14 leading-none text-fg-400 uppercase">Tags</p>
+              <p class="text-fg-400 font-inter text-14 leading-none uppercase">Tags</p>
               <p class="text-16 leading-tight">
                 {
                   currentTags.map((tag: string, i: number) => (
@@ -136,14 +140,14 @@ const headingCountStr = String(h3Headings.length || 1).padStart(2, '0');
             >
               <!-- TOC -->
               <div class="pointer-events-auto flex flex-col gap-16 overflow-y-auto px-24 py-32">
-                <p class="font-inter text-14 leading-none text-fg-400 uppercase">Table of contents</p>
+                <p class="text-fg-400 font-inter text-14 leading-none uppercase">Table of contents</p>
                 <TableOfContents headings={headings} />
               </div>
               <!-- Ad card -->
-              <div class="pointer-events-auto sticky bottom-0 -translate-y-px border-t border-fg-800 bg-white p-8">
+              <div class="border-fg-800 pointer-events-auto sticky bottom-0 -translate-y-px border-t bg-white p-8">
                 <div class="flex flex-col gap-4">
                   <div class="flex items-center justify-between p-8 leading-tight">
-                    <p class="font-inter text-14 text-fg-400">AD, PR</p>
+                    <p class="text-fg-400 font-inter text-14">AD, PR</p>
                   </div>
                   <img src="https://placehold.co/250x188" alt="" class="w-full rounded-8" />
                 </div>

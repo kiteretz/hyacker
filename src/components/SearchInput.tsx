@@ -1,8 +1,9 @@
-import { type FC, useState, useEffect } from 'react';
-import { useSetAtom, useAtom, useAtomValue } from 'jotai';
-import { twMerge } from '@libs/twMerge';
-import { resultsAtom, pageFindAtom, existActiveInputAtom } from '@libs/jotai';
+import { useAtom, useAtomValue, useSetAtom } from 'jotai';
+import { type FC, useEffect, useState } from 'react';
+
 import dummyResult from '@libs/dummyResult';
+import { existActiveInputAtom, pageFindAtom, resultsAtom } from '@libs/jotai';
+import { twMerge } from '@libs/twMerge';
 
 type Props = {
   className?: string;

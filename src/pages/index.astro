@@ -1,8 +1,11 @@
 ---
 import Layout from '@layouts/Layout.astro';
+
 import KV from '@components/KV.astro';
 import SectionByTag from '@components/SectionByTag.astro';
+
 import { getPostsByTag } from '@libs/postsByTag';
+
 import type { SectionItem } from '@components/SectionByTag.astro';
 
 const tags = await getPostsByTag();

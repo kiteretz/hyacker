@@ -4,7 +4,9 @@
  */
 
 import { useAtomValue } from 'jotai';
+
 import { resultsAtom } from '@libs/jotai';
+
 import type { FC } from 'react';
 
 const SearchCount: FC = () => {

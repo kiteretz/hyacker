@@ -4,11 +4,13 @@
  * Falls back to dummyResult in development where the Pagefind index is unavailable.
  */
 
-import { type FC, useEffect } from 'react';
 import { useAtom, useAtomValue } from 'jotai';
+import { type FC, useEffect } from 'react';
+
 import Card from '@components/Card';
-import { pageFindAtom, resultsAtom } from '@libs/jotai';
+
 import dummyResult from '@libs/dummyResult';
+import { pageFindAtom, resultsAtom } from '@libs/jotai';
 
 const SearchResults: FC = () => {
   const [results, setResults] = useAtom(resultsAtom);
