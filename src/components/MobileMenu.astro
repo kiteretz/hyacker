@@ -1,0 +1,104 @@
+---
+import { getPostsByTag } from '@libs/postsByTag';
+
+const tags = await getPostsByTag();
+
+const mainItems: { label: string; href: string }[] = [
+  { label: 'Posts', href: '/post/' },
+  { label: 'Tags', href: '/tags/' },
+  ...tags.slice(0, 3).map(({ name }) => ({ label: name, href: `/tags/${name}/` })),
+];
+
+const subItems: { label: string; href: string; external?: boolean }[] = [
+  { label: 'About', href: '/about/' },
+  { label: 'Terms', href: '/term/' },
+  { label: 'X(Twitter)', href: '/', external: true },
+];
+---
+
+<div id="js-mobile-menu-root" data-open="false" class="group lg:hidden">
+  <div
+    id="js-mobile-menu-backdrop"
+    class="pointer-events-none fixed inset-x-0 bottom-0 opacity-0 transition-opacity duration-200 ease-in-out group-data-[open=true]:pointer-events-auto group-data-[open=true]:opacity-100"
+    style="top: var(--header-height, 64px);"
+    aria-hidden="true"
+  >
+  </div>
+  <div
+    id="js-mobile-menu"
+    class="fixed right-0 z-modal w-full max-w-1/2 translate-x-full border-l transition-transform duration-200 ease-out group-data-[open=true]:translate-x-0"
+    style="top: var(--header-height, 64px); height: calc(100svh - var(--header-height, 64px));"
+    aria-hidden="true"
+  >
+    <nav aria-label="モバイルメニュー" class="flex h-full flex-col gap-px overflow-y-auto bg-neutral-900 font-inter">
+      <ul class="flex flex-1 flex-col items-end bg-white pt-16 pb-40 font-medium">
+        {
+          mainItems.map(({ label, href }) => (
+            <li>
+              <a
+                href={href}
+                class="flex items-center gap-4 px-16 py-8 text-16 leading-none tracking-tight transition-opacity duration-200 hover:opacity-70"
+              >
+                <span>{label}</span>
+                <svg
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="16"
+                  fill="none"
+                  viewBox="0 0 16 16"
+                >
+                  <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="1.333" d="M3 8h10m-4-4 4 4-4 4" />
+                </svg>
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <ul class="flex flex-1 flex-col items-end justify-end bg-white py-16 font-medium">
+        {
+          subItems.map(({ label, href, external }) => (
+            <li>
+              <a
+                href={href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                class="flex items-center gap-4 px-16 py-4 text-16 leading-relaxed tracking-tight transition-opacity duration-200 hover:opacity-70"
+              >
+                <span>{label}</span>
+                {external ? (
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linejoin="bevel"
+                      stroke-width="1.333"
+                      d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    viewBox="0 0 16 16"
+                  >
+                    <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="1.333" d="M3 8h10m-4-4 4 4-4 4" />
+                  </svg>
+                )}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</div>
