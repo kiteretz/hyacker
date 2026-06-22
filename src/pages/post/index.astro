@@ -1,19 +1,11 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import SectionByTag from '@components/SectionByTag.astro';
 import { getSortedPosts } from '@libs/sortedPosts';
 
 const posts = await getSortedPosts();
 ---
 
-<Layout title="記事一覧" class="post-archive">
-  <h1>Archives</h1>
-  <ul>
-    {
-      posts.map((post) => (
-        <li>
-          <a href={`/post/${post.id}`}>{post.data.title}</a>
-        </li>
-      ))
-    }
-  </ul>
+<Layout title="All Posts" class="post-archive">
+  <SectionByTag title="All Posts" posts={posts} showCount showAll />
 </Layout>

@@ -1,10 +1,33 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import SearchResults from '@components/SearchResults.tsx'
+import SideLeft from '@components/SideLeft.astro';
+import SearchCount from '@components/SearchCount';
+import SearchResults from '@components/SearchResults';
 ---
 
 <Layout title="Explorer hyacker " class="about">
   <section>
-    <SearchResults client:load/>
+    <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
+      <SideLeft title="Result" showCount>
+        <SearchCount slot="count" client:load />
+      </SideLeft>
+      <SearchResults client:load />
+      <!-- <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+      {
+        (showAll ? posts : posts.slice(0, 15)).map((post) => {
+          return (
+            <Card
+              href={`/post/${post.id}`}
+              title={post.data.title}
+              date={post.data.pubDate}
+              tags={post.data.tags ?? []}
+              img={post.data.image?.url}
+              client:load
+            />
+          );
+        })
+      }
+    </div> -->
+    </div>
   </section>
 </Layout>

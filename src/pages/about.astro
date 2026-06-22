@@ -1,12 +1,15 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import PageLayout from '@layouts/PageLayout.astro';
 ---
 
-<Layout title="hyacker について" class="about">
-  <section>
-    <h1>hyacker について</h1>
+<Layout title="About" class="about">
+  <PageLayout title="About">
+    <h2>hyacker について</h2>
     <p>
-      この利用規約（以下、「本規約」といいます。）は、株式会社キテレツ（以下、「当社」といいます。）がこのウェブサイト上で提供するサービス（以下、「本サービス」といいます。）の利用条件を定めるものです。
+      クリエイターのための百科事典を目指すウェブメディア。<br />
+      AI で膨大な情報が簡単に得られる反面、情報の取捨選択という課題は残ります。<br />
+      hyacker は、プロの目で選び抜いた情報を Q&A 形式で届けます。
     </p>
     <h2>運営会社</h2>
     <dl>
@@ -22,7 +25,11 @@ import Layout from '@layouts/Layout.astro';
           },
           {
             name: 'URL',
-            value: 'https://kiteretz.com/',
+            value: (
+              <a href="https://kiteretz.com/" target="_blank">
+                https://kiteretz.com/
+              </a>
+            ),
           },
         ].map(({ name, value }) => (
           <div>
@@ -32,5 +39,5 @@ import Layout from '@layouts/Layout.astro';
         ))
       }
     </dl>
-  </section>
+  </PageLayout>
 </Layout>

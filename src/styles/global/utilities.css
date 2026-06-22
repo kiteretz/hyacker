@@ -66,10 +66,13 @@
 	@apply max-w-none;
 
 	h2 {
-		@apply border-b pb-[0.25em] leading-normal text-24 lg:text-28;
+		@apply border-b pb-[0.25em] text-24 leading-normal lg:text-28;
 	}
 	h3 {
-		@apply leading-normal text-20 lg:text-24;
+		@apply text-20 leading-normal lg:text-24;
+	}
+	a {
+		@apply font-normal underline hover:no-underline;
 	}
 	pre {
 		@apply rounded-16 p-16 lg:p-24;
@@ -80,5 +83,17 @@
 			display: none;
 		}
 		text-wrap: nowrap;
+	}
+	dl {
+		@apply grid gap-8;
+		> div {
+			@apply flex gap-16 font-normal;
+		}
+		dt {
+			@apply mt-0 w-88 shrink-0;
+		}
+		dd {
+			@apply mt-0 w-full pl-0;
+		}
 	}
 }

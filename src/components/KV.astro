@@ -1,0 +1,36 @@
+---
+import { twMerge } from 'tailwind-merge';
+import SearchForm from '@components/SearchForm.astro';
+
+interface Props {
+  title: string;
+  subTitle?: string;
+  bgText: string;
+  class?: string;
+}
+
+const { title, subTitle, bgText, class: className } = Astro.props;
+---
+
+<div class={twMerge('relative z-0 mb-px grid h-640 grid-rows-[auto_1fr] overflow-hidden bg-white p-32', className)}>
+  <h1 class="grid gap-y-24">
+    <span
+      set:html={title}
+      class="font-space-grotesk text-32-80 leading-[0.9] font-bold tracking-tighter text-neutral-800 uppercase md:text-80-144"
+    />
+    <span set:html={subTitle} class="text-16-18 leading-tight font-semibold md:text-19-32" />
+  </h1>
+  <div class="w-full self-end">
+    <SearchForm
+      class="tracking h-64-128"
+      buttonClass="right-0 w-64-128 rounded-full bg-neutral-800 transition-transform duration-300 hover:scale-[1.15]"
+      iconClass="w-24-56 text-white"
+      inputClass="placeholder:absolute placeholder:top-0 placeholder:-translate-y-10-34 placeholder:font-inter placeholder:text-64-160 placeholder:font-thin placeholder:tracking-tighter placeholder:opacity-10"
+    />
+  </div>
+  <p
+    set:html={bgText}
+    aria-hidden="true"
+    class="absolute top-0 left-1/2 -z-10 -translate-x-1/2 font-ktrz text-160 leading-none text-neutral-800 opacity-[0.03]"
+  />
+</div>
