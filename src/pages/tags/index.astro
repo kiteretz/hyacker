@@ -2,21 +2,47 @@
 import Layout from '@layouts/Layout.astro';
 import { getPostsByTag } from '@libs/postsByTag';
 
+import SideLeft from '@components/SideLeft.astro';
+
+import { getPostsByTag } from '@libs/postsByTag';
+
 const tags = await getPostsByTag();
 ---
 
-<Layout title="タグ一覧" class="tag-archive">
-  <h1>タグ一覧</h1>
-  <ul>
-    {
-      tags.map((tag) => (
-        <li>
-          {/* 投稿件数出力は確認用なので、不要なら削除 */}
-          <a href={`/tags/${tag.name}`}>
-            {tag.name}:{tag.posts.length}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
+<Layout title="タグ一覧">
+  <section>
+    <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
+      <SideLeft title="Tags" count={tags.length} showCount={true} />
+      <div
+        class="grid min-h-[calc(100svh-var(--header-height)-4rem)] content-start bg-white pb-40 xl:min-h-[calc(100svh-var(--header-height))] xl:pb-0"
+      >
+        {
+          tags.map((tag) => (
+            <a
+              href={`/tags/${tag.name}/`}
+              class:list={[
+                'border-border flex items-center justify-between border-b bg-white p-16 py-10 font-inter font-palt leading-none text-neutral-900',
+                'transition-colors duration-150',
+                'xl:pr-24 xl:pl-8',
+                'hover:bg-neutral-900 hover:text-white',
+                'focus-visible:bg-neutral-900 focus-visible:text-white focus-visible:outline-none',
+              ]}
+            >
+              <span class="text-16 font-medium tracking-tight">{tag.name}</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="size-16 shrink-0"
+              >
+                <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8" />
+              </svg>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
 </Layout>

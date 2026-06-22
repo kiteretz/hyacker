@@ -3,11 +3,12 @@ import { siteInfo } from '@/constant';
 
 import Nav from './Nav.astro';
 import SearchForm from './SearchForm.astro';
+import MobileMenu from './MobileMenu.astro';
 ---
 
 <header id="js-header" class="sticky top-0 z-header border-b bg-white">
   <div class="flex">
-    <div aria-label="hyacker" class="flex items-center bg-white pl-32 md:pr-16">
+    <div aria-label="hyacker" class="flex items-center bg-white pl-16 lg:pr-16 lg:pl-32">
       <a href="/">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 111 28" class="aspect-111/28 w-111">
           <title>{siteInfo.title}</title>
@@ -25,9 +26,54 @@ import SearchForm from './SearchForm.astro';
         </svg>
       </a>
     </div>
-    <Nav class="grow bg-white md:pr-16" />
-    <div class="ml-px w-266 shrink-0 border-l border-neutral-800 bg-white">
+    <Nav class="hidden grow bg-white lg:flex lg:pr-16" />
+    <div class="ml-px hidden w-266 shrink-0 border-l border-neutral-800 bg-white lg:block">
       <SearchForm class="min-h-64" buttonClass="right-16 transition-opacity duration-200 hover:opacity-70" />
     </div>
+    <div class="ml-auto flex lg:hidden">
+      <a
+        href="/search/"
+        aria-label="検索"
+        class="flex h-64 w-64 shrink-0 items-center justify-center border-l border-neutral-800 bg-white"
+      >
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18" class="w-16">
+          <path
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8.25 14.25a6 6 0 1 0 0-12 6 6 0 0 0 0 12Zm7.5 1.5-3.263-3.262"></path>
+        </svg>
+      </a>
+      <button
+        id="js-mobile-menu-trigger"
+        type="button"
+        aria-label="メニューを開く"
+        aria-controls="js-mobile-menu"
+        aria-expanded="false"
+        class="group flex size-64 shrink-0 cursor-pointer items-center justify-center border-l border-neutral-800 bg-white"
+      >
+        <span
+          class:list={[
+            'relative block h-12 w-16',
+            '*:absolute *:left-0 *:block *:h-2 *:w-full *:bg-neutral-900 *:duration-200 *:ease-out',
+          ]}
+          aria-hidden="true"
+        >
+          <span
+            class:list={[
+              'top-0 transition-[translate,rotate] delay-[100ms,0ms]',
+              'group-aria-expanded:translate-y-5 group-aria-expanded:rotate-45 group-aria-expanded:delay-[0ms,100ms]',
+            ]}></span>
+          <span class="top-1/2 -translate-y-1/2 transition-opacity group-aria-expanded:opacity-0"></span>
+          <span
+            class:list={[
+              'bottom-0 transition-[translate,rotate] delay-[100ms,0ms]',
+              'group-aria-expanded:-translate-y-5 group-aria-expanded:-rotate-45 group-aria-expanded:delay-[0ms,100ms]',
+            ]}></span>
+        </span>
+      </button>
+    </div>
   </div>
+  <MobileMenu />
 </header>
