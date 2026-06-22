@@ -1,9 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro';
-import { getPostsByTag } from '@libs/postsByTag';
-
 import SideLeft from '@components/SideLeft.astro';
-
 import { getPostsByTag } from '@libs/postsByTag';
 
 const tags = await getPostsByTag();
