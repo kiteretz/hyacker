@@ -1,11 +1,11 @@
 ---
 import '../styles/index.css';
 
-import { twMerge } from 'tailwind-merge';
-import { siteInfo } from '../constant';
+import { twMerge } from '@libs/twMerge';
+import { siteInfo } from '@/constant';
 
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import Header from '@components/Header.astro';
+import Footer from '@components/Footer.astro';
 
 export interface Props {
   title?: string;
@@ -38,7 +38,7 @@ const { title, description, class: className } = Astro.props;
       rel="stylesheet"
     />
     <title>{title ?? siteInfo.title}</title>
-    <script src="../scripts/index.ts"></script>
+    <script src="@scripts/index.ts"></script>
   </head>
   <body
     class={twMerge(

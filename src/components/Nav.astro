@@ -1,5 +1,4 @@
 ---
-import { twMerge } from 'tailwind-merge';
 import { getPostsByTag } from '@libs/postsByTag';
 
 export interface Props {
@@ -24,7 +23,7 @@ const naviItems: { label: string; href: string }[] = [
 ];
 ---
 
-<nav aria-label="グローバルナビゲーション" class={twMerge('', className)}>
+<nav aria-label="グローバルナビゲーション" class:list={[className]}>
   <ul class="flex flex-wrap md:h-full md:justify-end">
     {
       naviItems.map(({ label, href }) => (
