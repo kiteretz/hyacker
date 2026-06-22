@@ -1,4 +1,4 @@
-import { twMerge } from 'tailwind-merge';
+import { twJoin } from 'tailwind-merge';
 import { formatDate } from '@utils/formatDate';
 import type { FC } from 'react';
 
@@ -20,7 +20,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img }) => {
   return (
     <a
       href={href}
-      className={twMerge(
+      className={twJoin(
         'grid min-h-367 grid-rows-[auto_auto_auto_1fr] bg-white p-8',
         'focus-visible:ring-2 focus-visible:ring-neutral-800 focus-visible:outline-none focus-visible:ring-inset',
       )}

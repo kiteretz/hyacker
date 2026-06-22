@@ -1,6 +1,6 @@
 import { type FC, useState, useEffect } from 'react';
 import { useSetAtom, useAtom, useAtomValue } from 'jotai';
-import { twMerge } from 'tailwind-merge';
+import { twMerge } from '@libs/twMerge';
 import { resultsAtom, pageFindAtom, existActiveInputAtom } from '@libs/jotai';
 import dummyResult from '@libs/dummyResult';
 
