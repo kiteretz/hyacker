@@ -1,14 +1,13 @@
 ---
 // .mdのfrontmatterを増やす場合は、content.config.tsも更新する
-import { type CollectionEntry } from 'astro:content';
+import { type CollectionEntry, render } from 'astro:content';
 import { twMerge } from 'tailwind-merge';
 import Layout from '@layouts/Layout.astro';
 import TableOfContents from '@components/TableOfContents.astro';
 import SocialIcon from '@components/SocialIcon.astro';
 import SectionByTag from '@components/SectionByTag.astro';
-import { render } from 'astro:content';
-import { formatDate } from '@utils/formatDate';
 import { getSortedPosts } from '@libs/sortedPosts';
+import { formatDate } from '@utils/formatDate';
 
 export async function getStaticPaths() {
   const sortedPosts = await getSortedPosts();

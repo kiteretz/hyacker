@@ -1,6 +1,6 @@
-import type { FC } from 'react';
-import { formatDate } from '@utils/formatDate';
 import { twMerge } from 'tailwind-merge';
+import { formatDate } from '@utils/formatDate';
+import type { FC } from 'react';
 
 /**
  * Card コンポーネントは Astro での HTML ビルド時と、検索結果の表示のために React から呼び出される

@@ -3,8 +3,8 @@
  * Reads reactively from resultsAtom (Jotai) and updates as search results change.
  */
 
-import { resultsAtom } from '@libs/jotai';
 import { useAtomValue } from 'jotai';
+import { resultsAtom } from '@libs/jotai';
 import type { FC } from 'react';
 
 const SearchCount: FC = () => {
