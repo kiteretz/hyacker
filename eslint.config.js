@@ -1,3 +1,4 @@
+import tsParser from '@typescript-eslint/parser';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 
@@ -26,6 +27,13 @@ export default [
   // add more generic rule sets here, such as:
   // js.configs.recommended,
   ...eslintPluginAstro.configs.recommended,
+  {
+    files: ['**/*.{ts,tsx}'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: { ecmaFeatures: { jsx: true } },
+    },
+  },
   {
     plugins: {
       'simple-import-sort': simpleImportSort,
