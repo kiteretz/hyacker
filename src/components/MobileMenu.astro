@@ -4,9 +4,7 @@ import { getPostsByTag } from '@libs/postsByTag';
 const tags = await getPostsByTag();
 
 const mainItems: { label: string; href: string }[] = [
-  { label: 'Posts', href: '/post/' },
-  { label: 'Tags', href: '/tags/' },
-  ...tags.slice(0, 3).map(({ name }) => ({ label: name, href: `/tags/${name}/` })),
+  ...tags.slice(0, 5).map(({ name }) => ({ label: name, href: `/tags/${name}/` })),
 ];
 
 const subItems: { label: string; href: string; external?: boolean }[] = [
