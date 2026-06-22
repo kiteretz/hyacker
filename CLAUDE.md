@@ -36,3 +36,14 @@ Astro コードフェンス・TypeScript ファイルともに以下の順序で
 
 - 静的・SSR → `.astro`
 - インタラクティブ（React Islands） → `.tsx`
+
+### クラス合成・競合解決
+
+| 状況 | 方法 |
+|---|---|
+| `.astro` で単純なクラス結合 | `class:list={[...]}` |
+| `.tsx` で単純なクラス結合 | `twJoin`（`tailwind-merge`） |
+| 外部 props とのマージ（競合解決） | `twMerge`（`@libs/twMerge`） |
+
+- `@libs/twMerge` はカスタム数値スケール（`text-24` など）に対応した拡張版
+- `tailwind-merge` を直接インポートしない
