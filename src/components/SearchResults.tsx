@@ -31,6 +31,7 @@ const SearchResults: FC = () => {
               href: data.url,
               title: data.meta.title,
               date: data.meta.pubDate,
+              answer: data.meta.answer,
             };
           }),
         );
