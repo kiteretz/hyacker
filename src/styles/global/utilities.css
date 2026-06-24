@@ -55,6 +55,14 @@
 	}
 }
 
+/* Card back Shiki */
+.shiki-card .shiki {
+  background: transparent !important;
+  padding: 0;
+  margin: 0;
+  font-size: 0.75rem;
+}
+
 /* Typography plugin */
 @utility prose {
 	--tw-prose-body: var(--color-neutral-900);

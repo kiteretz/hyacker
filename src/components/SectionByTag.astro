@@ -2,6 +2,8 @@
 import Card from '@components/Card';
 import SideLeft from '@components/SideLeft.astro';
 
+import { getShikiHighlighter, SHIKI_THEME } from '@libs/shikiHighlighter';
+
 import { extractAnswer } from '@utils/extractAnswer';
 
 import type { CollectionEntry } from 'astro:content';
@@ -26,21 +28,32 @@ const { title, posts, index, href, showCount = false, showAll = false } = Astro.
     <SideLeft title={title} count={posts.length} index={index} href={href} showCount={showCount} />
     <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {
-        (showAll ? posts : posts.slice(0, 15)).map((post) => {
-          const extracted = extractAnswer(post.body ?? '');
-          return (
-            <Card
-              href={`/post/${post.id}`}
-              title={post.data.title}
-              date={post.data.pubDate}
-              tags={post.data.tags ?? []}
-              img={post.data.image?.url}
-              answer={extracted?.content}
-              isCode={extracted?.isCode}
-              client:load
-            />
-          );
-        })
+        await Promise.all(
+          (showAll ? posts : posts.slice(0, 15)).map(async (post) => {
+            const extracted = extractAnswer(post.body ?? '');
+            let highlightedCode: string | undefined;
+            if (extracted?.isCode) {
+              const hl = await getShikiHighlighter();
+              highlightedCode = hl.codeToHtml(extracted.content, {
+                lang: extracted.lang ?? 'text',
+                theme: SHIKI_THEME,
+              });
+            }
+            return (
+              <Card
+                href={`/post/${post.id}`}
+                title={post.data.title}
+                date={post.data.pubDate}
+                tags={post.data.tags ?? []}
+                img={post.data.image?.url}
+                answer={extracted?.content}
+                isCode={extracted?.isCode}
+                highlightedCode={highlightedCode}
+                client:load
+              />
+            );
+          }),
+        )
       }
     </div>
   </div>

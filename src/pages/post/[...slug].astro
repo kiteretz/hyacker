@@ -107,8 +107,15 @@ const extracted = extractAnswer(entry.body ?? '');
                 <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
                 {
                   extracted?.content && (
-                    <span data-pagefind-meta="answer" class="hidden">
-                      {extracted.content}
+                    <pre data-pagefind-meta="answer" class="hidden">
+                      <code>{encodeURIComponent(extracted.content)}</code>
+                    </pre>
+                  )
+                }
+                {
+                  extracted?.isCode && (
+                    <span data-pagefind-meta="answerLang" class="hidden">
+                      {extracted.lang ?? 'text'}
                     </span>
                   )
                 }

@@ -4,12 +4,6 @@ import { formatDate } from '@utils/formatDate';
 
 import type { FC } from 'react';
 
-/**
- * Card コンポーネントは Astro での HTML ビルド時と、検索結果の表示のために React から呼び出される
- * 両対応にするために tsx ファイルとしている。
- * また、Astro が読み出す MarkDown コンテンツと、Pagefind の検索結果の2つがデータソースになる。
- */
-
 export type Card = {
   href: string;
   title: string;
@@ -18,12 +12,37 @@ export type Card = {
   img?: string;
   answer?: string;
   isCode?: boolean;
+  highlightedCode?: string;
+  lang?: string;
 };
 
-const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode }) => {
+/**
+ * Card コンポーネントは Astro での HTML ビルド時と、検索結果の表示のために React から呼び出される
+ * 両対応にするために tsx ファイルとしている。
+ * また、Astro が読み出す MarkDown コンテンツと、Pagefind の検索結果の2つがデータソースになる。
+ */
+
+const SHIKI_THEME = 'github-dark' as const;
+
+// クライアントサイド用シングルトン（検索結果カードで使用）
+let clientHighlighterPromise: Promise<any> | null = null;
+function getClientHighlighter() {
+  if (!clientHighlighterPromise) {
+    clientHighlighterPromise = import('shiki').then(({ createHighlighter }) =>
+      createHighlighter({
+        themes: [SHIKI_THEME],
+        langs: ['typescript', 'javascript', 'tsx', 'jsx', 'css', 'html', 'python', 'bash', 'json', 'text'],
+      }),
+    );
+  }
+  return clientHighlighterPromise;
+}
+
+const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highlightedCode, lang }) => {
   const [copied, setCopied] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const [showRight, setShowRight] = useState(false);
+  const [renderedCode, setRenderedCode] = useState<string | undefined>(highlightedCode);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const handleScroll = () => {
@@ -38,6 +57,20 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode }) => {
     if (!el) return;
     setShowRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
   }, [answer]);
+
+  // highlightedCode が渡されない（検索結果）場合はクライアントサイドで Shiki を実行
+  useEffect(() => {
+    if (highlightedCode !== undefined || !isCode || !answer) return;
+    let cancelled = false;
+    getClientHighlighter().then((hl) => {
+      if (!cancelled) {
+        setRenderedCode(hl.codeToHtml(answer, { lang: lang ?? 'text', theme: SHIKI_THEME }));
+      }
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [answer, highlightedCode, isCode, lang]);
 
   const bottomMask = 'linear-gradient(to top, transparent 0px, black 24px)';
   const leftMask = showLeft
@@ -54,6 +87,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode }) => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
   return (
     <a
       href={href}
@@ -80,7 +114,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode }) => {
             <div
               ref={scrollRef}
               onScroll={handleScroll}
-              className="absolute inset-0 scrollbar-hidden overflow-auto p-8"
+              className="absolute inset-0 overflow-auto p-8 scrollbar-hidden"
               style={{
                 maskImage,
                 WebkitMaskImage: maskImage,
@@ -88,7 +122,9 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode }) => {
                 WebkitMaskComposite: 'destination-in, destination-in',
               }}
             >
-              {isCode ? (
+              {renderedCode ? (
+                <div className="shiki-card" dangerouslySetInnerHTML={{ __html: renderedCode }} />
+              ) : isCode ? (
                 <pre className="font-mono text-12 whitespace-pre text-neutral-200">
                   <code>{answer}</code>
                 </pre>
