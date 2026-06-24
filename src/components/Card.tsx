@@ -92,11 +92,8 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
   };
 
   return (
-    <a
-      href={href}
-      className="relative block h-367 perspective-normal focus-visible:ring-2 focus-visible:ring-neutral-800 focus-visible:outline-none focus-visible:ring-inset"
-    >
-      <div className="h-full transition-transform duration-500 transform-3d hover:rotate-y-180">
+    <a href={href} className="relative block h-367 perspective-normal">
+      <div className="h-full transition-transform duration-500 transform-3d focus-within:rotate-y-180 hover:rotate-y-180">
         {/* front */}
         <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-white p-8 backface-hidden">
           <h3 className="mb-8 px-8 text-18 font-semibold">{title}</h3>
@@ -111,7 +108,10 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
           {img && <img src={img} width="" height="" alt="" className="aspect-video self-end rounded-8 object-cover" />}
         </div>
         {/* back */}
-        <div className="absolute inset-0 flex rotate-y-180 flex-col bg-neutral-800 p-8 backface-hidden">
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 flex rotate-y-180 flex-col bg-neutral-800 p-8 backface-hidden"
+        >
           {/* スクロール領域＋グラデーション */}
           <div className="relative min-h-0 flex-1">
             <div

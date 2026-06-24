@@ -57,25 +57,31 @@
 	font-display: swap;
 }
 
-html {
-	@apply scroll-p-[calc(var(--header-height)+1em)];
+@layer base {
+	html {
+		@apply scroll-p-[calc(var(--header-height)+1em)];
 
-	scroll-behavior: smooth;
+		scroll-behavior: smooth;
 
-	/* &,
+		/* &,
 	* {
 		scrollbar-width: thin;
 	} */
 
-	@media (width <= 400px) {
-		font-size: 4vw;
-	}
+		@media (width <= 400px) {
+			font-size: 4vw;
+		}
 
-	@media (width >= 1600px) {
-		font-size: 1vw;
-	}
+		@media (width >= 1600px) {
+			font-size: 1vw;
+		}
 
-	/* @media (width >= 2000px) {
+		/* @media (width >= 2000px) {
 		font-size: 0.8vw;
 	} */
+	}
+
+	:focus-visible {
+		@apply z-1 outline-4 outline-neutral-800 outline-solid;
+	}
 }
