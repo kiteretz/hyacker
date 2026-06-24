@@ -114,7 +114,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
             <div
               ref={scrollRef}
               onScroll={handleScroll}
-              className="absolute inset-0 overflow-auto p-8 scrollbar-hidden"
+              className="absolute inset-0 scrollbar-hidden overflow-auto p-8"
               style={{
                 maskImage,
                 WebkitMaskImage: maskImage,
@@ -135,7 +135,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
           </div>
           {/* ボトムバー */}
           <div className="flex justify-between p-8 text-14 leading-tight text-neutral-400">
-            <p
+            <div
               onClick={(e) => {
                 e.stopPropagation();
                 e.preventDefault();
@@ -147,8 +147,8 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M9.333 11.333h-7v-7" />
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M4.333 2.333h7v7h-7z" />
               </svg>
-              {copied ? 'Copied!' : 'Copy'}
-            </p>
+              <p>{copied ? 'Copied!' : 'Copy'}</p>
+            </div>
             <p>Learn More →</p>
           </div>
         </div>
