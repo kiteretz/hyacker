@@ -41,6 +41,7 @@ function getClientHighlighter() {
 const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highlightedCode, lang }) => {
   const [copied, setCopied] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
+  const [showTop, setShowTop] = useState(false);
   const [showRight, setShowRight] = useState(false);
   const [renderedCode, setRenderedCode] = useState<string | undefined>(highlightedCode);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -49,6 +50,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
     const el = scrollRef.current;
     if (!el) return;
     setShowLeft(el.scrollLeft > 0);
+    setShowTop(el.scrollTop > 0);
     setShowRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
   };
 
@@ -73,13 +75,14 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
   }, [answer, highlightedCode, isCode, lang]);
 
   const bottomMask = 'linear-gradient(to top, transparent 0px, black 24px)';
+  const topMask = showTop ? 'linear-gradient(to bottom, transparent 0px, black 24px)' : 'linear-gradient(black, black)';
   const leftMask = showLeft
     ? 'linear-gradient(to right, transparent 0px, black 24px)'
     : 'linear-gradient(black, black)';
   const rightMask = showRight
     ? 'linear-gradient(to left, transparent 0px, black 24px)'
     : 'linear-gradient(black, black)';
-  const maskImage = `${bottomMask}, ${leftMask}, ${rightMask}`;
+  const maskImage = `${bottomMask}, ${topMask}, ${leftMask}, ${rightMask}`;
 
   const handleCopy = () => {
     if (!answer) return;
@@ -118,8 +121,8 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
               style={{
                 maskImage,
                 WebkitMaskImage: maskImage,
-                maskComposite: 'intersect, intersect',
-                WebkitMaskComposite: 'destination-in, destination-in',
+                maskComposite: 'intersect, intersect, intersect',
+                WebkitMaskComposite: 'destination-in, destination-in, destination-in',
               }}
             >
               {renderedCode ? (
