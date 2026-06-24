@@ -1,11 +1,9 @@
-export function extractAnswer(
-  body: string,
-): { content: string; isCode: boolean; lang?: string } | undefined {
+export function extractAnswer(body: string): { content: string; isCode: boolean; lang?: string } | undefined {
   const sections = body.split(/^## /m);
-  const answerSection = sections.find((s) => s.startsWith('回答'));
-  if (!answerSection) return undefined;
+  const firstSection = sections[1];
+  if (!firstSection) return undefined;
 
-  const codeMatch = answerSection.match(/```(\w*)\n([\s\S]*?)```/);
+  const codeMatch = firstSection.match(/```(\w*)\n([\s\S]*?)```/);
   if (codeMatch?.[2]) {
     return {
       content: codeMatch[2].trim(),
@@ -15,7 +13,10 @@ export function extractAnswer(
   }
 
   // コードブロックがない場合、見出し行を除いたテキストを取得
-  const text = answerSection.replace(/^回答\n/, '').trim();
+  const text = firstSection
+    .replace(/^[^\n]*\n/, '')
+    .split(/^#{1,6}\s/m)[0]
+    .trim();
   if (!text) return undefined;
   return { content: text, isCode: false };
 }
