@@ -44,7 +44,11 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
   const [showTop, setShowTop] = useState(false);
   const [showRight, setShowRight] = useState(false);
   const [renderedCode, setRenderedCode] = useState<string | undefined>(highlightedCode);
+  const [animState, setAnimState] = useState<'idle' | 'flipping' | 'flipped'>('idle');
+  const [elevated, setElevated] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const animStateRef = useRef(animState);
+  animStateRef.current = animState;
 
   const handleScroll = () => {
     const el = scrollRef.current;
@@ -91,9 +95,31 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleMouseEnter = () => {
+    setElevated(true);
+    setAnimState('flipping');
+  };
+  const handleMouseLeave = () => setAnimState('idle');
+  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    if (e.propertyName !== 'transform') return;
+    if (animStateRef.current === 'flipping') setAnimState('flipped');
+    if (animStateRef.current === 'idle') setElevated(false);
+  };
+
+  const isActive = animState !== 'idle';
+  const isScaled = animState === 'flipping';
+
   return (
-    <a href={href} className="relative block h-367 perspective-normal">
-      <div className="h-full transition-transform duration-500 transform-3d focus-within:rotate-y-180 hover:rotate-y-180">
+    <a
+      href={href}
+      className={`relative block h-367 transition-transform duration-300 perspective-normal ${elevated ? 'z-1' : ''} ${isScaled ? 'scale-110' : ''}`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div
+        className={`h-full transition-transform duration-500 transform-3d focus-within:rotate-y-180 ${isActive ? 'rotate-y-180 delay-300' : ''}`}
+        onTransitionEnd={handleTransitionEnd}
+      >
         {/* front */}
         <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-white p-8 backface-hidden">
           <h3 className="mb-8 px-8 text-18 font-semibold">{title}</h3>
