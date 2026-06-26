@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { twJoin } from 'tailwind-merge';
 
 import { formatDate } from '@utils/formatDate';
 
@@ -44,12 +45,8 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
   const [showTop, setShowTop] = useState(false);
   const [showRight, setShowRight] = useState(false);
   const [renderedCode, setRenderedCode] = useState<string | undefined>(highlightedCode);
-  const [animState, setAnimState] = useState<'idle' | 'flipping' | 'flipped' | 'shrinking'>('idle');
-  const [elevated, setElevated] = useState(false);
+  const [isActive, setIsActive] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const animStateRef = useRef(animState);
-  const timerRef = useRef<number | undefined>(undefined);
-  animStateRef.current = animState;
 
   const handleScroll = () => {
     const el = scrollRef.current;
@@ -96,36 +93,21 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const handleMouseEnter = () => {
-    setElevated(true);
-    setAnimState('flipping');
-    timerRef.current = window.setTimeout(() => {
-      setAnimState('shrinking');
-    }, 500);
-  };
-  const handleMouseLeave = () => {
-    clearTimeout(timerRef.current);
-    setAnimState('idle');
-  };
-  const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.propertyName !== 'transform') return;
-    if (animStateRef.current === 'flipping') setAnimState('flipped');
-    if (animStateRef.current === 'idle') setElevated(false);
-  };
-
-  const isActive = animState !== 'idle';
-  const isScaled = animState === 'flipping';
-
   return (
     <a
       href={href}
-      className={`relative block h-367 transition-transform duration-300 perspective-normal ${elevated ? 'z-1' : ''} ${isScaled ? 'scale-110' : ''}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      className={twJoin(
+        'relative block h-367 transition-all duration-200 perspective-normal',
+        isActive ? 'z-1 animate-card-lift outline-transparent' : '',
+      )}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
     >
       <div
-        className={`h-full transition-transform duration-500 transform-3d focus-within:rotate-y-180 ${isActive ? 'rotate-y-180 delay-100' : ''}`}
-        onTransitionEnd={handleTransitionEnd}
+        className={twJoin(
+          'h-full transition-transform duration-500 ease-in-out transform-3d focus-within:rotate-y-180',
+          isActive && 'rotate-y-180 delay-100',
+        )}
       >
         {/* front */}
         <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-white p-8 backface-hidden">
