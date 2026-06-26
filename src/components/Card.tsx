@@ -44,10 +44,11 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
   const [showTop, setShowTop] = useState(false);
   const [showRight, setShowRight] = useState(false);
   const [renderedCode, setRenderedCode] = useState<string | undefined>(highlightedCode);
-  const [animState, setAnimState] = useState<'idle' | 'flipping' | 'flipped'>('idle');
+  const [animState, setAnimState] = useState<'idle' | 'flipping' | 'flipped' | 'shrinking'>('idle');
   const [elevated, setElevated] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
   const animStateRef = useRef(animState);
+  const timerRef = useRef<number | undefined>(undefined);
   animStateRef.current = animState;
 
   const handleScroll = () => {
@@ -98,8 +99,14 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
   const handleMouseEnter = () => {
     setElevated(true);
     setAnimState('flipping');
+    timerRef.current = window.setTimeout(() => {
+      setAnimState('shrinking');
+    }, 500);
   };
-  const handleMouseLeave = () => setAnimState('idle');
+  const handleMouseLeave = () => {
+    clearTimeout(timerRef.current);
+    setAnimState('idle');
+  };
   const handleTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
     if (e.propertyName !== 'transform') return;
     if (animStateRef.current === 'flipping') setAnimState('flipped');
@@ -117,7 +124,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
       onMouseLeave={handleMouseLeave}
     >
       <div
-        className={`h-full transition-transform duration-500 transform-3d focus-within:rotate-y-180 ${isActive ? 'rotate-y-180 delay-300' : ''}`}
+        className={`h-full transition-transform duration-500 transform-3d focus-within:rotate-y-180 ${isActive ? 'rotate-y-180 delay-100' : ''}`}
         onTransitionEnd={handleTransitionEnd}
       >
         {/* front */}
