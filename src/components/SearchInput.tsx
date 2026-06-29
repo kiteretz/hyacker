@@ -4,6 +4,7 @@ import { type FC, useEffect, useState } from 'react';
 import dummyResult from '@libs/dummyResult';
 import { existActiveInputAtom, pageFindAtom, resultsAtom } from '@libs/jotai';
 import { twMerge } from '@libs/twMerge';
+import search from '@libs/search';
 
 type Props = {
   className?: string;
@@ -20,23 +21,12 @@ const SearchInput: FC<Props> = ({ className }) => {
   // 検索処理のための Atom 群
   const pagefind = useAtomValue(pageFindAtom);
   const setResults = useSetAtom(resultsAtom);
-
   const execSearch = async (query: string) => {
-    const search = await pagefind.search(query);
-    const results = await Promise.all(
-      search.results.map(async (r: any) => {
-        const data = await r.data();
-        return {
-          href: data.url,
-          title: data.meta.title,
-          date: data.meta.pubDate,
-        };
-      }),
-    );
-
+    const results = await search(query, pagefind)
     setResults(results);
   };
 
+  // URL パラメターに含まれる検索ワードをセット
   useEffect(() => {
     const query = new URLSearchParams(document.location.search || '');
     const searchWord = query.get('keyword') || '';

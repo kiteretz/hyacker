@@ -11,8 +11,8 @@ export type Card = {
   date: Date | string;
   tags: string[];
   img?: string;
-  answer?: string;
-  isCode?: boolean;
+  answer: string;
+  isCode: boolean;
   highlightedCode?: string;
   lang?: string;
 };
