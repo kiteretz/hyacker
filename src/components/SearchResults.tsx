@@ -9,15 +9,14 @@ import { type FC, useEffect } from 'react';
 
 import Card from '@components/Card';
 
-import dummyResult from '@libs/dummyResult';
 import { pageFindAtom, resultsAtom } from '@libs/jotai';
 import search from '@libs/search';
 
 const SearchResults: FC = () => {
   const [results, setResults] = useAtom(resultsAtom);
 
-
   // URL パラメターに含まれる検索ワードの結果を格納
+  // インクリメンタルサーチの処理は、ここではなく SearchInput コンポーネント内
   const pagefind = useAtomValue(pageFindAtom);
 
   useEffect(() => {

@@ -1,10 +1,9 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { type FC, useEffect, useState } from 'react';
 
-import dummyResult from '@libs/dummyResult';
 import { existActiveInputAtom, pageFindAtom, resultsAtom } from '@libs/jotai';
-import { twMerge } from '@libs/twMerge';
 import search from '@libs/search';
+import { twMerge } from '@libs/twMerge';
 
 type Props = {
   className?: string;
@@ -21,10 +20,6 @@ const SearchInput: FC<Props> = ({ className }) => {
   // 検索処理のための Atom 群
   const pagefind = useAtomValue(pageFindAtom);
   const setResults = useSetAtom(resultsAtom);
-  const execSearch = async (query: string) => {
-    const results = await search(query, pagefind)
-    setResults(results);
-  };
 
   // URL パラメターに含まれる検索ワードをセット
   useEffect(() => {
@@ -33,7 +28,7 @@ const SearchInput: FC<Props> = ({ className }) => {
     setQueried(searchWord);
   }, []);
 
-  const onInputHandle = (query: string) => {
+  const onInputHandle = async (query: string) => {
     if (query === '') {
       setActiveInput(false);
       setInputting(false);
@@ -42,13 +37,8 @@ const SearchInput: FC<Props> = ({ className }) => {
       setInputting(true);
     }
 
-    if (import.meta.env.PROD) {
-      execSearch(query);
-    } else {
-      // ビルドしないとPagefindのインデックスやJSが生成されない
-      // 開発環境では適当に0～3つのPostを返す
-      setResults(dummyResult());
-    }
+    const results = await search(query, pagefind)
+    setResults(results);
   };
 
   return (
