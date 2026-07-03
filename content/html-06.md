@@ -5,7 +5,7 @@ upDate: 2025-01-31
 pubDate: 2025-01-31
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - HTML
@@ -18,9 +18,7 @@ status: publish
 
 ```html
 <!-- 外部リンク -->
-<a href="https://example.com" target="_blank" rel="noopener noreferrer">
-  外部サイトへのリンク
-</a>
+<a href="https://example.com" target="_blank" rel="noopener noreferrer"> 外部サイトへのリンク </a>
 
 <!-- 内部リンク -->
 <a href="/about">About ページ</a>
@@ -38,7 +36,7 @@ status: publish
 
 ## 解説
 
-### target="_blank" と rel 属性
+### target="\_blank" と rel 属性
 
 外部リンクを新しいタブで開く場合は `target="_blank"` を使います。セキュリティのために `rel="noopener noreferrer"` を必ず一緒に指定します。
 

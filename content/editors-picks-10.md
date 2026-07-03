@@ -5,7 +5,7 @@ upDate: 2025-02-20
 pubDate: 2025-02-20
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - "Editor's Picks"
@@ -19,10 +19,10 @@ CSS のすべての要素は Box モデルで構成されます。内側から `
 
 ```css
 .box {
-  width: 200px;       /* コンテンツ領域の幅 */
-  padding: 16px;      /* 内側の余白 */
+  width: 200px; /* コンテンツ領域の幅 */
+  padding: 16px; /* 内側の余白 */
   border: 2px solid black; /* 枠線 */
-  margin: 24px;       /* 外側の余白 */
+  margin: 24px; /* 外側の余白 */
 }
 ```
 
@@ -53,7 +53,9 @@ CSS のすべての要素は Box モデルで構成されます。内側から `
 ### 全体に border-box を適用する
 
 ```css
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 ```

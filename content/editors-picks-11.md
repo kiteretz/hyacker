@@ -5,7 +5,7 @@ upDate: 2025-02-25
 pubDate: 2025-02-25
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - "Editor's Picks"
@@ -21,16 +21,10 @@ Web パフォーマンスを改善するには、画像の最適化・コード�
 
 ```html
 <!-- 画像の最適化 -->
-<img
-  src="image.webp"
-  alt="画像の説明"
-  width="800"
-  height="600"
-  loading="lazy"
-/>
+<img src="image.webp" alt="画像の説明" width="800" height="600" loading="lazy" />
 
 <!-- リソースの優先読み込み -->
-<link rel="preload" href="fonts/main.woff2" as="font" crossorigin>
+<link rel="preload" href="fonts/main.woff2" as="font" crossorigin />
 ```
 
 ## 解説

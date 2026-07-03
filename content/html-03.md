@@ -5,7 +5,7 @@ upDate: 2025-01-16
 pubDate: 2025-01-16
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - HTML
@@ -55,8 +55,8 @@ HTML5 では `<input>` の `type` 属性に多くの種類が追加され、ブ�
 ```html
 <input list="languages" placeholder="言語を選択" />
 <datalist id="languages">
-  <option value="HTML">
-  <option value="CSS">
-  <option value="JavaScript">
+  <option value="HTML"></option>
+  <option value="CSS"></option>
+  <option value="JavaScript"></option>
 </datalist>
 ```
