@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { type FC, useEffect, useState } from 'react';
 
-import { existActiveInputAtom, pageFindAtom, resultsAtom, searchWord, searchWordAtom } from '@libs/jotai';
+import { existActiveInputAtom, pageFindAtom, queryAtom, resultsAtom, searchWord, searchWordAtom } from '@libs/jotai';
 import search from '@libs/search';
 import { twMerge } from '@libs/twMerge';
 
@@ -10,14 +10,14 @@ type Props = {
 };
 
 const SearchInput: FC<Props> = ({ className }) => {
-  const [queried, setQueried] = useAtom(searchWordAtom);
+  const [query, setQuery] = useAtom(queryAtom);
 
   // SearchInput の有効・無効を処理するためのフラグ群
   const [isInputting, setInputting] = useState<boolean>(false);
   const [existActiveInput, setActiveInput] = useAtom(existActiveInputAtom);
   const shouldDisable = existActiveInput && !isInputting;
 
-  const onInputHandle = async (query: string) => {
+  const onInputHandle = async (text: string) => {
     if (query === '') {
       setActiveInput(false);
       setInputting(false);
@@ -26,7 +26,7 @@ const SearchInput: FC<Props> = ({ className }) => {
       setInputting(true);
     }
 
-    setQueried(query);
+    setQuery(text);
   };
 
   return (
@@ -42,7 +42,7 @@ const SearchInput: FC<Props> = ({ className }) => {
       type="search"
       onInput={(e) => onInputHandle(e.currentTarget.value)}
       disabled={shouldDisable}
-      defaultValue={queried}
+      defaultValue={query}
     />
   );
 };

@@ -7,13 +7,13 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { type FC, useEffect, useState } from 'react';
 
-import { pageFindAtom, searchWordAtom } from '@libs/jotai';
+import { pageFindAtom, queryAtom, searchWordAtom } from '@libs/jotai';
 import search from '@libs/search';
 import Card from './Card';
 
 const SearchResults: FC = () => {
   const [ results, setResults ] = useState<any[]>([])
-  const [ query, setQueried ] = useAtom(searchWordAtom)
+  const [ query, setQueried ] = useAtom(queryAtom)
   const pagefind = useAtomValue(pageFindAtom);
 
   const execSearch = async () => setResults( await search(query, pagefind) )
