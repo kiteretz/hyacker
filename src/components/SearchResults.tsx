@@ -7,8 +7,9 @@
 import { useAtom, useAtomValue } from 'jotai';
 import { type FC, useEffect, useState } from 'react';
 
-import { pageFindAtom, queryAtom, searchWordAtom } from '@libs/jotai';
+import { pageFindAtom, queryAtom } from '@libs/jotai';
 import search from '@libs/search';
+
 import Card from './Card';
 
 const SearchResults: FC = () => {

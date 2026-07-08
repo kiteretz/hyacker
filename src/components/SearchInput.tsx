@@ -1,8 +1,7 @@
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { type FC, useEffect, useState } from 'react';
+import { useAtom, } from 'jotai';
+import { type FC, useState } from 'react';
 
-import { existActiveInputAtom, pageFindAtom, queryAtom, resultsAtom, searchWord, searchWordAtom } from '@libs/jotai';
-import search from '@libs/search';
+import { existActiveInputAtom, queryAtom } from '@libs/jotai';
 import { twMerge } from '@libs/twMerge';
 
 type Props = {
