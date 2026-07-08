@@ -26,3 +26,4 @@ export const resultsAtom = atom<Card[]>([]);
 
 // SearchInput に何か文字が入力されたら True、空欄になったら False
 export const existActiveInputAtom = atom<boolean>();
+export const searchWordAtom = atom<string>('');

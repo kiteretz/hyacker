@@ -5,27 +5,29 @@
  */
 
 import { useAtom, useAtomValue } from 'jotai';
-import { type FC, useEffect } from 'react';
+import { type FC, useEffect, useState } from 'react';
 
-import Card from '@components/Card';
-
-import { pageFindAtom, resultsAtom } from '@libs/jotai';
+import { pageFindAtom, searchWordAtom } from '@libs/jotai';
 import search from '@libs/search';
+import Card from './Card';
 
 const SearchResults: FC = () => {
-  const [results, setResults] = useAtom(resultsAtom);
-
-  // URL パラメターに含まれる検索ワードの結果を格納
-  // インクリメンタルサーチの処理は、ここではなく SearchInput コンポーネント内
+  const [ results, setResults ] = useState<any[]>([])
+  const [ query, setQueried ] = useAtom(searchWordAtom)
   const pagefind = useAtomValue(pageFindAtom);
 
+  const execSearch = async () => setResults( await search(query, pagefind) )
+
+  useEffect( () => {
+    execSearch()
+  }, [query])
+
+  // URL パラメターに含まれるワードでの検索結果セット
   useEffect(() => {
-    ( async () => {
-      const query = new URLSearchParams(document.location.search || '');
-      const searchWord = query.get('keyword') || '';
-      const results = await search(searchWord, pagefind)
-      setResults(results);
-    })()
+    const query = new URLSearchParams(document.location.search || '');
+    const searchWord = query.get('keyword') || '';
+    setQueried(searchWord);
+    execSearch()
   }, []);
 
   return (

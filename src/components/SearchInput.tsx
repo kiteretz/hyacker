@@ -1,7 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai';
 import { type FC, useEffect, useState } from 'react';
 
-import { existActiveInputAtom, pageFindAtom, resultsAtom } from '@libs/jotai';
+import { existActiveInputAtom, pageFindAtom, resultsAtom, searchWord, searchWordAtom } from '@libs/jotai';
 import search from '@libs/search';
 import { twMerge } from '@libs/twMerge';
 
@@ -10,23 +10,12 @@ type Props = {
 };
 
 const SearchInput: FC<Props> = ({ className }) => {
-  const [queried, setQueried] = useState<string>('');
+  const [queried, setQueried] = useAtom(searchWordAtom);
 
   // SearchInput の有効・無効を処理するためのフラグ群
   const [isInputting, setInputting] = useState<boolean>(false);
   const [existActiveInput, setActiveInput] = useAtom(existActiveInputAtom);
   const shouldDisable = existActiveInput && !isInputting;
-
-  // 検索処理のための Atom 群
-  const pagefind = useAtomValue(pageFindAtom);
-  const setResults = useSetAtom(resultsAtom);
-
-  // URL パラメターに含まれる検索ワードをセット
-  useEffect(() => {
-    const query = new URLSearchParams(document.location.search || '');
-    const searchWord = query.get('keyword') || '';
-    setQueried(searchWord);
-  }, []);
 
   const onInputHandle = async (query: string) => {
     if (query === '') {
@@ -37,8 +26,7 @@ const SearchInput: FC<Props> = ({ className }) => {
       setInputting(true);
     }
 
-    const results = await search(query, pagefind)
-    setResults(results);
+    setQueried(query);
   };
 
   return (
