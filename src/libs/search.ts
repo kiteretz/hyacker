@@ -1,4 +1,5 @@
 import type { Card } from "@components/Card";
+
 import dummyResult from "./dummyResult";
 
 /**
@@ -7,11 +8,14 @@ import dummyResult from "./dummyResult";
  * そのため引数に Pagefind オブジェクトを取る
  */
 const search = async ( query: string, pagefind: any ): Promise<Card[]> => {
-
   // ビルドしないとPagefindのインデックスやJSが生成されない
   // 開発環境では適当に0～3つのPostを返す
   if (import.meta.env.DEV) {
     return dummyResult()
+  }
+
+  if( ! pagefind ){
+    return []
   }
 
   const search = await pagefind.search(query);
