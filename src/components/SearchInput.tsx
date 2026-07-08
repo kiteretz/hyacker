@@ -17,7 +17,7 @@ const SearchInput: FC<Props> = ({ className }) => {
   const shouldDisable = existActiveInput && !isInputting;
 
   const onInputHandle = async (text: string) => {
-    if (query === '') {
+    if (text === '') {
       setActiveInput(false);
       setInputting(false);
     } else {
