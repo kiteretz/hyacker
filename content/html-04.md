@@ -5,7 +5,7 @@ upDate: 2025-01-21
 pubDate: 2025-01-21
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - HTML
@@ -52,7 +52,9 @@ HTML テーブルは `<table>`、`<thead>`、`<tbody>`、`<tr>`、`<th>`、`<td>
 
 ```html
 <table>
-  <caption>2025年度のメンバー一覧</caption>
+  <caption>
+    2025年度のメンバー一覧
+  </caption>
   ...
 </table>
 ```

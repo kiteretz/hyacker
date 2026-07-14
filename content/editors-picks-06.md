@@ -5,7 +5,7 @@ upDate: 2025-02-01
 pubDate: 2025-02-01
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - "Editor's Picks"
@@ -52,7 +52,7 @@ status: publish
 レスポンシブデザインには `<meta name="viewport">` タグが必須です。
 
 ```html
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 ```
 
 ### 相対単位を活用する

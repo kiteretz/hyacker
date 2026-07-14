@@ -5,7 +5,7 @@ upDate: 2025-02-16
 pubDate: 2025-02-16
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - HTML
@@ -18,13 +18,7 @@ HTML5 の `<video>` タグと `<audio>` タグでメディアを埋め込めま�
 
 ```html
 <!-- 動画の埋め込み -->
-<video
-  src="movie.mp4"
-  controls
-  width="800"
-  height="450"
-  poster="thumbnail.jpg"
->
+<video src="movie.mp4" controls width="800" height="450" poster="thumbnail.jpg">
   お使いのブラウザは video タグに対応していません。
 </video>
 

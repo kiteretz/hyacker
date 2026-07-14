@@ -5,7 +5,7 @@ upDate: 2025-02-12
 pubDate: 2025-02-12
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - CSS
@@ -44,6 +44,7 @@ status: publish
 特定の CSS プロパティを持つ要素はスタッキングコンテキストを形成し、その子要素の `z-index` はコンテキスト内でのみ有効になります。
 
 **スタッキングコンテキストを作る主なプロパティ：**
+
 - `position` が `relative/absolute/fixed/sticky` で `z-index` が `auto` 以外
 - `opacity` が `1` 未満
 - `transform` が `none` 以外

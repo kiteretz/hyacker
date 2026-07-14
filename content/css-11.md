@@ -5,7 +5,7 @@ upDate: 2025-02-27
 pubDate: 2025-02-27
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - CSS
@@ -18,19 +18,37 @@ status: publish
 
 ```css
 /* 擬似クラス */
-a:hover  { color: blue; }
-input:focus { outline: 2px solid blue; }
-input:invalid { border-color: red; }
-li:first-child { font-weight: bold; }
-li:last-child  { border-bottom: none; }
-li:nth-child(odd)  { background: #f5f5f5; } /* 奇数行 */
-li:nth-child(even) { background: white; }    /* 偶数行 */
+a:hover {
+  color: blue;
+}
+input:focus {
+  outline: 2px solid blue;
+}
+input:invalid {
+  border-color: red;
+}
+li:first-child {
+  font-weight: bold;
+}
+li:last-child {
+  border-bottom: none;
+}
+li:nth-child(odd) {
+  background: #f5f5f5;
+} /* 奇数行 */
+li:nth-child(even) {
+  background: white;
+} /* 偶数行 */
 
 /* 擬似要素 */
-p::first-line { font-size: 1.2em; }
-blockquote::before { content: '"'; }
+p::first-line {
+  font-size: 1.2em;
+}
+blockquote::before {
+  content: '"';
+}
 .clearfix::after {
-  content: "";
+  content: '';
   display: block;
   clear: both;
 }
@@ -44,10 +62,16 @@ blockquote::before { content: '"'; }
 
 ```css
 /* 従来の書き方 */
-h1 a, h2 a, h3 a { color: blue; }
+h1 a,
+h2 a,
+h3 a {
+  color: blue;
+}
 
 /* :is() を使った書き方 */
-:is(h1, h2, h3) a { color: blue; }
+:is(h1, h2, h3) a {
+  color: blue;
+}
 ```
 
 ### :not() で特定の要素を除外
@@ -65,12 +89,12 @@ li:not(:last-child) {
 
 ```css
 .required::after {
-  content: " *";
+  content: ' *';
   color: red;
 }
 
 .external-link::after {
-  content: " ↗";
+  content: ' ↗';
   font-size: 0.8em;
 }
 ```

@@ -5,7 +5,7 @@ upDate: 2025-02-10
 pubDate: 2025-02-10
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - "Editor's Picks"
@@ -21,13 +21,7 @@ status: publish
 <!-- label と input を関連付ける -->
 <div>
   <label for="email">メールアドレス</label>
-  <input
-    type="email"
-    id="email"
-    name="email"
-    required
-    aria-describedby="email-hint"
-  />
+  <input type="email" id="email" name="email" required aria-describedby="email-hint" />
   <p id="email-hint">例: user@example.com</p>
 </div>
 ```
@@ -41,14 +35,8 @@ status: publish
 ### エラーメッセージのアクセシビリティ
 
 ```html
-<input
-  type="email"
-  aria-invalid="true"
-  aria-describedby="email-error"
-/>
-<p id="email-error" role="alert">
-  メールアドレスの形式が正しくありません
-</p>
+<input type="email" aria-invalid="true" aria-describedby="email-error" />
+<p id="email-error" role="alert">メールアドレスの形式が正しくありません</p>
 ```
 
 ### フォームの必須項目
