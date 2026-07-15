@@ -5,7 +5,7 @@ upDate: 2025-01-17
 pubDate: 2025-01-17
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - CSS
@@ -18,22 +18,34 @@ CSS セレクタは HTML 要素を特定するためのパターンです。基�
 
 ```css
 /* 要素セレクタ */
-p { color: black; }
+p {
+  color: black;
+}
 
 /* クラスセレクタ */
-.card { border-radius: 8px; }
+.card {
+  border-radius: 8px;
+}
 
 /* ID セレクタ */
-#header { height: 64px; }
+#header {
+  height: 64px;
+}
 
 /* 属性セレクタ */
-input[type="email"] { border: 1px solid blue; }
+input[type='email'] {
+  border: 1px solid blue;
+}
 
 /* 子孫セレクタ */
-.nav a { color: white; }
+.nav a {
+  color: white;
+}
 
 /* 直接の子要素 */
-.list > li { list-style: none; }
+.list > li {
+  list-style: none;
+}
 ```
 
 ## 解説
@@ -43,10 +55,18 @@ input[type="email"] { border: 1px solid blue; }
 特定の状態の要素を選択します。
 
 ```css
-a:hover  { color: blue; }    /* マウスホバー時 */
-a:focus  { outline: 2px solid; } /* フォーカス時 */
-li:first-child { font-weight: bold; } /* 最初の子要素 */
-li:nth-child(2n) { background: #f0f0f0; } /* 偶数番目 */
+a:hover {
+  color: blue;
+} /* マウスホバー時 */
+a:focus {
+  outline: 2px solid;
+} /* フォーカス時 */
+li:first-child {
+  font-weight: bold;
+} /* 最初の子要素 */
+li:nth-child(2n) {
+  background: #f0f0f0;
+} /* 偶数番目 */
 ```
 
 ### 擬似要素
@@ -54,9 +74,15 @@ li:nth-child(2n) { background: #f0f0f0; } /* 偶数番目 */
 要素の一部や仮想的な要素にスタイルを適用します。
 
 ```css
-p::first-line { font-weight: bold; } /* 最初の行 */
-.card::before { content: "★"; }     /* 前に追加 */
-.card::after  { content: "";  }      /* 後ろに追加 */
+p::first-line {
+  font-weight: bold;
+} /* 最初の行 */
+.card::before {
+  content: '★';
+} /* 前に追加 */
+.card::after {
+  content: '';
+} /* 後ろに追加 */
 ```
 
 ### 詳細度（Specificity）

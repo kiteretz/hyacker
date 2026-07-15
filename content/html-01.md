@@ -5,7 +5,7 @@ upDate: 2025-01-06
 pubDate: 2025-01-06
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - HTML

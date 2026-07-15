@@ -5,7 +5,7 @@ upDate: 2025-01-20
 pubDate: 2025-01-20
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - "Editor's Picks"
@@ -29,8 +29,14 @@ CSS でアニメーションを実装するには `transition` と `animation` �
 
 /* animation: keyframe を使った複雑なアニメーション */
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 .element {
   animation: fadeIn 0.5s ease forwards;

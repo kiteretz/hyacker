@@ -5,7 +5,7 @@ upDate: 2025-02-07
 pubDate: 2025-02-07
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - CSS
@@ -59,8 +59,7 @@ color: var(--color-accent, #ef4444);
 
 ```js
 // 値を取得
-const value = getComputedStyle(document.documentElement)
-  .getPropertyValue('--color-primary');
+const value = getComputedStyle(document.documentElement).getPropertyValue('--color-primary');
 
 // 値を変更
 document.documentElement.style.setProperty('--color-primary', '#ef4444');
@@ -74,6 +73,6 @@ document.documentElement.style.setProperty('--color-primary', '#ef4444');
 }
 .element {
   padding: calc(var(--base-size) * 4); /* 16px */
-  margin: calc(var(--base-size) * 6);  /* 24px */
+  margin: calc(var(--base-size) * 6); /* 24px */
 }
 ```

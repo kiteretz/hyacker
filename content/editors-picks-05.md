@@ -5,7 +5,7 @@ upDate: 2025-01-25
 pubDate: 2025-01-25
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - "Editor's Picks"
@@ -33,8 +33,8 @@ export default function greet(name) {
 // main.js: インポートして使用
 import greet, { add, PI } from './utils.js';
 
-console.log(add(1, 2));  // 3
-console.log(PI);          // 3.14159
+console.log(add(1, 2)); // 3
+console.log(PI); // 3.14159
 console.log(greet('世界')); // Hello, 世界!
 ```
 

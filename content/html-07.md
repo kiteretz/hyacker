@@ -5,7 +5,7 @@ upDate: 2025-02-05
 pubDate: 2025-02-05
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - HTML
@@ -17,13 +17,7 @@ status: publish
 `<img>` タグには `alt`、`width`、`height` を必ず指定し、状況に応じて `loading` や `srcset` も使いましょう。
 
 ```html
-<img
-  src="photo.webp"
-  alt="夕暮れの富士山の写真"
-  width="800"
-  height="600"
-  loading="lazy"
-/>
+<img src="photo.webp" alt="夕暮れの富士山の写真" width="800" height="600" loading="lazy" />
 ```
 
 ## 解説

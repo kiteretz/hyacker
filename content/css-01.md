@@ -5,7 +5,7 @@ upDate: 2025-01-07
 pubDate: 2025-01-07
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - CSS
@@ -19,14 +19,14 @@ Flexbox は `display: flex` を親要素に指定することで有効になり�
 ```css
 .container {
   display: flex;
-  justify-content: center;   /* 主軸方向の配置 */
-  align-items: center;       /* 交差軸方向の配置 */
-  gap: 16px;                 /* アイテム間の余白 */
-  flex-wrap: wrap;           /* 折り返しを許可 */
+  justify-content: center; /* 主軸方向の配置 */
+  align-items: center; /* 交差軸方向の配置 */
+  gap: 16px; /* アイテム間の余白 */
+  flex-wrap: wrap; /* 折り返しを許可 */
 }
 
 .item {
-  flex: 1;  /* 残りのスペースを均等に分配 */
+  flex: 1; /* 残りのスペースを均等に分配 */
 }
 ```
 

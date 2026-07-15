@@ -5,7 +5,7 @@ upDate: 2025-02-21
 pubDate: 2025-02-21
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - HTML
@@ -18,20 +18,14 @@ status: publish
 
 ```html
 <!-- data 属性でカスタムデータを保持 -->
-<button
-  data-user-id="123"
-  data-action="delete"
-  data-confirm="本当に削除しますか？"
->
-  削除
-</button>
+<button data-user-id="123" data-action="delete" data-confirm="本当に削除しますか？">削除</button>
 ```
 
 ```js
 // JavaScript から dataset でアクセス
 const button = document.querySelector('button');
-console.log(button.dataset.userId);  // "123"
-console.log(button.dataset.action);  // "delete"
+console.log(button.dataset.userId); // "123"
+console.log(button.dataset.action); // "delete"
 console.log(button.dataset.confirm); // "本当に削除しますか？"
 ```
 
@@ -45,7 +39,7 @@ JavaScript では `element.dataset` で `data-*` 属性にアクセスできま�
 
 ```css
 /* data 属性をセレクタとして使用 */
-[data-action="delete"] {
+[data-action='delete'] {
   color: red;
 }
 

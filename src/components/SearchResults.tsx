@@ -6,11 +6,14 @@
 
 import { useAtom, useAtomValue } from 'jotai';
 import { type FC, useEffect } from 'react';
+import { twJoin } from 'tailwind-merge';
 
 import { pageFindAtom, queryAtom, resultsAtom } from '@libs/jotai';
 import search from '@libs/search';
 
 import Card from './Card';
+
+import { getGridFillerClasses } from '@utils/gridFiller';
 
 const SearchResults: FC = () => {
   const [ results, setResults ] = useAtom(resultsAtom)
@@ -33,7 +36,18 @@ const SearchResults: FC = () => {
 
   return (
     <div aria-live="polite" className="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
-      {results.length === 0 ? <p>該当する記事はありません</p> : results.map((result) => <Card {...result} />)}
+      {results.length === 0 ? (
+        <p>該当する記事はありません</p>
+      ) : (
+        <>
+          {results.map((result) => (
+            <Card {...result} />
+          ))}
+          {getGridFillerClasses(results.length).map((classes, i) => (
+            <div key={i} aria-hidden="true" className={twJoin('bg-white', classes)} />
+          ))}
+        </>
+      )}
     </div>
   );
 };

@@ -5,7 +5,7 @@ upDate: 2025-01-27
 pubDate: 2025-01-27
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - CSS
@@ -65,8 +65,13 @@ status: publish
 
 ```css
 @media print {
-  .nav, .footer { display: none; }
-  body { font-size: 12pt; }
+  .nav,
+  .footer {
+    display: none;
+  }
+  body {
+    font-size: 12pt;
+  }
 }
 ```
 
@@ -76,6 +81,8 @@ status: publish
 
 ```css
 @media (hover: hover) {
-  .button:hover { background-color: darkblue; }
+  .button:hover {
+    background-color: darkblue;
+  }
 }
 ```

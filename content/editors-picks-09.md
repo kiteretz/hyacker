@@ -5,7 +5,7 @@ upDate: 2025-02-15
 pubDate: 2025-02-15
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - "Editor's Picks"
@@ -21,9 +21,9 @@ status: publish
 // Promise を使った書き方
 function fetchUser(id) {
   return fetch(`/api/users/${id}`)
-    .then(res => res.json())
-    .then(data => data)
-    .catch(err => console.error(err));
+    .then((res) => res.json())
+    .then((data) => data)
+    .catch((err) => console.error(err));
 }
 
 // async/await を使った書き方（同じ処理）
@@ -51,8 +51,8 @@ async function fetchUser(id) {
 ```js
 // 複数の非同期処理を並列で実行
 const [users, posts] = await Promise.all([
-  fetch('/api/users').then(r => r.json()),
-  fetch('/api/posts').then(r => r.json()),
+  fetch('/api/users').then((r) => r.json()),
+  fetch('/api/posts').then((r) => r.json()),
 ]);
 ```
 

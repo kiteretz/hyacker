@@ -5,7 +5,7 @@ upDate: 2025-02-01
 pubDate: 2025-02-01
 author: とも
 image:
-  url: /assets/posts/background.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 背景の画像
 tags:
   - CSS
@@ -21,7 +21,9 @@ status: publish
 .button {
   background-color: #3b82f6;
   transform: scale(1);
-  transition: background-color 0.2s ease, transform 0.2s ease;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
 }
 .button:hover {
   background-color: #1d4ed8;

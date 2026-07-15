@@ -5,6 +5,7 @@ import SideLeft from '@components/SideLeft.astro';
 import { getShikiHighlighter, SHIKI_THEME } from '@libs/shikiHighlighter';
 
 import { extractAnswer } from '@utils/extractAnswer';
+import { getGridFillerClasses } from '@utils/gridFiller';
 
 import type { CollectionEntry } from 'astro:content';
 
@@ -21,6 +22,7 @@ export type SectionItem = {
 interface Props extends SectionItem {}
 
 const { title, posts, index, href, showCount = false, showAll = false } = Astro.props;
+const displayedPosts = showAll ? posts : posts.slice(0, 15);
 ---
 
 <section>
@@ -29,7 +31,7 @@ const { title, posts, index, href, showCount = false, showAll = false } = Astro.
     <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {
         await Promise.all(
-          (showAll ? posts : posts.slice(0, 15)).map(async (post) => {
+          displayedPosts.map(async (post) => {
             const extracted = extractAnswer(post.body ?? '');
             let highlightedCode: string | undefined;
             if (extracted?.isCode) {
@@ -54,6 +56,11 @@ const { title, posts, index, href, showCount = false, showAll = false } = Astro.
             );
           }),
         )
+      }
+      {
+        getGridFillerClasses(displayedPosts.length).map((classes) => (
+          <div aria-hidden="true" class:list={['bg-white', classes]} />
+        ))
       }
     </div>
   </div>
