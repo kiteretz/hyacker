@@ -41,7 +41,7 @@ const SearchInput: FC<Props> = ({ className }) => {
       type="search"
       onInput={(e) => onInputHandle(e.currentTarget.value)}
       disabled={shouldDisable}
-      defaultValue={query}
+      defaultValue={ shouldDisable ? '' : query }
     />
   );
 };
