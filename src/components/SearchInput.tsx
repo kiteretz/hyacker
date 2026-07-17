@@ -1,8 +1,7 @@
-import { useAtom, useAtomValue, useSetAtom } from 'jotai';
-import { type FC, useEffect, useState } from 'react';
+import { useAtom, } from 'jotai';
+import { type FC, useState } from 'react';
 
-import dummyResult from '@libs/dummyResult';
-import { existActiveInputAtom, pageFindAtom, resultsAtom } from '@libs/jotai';
+import { existActiveInputAtom, queryAtom } from '@libs/jotai';
 import { twMerge } from '@libs/twMerge';
 
 type Props = {
@@ -10,41 +9,15 @@ type Props = {
 };
 
 const SearchInput: FC<Props> = ({ className }) => {
-  const [queried, setQueried] = useState<string>('');
+  const [query, setQuery] = useAtom(queryAtom);
 
   // SearchInput の有効・無効を処理するためのフラグ群
   const [isInputting, setInputting] = useState<boolean>(false);
   const [existActiveInput, setActiveInput] = useAtom(existActiveInputAtom);
   const shouldDisable = existActiveInput && !isInputting;
 
-  // 検索処理のための Atom 群
-  const pagefind = useAtomValue(pageFindAtom);
-  const setResults = useSetAtom(resultsAtom);
-
-  const execSearch = async (query: string) => {
-    const search = await pagefind.search(query);
-    const results = await Promise.all(
-      search.results.map(async (r: any) => {
-        const data = await r.data();
-        return {
-          href: data.url,
-          title: data.meta.title,
-          date: data.meta.pubDate,
-        };
-      }),
-    );
-
-    setResults(results);
-  };
-
-  useEffect(() => {
-    const query = new URLSearchParams(document.location.search || '');
-    const searchWord = query.get('keyword') || '';
-    setQueried(searchWord);
-  }, []);
-
-  const onInputHandle = (query: string) => {
-    if (query === '') {
+  const onInputHandle = async (text: string) => {
+    if (text === '') {
       setActiveInput(false);
       setInputting(false);
     } else {
@@ -52,13 +25,7 @@ const SearchInput: FC<Props> = ({ className }) => {
       setInputting(true);
     }
 
-    if (import.meta.env.PROD) {
-      execSearch(query);
-    } else {
-      // ビルドしないとPagefindのインデックスやJSが生成されない
-      // 開発環境では適当に0～3つのPostを返す
-      setResults(dummyResult());
-    }
+    setQuery(text);
   };
 
   return (
@@ -66,7 +33,6 @@ const SearchInput: FC<Props> = ({ className }) => {
       className={twMerge(
         'size-full h-[stretch] px-16 py-4',
         'placeholder:font-inter placeholder:text-16 placeholder:leading-none placeholder:font-medium placeholder:text-neutral-400',
-        'disabled:bg-gray-200',
         '[&::-webkit-search-cancel-button]:hidden',
         className,
       )}
@@ -75,7 +41,7 @@ const SearchInput: FC<Props> = ({ className }) => {
       type="search"
       onInput={(e) => onInputHandle(e.currentTarget.value)}
       disabled={shouldDisable}
-      defaultValue={queried}
+      defaultValue={ shouldDisable ? '' : query }
     />
   );
 };

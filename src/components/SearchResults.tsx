@@ -8,43 +8,30 @@ import { useAtom, useAtomValue } from 'jotai';
 import { type FC, useEffect } from 'react';
 import { twJoin } from 'tailwind-merge';
 
-import Card from '@components/Card';
+import { pageFindAtom, queryAtom, resultsAtom } from '@libs/jotai';
+import search from '@libs/search';
 
-import dummyResult from '@libs/dummyResult';
-import { pageFindAtom, resultsAtom } from '@libs/jotai';
+import Card from './Card';
 
 import { getGridFillerClasses } from '@utils/gridFiller';
 
 const SearchResults: FC = () => {
-  const [results, setResults] = useAtom(resultsAtom);
-  const pagefind = useAtomValue(pageFindAtom);
+  const [ results, setResults ] = useAtom(resultsAtom)
+  const [ query, setQueried ] = useAtom(queryAtom)
+  const pagefind = useAtomValue(pageFindAtom)
 
+  const execSearch = async () => setResults( await search(query, pagefind) )
+
+  useEffect( () => {
+    execSearch()
+  }, [query] )
+
+  // URL パラメターに含まれるワードでの検索結果セット
   useEffect(() => {
-    const find = async () => {
-      const query = new URLSearchParams(document.location.search || '');
-      const searchWord = query.get('keyword') || '';
-      if (import.meta.env.DEV && searchWord) {
-        setResults(dummyResult());
-      } else {
-        const search = await pagefind.search(searchWord);
-        const results = await Promise.all(
-          search.results.map(async (r: any) => {
-            const data = await r.data();
-            return {
-              href: data.url,
-              title: data.meta.title,
-              date: data.meta.pubDate,
-              answer: data.meta.answer ? decodeURIComponent((data.meta.answer as string).trim()) : undefined,
-              isCode: !!data.meta.answerLang,
-              lang: data.meta.answerLang as string | undefined,
-            };
-          }),
-        );
-        setResults(results);
-      }
-    };
-
-    find();
+    const query = new URLSearchParams(document.location.search || '');
+    const searchWord = query.get('keyword') || '';
+    setQueried(searchWord);
+    execSearch()
   }, []);
 
   return (
