@@ -61,7 +61,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
                   answer={extracted?.content}
                   isCode={extracted?.isCode}
                   highlightedCode={highlightedCode}
-                  client:load
+                  client:visible
                 />
               );
             }),
