@@ -82,6 +82,6 @@
 	}
 
 	:focus-visible {
-		@apply z-1 outline-4 outline-neutral-800 outline-solid;
+		@apply z-1 outline-2 outline-neutral-800;
 	}
 }
