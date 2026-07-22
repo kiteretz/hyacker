@@ -11,33 +11,35 @@ import { twJoin } from 'tailwind-merge';
 import { pageFindAtom, queryAtom, resultsAtom } from '@libs/jotai';
 import search from '@libs/search';
 
-import Card from './Card';
-
 import { getGridFillerClasses } from '@utils/gridFiller';
 
+import Card from './Card';
+
 const SearchResults: FC = () => {
-  const [ results, setResults ] = useAtom(resultsAtom)
-  const [ query, setQueried ] = useAtom(queryAtom)
-  const pagefind = useAtomValue(pageFindAtom)
+  const [results, setResults] = useAtom(resultsAtom);
+  const [query, setQueried] = useAtom(queryAtom);
+  const pagefind = useAtomValue(pageFindAtom);
 
-  const execSearch = async () => setResults( await search(query, pagefind) )
+  const execSearch = async () => setResults(await search(query, pagefind));
 
-  useEffect( () => {
-    execSearch()
-  }, [query] )
+  useEffect(() => {
+    execSearch();
+  }, [query]);
 
   // URL パラメターに含まれるワードでの検索結果セット
   useEffect(() => {
     const query = new URLSearchParams(document.location.search || '');
     const searchWord = query.get('keyword') || '';
     setQueried(searchWord);
-    execSearch()
+    execSearch();
   }, []);
 
   return (
     <div aria-live="polite" className="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
       {results.length === 0 ? (
-        <p>該当する記事はありません</p>
+        <div className="col-span-full bg-white">
+          <p>該当する記事はありません</p>
+        </div>
       ) : (
         <>
           {results.map((result) => (
