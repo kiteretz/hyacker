@@ -44,7 +44,7 @@ const SearchResults: FC = () => {
         <>
           <div className="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
             {results.map((result) => (
-              <Card {...result} />
+              <Card key={result.href} {...result} />
             ))}
             {getGridFillerClasses(results.length).map((classes, i) => (
               <div key={i} aria-hidden="true" className={twJoin('bg-white', classes)} />
