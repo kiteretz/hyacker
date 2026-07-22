@@ -21,7 +21,8 @@ const SearchPageInput: FC<Props> = ({ className }) => {
   return (
     <label
       className={twMerge(
-        'flex w-full cursor-text items-center justify-between gap-16 bg-white px-16 py-32 xl:p-32',
+        // min-w-0: input の固有幅（size 属性由来）で label がグリッドトラックを押し広げないようにする
+        'flex w-full min-w-0 cursor-text items-center justify-between gap-16 bg-white px-16 py-32 xl:p-32',
         className,
       )}
     >
@@ -31,8 +32,6 @@ const SearchPageInput: FC<Props> = ({ className }) => {
           'min-w-0 flex-1 bg-transparent font-space-grotesk text-clamp-32/80 leading-[0.8] font-normal tracking-[-0.05em] text-neutral-800',
           'placeholder:text-neutral-800 placeholder:opacity-30',
           '[&::-webkit-search-cancel-button]:hidden',
-          // 入力が長い場合に右端 0.25em をグラデーションでマスクする
-          '[mask-image:linear-gradient(to_right,#000_calc(100%-0.25em),transparent)]',
         )}
         name="keyword"
         type="search"
@@ -47,7 +46,7 @@ const SearchPageInput: FC<Props> = ({ className }) => {
         viewBox="0 0 72 72"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className='className="size-clamp-24/72 opacity-20" shrink-0 text-neutral-800'
+        className="size-clamp-24/72 shrink-0 text-neutral-800"
         aria-hidden="true"
       >
         <path

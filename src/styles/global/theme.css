@@ -39,6 +39,7 @@
 	--spacing-24-56: clamp(1.5rem, -0.408rem + 8.14vw, 3.5rem);
 	--spacing-32-80: clamp(2rem, -0.863rem + 12.21vw, 5rem);
 	--spacing-64-128: clamp(4rem, 0.183rem + 16.28vw, 8rem);
+	--spacing-64-144: clamp(4rem, 2.3333rem + 6.6667vw, 9rem);
 	--spacing-64-160: clamp(4rem, -1.725rem + 24.43vw, 10rem);
 
 	/* --spacing-[px@768px]-[px@1280px] */

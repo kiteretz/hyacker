@@ -1,14 +1,15 @@
 ---
-
 interface Props {
   index?: number;
   href?: string;
   title: string;
   showCount?: boolean;
   count?: number;
+  /** false にすると xl でビューポート基準（100svh）の高さを持たず、隣接コンテンツの高さに追従する */
+  fullHeight?: boolean;
 }
 
-const { title, count, index, href, showCount = false } = Astro.props;
+const { title, count, index, href, showCount = false, fullHeight = true } = Astro.props;
 const Tag = href ? 'a' : 'div';
 const linkProps = href ? { href } : {};
 const indexStr = index !== undefined ? String(index).padStart(2, '0') : '';
@@ -23,7 +24,9 @@ const decorativeNumberClass =
     {...linkProps}
     class:list={[
       'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
-      'xl:h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:items-start xl:p-32',
+      'xl:flex-col xl:items-start xl:p-32',
+      // fullHeight でない場合も最低カード 2 行分（h-367 × 2 + gap 1px）の高さは確保する
+      fullHeight ? 'xl:h-[max(calc(100svh-var(--header-height)),30rem)]' : 'xl:h-full xl:min-h-735',
     ]}
     data-js-sticky-sidebar-inner
   >

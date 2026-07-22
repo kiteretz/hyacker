@@ -5,7 +5,7 @@ import SideLeft from '@components/SideLeft.astro';
 import { getShikiHighlighter, SHIKI_THEME } from '@libs/shikiHighlighter';
 
 import { extractAnswer } from '@utils/extractAnswer';
-import { getGridFillerClasses } from '@utils/gridFiller';
+import { getGridFillerClasses, STRETCH_FILLER_CELL_CLASSES } from '@utils/gridFiller';
 
 import type { CollectionEntry } from 'astro:content';
 
@@ -17,51 +17,76 @@ export type SectionItem = {
   posts: CollectionEntry<'posts'>[];
   showCount?: boolean;
   showAll?: boolean;
+  /** false にすると SideLeft がビューポート基準の高さを持たず、投稿リストの高さに追従する */
+  fullHeight?: boolean;
 };
 
 interface Props extends SectionItem {}
 
-const { title, posts, index, href, showCount = false, showAll = false } = Astro.props;
+const { title, posts, index, href, showCount = false, showAll = false, fullHeight = true } = Astro.props;
 const displayedPosts = showAll ? posts : posts.slice(0, 15);
 ---
 
 <section>
   <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
-    <SideLeft title={title} count={posts.length} index={index} href={href} showCount={showCount} />
-    <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
-      {
-        await Promise.all(
-          displayedPosts.map(async (post) => {
-            const extracted = extractAnswer(post.body ?? '');
-            let highlightedCode: string | undefined;
-            if (extracted?.isCode) {
-              const hl = await getShikiHighlighter();
-              highlightedCode = hl.codeToHtml(extracted.content, {
-                lang: extracted.lang ?? 'text',
-                theme: SHIKI_THEME,
-              });
-            }
-            return (
-              <Card
-                href={`/post/${post.id}`}
-                title={post.data.title}
-                date={post.data.pubDate}
-                tags={post.data.tags ?? []}
-                img={post.data.image?.url}
-                answer={extracted?.content}
-                isCode={extracted?.isCode}
-                highlightedCode={highlightedCode}
-                client:load
-              />
-            );
-          }),
-        )
-      }
-      {
-        getGridFillerClasses(displayedPosts.length).map((classes) => (
-          <div aria-hidden="true" class:list={['bg-white', classes]} />
-        ))
-      }
+    <SideLeft
+      title={title}
+      count={posts.length}
+      index={index}
+      href={href}
+      showCount={showCount}
+      fullHeight={fullHeight}
+    />
+    <div class="flex flex-col">
+      <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+        {
+          await Promise.all(
+            displayedPosts.map(async (post) => {
+              const extracted = extractAnswer(post.body ?? '');
+              let highlightedCode: string | undefined;
+              if (extracted?.isCode) {
+                const hl = await getShikiHighlighter();
+                highlightedCode = hl.codeToHtml(extracted.content, {
+                  lang: extracted.lang ?? 'text',
+                  theme: SHIKI_THEME,
+                });
+              }
+              return (
+                <Card
+                  href={`/post/${post.id}`}
+                  title={post.data.title}
+                  date={post.data.pubDate}
+                  tags={post.data.tags ?? []}
+                  img={post.data.image?.url}
+                  answer={extracted?.content}
+                  isCode={extracted?.isCode}
+                  highlightedCode={highlightedCode}
+                  client:load
+                />
+              );
+            }),
+          )
+        }
+        {
+          getGridFillerClasses(displayedPosts.length).map((classes) => (
+            <div aria-hidden="true" class:list={['bg-white', classes]} />
+          ))
+        }
+      </div>
+      <!--
+        リストより SideLeft が高い場合に残る余白を、列ごとの空セルで埋めるストレッチフィラー。
+        セル上端の横罫線は高さに寄与しないよう border ではなく inset shadow で描く。
+      -->
+      <div
+        aria-hidden="true"
+        class="grid flex-1 gap-x-px overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
+      >
+        {
+          STRETCH_FILLER_CELL_CLASSES.map((classes) => (
+            <div class:list={['bg-white shadow-[inset_0_1px_0_0_var(--color-neutral-800)]', classes]} />
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

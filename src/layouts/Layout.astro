@@ -18,7 +18,7 @@ const { title, description, class: className } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="ja">
+<html lang="ja" class="overflow-x-clip">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
@@ -44,7 +44,7 @@ const { title, description, class: className } = Astro.props;
   </head>
   <body
     class={twMerge(
-      'flex min-h-screen flex-col bg-neutral-800 font-sans font-palt text-neutral-900 antialiased',
+      'flex min-h-screen flex-col overflow-x-clip bg-neutral-800 font-sans font-palt text-neutral-900 antialiased',
       className,
     )}
   >

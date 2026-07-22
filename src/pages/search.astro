@@ -12,11 +12,13 @@ import SideLeft from '@components/SideLeft.astro';
     <!--
       検索フォームを最上段に置き、その下に「Result 見出し＋投稿リスト」をラップした要素を配置する。
       デスクトップは下段のみ 2 カラム（左: Result 見出し / 右: 投稿リスト）。
+      結果が少なくてもビューポート下端まで白背景が届くよう、min-height でヘッダー下の残り高さを確保し、
+      grid-rows の 1fr で下段（結果リスト側）に余剰高さを割り当てる（黒背景の見え防止）。
     -->
-    <div class="mb-px grid gap-px">
+    <div class="mb-px grid min-h-[calc(100svh-var(--header-height))] grid-rows-[auto_1fr] gap-px">
       <SearchPageInput client:load />
-      <div class="grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
-        <SideLeft title="Result" showCount>
+      <div class="grid grid-rows-[auto_1fr] xl:grid-cols-[16.625rem_1fr] xl:grid-rows-1 xl:gap-px">
+        <SideLeft title="Result" showCount fullHeight={false}>
           <SearchCount slot="count" client:load />
         </SideLeft>
         <SearchResults client:load />

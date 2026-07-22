@@ -5,6 +5,16 @@ const BREAKPOINT_VISIBILITY = [
   { cols: 5, classes: ['2xl:hidden', '2xl:block'] as const },
 ] as const;
 
+// リスト下部に残った高さを列単位の空セルで埋めるストレッチフィラー用。
+// 各セルは自分の列が存在するブレークポイント帯でのみ表示させる
+export const STRETCH_FILLER_CELL_CLASSES = [
+  '',
+  'hidden sm:block',
+  'hidden md:block',
+  'hidden lg:block',
+  'hidden 2xl:block',
+] as const;
+
 // 各ブレークポイントの列数に対する余りセル数だけ filler を用意し、該当するブレークポイント帯でのみ表示させる
 export function getGridFillerClasses(total: number): string[] {
   const fillerCounts = BREAKPOINT_VISIBILITY.map(({ cols }) => (cols - (total % cols)) % cols);
