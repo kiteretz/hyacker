@@ -2,7 +2,8 @@
 import Card from '@components/Card';
 import SideLeft from '@components/SideLeft.astro';
 
-import { getShikiHighlighter, SHIKI_THEME } from '@libs/shikiHighlighter';
+import { SHIKI_THEME } from '@libs/shikiConfig';
+import { getShikiHighlighter } from '@libs/shikiHighlighter';
 
 import { extractAnswer } from '@utils/extractAnswer';
 import { getGridFillerClasses, STRETCH_FILLER_CELL_CLASSES } from '@utils/gridFiller';

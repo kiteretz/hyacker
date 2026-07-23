@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { twJoin } from 'tailwind-merge';
 
+import { SHIKI_THEME } from '@libs/shikiConfig';
+
 import { formatDate } from '@utils/formatDate';
 
 import type { FC } from 'react';
@@ -23,20 +25,12 @@ export type Card = {
  * また、Astro が読み出す MarkDown コンテンツと、Pagefind の検索結果の2つがデータソースになる。
  */
 
-const SHIKI_THEME = 'github-dark' as const;
-
-// クライアントサイド用シングルトン（検索結果カードで使用）
-let clientHighlighterPromise: Promise<any> | null = null;
-function getClientHighlighter() {
-  if (!clientHighlighterPromise) {
-    clientHighlighterPromise = import('shiki').then(({ createHighlighter }) =>
-      createHighlighter({
-        themes: [SHIKI_THEME],
-        langs: ['typescript', 'javascript', 'tsx', 'jsx', 'css', 'html', 'python', 'bash', 'json', 'text'],
-      }),
-    );
-  }
-  return clientHighlighterPromise;
+// 検索結果カードのクライアントハイライトでも SSR と同じ highlighter を使う。
+// 静的 import にするとカードの island チャンクに Shiki 本体が含まれてしまうため、
+// 必要になった時点で動的 import する（インスタンスは shikiHighlighter 側でメモ化済み）。
+async function getClientHighlighter() {
+  const { getShikiHighlighter } = await import('@libs/shikiHighlighter');
+  return getShikiHighlighter();
 }
 
 const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highlightedCode, lang }) => {

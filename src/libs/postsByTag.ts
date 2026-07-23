@@ -7,7 +7,7 @@ type tag = {
   posts: CollectionEntry<'posts'>[];
 };
 
-export const getPostsByTag = async (): Promise<tag[]> => {
+const computePostsByTag = async (): Promise<tag[]> => {
   const posts = await getSortedPosts();
   const uniqTags = new Set<string>(
     posts.flatMap(({ data }) => data.tags).filter((tag): tag is string => typeof tag === 'string'),
@@ -22,4 +22,14 @@ export const getPostsByTag = async (): Promise<tag[]> => {
   });
 
   return tags.sort((a, b) => b.posts.length - a.posts.length);
+};
+
+// 静的ビルド中は全ページで結果が同一のため、module-level でメモ化する
+let postsByTagPromise: Promise<tag[]> | null = null;
+
+export const getPostsByTag = (): Promise<tag[]> => {
+  if (!postsByTagPromise) {
+    postsByTagPromise = computePostsByTag();
+  }
+  return postsByTagPromise;
 };
