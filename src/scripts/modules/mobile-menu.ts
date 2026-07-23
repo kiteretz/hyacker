@@ -14,6 +14,11 @@ if (root && trigger && panel && backdrop) {
     trigger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
+    // inert を付ける前に退避しないと、パネル内のフォーカスが body に落ちる
+    if (!open && panel.contains(document.activeElement)) {
+      trigger.focus();
+    }
+    panel.inert = !open;
     // html に overflow-x-clip が付いているため body の overflow: hidden は
     // ビューポートへ伝播せず、body 自身がスクロールコンテナ化して
     // ヘッダーの sticky 基準が壊れる。ロックは html 側に掛ける。
