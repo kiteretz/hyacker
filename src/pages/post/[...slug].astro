@@ -64,7 +64,7 @@ const extracted = extractAnswer(entry.body ?? '');
           >
             <!-- Share icons -->
             <div class="pointer-events-auto flex flex-col items-end">
-              <SocialIcon />
+              <SocialIcon title={title} />
             </div>
             <!-- Heading index -->
             <div
@@ -97,8 +97,8 @@ const extracted = extractAnswer(entry.body ?? '');
           <div
             class:list={[
               'flex flex-wrap gap-x-32 gap-y-12 bg-white px-16 py-24',
-              'md:flex-col md:px-24 md:py-32',
-              'xl:col-[-2/-1] xl:row-1',
+              'md:flex-col md:px-32 md:py-32',
+              'xl:col-[-2/-1] xl:row-1 xl:px-24',
             ]}
           >
             <div class="flex flex-col gap-8">
@@ -148,8 +148,8 @@ const extracted = extractAnswer(entry.body ?? '');
           </div>
 
           <!-- Mobile: Share icons -->
-          <div class="flex items-center justify-end bg-white px-16 py-8 xl:hidden">
-            <SocialIcon />
+          <div class="flex items-center justify-end bg-white px-16 py-8 md:px-32 xl:hidden">
+            <SocialIcon title={title} />
           </div>
 
           <!-- Article Body -->

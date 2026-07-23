@@ -6,7 +6,7 @@ export interface siteInfo {
 }
 
 export const siteInfo: siteInfo = {
-  title: 'hyacker -- クリエイターのための百科事典',
+  title: 'hyacker — クリエイターのための百科事典',
   keywords: 'hyacker, クリエイター, 百科事典',
   description: 'クリエイターのための百科事典',
   url: 'https://hyacker.com',
