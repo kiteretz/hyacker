@@ -7,9 +7,7 @@ export const twMerge = extendTailwindMerge<CustomIds>({
     classGroups: {
       'font-size': [
         {
-          text: [
-            (v: string) => /^(clamp-)?\d+$/.test(v),
-          ],
+          text: [(v: string) => /^(clamp-)?\d+$/.test(v)],
         },
       ],
       'clamp--h': [{ 'clamp--h': [(v: string) => /^\d+$/.test(v)] }],

@@ -1,4 +1,4 @@
-import { useAtom, } from 'jotai';
+import { useAtom } from 'jotai';
 import { type FC, useState } from 'react';
 
 import { existActiveInputAtom, queryAtom } from '@libs/jotai';
@@ -31,7 +31,7 @@ const SearchInput: FC<Props> = ({ className }) => {
   return (
     <input
       className={twMerge(
-        'size-full h-[stretch] px-16 py-4',
+        'size-full h-[stretch] px-16 py-20 pr-[1em]',
         'placeholder:font-inter placeholder:text-16 placeholder:leading-none placeholder:font-medium placeholder:text-neutral-400',
         '[&::-webkit-search-cancel-button]:hidden',
         className,
@@ -41,7 +41,7 @@ const SearchInput: FC<Props> = ({ className }) => {
       type="search"
       onInput={(e) => onInputHandle(e.currentTarget.value)}
       disabled={shouldDisable}
-      defaultValue={ shouldDisable ? '' : query }
+      defaultValue={shouldDisable ? '' : query}
     />
   );
 };

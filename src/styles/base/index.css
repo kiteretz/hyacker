@@ -59,7 +59,10 @@
 
 @layer base {
 	html {
-		@apply scroll-p-[calc(var(--header-height)+1em)];
+		/* アンカージャンプ時に sticky ヘッダー分を上方向だけオフセットする。
+		   全方向（scroll-p）に効かせると、画面端の要素へのフォーカスで
+		   不要なスクロールが発生する */
+		@apply scroll-pt-[calc(var(--header-height)+1em)];
 
 		scroll-behavior: smooth;
 
@@ -82,6 +85,14 @@
 	}
 
 	:focus-visible {
-		@apply z-1 outline-4 outline-neutral-800 outline-solid;
+		@apply z-1 outline-2 -outline-offset-1 outline-neutral-800;
+	}
+
+	/* sticky ヘッダー内の要素は常に視界内にあるが、上の scroll-padding-top の
+	   inset 領域と重なるため「表示領域外」と誤判定され、フォーカス時に
+	   ページがスクロールしてしまう。padding と同値の負マージンで打ち消す
+	   （1rem は html 上の 1em と等価） */
+	#js-header :is(a, button, input) {
+		scroll-margin-top: calc(-1 * (var(--header-height) + 1rem));
 	}
 }

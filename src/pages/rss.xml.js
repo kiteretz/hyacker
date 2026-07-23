@@ -6,7 +6,7 @@ import { siteInfo } from '../constant';
 
 export async function GET(context) {
   const posts = await getCollection('posts', ({ data }) => {
-    return import.meta.env.PROD ? data.status === 'publish' : true
+    return import.meta.env.PROD ? data.status === 'publish' : true;
   });
 
   return rss({

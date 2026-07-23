@@ -20,7 +20,11 @@ const editorsPicks = tags.find((t) => t.name === "Editor's Picks");
   />
   {
     editorsPicks && (
-      <SectionByTag title="Editor's Picks" posts={editorsPicks.posts} href={`/tags/${editorsPicks.name}/`} />
+      <SectionByTag
+        title="Editor's Picks"
+        posts={editorsPicks.posts}
+        href={`/tags/${encodeURIComponent(editorsPicks.name)}/`}
+      />
     )
   }
 </Layout>

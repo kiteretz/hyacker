@@ -1,14 +1,21 @@
 ---
-
 interface Props {
   index?: number;
   href?: string;
   title: string;
   showCount?: boolean;
   count?: number;
+  /** false にすると xl でビューポート基準（100svh）の高さを持たず、隣接コンテンツの高さに追従する */
+  fullHeight?: boolean;
+  /**
+   * true にすると xl でカウント表示をビューポート下端に stick させる。
+   * SideLeft の上に別要素（検索フォームなど）があり、初期表示でコンポーネント下端が
+   * 画面外に押し出されるページで、ファーストビューからカウントを見せるために使う。
+   */
+  stickyCount?: boolean;
 }
 
-const { title, count, index, href, showCount = false } = Astro.props;
+const { title, count, index, href, showCount = false, fullHeight = true, stickyCount = false } = Astro.props;
 const Tag = href ? 'a' : 'div';
 const linkProps = href ? { href } : {};
 const indexStr = index !== undefined ? String(index).padStart(2, '0') : '';
@@ -18,36 +25,44 @@ const decorativeNumberClass =
   'hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:leading-none xl:font-bold xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10';
 ---
 
-<div class="max-xl:sticky max-xl:top-(--header-height) max-xl:border-b" data-js-sticky-sidebar>
+<div class="max-xl:border-b" data-js-sticky-sidebar>
   <Tag
     {...linkProps}
     class:list={[
       'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
-      'xl:h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:items-start xl:p-32',
+      'xl:flex-col xl:items-start xl:p-32 xl:pb-8',
+      // fullHeight でない場合は隣接コンテンツ（カードリスト）の高さに追従する
+      fullHeight ? 'xl:h-[max(calc(100svh-var(--header-height)),30rem)]' : 'xl:h-full',
+      stickyCount && 'xl:pb-12!',
+      href && 'group',
     ]}
     data-js-sticky-sidebar-inner
   >
     <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
-    <p class="flex items-center gap-x-4 xl:relative xl:pb-24">
+    <p class:list={['flex items-center gap-x-4 xl:relative xl:pb-24', stickyCount && 'pb-40! xl:sticky xl:bottom-0']}>
       {
         showCount ? (
           <slot name="count">
             <span class:list={['xl:text-108 xl:text-neutral-900', decorativeNumberClass]}>{countStr}</span>
           </slot>
         ) : (
-          <>
-            <span class="text-16 leading-none font-medium tracking-tight xl:text-24">View More</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="none"
-              viewBox="0 0 24 24"
-              class="size-16 xl:size-24"
-            >
-              <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8" />
-            </svg>
-          </>
+          href && (
+            <>
+              <span class="text-16 leading-none font-medium tracking-tight underline decoration-transparent underline-offset-2 transition group-hover:decoration-neutral-800 xl:text-24">
+                View More
+              </span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                fill="none"
+                viewBox="0 0 24 24"
+                class="size-16 xl:size-24"
+              >
+                <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8" />
+              </svg>
+            </>
+          )
         )
       }
       {indexStr && <span class:list={['xl:text-160 xl:text-neutral-800', decorativeNumberClass]}>{indexStr}</span>}

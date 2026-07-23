@@ -13,20 +13,25 @@ interface Props {
 const { title, subTitle, bgText, class: className } = Astro.props;
 ---
 
-<div class={twMerge('relative z-0 mb-px grid h-640 grid-rows-[auto_1fr] overflow-hidden bg-white p-32', className)}>
+<div
+  class={twMerge(
+    'relative z-0 mb-px grid h-480 grid-rows-[auto_1fr] overflow-hidden bg-white px-16 pt-32 pb-24 xl:h-640 xl:p-32',
+    className,
+  )}
+>
   <h1 class="grid gap-y-24">
     <span
       set:html={title}
-      class="font-space-grotesk text-32-80 leading-[0.9] font-bold tracking-tighter text-neutral-800 uppercase md:text-80-144"
+      class="font-space-grotesk text-56 leading-[0.9] font-bold tracking-tighter text-neutral-800 uppercase md:text-80-144"
     />
-    <span set:html={subTitle} class="text-16-18 leading-tight font-semibold md:text-19-32" />
+    <span set:html={subTitle} class="text-20 leading-tight font-semibold md:text-19-32" />
   </h1>
   <div class="w-full self-end">
     <SearchForm
-      class="tracking h-64-128"
-      buttonClass="right-0 w-64-128 rounded-full bg-neutral-800 transition-transform duration-300 hover:scale-[1.15]"
-      iconClass="w-24-56 text-white"
-      inputClass="text-clamp-40/80 placeholder:absolute placeholder:top-0 placeholder:-translate-y-10-34 placeholder:font-inter placeholder:text-64-160 placeholder:font-thin placeholder:tracking-tighter placeholder:opacity-10"
+      class="tracking h-64-144"
+      buttonClass="right-0 xl:right-8 size-48 xl:size-64-128 rounded-full bg-neutral-800 transition-transform duration-200 hover:scale-[1.05]"
+      iconClass="w-20 xl:w-24-56 text-white"
+      inputClass="xl:text-clamp-64/144 px-0 py-0 pr-[1.1em] font-space-grotesk placeholder:font-space-grotesk! placeholder:font-normal! placeholder:top-0 placeholder:text-48 text-48 xl:placeholder:text-64-144 tracking-tighter placeholder:opacity-10"
     />
   </div>
   <p

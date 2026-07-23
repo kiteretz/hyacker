@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "engines": {
-    "node": "18.20.8 || ^20.3.0 || >=22.0.0",
+    "node": ">=24.0.0",
     "npm": ">=9.6.5",
     "pnpm": ">=7.1.0"
   },
@@ -11,6 +11,10 @@
     "dev": "astro dev --open",
     "build": "astro build && pagefind --site dist",
     "check": "astro check",
+    "lint": "eslint \"src/**/*.{ts,tsx,astro}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{ts,tsx,astro}\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "preview": "astro preview",
     "astro": "astro"
   },

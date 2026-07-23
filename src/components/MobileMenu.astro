@@ -4,7 +4,7 @@ import { getPostsByTag } from '@libs/postsByTag';
 const tags = await getPostsByTag();
 
 const mainItems: { label: string; href: string }[] = [
-  ...tags.slice(0, 5).map(({ name }) => ({ label: name, href: `/tags/${name}/` })),
+  ...tags.slice(0, 5).map(({ name }) => ({ label: name, href: `/tags/${encodeURIComponent(name)}/` })),
 ];
 
 const subItems: { label: string; href: string; external?: boolean }[] = [
@@ -27,6 +27,7 @@ const subItems: { label: string; href: string; external?: boolean }[] = [
     class="fixed right-0 z-modal w-full max-w-1/2 translate-x-full border-l transition-transform duration-200 ease-out group-data-[open=true]:translate-x-0"
     style="top: var(--header-height, 64px); height: calc(100svh - var(--header-height, 64px));"
     aria-hidden="true"
+    inert
   >
     <nav aria-label="モバイルメニュー" class="flex h-full flex-col gap-px overflow-y-auto bg-neutral-900 font-inter">
       <ul class="flex flex-1 flex-col items-end bg-white pt-16 pb-40 font-medium">

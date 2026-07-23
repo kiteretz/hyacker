@@ -2,33 +2,21 @@
 import Layout from '@layouts/Layout.astro';
 
 import SearchCount from '@components/SearchCount';
+import SearchPageInput from '@components/SearchPageInput';
 import SearchResults from '@components/SearchResults';
 import SideLeft from '@components/SideLeft.astro';
 ---
 
-<Layout title="Explorer hyacker " class="about">
+<Layout title="検索結果">
   <section>
-    <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
-      <SideLeft title="Result" showCount>
-        <SearchCount slot="count" client:load />
-      </SideLeft>
-      <SearchResults client:load />
-      <!-- <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
-      {
-        (showAll ? posts : posts.slice(0, 15)).map((post) => {
-          return (
-            <Card
-              href={`/post/${post.id}`}
-              title={post.data.title}
-              date={post.data.pubDate}
-              tags={post.data.tags ?? []}
-              img={post.data.image?.url}
-              client:load
-            />
-          );
-        })
-      }
-    </div> -->
+    <div class="mb-px grid min-h-[calc(100svh-var(--header-height))] grid-rows-[auto_1fr] gap-px">
+      <SearchPageInput client:load />
+      <div class="z-10 grid grid-rows-[auto_1fr] xl:grid-cols-[16.625rem_1fr] xl:grid-rows-1 xl:gap-px">
+        <SideLeft title="Result" showCount stickyCount>
+          <SearchCount slot="count" client:load />
+        </SideLeft>
+        <SearchResults client:load />
+      </div>
     </div>
   </section>
 </Layout>

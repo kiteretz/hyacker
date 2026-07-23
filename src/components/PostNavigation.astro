@@ -11,6 +11,6 @@ const { prev, next, class: className } = Astro.props;
 ---
 
 <div class:list={[className]}>
-  {prev && <a href={`/post/${prev.id}`}>Prev</a>}
-  {next && <a href={`/post/${next.id}`}>Next</a>}
+  {prev && <a href={`/post/${prev.id}/`}>Prev</a>}
+  {next && <a href={`/post/${next.id}/`}>Next</a>}
 </div>
