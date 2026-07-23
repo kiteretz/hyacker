@@ -32,6 +32,12 @@ function timingSafeEqual(a, b) {
 export async function onRequest({ request, next, env }) {
   const BASIC_AUTH = env.BASIC_AUTH;
 
+  // Skip authentication if the credential is not configured, instead of
+  // silently comparing against the string "undefined".
+  if (!BASIC_AUTH) {
+    return await next();
+  }
+
   // The "Authorization" header is sent when authenticated.
   const authorization = request.headers.get('Authorization');
   if (!authorization) {
