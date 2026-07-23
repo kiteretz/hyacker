@@ -1,4 +1,4 @@
-import { defineCollection, } from 'astro:content';
+import { defineCollection } from 'astro:content';
 
 import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
@@ -7,7 +7,7 @@ import { z } from 'astro/zod';
 // https://docs.astro.build/en/guides/content-collections
 // プロパティを追加したら、以下にも追記＆開発サーバー再起動で適用
 const posts = defineCollection({
-  loader: glob({ pattern: "**/[^_]*.md", base: "./content" }),
+  loader: glob({ pattern: '**/[^_]*.md', base: './content' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -21,7 +21,7 @@ const posts = defineCollection({
       })
       .optional(),
     tags: z.array(z.string()).nullable(),
-    status: z.string().nullable()
+    status: z.string().nullable(),
   }),
 });
 
@@ -29,5 +29,5 @@ const posts = defineCollection({
 // const usersCollection = defineCollection({ /* ... */ });
 
 export const collections = {
-  posts
+  posts,
 };

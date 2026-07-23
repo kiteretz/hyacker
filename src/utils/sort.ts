@@ -15,8 +15,8 @@ export const sortDescriptions = {
 type PostEntry = CollectionEntry<'posts'>;
 type SortFunction = (a: PostEntry, b: PostEntry) => number;
 type SortOptions = {
-  [name: string] : SortFunction,
-}
+  [name: string]: SortFunction;
+};
 
 const sortOptions: SortOptions = {
   dateDesc: (a: PostEntry, b: PostEntry) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),

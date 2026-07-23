@@ -11,6 +11,10 @@
     "dev": "astro dev --open",
     "build": "astro build && pagefind --site dist",
     "check": "astro check",
+    "lint": "eslint \"src/**/*.{ts,tsx,astro}\"",
+    "lint:fix": "eslint --fix \"src/**/*.{ts,tsx,astro}\"",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "preview": "astro preview",
     "astro": "astro"
   },

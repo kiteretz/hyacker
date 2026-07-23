@@ -78,14 +78,14 @@ Astro コードフェンス・TypeScript ファイルともに以下の順序で
 - `src/` 直下のファイル（`constant.ts` など）は `@/` を使う
 - 同一ディレクトリ内の import は相対パス（`./Nav.astro`）でよい
 
-| エイリアス | 対象 |
-|---|---|
-| `@components/*` | `src/components/*` |
-| `@layouts/*` | `src/layouts/*` |
-| `@libs/*` | `src/libs/*` |
-| `@utils/*` | `src/utils/*` |
-| `@scripts/*` | `src/scripts/*` |
-| `@/*` | `src/*`（直下ファイル用） |
+| エイリアス      | 対象                      |
+| --------------- | ------------------------- |
+| `@components/*` | `src/components/*`        |
+| `@layouts/*`    | `src/layouts/*`           |
+| `@libs/*`       | `src/libs/*`              |
+| `@utils/*`      | `src/utils/*`             |
+| `@scripts/*`    | `src/scripts/*`           |
+| `@/*`           | `src/*`（直下ファイル用） |
 
 ### コンポーネントのファイル形式
 
@@ -94,10 +94,10 @@ Astro コードフェンス・TypeScript ファイルともに以下の順序で
 
 ### クラス合成・競合解決
 
-| 状況 | 方法 |
-|---|---|
-| `.astro` で単純なクラス結合 | `class:list={[...]}` |
-| `.tsx` で単純なクラス結合 | `twJoin`（`tailwind-merge`） |
+| 状況                              | 方法                         |
+| --------------------------------- | ---------------------------- |
+| `.astro` で単純なクラス結合       | `class:list={[...]}`         |
+| `.tsx` で単純なクラス結合         | `twJoin`（`tailwind-merge`） |
 | 外部 props とのマージ（競合解決） | `twMerge`（`@libs/twMerge`） |
 
 - `@libs/twMerge` はカスタム数値スケール（`text-24` など）に対応した拡張版

@@ -57,10 +57,10 @@
 
 /* Card back Shiki */
 .shiki-card .shiki {
-  background: transparent !important;
-  padding: 0;
-  margin: 0;
-  font-size: 0.75rem;
+	background: transparent !important;
+	padding: 0;
+	margin: 0;
+	font-size: 0.75rem;
 }
 
 /* Typography plugin */

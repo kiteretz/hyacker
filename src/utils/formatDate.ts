@@ -11,7 +11,5 @@ const dateTimeFormat = new Intl.DateTimeFormat('ja-JP', {
 });
 
 export const formatDate = (date: Date | string): string => {
-  return typeof date === 'string'
-    ? date
-    : dateTimeFormat.format(date).replace(/\//g, '.');
+  return typeof date === 'string' ? date : dateTimeFormat.format(date).replace(/\//g, '.');
 };
