@@ -114,7 +114,17 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
               </li>
             ))}
           </ul>
-          {img && <img src={img} width="" height="" alt="" className="aspect-video self-end rounded-8 object-cover" />}
+          {img && (
+            <img
+              src={img}
+              width="400"
+              height="225"
+              alt=""
+              loading="lazy"
+              decoding="async"
+              className="aspect-video self-end rounded-8 object-cover"
+            />
+          )}
         </div>
         {/* back */}
         <div
