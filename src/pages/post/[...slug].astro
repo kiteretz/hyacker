@@ -136,7 +136,7 @@ const extracted = extractAnswer(entry.body ?? '');
                 {
                   currentTags.map((tag: string, i: number) => (
                     <>
-                      <a href={`/tags/${tag}`} class="hover:underline">
+                      <a href={`/tags/${encodeURIComponent(tag)}/`} class="hover:underline">
                         {tag}
                       </a>
                       {i < currentTags.length - 1 && ', '}

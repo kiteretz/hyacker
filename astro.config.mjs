@@ -8,6 +8,7 @@ import { SHIKI_THEME } from './src/libs/shikiConfig';
 
 // https://astro.build/config
 export default defineConfig({
+  trailingSlash: 'always',
   integrations: [mdx(), react()],
 
   // 記事本文のコードブロックは Astro 内蔵の Shiki が処理する。

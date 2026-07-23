@@ -54,7 +54,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
               }
               return (
                 <Card
-                  href={`/post/${post.id}`}
+                  href={`/post/${post.id}/`}
                   title={post.data.title}
                   date={post.data.pubDate}
                   tags={post.data.tags ?? []}

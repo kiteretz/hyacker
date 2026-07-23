@@ -18,7 +18,7 @@ const naviItems: { label: string; href: string }[] = [
     href: '/tags/',
   },
   ...tags.slice(0, 3).map(({ name }) => {
-    return { label: name, href: `/tags/${name}/` };
+    return { label: name, href: `/tags/${encodeURIComponent(name)}/` };
   }),
 ];
 ---
