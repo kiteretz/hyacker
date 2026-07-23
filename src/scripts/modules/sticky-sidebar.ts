@@ -20,13 +20,15 @@
  *   - `data-js-sticky-sidebar`       → sidebar wrapper (provides bounds)
  *   - `data-js-sticky-sidebar-inner` → inner element that gets positioned
  *
- * Disabled below the `xl` breakpoint (1200px).
+ * Disabled below the `xl` breakpoint.
  * Supports multiple instances on a single page.
  */
+import { BREAKPOINTS } from '@utils/breakpoints';
+
 let controllers: AbortController[] = [];
 let resizeObservers: ResizeObserver[] = [];
 
-const LG_BREAKPOINT = 1200;
+const XL_BREAKPOINT = BREAKPOINTS.xl;
 
 type State = 'static' | 'fixed-top' | 'fixed-bottom' | 'translate' | 'container-bottom';
 
@@ -66,7 +68,7 @@ function init(): void {
     }
 
     function update(): void {
-      if (window.innerWidth < LG_BREAKPOINT) {
+      if (window.innerWidth < XL_BREAKPOINT) {
         inner!.style.cssText = '';
         sidebar!.removeAttribute('data-sidebar-short');
         sidebar!.removeAttribute('data-sidebar-tall');

@@ -1,10 +1,12 @@
+import { minWidthQuery } from '@utils/breakpoints';
+
 const root = document.getElementById('js-mobile-menu-root');
 const trigger = document.getElementById('js-mobile-menu-trigger');
 const panel = document.getElementById('js-mobile-menu');
 const backdrop = document.getElementById('js-mobile-menu-backdrop');
 
 if (root && trigger && panel && backdrop) {
-  const lgQuery = window.matchMedia('(min-width: 60rem)');
+  const lgQuery = window.matchMedia(minWidthQuery('lg'));
 
   const setOpen = (open: boolean) => {
     root.dataset.open = open ? 'true' : 'false';
@@ -12,7 +14,10 @@ if (root && trigger && panel && backdrop) {
     trigger.setAttribute('aria-label', open ? 'メニューを閉じる' : 'メニューを開く');
     panel.setAttribute('aria-hidden', open ? 'false' : 'true');
     backdrop.setAttribute('aria-hidden', open ? 'false' : 'true');
-    document.body.style.overflow = open ? 'hidden' : '';
+    // html に overflow-x-clip が付いているため body の overflow: hidden は
+    // ビューポートへ伝播せず、body 自身がスクロールコンテナ化して
+    // ヘッダーの sticky 基準が壊れる。ロックは html 側に掛ける。
+    document.documentElement.style.overflow = open ? 'hidden' : '';
   };
 
   trigger.addEventListener('click', () => {
