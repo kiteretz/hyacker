@@ -83,12 +83,12 @@ const extracted = extractAnswer(entry.body ?? '');
           <!-- Article Header -->
           <div
             class:list={[
-              'bg-white p-16',
+              'bg-white px-16 py-24',
               'md:p-32',
               'xl:col-[1/-2] xl:row-1 xl:flex xl:items-center xl:justify-center',
             ]}
           >
-            <h1 class="w-full max-w-5xl font-palt text-28 leading-normal font-bold md:text-40">
+            <h1 class="w-full max-w-5xl font-palt text-28 leading-snug font-bold md:text-40 md:leading-normal">
               {title}
             </h1>
           </div>
@@ -96,8 +96,8 @@ const extracted = extractAnswer(entry.body ?? '');
           <!-- Published + Tags -->
           <div
             class:list={[
-              'flex flex-wrap gap-16 bg-white p-16',
-              'md:flex-col md:gap-24 md:px-24 md:py-32',
+              'flex flex-wrap gap-x-32 gap-y-12 bg-white px-16 py-24',
+              'md:flex-col md:px-24 md:py-32',
               'xl:col-[-2/-1] xl:row-1',
             ]}
           >
@@ -185,6 +185,6 @@ const extracted = extractAnswer(entry.body ?? '');
     </div>
 
     <!-- Related Posts -->
-    <SectionByTag title="Related" posts={relatedPosts.slice(0, 5)} fullHeight={false} />
+    <SectionByTag title="Related" posts={relatedPosts} fullHeight={false} />
   </div>
 </Layout>
