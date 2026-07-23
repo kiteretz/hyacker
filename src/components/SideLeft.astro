@@ -30,15 +30,15 @@ const decorativeNumberClass =
     {...linkProps}
     class:list={[
       'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
-      'xl:flex-col xl:items-start xl:p-32',
+      'xl:flex-col xl:items-start xl:p-32 xl:pb-8',
       // fullHeight でない場合は隣接コンテンツ（カードリスト）の高さに追従する
       fullHeight ? 'xl:h-[max(calc(100svh-var(--header-height)),30rem)]' : 'xl:h-full',
-      stickyCount && 'xl:pb-0!',
+      stickyCount && 'xl:pb-12!',
     ]}
     data-js-sticky-sidebar-inner
   >
     <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
-    <p class:list={['flex items-center gap-x-4 xl:relative xl:pb-24', stickyCount && 'xl:sticky xl:bottom-8']}>
+    <p class:list={['flex items-center gap-x-4 xl:relative xl:pb-24', stickyCount && 'pb-40! xl:sticky xl:bottom-0']}>
       {
         showCount ? (
           <slot name="count">

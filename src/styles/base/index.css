@@ -85,7 +85,7 @@
 	}
 
 	:focus-visible {
-		@apply z-1 outline-2 outline-neutral-800;
+		@apply z-1 outline-2 outline-neutral-800 -outline-offset-1;
 	}
 
 	/* sticky ヘッダー内の要素は常に視界内にあるが、上の scroll-padding-top の
