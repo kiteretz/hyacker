@@ -36,7 +36,7 @@ interface Props {
 const { entry } = Astro.props;
 const { Content, headings = [] } = await render(entry);
 
-const { title, description, pubDate, tags } = entry.data;
+const { title, description, pubDate, tags, image } = entry.data;
 const currentTags = tags ?? [];
 
 // Related posts: タグが1つ以上一致する記事を最大5件取得
@@ -68,7 +68,7 @@ const extracted = extractAnswer(entry.body ?? '');
             </div>
             <!-- Heading index -->
             <div
-              class="text-fg-800 flex flex-col font-space-grotesk text-160 leading-none font-bold slashed-zero tabular-nums opacity-10"
+              class="text-neutral800 flex flex-col font-space-grotesk text-160 leading-none font-bold slashed-zero tabular-nums opacity-10"
             >
               <p class="relative top-16" data-section-current>01</p>
               <p data-heading-total>
@@ -101,8 +101,8 @@ const extracted = extractAnswer(entry.body ?? '');
               'xl:col-[-2/-1] xl:row-1',
             ]}
           >
-            <div class="flex flex-col gap-12">
-              <p class="text-fg-400 font-inter text-14 leading-none uppercase">Published</p>
+            <div class="flex flex-col gap-8">
+              <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Published</p>
               <p class="font-space-grotesk text-16 leading-tight">
                 <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
                 {
@@ -119,10 +119,19 @@ const extracted = extractAnswer(entry.body ?? '');
                     </span>
                   )
                 }
+                {
+                  // アイキャッチ画像はページ内に描画されないため、検索結果カード用に
+                  // frontmatter の URL を Pagefind メタとして明示的に公開する
+                  image && (
+                    <span data-pagefind-meta="image" class="hidden">
+                      {image.url}
+                    </span>
+                  )
+                }
               </p>
             </div>
-            <div class="flex flex-col gap-12">
-              <p class="text-fg-400 font-inter text-14 leading-none uppercase">Tags</p>
+            <div class="flex flex-col gap-8">
+              <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Tags</p>
               <p class="text-16 leading-tight">
                 {
                   currentTags.map((tag: string, i: number) => (
@@ -156,15 +165,15 @@ const extracted = extractAnswer(entry.body ?? '');
               class="pointer-events-none sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] xl:flex xl:flex-col xl:justify-between"
             >
               <!-- TOC -->
-              <div class="pointer-events-auto flex flex-col gap-16 overflow-y-auto px-24 py-32">
-                <p class="text-fg-400 font-inter text-14 leading-none uppercase">Table of contents</p>
+              <div class="pointer-events-auto flex flex-col gap-12 overflow-y-auto px-24 py-32">
+                <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Table of contents</p>
                 <TableOfContents headings={headings} />
               </div>
               <!-- Ad card -->
               <div class="border-fg-800 pointer-events-auto sticky bottom-0 -translate-y-px border-t bg-white p-8">
                 <div class="flex flex-col gap-4">
                   <div class="flex items-center justify-between p-8 leading-tight">
-                    <p class="text-fg-400 font-inter text-14">AD, PR</p>
+                    <p class="font-inter text-14 text-neutral-400">AD, PR</p>
                   </div>
                   <img src="https://placehold.co/250x188" alt="" class="w-full rounded-8" />
                 </div>

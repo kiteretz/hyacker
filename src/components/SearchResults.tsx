@@ -22,9 +22,11 @@ const SearchResults: FC = () => {
 
   const execSearch = async () => setResults(await search(query, pagefind));
 
+  // pagefind も deps に含める：初期ロード時は Pagefind の読み込み完了前に実行されるため、
+  // 読み込み完了後に再検索しないと空欄時の全件表示が反映されない
   useEffect(() => {
     execSearch();
-  }, [query]);
+  }, [query, pagefind]);
 
   // URL パラメターに含まれるワードでの検索結果セット
   useEffect(() => {

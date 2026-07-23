@@ -22,14 +22,14 @@ const SearchPageInput: FC<Props> = ({ className }) => {
     <label
       className={twMerge(
         // min-w-0: input の固有幅（size 属性由来）で label がグリッドトラックを押し広げないようにする
-        'flex w-full min-w-0 cursor-text items-center justify-between gap-16 bg-white px-16 py-32 xl:p-32',
+        'flex w-full min-w-0 cursor-text items-center justify-between gap-16 bg-white px-16 py-32 xl:gap-32 xl:p-32',
         className,
       )}
     >
       <span className="sr-only">サイト内検索</span>
       <input
         className={twMerge(
-          'min-w-0 flex-1 bg-transparent font-space-grotesk text-clamp-32/80 leading-[0.8] font-normal tracking-[-0.05em] text-neutral-800',
+          'min-w-0 flex-1 bg-transparent font-space-grotesk text-clamp-32/80 leading-[0.8] font-normal tracking-tighter text-neutral-800',
           'placeholder:text-neutral-800 placeholder:opacity-30',
           '[&::-webkit-search-cancel-button]:hidden',
         )}
