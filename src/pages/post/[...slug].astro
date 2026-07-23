@@ -103,7 +103,7 @@ const extracted = extractAnswer(entry.body ?? '');
           >
             <div class="flex flex-col gap-8">
               <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Published</p>
-              <p class="font-space-grotesk text-16 leading-tight">
+              <div class="font-space-grotesk text-16 leading-tight">
                 <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
                 {
                   extracted?.content && (
@@ -128,7 +128,7 @@ const extracted = extractAnswer(entry.body ?? '');
                     </span>
                   )
                 }
-              </p>
+              </div>
             </div>
             <div class="flex flex-col gap-8">
               <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Tags</p>
