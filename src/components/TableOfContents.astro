@@ -42,9 +42,9 @@ const hierarchy = depth === 1 ? buildHierarchy(headings) : (headings as NestedHe
   hierarchy && hierarchy.length > 0 && (
     <ol class={depth > 1 ? 'pl-12' : ''} data-js-toc={depth === 1 ? '' : undefined}>
       {hierarchy.map(({ slug, text, subheadings }) => (
-        <li class="before:mr-4 before:content-['-']">
-          <a class="inline-block py-2 hover:underline data-is-current:font-bold" href={`#${slug}`}>
-            {text}
+        <li class="relative before:absolute before:top-0.5 before:mr-4 before:content-['-']">
+          <a class="block py-4 pl-[0.75em] leading-tight hover:underline data-is-current:font-bold" href={`#${slug}`}>
+            <span class="">{text}</span>
           </a>
           {subheadings.length > 0 && <Astro.self headings={subheadings} depth={depth + 1} />}
         </li>
