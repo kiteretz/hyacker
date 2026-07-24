@@ -39,7 +39,6 @@ const SearchPageInput: FC<Props> = ({ className }) => {
         value={query}
         onInput={(e) => setQuery(e.currentTarget.value)}
         autoComplete="off"
-        autoFocus
       />
       <div className="absolute right-0 grid place-items-center p-16 md:p-48">
         <svg
