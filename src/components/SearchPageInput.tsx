@@ -22,7 +22,7 @@ const SearchPageInput: FC<Props> = ({ className }) => {
     <label
       className={twMerge(
         // min-w-0: input の固有幅（size 属性由来）で label がグリッドトラックを押し広げないようにする
-        'z-10 flex w-full min-w-0 cursor-text items-center justify-between gap-16 bg-white xl:gap-32',
+        'relative z-10 flex w-full min-w-0 cursor-text items-center justify-between gap-16 bg-white xl:gap-32',
         className,
       )}
     >
@@ -41,7 +41,7 @@ const SearchPageInput: FC<Props> = ({ className }) => {
         autoComplete="off"
         autoFocus
       />
-      <div className="absolute right-0 grid aspect-square place-items-center p-16 md:p-48">
+      <div className="absolute right-0 grid place-items-center p-16 md:p-48">
         <svg
           width="72"
           height="72"
