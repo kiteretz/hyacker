@@ -20,11 +20,11 @@ const tags = await getPostsByTag();
             <a
               href={`/tags/${encodeURIComponent(tag.name)}/`}
               class:list={[
-                'border-border flex items-center justify-between border-b bg-white p-16 py-10 font-inter font-palt leading-none text-neutral-900',
+                'border-border flex items-center justify-between border-b bg-white p-16 py-10 font-inter font-palt leading-none text-neutral-800',
                 'transition-colors duration-150',
                 'xl:pr-24 xl:pl-8',
-                'hover:bg-neutral-900 hover:text-white',
-                'focus-visible:bg-neutral-900 focus-visible:text-white focus-visible:outline-none',
+                'hover:bg-neutral-800 hover:text-white',
+                'focus-visible:bg-neutral-800 focus-visible:text-white focus-visible:outline-none',
               ]}
             >
               <span class="text-16 font-medium tracking-tight">{tag.name}</span>

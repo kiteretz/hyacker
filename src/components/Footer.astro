@@ -8,7 +8,7 @@ export interface Props {
 const { class: className } = Astro.props;
 ---
 
-<footer class={twMerge('sticky top-[100vh] border-b bg-white', className)}>
+<footer class={twMerge('sticky top-[100vh] border-b border-neutral-800 bg-white', className)}>
   <div
     class:list={[
       'flex flex-col font-inter font-medium',
