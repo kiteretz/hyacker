@@ -7,7 +7,7 @@ import dummyResult from './dummyResult';
  * Pagefind の読み込み・初期化は React コンポーネントで行う必要がある
  * そのため引数に Pagefind オブジェクトを取る
  */
-const search = async (query: string, pagefind: any): Promise<Card[]> => {
+const search = async (query: string, pagefind: any): Promise<Card[] | null> => {
   // 空欄（空白のみ含む）のときは全件表示する
   const isEmptyQuery = query.trim() === '';
 
@@ -17,8 +17,9 @@ const search = async (query: string, pagefind: any): Promise<Card[]> => {
     return dummyResult(isEmptyQuery);
   }
 
+  // Pagefind 未ロードで検索できないときは null（0件の [] と区別し、呼び出し側で無視できるように）
   if (!pagefind) {
-    return [];
+    return null;
   }
 
   // Pagefind は null クエリでインデックス済みの全ページを返す

@@ -22,7 +22,8 @@ pageFindAtom.onMount = (setAtom) => {
   setAtom(pagefind);
 };
 
-export const resultsAtom = atom<Card[]>([]);
+// null = 検索が一度も完了していない（ローディング中）
+export const resultsAtom = atom<Card[] | null>(null);
 
 // SearchInput に何か文字が入力されたら True、空欄になったら False
 export const existActiveInputAtom = atom<boolean>(false);
