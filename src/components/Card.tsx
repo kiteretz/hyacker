@@ -40,7 +40,18 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
   const [showRight, setShowRight] = useState(false);
   const [renderedCode, setRenderedCode] = useState<string | undefined>(highlightedCode);
   const [isActive, setIsActive] = useState(false);
+  // ホバー可能なデバイス（＝マウス等のポインタ）でのみフリップさせる。
+  // モバイルではタップで mouseenter が発火してしまうため、それを無効化する。
+  const [canHover, setCanHover] = useState(false);
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(hover: hover)');
+    setCanHover(mq.matches);
+    const handler = (e: MediaQueryListEvent) => setCanHover(e.matches);
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
 
   const handleScroll = () => {
     const el = scrollRef.current;
@@ -99,8 +110,9 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
     >
       <div
         className={twJoin(
-          'h-full transition-transform duration-500 ease-in-out transform-3d focus-within:rotate-y-180',
-          isActive && 'rotate-y-180 delay-100',
+          'h-full transition-transform duration-500 ease-in-out transform-3d',
+          canHover && 'focus-within:rotate-y-180',
+          canHover && isActive && 'rotate-y-180 delay-100',
         )}
       >
         {/* front */}

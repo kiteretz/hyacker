@@ -15,10 +15,11 @@ const ANIMATION_DURATION = 300;
 
 const SearchCount: FC = () => {
   const results = useAtomValue(resultsAtom);
-  const target = results.length;
-  const [displayCount, setDisplayCount] = useState(target);
+  const target = results?.length ?? 0;
+  // 0 起点にすることで、初回の検索完了時に 0 → n のカウントアップになる
+  const [displayCount, setDisplayCount] = useState(0);
   // アニメーション中の中断（連続入力）でも現在表示中の値から続きを開始できるよう ref に保持する
-  const displayCountRef = useRef(target);
+  const displayCountRef = useRef(0);
 
   useEffect(() => {
     const from = displayCountRef.current;
@@ -45,6 +46,9 @@ const SearchCount: FC = () => {
     rafId = requestAnimationFrame(tick);
     return () => cancelAnimationFrame(rafId);
   }, [target]);
+
+  // 検索完了前はカウントを出さない（「000」のフラッシュを避ける）
+  if (results === null) return null;
 
   const countStr = String(displayCount).padStart(3, '0');
 
