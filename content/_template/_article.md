@@ -5,7 +5,7 @@ upDate: <% tp.date.now("YYYY-MM-DD") %>
 pubDate: <% tp.date.now("YYYY-MM-DD") %>
 author: （執筆者名）
 image:
-  url: /assets/posts/card_thumbnail.svg
+  url: /assets/posts/card-thumbnail.svg
   alt: 画像の説明
 tags:
   - CSS
