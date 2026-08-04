@@ -13,6 +13,7 @@ export type Card = {
   date: Date | string;
   tags: string[];
   img?: string;
+  imgAlt?: string;
   answer?: string;
   isCode?: boolean;
   highlightedCode?: string;
@@ -33,7 +34,7 @@ async function getClientHighlighter() {
   return getShikiHighlighter();
 }
 
-const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highlightedCode, lang }) => {
+const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, highlightedCode, lang }) => {
   const [copied, setCopied] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const [showTop, setShowTop] = useState(false);
@@ -131,7 +132,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
               src={img}
               width="400"
               height="225"
-              alt=""
+              alt={imgAlt ?? ''}
               loading="lazy"
               decoding="async"
               className="aspect-video self-end rounded-8 object-cover"
