@@ -3,6 +3,7 @@ import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'astro/config';
+import rehypeExternalLinks from 'rehype-external-links';
 
 import { SHIKI_THEME } from './src/libs/shikiConfig';
 
@@ -17,6 +18,7 @@ export default defineConfig({
     shikiConfig: {
       theme: SHIKI_THEME,
     },
+    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]],
   },
 
   vite: {
