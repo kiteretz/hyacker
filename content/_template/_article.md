@@ -8,6 +8,8 @@ image:
   url: /assets/posts/card_thumbnail.svg
   alt: 画像の説明
 tags:
+  - CSS
+  - HTML
 status: draft
 ---
 
@@ -20,7 +22,7 @@ _%>
 
 テキスト
 
-```code
+```html
 
 ```
 
