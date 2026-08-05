@@ -28,6 +28,7 @@
     "jotai": "^2.20.0",
     "pagefind": "^1.5.2",
     "rehype-external-links": "^3.0.0",
+    "sharp": "^0.35.3",
     "shiki": "^4.2.0",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.0",
