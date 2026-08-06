@@ -1,5 +1,5 @@
 ---
-title: input・textarea のフォントサイズは 16px 以上にする
+title: スマホでinputフォーカス時に自動ズームするのを防ぐには？
 description: モバイルでのフォーカス時の自動ズームを防ぐため、input・textarea のフォントサイズを 16px 以上に設定する理由と方法を解説します
 upDate: 2026-08-04
 pubDate: 2026-08-04

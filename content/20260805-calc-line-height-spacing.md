@@ -1,5 +1,5 @@
 ---
-title: line-height の余白分を差し引いて margin・padding を逆算する方法
+title: line-heightの余白を差し引いてmargin・paddingを逆算するには？
 description: デザインカンプの余白の数値から、line-heightによって生まれる行間の余白を差し引き、実際に指定すべきmargin・paddingを求める計算方法を解説します
 upDate: 2026-08-05
 pubDate: 2026-08-05

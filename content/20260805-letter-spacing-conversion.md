@@ -1,5 +1,5 @@
 ---
-title: letter-spacing を em に変換する方法
+title: letter-spacingの%・pxをemに変換するには？
 description: Figmaなどのデザインデータで指定された letter-spacing の % や px を、CSSで使う em に変換する計算方法を解説します
 upDate: 2026-08-05
 pubDate: 2026-08-05

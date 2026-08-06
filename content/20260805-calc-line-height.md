@@ -1,5 +1,5 @@
 ---
-title: line-height の比率を計算する方法
+title: line-heightの比率はどう計算する？
 description: フォントサイズと目標のline-height（px）から、CSSで指定する line-height の比率を求める計算方法を解説します
 upDate: 2026-08-05
 pubDate: 2026-08-05

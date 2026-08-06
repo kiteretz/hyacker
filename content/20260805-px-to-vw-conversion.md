@@ -1,5 +1,5 @@
 ---
-title: px を vw に変換する計算式
+title: pxをvwに変換するには？
 description: デザインカンプのpx指定を、画面幅に応じて可変するvw単位に変換する計算式と、Sassのfunctionでの実装方法を解説します
 upDate: 2026-08-05
 pubDate: 2026-08-05

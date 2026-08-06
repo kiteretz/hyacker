@@ -1,5 +1,5 @@
 ---
-title: WordPress の表示速度が遅いときの原因の切り分け方
+title: WordPressの表示速度が遅い原因はどう切り分ける？
 description: WordPress サイトの表示速度が遅い原因をテーマ・プラグインの単位で切り分け、コメントアウトによって絞り込んでいく調査方法を解説します
 upDate: 2026-08-04
 pubDate: 2026-08-04
