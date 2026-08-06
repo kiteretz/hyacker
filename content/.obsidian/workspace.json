@@ -1,0 +1,218 @@
+{
+  "main": {
+    "id": "6fd9a482bda73813",
+    "type": "split",
+    "children": [
+      {
+        "id": "b8c00e211318c17c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "925212731c57d3ea",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {},
+              "icon": "lucide-file",
+              "title": "新規タブ"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "0475c888222a4325",
+    "type": "split",
+    "children": [
+      {
+        "id": "fd3ce83d6d0f6ab3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b057c0f0c904cc5a",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "ファイルエクスプローラ"
+            }
+          },
+          {
+            "id": "8274fd9b87558b13",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:Next.js",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "検索"
+            }
+          },
+          {
+            "id": "1a0c4334f6df68ea",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "ブックマーク"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 225.19921875
+  },
+  "right": {
+    "id": "a19a422c602360a6",
+    "type": "split",
+    "children": [
+      {
+        "id": "7d8b6dc0e8e06b1e",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1542683c04064f41",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "バックリンク"
+            }
+          },
+          {
+            "id": "055e8d820710f074",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "アウトゴーイングリンク"
+            }
+          },
+          {
+            "id": "aae1bc1df0645658",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "タグ"
+            }
+          },
+          {
+            "id": "c3a11d4dbb5530cb",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "アウトライン"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:新規ベースを作成": false,
+      "switcher:クイックスイッチャーを開く": false,
+      "graph:グラフビューを開く": false,
+      "canvas:新規キャンバスを作成": false,
+      "daily-notes:今日のデイリーノートを開く": false,
+      "templates:テンプレートを挿入": false,
+      "command-palette:コマンドパレットを開く": false,
+      "obsidian-shellcommands:Shell commands: Custom variables": false,
+      "templater-obsidian:Templater": false
+    }
+  },
+  "active": "b057c0f0c904cc5a",
+  "lastOpenFiles": [
+    "記事ポスト5.md",
+    "post-2.md",
+    "post-1.md",
+    "cloudflare-pages-basic-auth.md",
+    "20250926-test.md",
+    "20250716-記事ポスト5.md",
+    "20250710.md",
+    "20250710-post-4.md",
+    "20250708.md",
+    "20250708-post-3.md",
+    "20250612.md",
+    "20250611.md",
+    "20260805-px-to-vw-conversion.md",
+    "20260805-letter-spacing-conversion.md",
+    "20260805-documentation-browser-tools.md",
+    "20260805-clamp-recommended-value.md",
+    "20260805-calc-line-height.md",
+    "20260805-calc-line-height-spacing.md",
+    "20260804-wordpress-speed-troubleshooting.md",
+    "20260804-symlink-basics.md",
+    "20260804-input-font-size.md",
+    "20260803-svg-background-image-color.md",
+    "20260803-svg-accessibility-color.md",
+    "2026/08/20260804-symlink-basics-170143.webp",
+    "2026/08",
+    "2026",
+    "20260805-css-calc-formulas.md",
+    "20260804-test.md",
+    "2026/08/20260804-symlink-basics-1785828861453.webp",
+    "2026/08/20260804-symlink-basics-1785828644374.webp",
+    "2026/08/スクリーンショット 2023-10-03 13.46.22.png",
+    "2026/08/20260804-symlink-basics-1785828414043.webp",
+    "2026/08/20260804-symlink-basics-1785828304481.webp",
+    "2026/08/20260804-symlink-basics-1785828271290.webp",
+    "2026/08/20260804-symlink-basics-1785828077001.webp",
+    "2026/08/20260804-symlink-basics-1785828006355.webp",
+    "2026/08/20260804-symlink-basics-1785826330872.webp",
+    "public/assets/posts/2026/public/assets/posts/2026/08",
+    "public/assets/posts/2026/public/assets/posts/2026",
+    "public/assets/posts/2026/public/assets/posts",
+    "public/assets/posts/2026/public/assets",
+    "public/assets/posts/2026/public",
+    "public/assets/posts/2026",
+    "public/assets/posts",
+    "public/assets",
+    "_template/_article.md"
+  ]
+}
