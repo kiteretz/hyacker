@@ -13,6 +13,7 @@ export type Card = {
   date: Date | string;
   tags: string[];
   img?: string;
+  imgAlt?: string;
   answer?: string;
   isCode?: boolean;
   highlightedCode?: string;
@@ -33,7 +34,7 @@ async function getClientHighlighter() {
   return getShikiHighlighter();
 }
 
-const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highlightedCode, lang }) => {
+const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, highlightedCode, lang }) => {
   const [copied, setCopied] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const [showTop, setShowTop] = useState(false);
@@ -117,7 +118,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
       >
         {/* front */}
         <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-white p-8 backface-hidden">
-          <h3 className="mb-8 px-8 text-18 font-semibold">{title}</h3>
+          <h3 className="mb-8 line-clamp-3 px-8 text-18 font-semibold sm:line-clamp-4">{title}</h3>
           <p className="px-8 font-space-grotesk text-14 text-neutral-400">{formatDate(date)}</p>
           <ul className="flex flex-wrap px-8 font-inter text-14 text-neutral-400">
             {tags?.map((tag) => (
@@ -131,7 +132,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, answer, isCode, highligh
               src={img}
               width="400"
               height="225"
-              alt=""
+              alt={imgAlt ?? ''}
               loading="lazy"
               decoding="async"
               className="aspect-video self-end rounded-8 object-cover"

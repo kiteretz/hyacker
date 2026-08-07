@@ -9,7 +9,7 @@ image:
   alt: 背景の画像
 tags:
   - CSS
-status: publish
+status: draft
 ---
 
 ## 回答

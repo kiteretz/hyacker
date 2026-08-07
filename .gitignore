@@ -26,3 +26,4 @@ pnpm-debug.log*
 # obsidian settings
 # .obsidian/
 # _template/
+content/.obsidian/workspace.json

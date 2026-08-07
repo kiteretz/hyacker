@@ -59,6 +59,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
                   date={post.data.pubDate}
                   tags={post.data.tags ?? []}
                   img={post.data.image?.url}
+                  imgAlt={post.data.image?.alt ?? undefined}
                   answer={extracted?.content}
                   isCode={extracted?.isCode}
                   highlightedCode={highlightedCode}

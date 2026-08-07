@@ -121,11 +121,18 @@ const extracted = extractAnswer(entry.body ?? '');
                 }
                 {
                   // アイキャッチ画像はページ内に描画されないため、検索結果カード用に
-                  // frontmatter の URL を Pagefind メタとして明示的に公開する
+                  // frontmatter の URL と alt を Pagefind メタとして明示的に公開する
                   image && (
-                    <span data-pagefind-meta="image" class="hidden">
-                      {image.url}
-                    </span>
+                    <>
+                      <span data-pagefind-meta="image" class="hidden">
+                        {image.url}
+                      </span>
+                      {image.alt && (
+                        <span data-pagefind-meta="imageAlt" class="hidden">
+                          {image.alt}
+                        </span>
+                      )}
+                    </>
                   )
                 }
               </div>
