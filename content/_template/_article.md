@@ -15,7 +15,7 @@ status: draft
 
 <%*
 const keyword = await tp.system.prompt("ページスラッグを入力（例: flex-gap）");
-await tp.file.rename(tp.date.now("YYYYMMDD") + "-" + keyword);
+await tp.file.rename(keyword);
 _%>
 
 ## 回答
