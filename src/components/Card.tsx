@@ -118,7 +118,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
       >
         {/* front */}
         <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-white p-8 backface-hidden">
-          <h3 className="mb-8 px-8 text-18 font-semibold">{title}</h3>
+          <h3 className="mb-8 line-clamp-3 px-8 text-18 font-semibold sm:line-clamp-4">{title}</h3>
           <p className="px-8 font-space-grotesk text-14 text-neutral-400">{formatDate(date)}</p>
           <ul className="flex flex-wrap px-8 font-inter text-14 text-neutral-400">
             {tags?.map((tag) => (
