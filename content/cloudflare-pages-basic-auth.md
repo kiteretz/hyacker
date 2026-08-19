@@ -112,7 +112,7 @@ Cloudflare のランタイムで Node.js の組み込みモジュールを使え
 }
 ```
 
-ここでは、 `compatibility_date` が `2024-09-23` 以降なら`nodejs_compat_v2` が有効になるためその日をセットしている。 
+ここでは、 `compatibility_date` が `2024-09-23` 以降なら`nodejs_compat_v2` が有効になるためその日をセットしている。
 
 ついでに `NODE_VERSION` 環境変数を追加し、使用する Node.js のバージョンの指定も行っている。
 
