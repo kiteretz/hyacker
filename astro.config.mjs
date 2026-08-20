@@ -1,4 +1,5 @@
 // @ts-check
+import { unified } from '@astrojs/markdown-remark';
 import mdx from '@astrojs/mdx';
 import react from '@astrojs/react';
 import tailwindcss from '@tailwindcss/vite';
@@ -18,7 +19,11 @@ export default defineConfig({
     shikiConfig: {
       theme: SHIKI_THEME,
     },
-    rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]],
+    processor: unified({
+      // rehype-external-links の型定義と astro v6 の unified/hast 型に差異があり、構造的に不一致になるが実行時は問題ない
+      // @ts-expect-error
+      rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]],
+    }),
   },
 
   vite: {

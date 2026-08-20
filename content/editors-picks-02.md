@@ -1,5 +1,5 @@
 ---
-title: JavaScript の非同期処理をマスターする
+title: JavaScript の非同期処理とは？
 description: コールバック、Promise、async/await まで JavaScript の非同期処理の全体像を理解します
 upDate: 2025-01-10
 pubDate: 2025-01-10

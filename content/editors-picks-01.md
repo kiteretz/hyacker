@@ -1,5 +1,5 @@
 ---
-title: CSS Grid と Flexbox の使い分け完全ガイド
+title: CSS Grid と Flexbox の使い分けはどうする？
 description: CSS Grid と Flexbox のそれぞれの特徴と、どのような場面で使い分けるべきかを解説します
 upDate: 2025-01-05
 pubDate: 2025-01-05

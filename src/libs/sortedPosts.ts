@@ -1,6 +1,6 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 
-import { sortPosts } from 'src/utils/sort';
+import { sortPosts } from '@utils/sort';
 
 // 静的ビルド中は全ページで結果が同一のため、module-level でメモ化する
 let sortedPostsPromise: Promise<CollectionEntry<'posts'>[]> | null = null;
