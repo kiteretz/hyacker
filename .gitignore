@@ -24,6 +24,18 @@ pnpm-debug.log*
 .idea/
 
 # obsidian settings
-# .obsidian/
 # _template/
-content/.obsidian/workspace.json
+content/.obsidian/*
+!content/.obsidian/app.json
+!content/.obsidian/appearance.json
+!content/.obsidian/core-plugins.json
+!content/.obsidian/community-plugins.json
+!content/.obsidian/templates.json
+!content/.obsidian/types.json
+!content/.obsidian/image-converter-image-alignments.json
+
+!content/.obsidian/plugins/
+content/.obsidian/plugins/*
+!content/.obsidian/plugins/image-converter/
+!content/.obsidian/plugins/obsidian-shellcommands/
+!content/.obsidian/plugins/templater-obsidian/
