@@ -14,7 +14,7 @@ status: publish
 
 ## 回答
 
-インライン SVG をアクセシブルにするには `title` `desc` `role` `aria-labelledby` を活用する。  
+インライン SVG をアクセシブルにするには `title` `desc` `role` `aria-labelledby` を活用する。\
 `background-image` に配置した SVG でも、`fill` のカラーコードを URL エンコードすることで色を変更できる。
 
 ```html
