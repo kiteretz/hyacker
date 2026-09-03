@@ -8,7 +8,7 @@ image:
   url: /assets/posts/card-thumbnail.svg
   alt: 画像の説明
 tags:
-  - Tools
+  - VS Code
 status: publish
 ---
 
