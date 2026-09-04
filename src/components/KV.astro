@@ -22,7 +22,7 @@ const { title, subTitle, bgText, class: className } = Astro.props;
   <h1 class="grid gap-y-24">
     <span
       set:html={title}
-      class="font-space-grotesk text-56 leading-[0.9] font-bold tracking-tighter text-neutral-800 uppercase md:text-80-144"
+      class="-mt-4 -mb-6 font-space-grotesk text-56 leading-[0.9] font-bold tracking-tighter text-neutral-800 uppercase md:-mt-clamp-6/14 md:-mb-clamp-7/14 md:text-80-144"
     />
     <span set:html={subTitle} class="text-20 leading-tight font-semibold md:text-19-32" />
   </h1>
