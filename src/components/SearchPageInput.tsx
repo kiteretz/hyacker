@@ -29,7 +29,7 @@ const SearchPageInput: FC<Props> = ({ className }) => {
       <span className="sr-only">サイト内検索</span>
       <input
         className={twMerge(
-          'min-w-0 flex-1 bg-transparent px-16 py-32 font-space-grotesk text-clamp-32/80 leading-[0.8] font-normal tracking-tighter text-neutral-800 xl:p-32 xl:pr-[2.1em]',
+          'min-w-0 flex-1 bg-transparent px-16 py-32 font-space-grotesk text-clamp-32/80 leading-[0.8] font-normal tracking-tighter text-neutral-800 focus-visible:outline-none xl:p-32 xl:pr-[2.1em]',
           'placeholder:text-neutral-800 placeholder:opacity-30',
           '[&::-webkit-search-cancel-button]:hidden',
         )}
