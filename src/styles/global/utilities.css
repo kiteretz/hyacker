@@ -105,3 +105,8 @@
 		}
 	}
 }
+
+/* ナビゲーションのテキストリンク共通ホバー */
+@utility link-underline {
+	@apply underline decoration-transparent underline-offset-2 hover:decoration-neutral-800;
+}

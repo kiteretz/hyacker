@@ -36,7 +36,7 @@ const subItems: { label: string; href: string; external?: boolean }[] = [
             <li>
               <a
                 href={href}
-                class="flex items-center gap-4 px-16 py-8 text-16 leading-none tracking-tight transition-opacity duration-200 hover:opacity-70"
+                class="link-underline flex items-center gap-4 px-16 py-8 text-16 leading-none tracking-tight"
               >
                 <span>{label}</span>
                 <svg
@@ -62,7 +62,7 @@ const subItems: { label: string; href: string; external?: boolean }[] = [
                 href={href}
                 target={external ? '_blank' : undefined}
                 rel={external ? 'noopener noreferrer' : undefined}
-                class="flex items-center gap-4 px-16 py-4 text-16 leading-relaxed tracking-tight transition-opacity duration-200 hover:opacity-70"
+                class="link-underline flex items-center gap-4 px-16 py-4 text-16 leading-relaxed tracking-tight"
               >
                 <span>{label}</span>
                 {external ? (
