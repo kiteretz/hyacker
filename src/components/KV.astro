@@ -24,14 +24,14 @@ const { title, subTitle, bgText, class: className } = Astro.props;
       set:html={title}
       class="-mt-4 -mb-6 font-space-grotesk text-56 leading-[0.9] font-bold tracking-tighter text-neutral-800 uppercase md:-mt-clamp-6/14 md:-mb-clamp-7/14 md:text-80-144"
     />
-    <span set:html={subTitle} class="text-20 leading-tight font-semibold md:text-19-32" />
+    <span set:html={subTitle} class="text-20 leading-tight font-semibold md:px-4 md:text-19-32" />
   </h1>
   <div class="w-full self-end">
     <SearchForm
-      class="tracking h-64-144"
-      buttonClass="right-0 xl:right-8 size-48 xl:size-64-128 rounded-full bg-neutral-800 transition-transform duration-200 hover:scale-[1.05]"
+      class="tracking h-64-128"
+      buttonClass="right-0 size-48 xl:size-64-128 rounded-full bg-neutral-800 hover:scale-[1.05]"
       iconClass="w-20 xl:w-24-56 text-white"
-      inputClass="xl:text-clamp-64/144 px-0 py-0 pr-[1.1em] font-space-grotesk placeholder:font-space-grotesk! placeholder:font-normal! placeholder:top-0 placeholder:text-48 text-48 xl:placeholder:text-64-144 tracking-tighter placeholder:opacity-10"
+      inputClass="xl:text-clamp-64/144 px-0 py-0 pr-[1em] font-space-grotesk placeholder:font-space-grotesk! placeholder:font-normal! placeholder:top-0 placeholder:text-48 text-48 xl:placeholder:text-64-144 tracking-tighter placeholder:opacity-10"
     />
   </div>
   <p
