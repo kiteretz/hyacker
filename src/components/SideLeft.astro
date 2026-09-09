@@ -1,4 +1,6 @@
 ---
+import Arrow from '@components/icon/Arrow';
+
 interface Props {
   index?: number;
   href?: string;
@@ -51,16 +53,7 @@ const decorativeNumberClass =
               <span class="text-16 leading-none font-medium tracking-tight underline decoration-transparent underline-offset-2 transition group-hover:decoration-neutral-800 xl:text-24">
                 View More
               </span>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-                class="size-16 xl:size-24"
-              >
-                <path stroke="#171717" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8" />
-              </svg>
+              <Arrow className="size-16 text-[#171717] xl:size-24" />
             </>
           )
         )
