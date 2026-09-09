@@ -105,7 +105,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
     <a
       href={href}
       className={twJoin(
-        'group relative block h-367 transition-all duration-200 perspective-midrange',
+        'group relative block h-367 bg-white transition-all duration-200 perspective-midrange',
         isActive ? 'z-1 outline-transparent' : '',
       )}
       onMouseEnter={() => setIsActive(true)}
