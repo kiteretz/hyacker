@@ -10,7 +10,7 @@ const { title, class: className } = Astro.props;
 ---
 
 <div class={twMerge('mb-px grid min-h-[calc(100svh-var(--header-height))] gap-px font-inter', className)}>
-  <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-[16.625rem_1fr]']}>
+  <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-5', '2xl:grid-cols-6']}>
     <!-- Left sidebar -->
     <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-white']}>
       {
@@ -23,7 +23,7 @@ const { title, class: className } = Astro.props;
     </div>
 
     <!-- Content area: inner grid -->
-    <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-4 xl:grid-rows-[auto_1fr]', '2xl:grid-cols-5']}>
+    <div class:list={['grid gap-px', 'grid-cols-1', 'xl:col-span-4 xl:grid-cols-subgrid xl:grid-rows-[auto_1fr]', '2xl:col-span-5']}>
       <!-- Header -->
       <div
         class:list={['bg-white p-16', 'md:p-32', 'xl:col-[1/-2] xl:row-1 xl:flex xl:items-center xl:justify-center']}

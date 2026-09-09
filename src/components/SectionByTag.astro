@@ -29,7 +29,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
 ---
 
 <section>
-  <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
+  <div class="mb-px grid xl:grid-cols-5 xl:gap-px 2xl:grid-cols-6">
     <SideLeft
       title={title}
       count={posts.length}
@@ -38,8 +38,8 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
       showCount={showCount}
       fullHeight={fullHeight}
     />
-    <div class="flex flex-col">
-      <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+    <div class="flex flex-col xl:col-span-4 xl:grid xl:grid-cols-subgrid xl:grid-rows-[auto_1fr] 2xl:col-span-5">
+      <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:col-span-full xl:grid-cols-subgrid">
         {
           await Promise.all(
             displayedPosts.map(async (post) => {
@@ -81,7 +81,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
       -->
       <div
         aria-hidden="true"
-        class="grid flex-1 gap-x-px overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
+        class="grid flex-1 gap-x-px overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:col-span-full xl:grid-cols-subgrid"
       >
         {
           STRETCH_FILLER_CELL_CLASSES.map((classes) => (
