@@ -38,6 +38,7 @@ const { Content, headings = [] } = await render(entry);
 
 const { title, description, pubDate, tags, image } = entry.data;
 const currentTags = tags ?? [];
+const displayTags = currentTags.filter((tag: string) => tag !== "Editor's Picks");
 
 // Related posts: タグが1つ以上一致する記事を最大5件取得
 const sortedPosts = await getSortedPosts();
@@ -139,15 +140,15 @@ const extracted = extractAnswer(entry.body ?? '');
             </div>
             <div class="flex flex-col gap-8">
               <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Tags</p>
-              <p class="text-16 leading-tight">
+              <p class="flex flex-wrap text-16 leading-tight">
                 {
-                  currentTags.map((tag: string, i: number) => (
-                    <>
-                      <a href={`/tags/${encodeURIComponent(tag)}/`} class="hover:underline">
-                        {tag}
-                      </a>
-                      {i < currentTags.length - 1 && ', '}
-                    </>
+                  displayTags.map((tag: string) => (
+                    <a
+                      href={`/tags/${encodeURIComponent(tag)}/`}
+                      class="flex after:mr-4 after:content-[','] last:after:content-none hover:underline"
+                    >
+                      {tag}
+                    </a>
                   ))
                 }
               </p>
