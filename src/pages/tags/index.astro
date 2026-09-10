@@ -10,10 +10,10 @@ const tags = await getPostsByTag();
 
 <Layout title="タグ一覧">
   <section>
-    <div class="mb-px grid xl:grid-cols-5 xl:gap-px 2xl:grid-cols-6">
+    <div class="mb-px grid-tracks xl:gap-px">
       <SideLeft title="Tags" count={tags.length} showCount={true} />
       <div
-        class="grid min-h-[calc(100svh-var(--header-height)-4rem)] content-start bg-white pb-40 xl:col-span-4 xl:min-h-[calc(100svh-var(--header-height))] xl:pb-0 2xl:col-span-5"
+        class="grid-tracks-col grid min-h-[calc(100svh-var(--header-height)-4rem)] content-start bg-white pb-40 xl:min-h-[calc(100svh-var(--header-height))] xl:pb-0"
       >
         {
           tags.map((tag) => (

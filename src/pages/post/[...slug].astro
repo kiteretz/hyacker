@@ -56,7 +56,7 @@ const extracted = extractAnswer(entry.body ?? '');
 <Layout title={title} description={description} class="post">
   <div class="grid gap-px font-inter">
     <div>
-      <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-5', '2xl:grid-cols-6']}>
+      <div class="grid-tracks gap-px max-xl:grid-cols-1">
         <!-- Left sidebar: Share + Heading Index -->
         <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-white']} data-js-sticky-sidebar>
           <div
@@ -80,14 +80,7 @@ const extracted = extractAnswer(entry.body ?? '');
         </div>
 
         <!-- Content area: inner grid -->
-        <div
-          class:list={[
-            'grid gap-px',
-            'grid-cols-1',
-            'xl:col-span-4 xl:grid-cols-subgrid xl:grid-rows-[auto_1fr]',
-            '2xl:col-span-5',
-          ]}
-        >
+        <div class="grid-tracks-col grid grid-cols-1 gap-px xl:grid-cols-subgrid xl:grid-rows-[auto_1fr]">
           <!-- Article Header -->
           <div
             class:list={[

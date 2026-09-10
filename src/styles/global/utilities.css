@@ -110,3 +110,30 @@
 @utility link-underline {
 	@apply underline decoration-transparent underline-offset-2 hover:decoration-neutral-800;
 }
+
+/*
+ *	ページ全体で縦罫線を揃えるためのカラムトラック群。
+ *	サイドバー / 本文 / 右レール / カードを 1 つのグリッド上の等幅トラックに乗せる。
+ *	xl = 5 トラック（サイドバー 1 + コンテンツ 4）、2xl = 6（1 + 5）。
+ *	grid-tracks / grid-tracks-col は xl 未満の指定（max-xl:grid-cols-1 など）を呼び出し側に残す。
+ *	grid-tracks-full は core utility との競合を避けるため sm〜lg:grid-cols-* も同 utility 内に取り込む。
+ *	grid-tracks-pane を使う要素は flex を max-xl:flex にすること（xl で display:grid に切り替わる）。
+ */
+@utility grid-tracks {
+	@apply grid xl:grid-cols-5 2xl:grid-cols-6;
+}
+
+/* サイドバーを除いた残り列を占有（単一カラムのコンテンツ用） */
+@utility grid-tracks-col {
+	@apply xl:col-span-4 2xl:col-span-5;
+}
+
+/* col ＋ 中身を同じトラックに乗せる subgrid（本文＋右レール構成用） */
+@utility grid-tracks-pane {
+	@apply xl:col-span-4 xl:grid xl:grid-cols-subgrid xl:grid-rows-[auto_1fr] 2xl:col-span-5;
+}
+
+/* pane 内で全トラック幅に広がるカードグリッド（カード一覧・ストレッチフィラー） */
+@utility grid-tracks-full {
+	@apply grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:col-span-full xl:grid-cols-subgrid;
+}
