@@ -31,7 +31,7 @@ const SearchInput: FC<Props> = ({ className }) => {
   return (
     <input
       className={twMerge(
-        'size-full h-[stretch] px-16 py-20 pr-[1em]',
+        'size-full h-[stretch] px-16 py-20 pr-[1em] focus-visible:outline-none',
         'placeholder:font-inter placeholder:text-16 placeholder:leading-none placeholder:font-medium placeholder:text-neutral-400',
         '[&::-webkit-search-cancel-button]:hidden',
         className,

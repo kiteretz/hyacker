@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { twJoin } from 'tailwind-merge';
 
+import Arrow from '@components/icon/Arrow';
+
 import { SHIKI_THEME } from '@libs/shikiConfig';
 
 import { formatDate } from '@utils/formatDate';
@@ -103,8 +105,8 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
     <a
       href={href}
       className={twJoin(
-        'relative block h-367 transition-all duration-200 perspective-normal',
-        isActive ? 'z-1 animate-card-lift outline-transparent' : '',
+        'group relative block h-367 bg-white transition-all duration-200 perspective-midrange',
+        isActive ? 'z-1 outline-transparent' : '',
       )}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}
@@ -176,15 +178,25 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
                 e.preventDefault();
                 handleCopy();
               }}
-              className="flex cursor-pointer items-center gap-2 hover:text-white"
+              className="peer flex cursor-pointer items-center gap-2 hover:text-white"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" viewBox="0 0 14 14">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                fill="none"
+                viewBox="0 0 14 14"
+                className="mt-6"
+              >
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M9.333 11.333h-7v-7" />
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M4.333 2.333h7v7h-7z" />
               </svg>
               <p>{copied ? 'Copied!' : 'Copy'}</p>
             </div>
-            <p>Learn More →</p>
+            <p className="flex items-center gap-2 group-hover:not-peer-hover:text-white">
+              <span>Learn More</span>
+              <Arrow className="size-14" />
+            </p>
           </div>
         </div>
       </div>

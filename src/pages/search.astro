@@ -11,7 +11,7 @@ import SideLeft from '@components/SideLeft.astro';
   <section>
     <div class="mb-px grid min-h-[calc(100svh-var(--header-height))] grid-rows-[auto_1fr] gap-px">
       <SearchPageInput client:load />
-      <div class="z-10 grid grid-rows-[auto_1fr] xl:grid-cols-[16.625rem_1fr] xl:grid-rows-1 xl:gap-px">
+      <div class="z-10 grid-tracks grid-rows-[auto_1fr] xl:grid-rows-1 xl:gap-px">
         <SideLeft title="Result" showCount stickyCount>
           <SearchCount slot="count" client:load />
         </SideLeft>

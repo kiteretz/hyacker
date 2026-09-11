@@ -38,6 +38,7 @@ const { Content, headings = [] } = await render(entry);
 
 const { title, description, pubDate, tags, image } = entry.data;
 const currentTags = tags ?? [];
+const displayTags = currentTags.filter((tag: string) => tag !== "Editor's Picks");
 
 // Related posts: タグが1つ以上一致する記事を最大5件取得
 const sortedPosts = await getSortedPosts();
@@ -45,9 +46,9 @@ const relatedPosts = sortedPosts
   .filter((p) => p.id !== entry.id && p.data.tags?.some((t: string) => currentTags.includes(t)))
   .slice(0, 5);
 
-// h3見出し数を算出（左カラムのインデックス表示用）
-const h3Headings = headings.filter((h) => h.depth === 3);
-const headingCountStr = String(h3Headings.length || 1).padStart(2, '0');
+// h2見出し数を算出（左カラムのインデックス表示用）
+const h2Headings = headings.filter((h) => h.depth === 2);
+const headingCountStr = String(h2Headings.length || 1).padStart(2, '0');
 
 const extracted = extractAnswer(entry.body ?? '');
 ---
@@ -55,7 +56,7 @@ const extracted = extractAnswer(entry.body ?? '');
 <Layout title={title} description={description} class="post">
   <div class="grid gap-px font-inter">
     <div>
-      <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-[16.625rem_1fr]']}>
+      <div class="grid-tracks gap-px max-xl:grid-cols-1">
         <!-- Left sidebar: Share + Heading Index -->
         <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-white']} data-js-sticky-sidebar>
           <div
@@ -68,7 +69,7 @@ const extracted = extractAnswer(entry.body ?? '');
             </div>
             <!-- Heading index -->
             <div
-              class="text-neutral800 flex flex-col font-space-grotesk text-160 leading-none font-bold slashed-zero tabular-nums opacity-10"
+              class="flex flex-col font-space-grotesk text-160 leading-none font-bold text-neutral-800 slashed-zero tabular-nums opacity-10"
             >
               <p class="relative top-16" data-section-current>01</p>
               <p data-heading-total>
@@ -79,7 +80,7 @@ const extracted = extractAnswer(entry.body ?? '');
         </div>
 
         <!-- Content area: inner grid -->
-        <div class:list={['grid gap-px', 'grid-cols-1', 'xl:grid-cols-4 xl:grid-rows-[auto_1fr]', '2xl:grid-cols-5']}>
+        <div class="grid-tracks-col grid grid-cols-1 gap-px xl:grid-cols-subgrid xl:grid-rows-[auto_1fr]">
           <!-- Article Header -->
           <div
             class:list={[
@@ -139,15 +140,15 @@ const extracted = extractAnswer(entry.body ?? '');
             </div>
             <div class="flex flex-col gap-8">
               <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Tags</p>
-              <p class="text-16 leading-tight">
+              <p class="flex flex-wrap text-16 leading-tight">
                 {
-                  currentTags.map((tag: string, i: number) => (
-                    <>
-                      <a href={`/tags/${encodeURIComponent(tag)}/`} class="hover:underline">
-                        {tag}
-                      </a>
-                      {i < currentTags.length - 1 && ', '}
-                    </>
+                  displayTags.map((tag: string) => (
+                    <a
+                      href={`/tags/${encodeURIComponent(tag)}/`}
+                      class="flex after:mr-4 after:content-[','] last:after:content-none hover:underline"
+                    >
+                      {tag}
+                    </a>
                   ))
                 }
               </p>

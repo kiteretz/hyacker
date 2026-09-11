@@ -6,12 +6,12 @@ function headingTracker() {
   const allHeadings = Array.from(contentBody.querySelectorAll<HTMLElement>('h2, h3'));
   if (!allHeadings.length) return;
 
-  const h3IndexMap = new Map<Element, string>();
-  let h3Count = 0;
+  const h2IndexMap = new Map<Element, string>();
+  let h2Count = 0;
   allHeadings.forEach((el) => {
-    if (el.tagName === 'H3') {
-      h3Count++;
-      h3IndexMap.set(el, String(h3Count).padStart(2, '0'));
+    if (el.tagName === 'H2') {
+      h2Count++;
+      h2IndexMap.set(el, String(h2Count).padStart(2, '0'));
     }
   });
 
@@ -58,8 +58,8 @@ function headingTracker() {
       }
     }
 
-    if (currentH3 && currentDisplay) {
-      const idx = h3IndexMap.get(currentH3);
+    if (currentH2 && currentDisplay) {
+      const idx = h2IndexMap.get(currentH2);
       if (idx) currentDisplay.textContent = idx;
     }
 

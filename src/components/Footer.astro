@@ -8,7 +8,7 @@ export interface Props {
 const { class: className } = Astro.props;
 ---
 
-<footer class={twMerge('sticky top-[100vh] border-b border-neutral-800 bg-white', className)}>
+<footer class={twMerge('sticky top-[100vh] border-neutral-800 bg-white', className)}>
   <div
     class:list={[
       'flex flex-col font-inter font-medium',
@@ -34,11 +34,7 @@ const { class: className } = Astro.props;
             },
           ].map(({ label, href, target }) => (
             <li>
-              <a
-                href={href}
-                target={target}
-                class="flex items-center underline decoration-transparent underline-offset-2 transition duration-300 ease-in-out hover:decoration-neutral-800"
-              >
+              <a href={href} target={target} class="flex items-center link-underline">
                 {label}
                 {label === 'X(Twitter)' && (
                   <svg
@@ -64,7 +60,7 @@ const { class: className } = Astro.props;
       </ul>
     </nav>
     <p class="border-t border-neutral-800 px-16 py-8 text-right md:border-none md:p-0 md:text-left">
-      © 2025 hyacker / KITERETZ inc.
+      © 2026 hyacker / <a href="http://kiteretz.com/" target="_blank" class="link-underline">KITERETZ inc.</a>
     </p>
   </div>
 </footer>

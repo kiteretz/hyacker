@@ -217,6 +217,17 @@
 		calc(--modifier(number) * var(--spacing))
 	);
 }
+@utility -mt-clamp-* {
+	margin-top: clamp(
+		calc(--modifier(number) * var(--spacing) * -1),
+		calc(
+				(--modifier(number) - --value(number)) / 8 * 1vw +
+					(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+			) *
+			-1,
+		calc(--value(number) * var(--spacing) * -1)
+	);
+}
 @utility scroll-mt-clamp-* {
 	scroll-margin-top: clamp(
 		calc(--value(number) * var(--spacing)),
@@ -235,6 +246,17 @@
 				(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
 		),
 		calc(--modifier(number) * var(--spacing))
+	);
+}
+@utility -mb-clamp-* {
+	margin-bottom: clamp(
+		calc(--modifier(number) * var(--spacing) * -1),
+		calc(
+				(--modifier(number) - --value(number)) / 8 * 1vw +
+					(--value(number) - (--modifier(number) - --value(number)) * 0.6) * var(--spacing)
+			) *
+			-1,
+		calc(--value(number) * var(--spacing) * -1)
 	);
 }
 @utility ml-clamp-* {
