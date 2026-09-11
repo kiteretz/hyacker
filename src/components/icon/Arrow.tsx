@@ -13,7 +13,7 @@ const Arrow: FC<Props> = ({ className }) => (
     viewBox="0 0 24 24"
     className={twMerge('aspect-square', className)}
   >
-    <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="2" d="M4 12h16m-8-8 8 8-8 8"></path>
+    <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="2" d="M4 12h16m-8-8 8 8-8 8"></path>
   </svg>
 );
 
