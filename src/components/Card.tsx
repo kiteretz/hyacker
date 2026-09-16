@@ -186,7 +186,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
                 height="14"
                 fill="none"
                 viewBox="0 0 14 14"
-                className="mt-6"
+                className="mt-4"
               >
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M9.333 11.333h-7v-7" />
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M4.333 2.333h7v7h-7z" />
@@ -195,7 +195,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
             </div>
             <p className="flex items-center gap-2 group-hover:not-peer-hover:text-white">
               <span>Learn More</span>
-              <Arrow className="size-14" />
+              <Arrow className="mt-2 size-14" />
             </p>
           </div>
         </div>
