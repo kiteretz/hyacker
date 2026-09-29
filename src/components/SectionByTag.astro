@@ -29,7 +29,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
 ---
 
 <section>
-  <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
+  <div class="mb-px grid-tracks xl:gap-px">
     <SideLeft
       title={title}
       count={posts.length}
@@ -38,8 +38,8 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
       showCount={showCount}
       fullHeight={fullHeight}
     />
-    <div class="flex flex-col">
-      <div class="grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5">
+    <div class="grid-tracks-pane flex-col max-xl:flex">
+      <div class="grid-tracks-full">
         {
           await Promise.all(
             displayedPosts.map(async (post) => {
@@ -79,10 +79,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
         リストより SideLeft が高い場合に残る余白を、列ごとの空セルで埋めるストレッチフィラー。
         セル上端の横罫線は高さに寄与しないよう border ではなく inset shadow で描く。
       -->
-      <div
-        aria-hidden="true"
-        class="grid flex-1 gap-x-px overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
-      >
+      <div aria-hidden="true" class="grid-tracks-full flex-1 overflow-hidden">
         {
           STRETCH_FILLER_CELL_CLASSES.map((classes) => (
             <div class:list={['bg-white shadow-[inset_0_1px_0_0_var(--color-neutral-800)]', classes]} />

@@ -96,6 +96,7 @@
 	--ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 	--ease-rotate-text: var(--ease-out-circ);
 
+	/* 浮き上がりアニメーション削除
 	--animate-card-lift: card-lift 700ms ease-in-out;
 
 	@keyframes card-lift {
@@ -106,5 +107,5 @@
 		50% {
 			transform: scale(1.05);
 		}
-	}
+	} */
 }

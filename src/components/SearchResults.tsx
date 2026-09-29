@@ -15,7 +15,7 @@ import { getGridFillerClasses, STRETCH_FILLER_CELL_CLASSES } from '@utils/gridFi
 
 import Card from './Card';
 
-const GRID_CLASSES = 'grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5';
+const GRID_CLASSES = 'grid-tracks-full';
 const SKELETON_COUNT = 10; // 2xl の 5 列でちょうど 2 行
 
 // 検索完了までのプレースホルダー。Card の front 面（h-367 / p-8 / 画像下寄せ）と同じ骨格
@@ -54,7 +54,7 @@ const SearchResults: FC = () => {
   }, []);
 
   return (
-    <div aria-live="polite" aria-busy={results === null} className="flex flex-col">
+    <div aria-live="polite" aria-busy={results === null} className="grid-tracks-pane flex-col max-xl:flex">
       {results === null ? (
         <div aria-hidden="true" className={GRID_CLASSES}>
           {Array.from({ length: SKELETON_COUNT }, (_, i) => (
@@ -65,7 +65,7 @@ const SearchResults: FC = () => {
           ))}
         </div>
       ) : results.length === 0 ? (
-        <div className="flex-1 bg-white p-16 xl:p-32">
+        <div className="flex-1 bg-white p-16 xl:col-span-full xl:p-32">
           <p>該当する記事はありません</p>
         </div>
       ) : (
@@ -82,10 +82,7 @@ const SearchResults: FC = () => {
             リストより SideLeft が高い場合に残る余白を、列ごとの空セルで埋めるストレッチフィラー。
             セル上端の横罫線は高さに寄与しないよう border ではなく inset shadow で描く。
           */}
-          <div
-            aria-hidden="true"
-            className="grid flex-1 gap-x-px overflow-hidden sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5"
-          >
+          <div aria-hidden="true" className="grid-tracks-full flex-1 overflow-hidden">
             {STRETCH_FILLER_CELL_CLASSES.map((classes, i) => (
               <div key={i} className={twJoin('bg-white shadow-[inset_0_1px_0_0_var(--color-neutral-800)]', classes)} />
             ))}
