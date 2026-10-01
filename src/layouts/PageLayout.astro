@@ -11,7 +11,7 @@ const { title, class: className } = Astro.props;
 
 <div class={twMerge('mb-px grid flex-1 gap-px font-inter', className)}>
   <div class="grid-tracks gap-px max-xl:grid-cols-1">
-    <!-- Left sidebar -->
+    {/* Left sidebar */}
     <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-bg']}>
       {
         Astro.slots.has('sidebar-left') && (
@@ -22,9 +22,9 @@ const { title, class: className } = Astro.props;
       }
     </div>
 
-    <!-- Content area: inner grid -->
+    {/* Content area: inner grid */}
     <div class="grid-items-start grid-tracks-col grid grid-cols-1 grid-rows-[auto_1fr] gap-px xl:grid-cols-subgrid">
-      <!-- Header -->
+      {/* Header */}
       <div
         class:list={[
           'bg-bg p-16',
@@ -36,13 +36,13 @@ const { title, class: className } = Astro.props;
           {title}
         </h1>
       </div>
-      <!-- Body -->
+      {/* Body */}
       <div class:list={['bg-bg px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
         <div class="prose w-full">
           <slot />
         </div>
       </div>
-      <!-- Right sidebar -->
+      {/* Right sidebar */}
       <div
         class:list={[
           'bg-bg max-xl:hidden',

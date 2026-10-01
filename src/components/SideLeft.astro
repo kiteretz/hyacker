@@ -44,7 +44,7 @@ const countStr = count !== undefined ? String(count).padStart(3, '0') : '';
 const capRowsStyle = fullHeight && capRows ? `--cap-rows-xl:${capRows.xl};--cap-rows-2xl:${capRows['2xl']}` : undefined;
 
 const decorativeNumberClass =
-  'hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:leading-none xl:font-bold xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10';
+  'hidden xl:absolute xl:bottom-0 xl:left-1/2 xl:block xl:-translate-x-1/2 xl:font-space-grotesk xl:leading-none xl:font-bold xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10';
 ---
 
 <div
@@ -55,7 +55,7 @@ const decorativeNumberClass =
   <div
     class:list={[
       'flex items-center justify-between bg-bg p-16 font-inter font-palt leading-none',
-      'xl:flex-col xl:items-start xl:p-32 xl:pb-8',
+      'xl:flex-col xl:items-start xl:gap-y-20 xl:p-32 xl:pb-8',
       // fullHeight でない場合は隣接コンテンツ（カードリスト）の高さに追従する
       !fullHeight && 'xl:h-full',
       fullHeight && !fillParent && 'xl:h-[max(calc(100svh-var(--header-height)),30rem)]',
@@ -69,16 +69,21 @@ const decorativeNumberClass =
     data-js-sticky-sidebar-inner
   >
     <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
-    <!--
+    {
+      /*
       見出しの下〜下端までを占める領域。中のカウント / View More は xl でビューポート下端に stick し、
       この領域の内側（＝見出しのすぐ下からセクション下端まで）にとどまる。
-      bottom-8 は inner の pb-8 と揃えて、sticky-sidebar.ts による固定時と位置がずれないようにする。
-    -->
-    <div class="max-xl:contents xl:flex xl:flex-1 xl:flex-col xl:items-start xl:justify-end">
+      bottom-8 / bottom-12 は inner の pb-8 / pb-12 と揃えて、sticky-sidebar.ts による固定時と位置がずれないようにする。
+      min-h は装飾数字（absolute）の高さ分で、見出し直下に来たときに数字が見出しへ重ならないようにする。
+      装飾数字をサイドバーの左右中央に置くため、この領域と p は幅いっぱいに広げる（self-stretch）。
+    */
+    }
+    <div class="max-xl:contents xl:flex xl:min-h-0 xl:flex-1 xl:flex-col xl:justify-end xl:self-stretch">
       <p
         class:list={[
-          'flex items-center gap-x-4 xl:sticky xl:pb-24',
-          stickyCount ? 'pb-40! xl:bottom-0' : 'xl:bottom-8',
+          'flex items-center gap-x-4 xl:sticky xl:items-end xl:pb-24',
+          stickyCount ? 'pb-40! xl:bottom-12' : 'xl:bottom-8',
+          showCount ? 'xl:min-h-108' : indexStr && 'xl:min-h-160',
         ]}
       >
         {

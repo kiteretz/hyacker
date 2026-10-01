@@ -112,10 +112,12 @@ const capRows = capHeight
           ))
         }
       </div>
-      <!--
+      {
+        /*
         リストより SideLeft が高い場合に残る余白を、列ごとの空セルで埋めるストレッチフィラー。
         セル上端の横罫線は高さに寄与しないよう border ではなく inset shadow で描く。
-      -->
+      */
+      }
       <div aria-hidden="true" class="grid-tracks-full flex-1 overflow-hidden">
         {
           STRETCH_FILLER_CELL_CLASSES.map((classes) => (

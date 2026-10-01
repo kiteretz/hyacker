@@ -59,17 +59,17 @@ const extracted = extractAnswer(entry.body ?? '');
   <div class="grid gap-px font-inter">
     <div>
       <div class="grid-tracks gap-px max-xl:grid-cols-1">
-        <!-- Left sidebar: Share + Heading Index -->
+        {/* Left sidebar: Share + Heading Index */}
         <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-bg']} data-js-sticky-sidebar>
           <div
             class="flex h-[max(calc(100svh-var(--header-height)),30rem)] flex-col items-end justify-between px-32 py-32 pb-8"
             data-js-sticky-sidebar-inner
           >
-            <!-- Share icons -->
+            {/* Share icons */}
             <div class="pointer-events-auto flex flex-col items-end">
               <SocialIcon title={title} />
             </div>
-            <!-- Heading index -->
+            {/* Heading index */}
             <div
               class="flex flex-col font-space-grotesk text-160 leading-none font-bold text-fg slashed-zero tabular-nums opacity-10"
             >
@@ -81,9 +81,9 @@ const extracted = extractAnswer(entry.body ?? '');
           </div>
         </div>
 
-        <!-- Content area: inner grid -->
+        {/* Content area: inner grid */}
         <div class="grid-tracks-col grid grid-cols-1 gap-px xl:grid-cols-subgrid xl:grid-rows-[auto_1fr]">
-          <!-- Article Header -->
+          {/* Article Header */}
           <div
             class:list={[
               'bg-bg px-16 py-24',
@@ -96,7 +96,7 @@ const extracted = extractAnswer(entry.body ?? '');
             </h1>
           </div>
 
-          <!-- Published + Tags -->
+          {/* Published + Tags */}
           <div
             class:list={[
               'flex flex-wrap gap-x-32 gap-y-24 bg-bg px-16 py-24',
@@ -159,29 +159,30 @@ const extracted = extractAnswer(entry.body ?? '');
             </div>
           </div>
 
-          <!-- Mobile: Share icons -->
+          {/* Mobile: Share icons */}
           <div class="flex items-center justify-end bg-bg px-16 py-8 md:px-32 xl:hidden">
             <SocialIcon title={title} />
           </div>
 
-          <!-- Article Body -->
+          {/* Article Body */}
           <div class:list={['bg-bg px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
             <div class="prose w-full" data-pagefind-body>
               <Content />
             </div>
           </div>
 
-          <!-- TOC + Ad -->
-          <div class:list={['bg-bg', 'xl:relative xl:col-[-2/-1] xl:row-2']}>
+          {/* TOC + Ad */}
+          {/* xl 未満では中身が非表示で高さ 0 になり、gap-px の罫線が 1 本余分に出るためラッパーごと消す */}
+          <div class:list={['bg-bg', 'max-xl:hidden', 'xl:relative xl:col-[-2/-1] xl:row-2']}>
             <div
               class="pointer-events-none sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] xl:flex xl:flex-col xl:justify-between"
             >
-              <!-- TOC -->
+              {/* TOC */}
               <div class="pointer-events-auto flex flex-col gap-12 overflow-y-auto px-24 py-32">
                 <p class="font-inter text-14 leading-none text-fg-muted uppercase">Table of contents</p>
                 <TableOfContents headings={headings} />
               </div>
-              <!-- Ad card -->
+              {/* Ad card */}
               <div class="pointer-events-auto sticky bottom-0 -translate-y-px border-t border-border bg-bg p-8">
                 <div class="flex flex-col gap-4">
                   <div class="flex items-center justify-between p-8 leading-tight">
@@ -204,7 +205,7 @@ const extracted = extractAnswer(entry.body ?? '');
       </div>
     </div>
 
-    <!-- Related Posts -->
+    {/* Related Posts */}
     <SectionByTag title="Related" posts={relatedPosts} fullHeight={false} limit={RELATED_LIMIT} />
   </div>
 </Layout>

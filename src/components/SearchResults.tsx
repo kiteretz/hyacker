@@ -54,7 +54,12 @@ const SearchResults: FC = () => {
   }, []);
 
   return (
-    <div aria-live="polite" aria-busy={results === null} className="grid-tracks-pane flex-col max-xl:flex">
+    // xl では結果が少なくてもカード 2 行分の高さを確保する（1px は行間の gap-px。余りはストレッチフィラーが埋める）
+    <div
+      aria-live="polite"
+      aria-busy={results === null}
+      className="grid-tracks-pane flex-col max-xl:flex xl:min-h-[calc(2*(var(--spacing-card)+1px)-1px)]"
+    >
       {results === null ? (
         <div aria-hidden="true" className={GRID_CLASSES}>
           {Array.from({ length: SKELETON_COUNT }, (_, i) => (
