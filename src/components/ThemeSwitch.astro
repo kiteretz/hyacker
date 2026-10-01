@@ -1,0 +1,99 @@
+---
+import { twMerge } from '@libs/twMerge';
+
+import type { ThemePreference } from '@libs/theme';
+
+export interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+
+/*
+ * current の見た目は <html data-theme-preference> を CSS から参照して決める。
+ * JS の実行を待たないので、初回描画でスイッチの表示がチラつかない。
+ * Tailwind がクラスを検出できるよう、値ごとのクラスは文字列を組み立てずにそのまま書くこと。
+ * 並び順は @libs/theme の THEME_PREFERENCES（Figma: theme-switch）に合わせる。
+ */
+const options: {
+  value: ThemePreference;
+  label: string;
+  buttonCurrent: string;
+  iconCurrent: string;
+  paths: string[];
+}[] = [
+  {
+    value: 'light',
+    label: 'ライト',
+    buttonCurrent: 'in-data-[theme-preference=light]:bg-fg in-data-[theme-preference=light]:text-bg',
+    iconCurrent: 'in-data-[theme-preference=light]:opacity-100',
+    paths: [
+      'M7 9.33333C8.28866 9.33333 9.33333 8.28866 9.33333 7C9.33333 5.71133 8.28866 4.66667 7 4.66667C5.71133 4.66667 4.66667 5.71133 4.66667 7C4.66667 8.28866 5.71133 9.33333 7 9.33333Z',
+      'M7 1.16667V2.33333',
+      'M7 11.6667V12.8333',
+      'M1.16667 7H2.33333',
+      'M11.6667 7H12.8333',
+      'M2.87583 2.87583L3.69833 3.69833',
+      'M10.3017 10.3017L11.1242 11.1242',
+      'M11.1242 2.87583L10.3017 3.69833',
+      'M2.87583 11.1242L3.69833 10.3017',
+    ],
+  },
+  {
+    value: 'system',
+    label: 'システム',
+    buttonCurrent: 'in-data-[theme-preference=system]:bg-fg in-data-[theme-preference=system]:text-bg',
+    iconCurrent: 'in-data-[theme-preference=system]:opacity-100',
+    paths: [
+      'M11.6667 1.75H2.33333C1.689 1.75 1.16667 2.27233 1.16667 2.91667V8.75C1.16667 9.39433 1.689 9.91667 2.33333 9.91667H11.6667C12.311 9.91667 12.8333 9.39433 12.8333 8.75V2.91667C12.8333 2.27233 12.311 1.75 11.6667 1.75Z',
+      'M4.66667 12.25H9.33333',
+      'M7 9.91667V12.25',
+    ],
+  },
+  {
+    value: 'dark',
+    label: 'ダーク',
+    buttonCurrent: 'in-data-[theme-preference=dark]:bg-fg in-data-[theme-preference=dark]:text-bg',
+    iconCurrent: 'in-data-[theme-preference=dark]:opacity-100',
+    paths: [
+      'M7 1.75C6.30381 2.44619 5.91269 3.39043 5.91269 4.375C5.91269 5.35957 6.30381 6.30381 7 7C7.69619 7.69619 8.64043 8.08731 9.625 8.08731C10.6096 8.08731 11.5538 7.69619 12.25 7C12.25 8.03835 11.9421 9.05339 11.3652 9.91674C10.7883 10.7801 9.9684 11.453 9.00909 11.8504C8.04978 12.2477 6.99418 12.3517 5.97578 12.1491C4.95738 11.9466 4.02191 11.4465 3.28769 10.7123C2.55346 9.97808 2.05345 9.04262 1.85088 8.02422C1.6483 7.00582 1.75227 5.95022 2.14963 4.99091C2.54699 4.0316 3.2199 3.21166 4.08326 2.63478C4.94661 2.05791 5.96165 1.75 7 1.75Z',
+    ],
+  },
+];
+---
+
+<div
+  role="group"
+  aria-label="テーマ切り替え"
+  class={twMerge('flex shrink-0 rounded-full border border-border p-2', className)}
+>
+  {
+    options.map(({ value, label, buttonCurrent, iconCurrent, paths }) => (
+      <button
+        type="button"
+        aria-label={label}
+        aria-pressed="false"
+        data-js-theme-button
+        data-theme-value={value}
+        class:list={[
+          'group flex size-26 shrink-0 cursor-pointer items-center justify-center rounded-full',
+          buttonCurrent,
+        ]}
+      >
+        <svg
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          fill="none"
+          viewBox="0 0 14 14"
+          class:list={['opacity-75 transition-opacity duration-200 group-hover:opacity-100', iconCurrent]}
+        >
+          {paths.map((d) => (
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d={d} />
+          ))}
+        </svg>
+      </button>
+    ))
+  }
+</div>
