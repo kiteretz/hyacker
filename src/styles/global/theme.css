@@ -1,4 +1,15 @@
+/* `dark:` は OS 設定ではなく <html data-theme> に従う（@components/ThemeInit.astro が描画前に付与） */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
 @theme {
+	/*
+	 * ここにはライトの値を記述。ダークの値は src/styles/base/index.css で上書きする。
+	 */
+	--color-fg: var(--color-neutral-900);
+	--color-fg-muted: var(--color-neutral-400);
+	--color-bg: var(--color-white);
+	--color-border: var(--color-neutral-800);
+
 	--spacing: 0.0625rem; /* 1px */
 	--spacing-gutter: clamp(1rem, 2.5 * var(--cw), 2rem);
 	--spacing-gutter-0.5: calc(var(--spacing-gutter) * 0.5);

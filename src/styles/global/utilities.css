@@ -65,16 +65,31 @@
 
 /* Typography plugin */
 @utility prose {
-	--tw-prose-body: var(--color-neutral-900);
-	--tw-prose-headings: var(--color-neutral-900);
-	--tw-prose-bold: var(--color-neutral-900);
-	--tw-prose-bullets: var(--color-neutral-900);
-	--tw-prose-counters: var(--color-neutral-900);
+	--tw-prose-body: var(--color-fg);
+	--tw-prose-headings: var(--color-fg);
+	--tw-prose-bold: var(--color-fg);
+	--tw-prose-bullets: var(--color-fg);
+	--tw-prose-counters: var(--color-fg);
+
+	/* 上記以外はプラグイン既定のグレー系。ダークでは同プラグインの invert 値に差し替える */
+	@variant dark {
+		--tw-prose-lead: var(--tw-prose-invert-lead);
+		--tw-prose-links: var(--tw-prose-invert-links);
+		--tw-prose-hr: var(--tw-prose-invert-hr);
+		--tw-prose-quotes: var(--tw-prose-invert-quotes);
+		--tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
+		--tw-prose-captions: var(--tw-prose-invert-captions);
+		--tw-prose-kbd: var(--tw-prose-invert-kbd);
+		--tw-prose-kbd-shadows: var(--tw-prose-invert-kbd-shadows);
+		--tw-prose-code: var(--tw-prose-invert-code);
+		--tw-prose-th-borders: var(--tw-prose-invert-th-borders);
+		--tw-prose-td-borders: var(--tw-prose-invert-td-borders);
+	}
 
 	@apply max-w-none;
 
 	h2 {
-		@apply border-b pb-[0.25em] text-24 leading-normal lg:text-28;
+		@apply border-b border-border pb-[0.25em] text-24 leading-normal lg:text-28;
 	}
 	h3 {
 		@apply text-20 leading-normal lg:text-24;
@@ -83,7 +98,8 @@
 		@apply font-normal underline hover:no-underline;
 	}
 	pre {
-		@apply rounded-16 p-16 lg:p-24;
+		/* Shiki がインライン style で付けるテーマの背景色を上書きし、カード裏面（bg-neutral-800）と揃える */
+		@apply rounded-16 bg-neutral-800! p-16 lg:p-24;
 	}
 	code {
 		&::before,
@@ -108,7 +124,7 @@
 
 /* ナビゲーションのテキストリンク共通ホバー */
 @utility link-underline {
-	@apply underline decoration-transparent underline-offset-2 hover:decoration-neutral-800;
+	@apply underline decoration-transparent underline-offset-2 hover:decoration-fg;
 }
 
 /*
