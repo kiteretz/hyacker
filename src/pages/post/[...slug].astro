@@ -122,14 +122,16 @@ const extracted = extractAnswer(entry.body ?? '');
                 }
                 {
                   // アイキャッチ画像はページ内に描画されないため、検索結果カード用に
-                  // frontmatter の URL と alt を Pagefind メタとして明示的に公開する
+                  // frontmatter の URL と alt を Pagefind メタとして明示的に公開する。
+                  // キーを image にすると、未指定の記事で Pagefind がページ内の最初の画像を
+                  // 自動で拾ってしまうため、自動収集されない thumbnail を使う
                   image && (
                     <>
-                      <span data-pagefind-meta="image" class="hidden">
+                      <span data-pagefind-meta="thumbnail" class="hidden">
                         {image.url}
                       </span>
                       {image.alt && (
-                        <span data-pagefind-meta="imageAlt" class="hidden">
+                        <span data-pagefind-meta="thumbnailAlt" class="hidden">
                           {image.alt}
                         </span>
                       )}

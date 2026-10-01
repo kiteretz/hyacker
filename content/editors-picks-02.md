@@ -4,9 +4,6 @@ description: コールバック、Promise、async/await まで JavaScript の非
 upDate: 2025-01-10
 pubDate: 2025-01-10
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - "Editor's Picks"
   - JavaScript

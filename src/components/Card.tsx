@@ -28,10 +28,8 @@ export type Card = {
  * また、Astro が読み出す MarkDown コンテンツと、Pagefind の検索結果の2つがデータソースになる。
  */
 
-// 記事の frontmatter で画像未指定のときに使われる既定サムネイル（content/_template/_article.md）
-const DEFAULT_THUMBNAIL = '/assets/posts/card-thumbnail.svg';
-// 既定サムネイルの代わりに描く文字。「no_thumbnail」を 4 文字ずつ
-const DEFAULT_THUMBNAIL_LINES = ['no_t', 'humb', 'nail'];
+// 記事に画像が無い（frontmatter の image 未指定）ときに、サムネイルの代わりに描く文字。「no_thumbnail」を 4 文字ずつ
+const NO_THUMBNAIL_LINES = ['no_t', 'humb', 'nail'];
 
 // 検索結果カードのクライアントハイライトでも SSR と同じ highlighter を使う。
 // 静的 import にするとカードの island チャンクに Shiki 本体が含まれてしまうため、
@@ -134,31 +132,29 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
               </li>
             ))}
           </ul>
-          {img === DEFAULT_THUMBNAIL ? (
-            // 既定サムネイルは画像ではなく KV の背景と同じ KTRZ フォントの文字で描く。
+          {img ? (
+            <img
+              src={img}
+              width="400"
+              height="225"
+              alt={imgAlt ?? ''}
+              loading="lazy"
+              decoding="async"
+              className="aspect-video self-end rounded-8 object-cover"
+            />
+          ) : (
+            // 画像が無い記事は KV の背景と同じ KTRZ フォントの文字で描く。
             // 色がテーマのトークンに従うので、ライトでもダークでも地の色に馴染む。
-            // 1 文字 = 1em 四方。25cqw で横 4 文字ぶんになり、card-thumbnail.svg と同じ密度になる
+            // 1 文字 = 1em 四方。25cqw で横 4 文字ぶんになる
             <div aria-hidden="true" className="@container aspect-video w-full self-end overflow-hidden">
               <p className="font-ktrz text-[length:25cqw] leading-none whitespace-nowrap text-fg opacity-[0.03]">
-                {DEFAULT_THUMBNAIL_LINES.map((line) => (
+                {NO_THUMBNAIL_LINES.map((line) => (
                   <span key={line} className="block">
                     {line}
                   </span>
                 ))}
               </p>
             </div>
-          ) : (
-            img && (
-              <img
-                src={img}
-                width="400"
-                height="225"
-                alt={imgAlt ?? ''}
-                loading="lazy"
-                decoding="async"
-                className="aspect-video self-end rounded-8 object-cover"
-              />
-            )
           )}
         </div>
         {/* back */}

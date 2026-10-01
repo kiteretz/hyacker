@@ -4,9 +4,6 @@ description: CSS Grid の基本概念と、grid-template-columns・grid-template
 upDate: 2025-01-12
 pubDate: 2025-01-12
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - CSS
 status: draft

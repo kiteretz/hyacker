@@ -32,8 +32,9 @@ const search = async (query: string, pagefind: any): Promise<Card[] | null> => {
         href: data.url,
         title: data.meta.title,
         date: data.meta.pubDate,
-        img: data.meta.image as string | undefined,
-        imgAlt: data.meta.imageAlt as string | undefined,
+        // meta.image は Pagefind がページ内の画像から自動で埋めるため使わない（[...slug].astro 参照）
+        img: data.meta.thumbnail as string | undefined,
+        imgAlt: data.meta.thumbnailAlt as string | undefined,
         answer: data.meta.answer ? decodeURIComponent((data.meta.answer as string).trim()) : undefined,
         isCode: !!data.meta.answerLang,
         lang: data.meta.answerLang as string | undefined,

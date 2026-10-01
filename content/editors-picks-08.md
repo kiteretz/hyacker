@@ -4,9 +4,6 @@ description: label タグや aria 属性を活用して、誰でも使いやす�
 upDate: 2025-02-10
 pubDate: 2025-02-10
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - "Editor's Picks"
   - HTML

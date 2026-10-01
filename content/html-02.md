@@ -4,9 +4,6 @@ description: div や span の代わりにセマンティックなタグを使う
 upDate: 2025-01-11
 pubDate: 2025-01-11
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft

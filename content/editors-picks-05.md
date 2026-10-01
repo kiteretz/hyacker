@@ -4,9 +4,6 @@ description: ES Modules の import と export の基本的な書き方と、モ�
 upDate: 2025-01-25
 pubDate: 2025-01-25
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - "Editor's Picks"
   - JavaScript

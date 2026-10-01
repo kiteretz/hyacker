@@ -4,9 +4,6 @@ description: Promise の仕組みから async/await の使い方まで、JavaScr
 upDate: 2025-02-15
 pubDate: 2025-02-15
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - "Editor's Picks"
   - JavaScript

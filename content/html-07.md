@@ -4,9 +4,6 @@ description: HTML の img タグを正しく使うための alt 属性、srcset�
 upDate: 2025-02-05
 pubDate: 2025-02-05
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft

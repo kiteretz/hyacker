@@ -4,9 +4,6 @@ description: VS Code をインストールしたら最初に見直しておき�
 upDate: 2026-08-19
 pubDate: 2026-08-19
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - Tools
 status: publish

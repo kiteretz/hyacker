@@ -4,9 +4,6 @@ description: CSS セレクタの基本から、擬似クラス・擬似要素・
 upDate: 2025-01-17
 pubDate: 2025-01-17
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - CSS
 status: draft
