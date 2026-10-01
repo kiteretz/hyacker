@@ -28,6 +28,11 @@ export type Card = {
  * また、Astro が読み出す MarkDown コンテンツと、Pagefind の検索結果の2つがデータソースになる。
  */
 
+// 記事の frontmatter で画像未指定のときに使われる既定サムネイル（content/_template/_article.md）
+const DEFAULT_THUMBNAIL = '/assets/posts/card-thumbnail.svg';
+// 既定サムネイルの代わりに描く文字。「no_thumbnail」を 4 文字ずつ
+const DEFAULT_THUMBNAIL_LINES = ['no_t', 'humb', 'nail'];
+
 // 検索結果カードのクライアントハイライトでも SSR と同じ highlighter を使う。
 // 静的 import にするとカードの island チャンクに Shiki 本体が含まれてしまうため、
 // 必要になった時点で動的 import する（インスタンスは shikiHighlighter 側でメモ化済み）。
@@ -105,7 +110,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
     <a
       href={href}
       className={twJoin(
-        'group relative block h-367 bg-white transition-all duration-200 perspective-midrange',
+        'group relative block h-367 bg-bg transition-all duration-200 perspective-midrange',
         isActive ? 'z-1 outline-transparent' : '',
       )}
       onMouseEnter={() => setIsActive(true)}
@@ -119,26 +124,41 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
         )}
       >
         {/* front */}
-        <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-white p-8 backface-hidden">
+        <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-bg p-8 backface-hidden">
           <h3 className="mb-8 line-clamp-3 px-8 text-18 font-semibold sm:line-clamp-4">{title}</h3>
-          <p className="px-8 font-space-grotesk text-14 text-neutral-400">{formatDate(date)}</p>
-          <ul className="flex flex-wrap px-8 font-inter text-14 text-neutral-400">
+          <p className="px-8 font-space-grotesk text-14 text-fg-muted">{formatDate(date)}</p>
+          <ul className="flex flex-wrap px-8 font-inter text-14 text-fg-muted">
             {tags?.map((tag) => (
               <li key={tag} className='after:mr-2 after:content-[","] last:after:content-none'>
                 {tag}
               </li>
             ))}
           </ul>
-          {img && (
-            <img
-              src={img}
-              width="400"
-              height="225"
-              alt={imgAlt ?? ''}
-              loading="lazy"
-              decoding="async"
-              className="aspect-video self-end rounded-8 object-cover"
-            />
+          {img === DEFAULT_THUMBNAIL ? (
+            // 既定サムネイルは画像ではなく KV の背景と同じ KTRZ フォントの文字で描く。
+            // 色がテーマのトークンに従うので、ライトでもダークでも地の色に馴染む。
+            // 1 文字 = 1em 四方。25cqw で横 4 文字ぶんになり、card-thumbnail.svg と同じ密度になる
+            <div aria-hidden="true" className="@container aspect-video w-full self-end overflow-hidden">
+              <p className="font-ktrz text-[length:25cqw] leading-none whitespace-nowrap text-fg opacity-[0.03]">
+                {DEFAULT_THUMBNAIL_LINES.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
+                ))}
+              </p>
+            </div>
+          ) : (
+            img && (
+              <img
+                src={img}
+                width="400"
+                height="225"
+                alt={imgAlt ?? ''}
+                loading="lazy"
+                decoding="async"
+                className="aspect-video self-end rounded-8 object-cover"
+              />
+            )
           )}
         </div>
         {/* back */}
