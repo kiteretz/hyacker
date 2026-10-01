@@ -40,11 +40,13 @@ const { title, description, pubDate, tags, image } = entry.data;
 const currentTags = tags ?? [];
 const displayTags = currentTags.filter((tag: string) => tag !== "Editor's Picks");
 
-// Related posts: タグが1つ以上一致する記事を最大5件取得
+// Related posts: タグが1つ以上一致する記事を取得。列数の帯ごとに行がちょうど埋まる件数だけ表示する
+// （1 列 = 4 件、2 列 = 4 件、3 列 = 6 件、4 列 = 4 件、5 列 = 5 件）
+const RELATED_LIMIT = { base: 4, sm: 4, md: 6, lg: 4, '2xl': 5 };
 const sortedPosts = await getSortedPosts();
 const relatedPosts = sortedPosts
   .filter((p) => p.id !== entry.id && p.data.tags?.some((t: string) => currentTags.includes(t)))
-  .slice(0, 5);
+  .slice(0, Math.max(...Object.values(RELATED_LIMIT)));
 
 // h2見出し数を算出（左カラムのインデックス表示用）
 const h2Headings = headings.filter((h) => h.depth === 2);
@@ -97,7 +99,7 @@ const extracted = extractAnswer(entry.body ?? '');
           <!-- Published + Tags -->
           <div
             class:list={[
-              'flex flex-wrap gap-x-32 gap-y-12 bg-bg px-16 py-24',
+              'flex flex-wrap gap-x-32 gap-y-24 bg-bg px-16 py-24',
               'md:flex-col md:px-32 md:py-32',
               'xl:col-[-2/-1] xl:row-1 xl:px-24',
             ]}
@@ -203,6 +205,6 @@ const extracted = extractAnswer(entry.body ?? '');
     </div>
 
     <!-- Related Posts -->
-    <SectionByTag title="Related" posts={relatedPosts} fullHeight={false} />
+    <SectionByTag title="Related" posts={relatedPosts} fullHeight={false} limit={RELATED_LIMIT} />
   </div>
 </Layout>

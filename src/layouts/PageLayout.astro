@@ -9,7 +9,7 @@ interface Props {
 const { title, class: className } = Astro.props;
 ---
 
-<div class={twMerge('mb-px grid min-h-[calc(100svh-var(--header-height))] gap-px font-inter', className)}>
+<div class={twMerge('mb-px grid flex-1 gap-px font-inter', className)}>
   <div class="grid-tracks gap-px max-xl:grid-cols-1">
     <!-- Left sidebar -->
     <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-bg']}>
@@ -23,10 +23,16 @@ const { title, class: className } = Astro.props;
     </div>
 
     <!-- Content area: inner grid -->
-    <div class="grid-tracks-col grid grid-cols-1 gap-px xl:grid-cols-subgrid xl:grid-rows-[auto_1fr]">
+    <div class="grid-items-start grid-tracks-col grid grid-cols-1 grid-rows-[auto_1fr] gap-px xl:grid-cols-subgrid">
       <!-- Header -->
-      <div class:list={['bg-bg p-16', 'md:p-32', 'xl:col-[1/-2] xl:row-1 xl:flex xl:items-center xl:justify-center']}>
-        <h1 class="w-full max-w-5xl font-palt text-28 leading-normal font-bold md:text-40">
+      <div
+        class:list={[
+          'bg-bg p-16',
+          'md:p-32',
+          'xl:col-[1/-2] xl:row-1 xl:flex xl:min-h-160 xl:items-center xl:justify-center',
+        ]}
+      >
+        <h1 class="w-full max-w-5xl font-palt text-28 leading-normal font-semibold tracking-tighter md:text-40">
           {title}
         </h1>
       </div>

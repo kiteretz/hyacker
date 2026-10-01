@@ -4,6 +4,7 @@ import { twJoin } from 'tailwind-merge';
 import Arrow from '@components/icon/Arrow';
 
 import { SHIKI_THEME } from '@libs/shikiConfig';
+import { twMerge } from '@libs/twMerge';
 
 import { formatDate } from '@utils/formatDate';
 
@@ -20,6 +21,8 @@ export type Card = {
   isCode?: boolean;
   highlightedCode?: string;
   lang?: string;
+  /** ルート要素に足すクラス（ブレークポイントごとの表示切り替えなど） */
+  className?: string;
 };
 
 /**
@@ -39,7 +42,7 @@ async function getClientHighlighter() {
   return getShikiHighlighter();
 }
 
-const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, highlightedCode, lang }) => {
+const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, highlightedCode, lang, className }) => {
   const [copied, setCopied] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const [showTop, setShowTop] = useState(false);
@@ -107,9 +110,10 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
   return (
     <a
       href={href}
-      className={twJoin(
-        'group relative block h-367 bg-bg transition-all duration-200 perspective-midrange',
+      className={twMerge(
+        'group relative block h-card bg-bg transition-all duration-200 perspective-midrange',
         isActive ? 'z-1 outline-transparent' : '',
+        className,
       )}
       onMouseEnter={() => setIsActive(true)}
       onMouseLeave={() => setIsActive(false)}

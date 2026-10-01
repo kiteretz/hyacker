@@ -11,6 +11,7 @@
 	--color-border: var(--color-neutral-800);
 
 	--spacing: 0.0625rem; /* 1px */
+	--spacing-card: calc(var(--spacing) * 367); /* カード 1 枚の高さ */
 	--spacing-gutter: clamp(1rem, 2.5 * var(--cw), 2rem);
 	--spacing-gutter-0.5: calc(var(--spacing-gutter) * 0.5);
 	--spacing-gutter-0.75: calc(var(--spacing-gutter) * 0.75);

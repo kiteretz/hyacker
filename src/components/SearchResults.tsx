@@ -18,9 +18,9 @@ import Card from './Card';
 const GRID_CLASSES = 'grid-tracks-full';
 const SKELETON_COUNT = 10; // 2xl の 5 列でちょうど 2 行
 
-// 検索完了までのプレースホルダー。Card の front 面（h-367 / p-8 / 画像下寄せ）と同じ骨格
+// 検索完了までのプレースホルダー。Card の front 面（h-card / p-8 / 画像下寄せ）と同じ骨格
 const SkeletonCard: FC = () => (
-  <div className="grid h-367 animate-pulse grid-rows-[auto_auto_auto_1fr] bg-bg p-8">
+  <div className="grid h-card animate-pulse grid-rows-[auto_auto_auto_1fr] bg-bg p-8">
     <div className="mx-8 mb-8 h-18 rounded-4 bg-neutral-100 dark:bg-neutral-800" />
     <div className="mx-8 mb-4 h-14 w-1/3 rounded-4 bg-neutral-100 dark:bg-neutral-800" />
     <div className="mx-8 h-14 w-1/2 rounded-4 bg-neutral-100 dark:bg-neutral-800" />

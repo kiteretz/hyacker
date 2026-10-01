@@ -48,12 +48,12 @@ const pageTitle = title ? `${title} | ${siteInfo.name}` : siteInfo.title;
   </head>
   <body
     class={twMerge(
-      'flex min-h-screen flex-col overflow-x-clip bg-border font-sans font-palt text-fg antialiased',
+      'flex min-h-svh flex-col overflow-x-clip bg-border font-sans font-palt text-fg antialiased',
       className,
     )}
   >
     <Header />
-    <main class="flex-1">
+    <main class="flex flex-1 flex-col">
       <slot />
     </main>
     <Footer />
