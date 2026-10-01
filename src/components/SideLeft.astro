@@ -25,10 +25,13 @@ const decorativeNumberClass =
   'hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:leading-none xl:font-bold xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10';
 ---
 
-<div class="max-xl:sticky max-xl:top-(--header-height) max-xl:z-50 max-xl:border-b" data-js-sticky-sidebar>
+<div
+  class="max-xl:sticky max-xl:top-(--header-height) max-xl:z-50 max-xl:border-b max-xl:border-border"
+  data-js-sticky-sidebar
+>
   <div
     class:list={[
-      'flex items-center justify-between bg-white p-16 font-inter font-palt leading-none',
+      'flex items-center justify-between bg-bg p-16 font-inter font-palt leading-none',
       'xl:flex-col xl:items-start xl:p-32 xl:pb-8',
       // fullHeight でない場合は隣接コンテンツ（カードリスト）の高さに追従する
       fullHeight ? 'xl:h-[max(calc(100svh-var(--header-height)),30rem)]' : 'xl:h-full',
@@ -41,18 +44,16 @@ const decorativeNumberClass =
       {
         showCount ? (
           <slot name="count">
-            <span class:list={['xl:text-108 xl:text-neutral-900', decorativeNumberClass]}>{countStr}</span>
+            <span class:list={['xl:text-108 xl:text-fg', decorativeNumberClass]}>{countStr}</span>
           </slot>
         ) : (
           href && (
             <a href={href} class="group contents">
-              <span class="text-16 leading-none font-medium tracking-tight underline decoration-transparent underline-offset-2 transition group-hover:decoration-neutral-800 xl:text-24">
+              <span class="text-16 leading-none font-medium tracking-tight underline decoration-transparent underline-offset-2 transition group-hover:decoration-fg xl:text-24">
                 View More
               </span>
-              <Arrow className="size-16 text-[#171717] xl:size-24" />
-              {indexStr && (
-                <span class:list={['xl:text-160 xl:text-neutral-800', decorativeNumberClass]}>{indexStr}</span>
-              )}
+              <Arrow className="size-16 text-fg xl:size-24" />
+              {indexStr && <span class:list={['xl:text-160 xl:text-fg', decorativeNumberClass]}>{indexStr}</span>}
             </a>
           )
         )

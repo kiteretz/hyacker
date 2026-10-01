@@ -71,7 +71,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
         }
         {
           getGridFillerClasses(displayedPosts.length).map((classes) => (
-            <div aria-hidden="true" class:list={['bg-white', classes]} />
+            <div aria-hidden="true" class:list={['bg-bg', classes]} />
           ))
         }
       </div>
@@ -82,7 +82,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
       <div aria-hidden="true" class="grid-tracks-full flex-1 overflow-hidden">
         {
           STRETCH_FILLER_CELL_CLASSES.map((classes) => (
-            <div class:list={['bg-white shadow-[inset_0_1px_0_0_var(--color-neutral-800)]', classes]} />
+            <div class:list={['bg-bg shadow-[inset_0_1px_0_0_var(--color-border)]', classes]} />
           ))
         }
       </div>

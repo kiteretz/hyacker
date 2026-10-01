@@ -58,7 +58,7 @@ const extracted = extractAnswer(entry.body ?? '');
     <div>
       <div class="grid-tracks gap-px max-xl:grid-cols-1">
         <!-- Left sidebar: Share + Heading Index -->
-        <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-white']} data-js-sticky-sidebar>
+        <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-bg']} data-js-sticky-sidebar>
           <div
             class="flex h-[max(calc(100svh-var(--header-height)),30rem)] flex-col items-end justify-between px-32 py-32 pb-8"
             data-js-sticky-sidebar-inner
@@ -69,7 +69,7 @@ const extracted = extractAnswer(entry.body ?? '');
             </div>
             <!-- Heading index -->
             <div
-              class="flex flex-col font-space-grotesk text-160 leading-none font-bold text-neutral-800 slashed-zero tabular-nums opacity-10"
+              class="flex flex-col font-space-grotesk text-160 leading-none font-bold text-fg slashed-zero tabular-nums opacity-10"
             >
               <p class="relative top-16" data-section-current>01</p>
               <p data-heading-total>
@@ -84,7 +84,7 @@ const extracted = extractAnswer(entry.body ?? '');
           <!-- Article Header -->
           <div
             class:list={[
-              'bg-white px-16 py-24',
+              'bg-bg px-16 py-24',
               'md:p-32',
               'xl:col-[1/-2] xl:row-1 xl:flex xl:items-center xl:justify-center',
             ]}
@@ -97,13 +97,13 @@ const extracted = extractAnswer(entry.body ?? '');
           <!-- Published + Tags -->
           <div
             class:list={[
-              'flex flex-wrap gap-x-32 gap-y-12 bg-white px-16 py-24',
+              'flex flex-wrap gap-x-32 gap-y-12 bg-bg px-16 py-24',
               'md:flex-col md:px-32 md:py-32',
               'xl:col-[-2/-1] xl:row-1 xl:px-24',
             ]}
           >
             <div class="flex flex-col gap-8">
-              <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Published</p>
+              <p class="font-inter text-14 leading-none text-fg-muted uppercase">Published</p>
               <div class="font-space-grotesk text-16 leading-tight">
                 <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
                 {
@@ -139,7 +139,7 @@ const extracted = extractAnswer(entry.body ?? '');
               </div>
             </div>
             <div class="flex flex-col gap-8">
-              <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Tags</p>
+              <p class="font-inter text-14 leading-none text-fg-muted uppercase">Tags</p>
               <p class="flex flex-wrap text-16 leading-tight">
                 {
                   displayTags.map((tag: string) => (
@@ -156,32 +156,32 @@ const extracted = extractAnswer(entry.body ?? '');
           </div>
 
           <!-- Mobile: Share icons -->
-          <div class="flex items-center justify-end bg-white px-16 py-8 md:px-32 xl:hidden">
+          <div class="flex items-center justify-end bg-bg px-16 py-8 md:px-32 xl:hidden">
             <SocialIcon title={title} />
           </div>
 
           <!-- Article Body -->
-          <div class:list={['bg-white px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
+          <div class:list={['bg-bg px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
             <div class="prose w-full" data-pagefind-body>
               <Content />
             </div>
           </div>
 
           <!-- TOC + Ad -->
-          <div class:list={['bg-white', 'xl:relative xl:col-[-2/-1] xl:row-2']}>
+          <div class:list={['bg-bg', 'xl:relative xl:col-[-2/-1] xl:row-2']}>
             <div
               class="pointer-events-none sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] xl:flex xl:flex-col xl:justify-between"
             >
               <!-- TOC -->
               <div class="pointer-events-auto flex flex-col gap-12 overflow-y-auto px-24 py-32">
-                <p class="font-inter text-14 leading-none text-neutral-400 uppercase">Table of contents</p>
+                <p class="font-inter text-14 leading-none text-fg-muted uppercase">Table of contents</p>
                 <TableOfContents headings={headings} />
               </div>
               <!-- Ad card -->
-              <div class="border-fg-800 pointer-events-auto sticky bottom-0 -translate-y-px border-t bg-white p-8">
+              <div class="pointer-events-auto sticky bottom-0 -translate-y-px border-t border-border bg-bg p-8">
                 <div class="flex flex-col gap-4">
                   <div class="flex items-center justify-between p-8 leading-tight">
-                    <p class="font-inter text-14 text-neutral-400">AD, PR</p>
+                    <p class="font-inter text-14 text-fg-muted">AD, PR</p>
                   </div>
                   <img
                     src="https://placehold.co/250x188"
