@@ -3,6 +3,7 @@ import '../styles/index.css';
 
 import Footer from '@components/Footer.astro';
 import Header from '@components/Header.astro';
+import ThemeInit from '@components/ThemeInit.astro';
 
 import { twMerge } from '@libs/twMerge';
 
@@ -23,6 +24,7 @@ const pageTitle = title ? `${title} | ${siteInfo.name}` : siteInfo.title;
 <html lang="ja" class="overflow-x-clip">
   <head>
     <meta charset="UTF-8" />
+    <ThemeInit />
     <meta name="viewport" content="width=device-width" />
     <meta name="keywords" content={siteInfo.keywords} />
     <meta name="description" content={description ?? siteInfo.description} />
@@ -46,7 +48,7 @@ const pageTitle = title ? `${title} | ${siteInfo.name}` : siteInfo.title;
   </head>
   <body
     class={twMerge(
-      'flex min-h-screen flex-col overflow-x-clip bg-neutral-800 font-sans font-palt text-neutral-900 antialiased',
+      'flex min-h-screen flex-col overflow-x-clip bg-border font-sans font-palt text-fg antialiased',
       className,
     )}
   >
