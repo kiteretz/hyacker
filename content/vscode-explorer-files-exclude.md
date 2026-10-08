@@ -5,7 +5,7 @@ upDate: 2026-08-19
 pubDate: 2026-08-19
 author: とも
 tags:
-  - Tools
+  - VS Code
 status: publish
 ---
 

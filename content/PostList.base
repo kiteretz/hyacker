@@ -1,0 +1,9 @@
+views:
+  - type: table
+    name: 表
+    order:
+      - file.name
+      - file.basename
+      - file.ctime
+      - file.path
+      - status
