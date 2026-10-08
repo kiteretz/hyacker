@@ -15,7 +15,7 @@ interface Props {
    */
   capRows?: { xl: number; '2xl': number };
   /**
-   * true にすると xl でビューポート基準の高さを「上限」として扱い、親グリッドの高さに追従する（fullHeight のときのみ有効）。
+   * true にすると xl でビューポート基準の最低高さを持たず、親グリッドの高さに追従する（最低 30rem。fullHeight のときのみ有効）。
    * コンテンツが短いページで、フッターまで含めてビューポートに収めるために使う。capRows とは併用しない。
    */
   fillParent?: boolean;
@@ -40,7 +40,7 @@ const {
 const indexStr = index !== undefined ? String(index).padStart(2, '0') : '';
 const countStr = count !== undefined ? String(count).padStart(3, '0') : '';
 
-// 行数の変数は wrapper に持たせる（inner の inline style は sticky-sidebar.ts が書き換えるため）
+// 行数の変数は wrapper に持たせ、inner の min-h 計算で参照する
 const capRowsStyle = fullHeight && capRows ? `--cap-rows-xl:${capRows.xl};--cap-rows-2xl:${capRows['2xl']}` : undefined;
 
 const decorativeNumberClass =
@@ -57,42 +57,57 @@ const decorativeNumberClass =
   */
 }
 <div
-  class="max-xl:sticky max-xl:top-(--header-height) max-xl:z-50 max-xl:-mb-px max-xl:border-b max-xl:border-border"
+  class="max-xl:sticky max-xl:top-(--header-height) max-xl:z-50 max-xl:-mb-px max-xl:border-b max-xl:border-border xl:h-full"
   style={capRowsStyle}
-  data-js-sticky-sidebar
 >
   <div
     class:list={[
       'flex items-center justify-between bg-bg p-16 font-inter font-palt leading-none',
-      'xl:flex-col xl:items-start xl:gap-y-20 xl:p-32 xl:pb-8',
-      // fullHeight でない場合は隣接コンテンツ（カードリスト）の高さに追従する
-      !fullHeight && 'xl:h-full',
-      fullHeight && !fillParent && 'xl:h-[max(calc(100svh-var(--header-height)),30rem)]',
-      fullHeight && fillParent && 'xl:h-full xl:max-h-[max(calc(100svh-var(--header-height)),30rem)] xl:min-h-[30rem]',
-      // sticky-sidebar.ts が inline で書き込む height に負けないよう max-height で掛ける。1px は行間の gap-px
+      'xl:h-full xl:flex-col xl:items-start xl:p-32 xl:pb-8',
+      // xl ではセクションの高さいっぱいに伸ばし、見出し・カウントがその範囲で sticky する。
+      // 以下の min-h はサイドバーがセクション（グリッド行）に与える最低限の高さ
+      fullHeight && !fillParent && !capRows && 'xl:min-h-[max(calc(100svh-var(--header-height)),30rem)]',
       fullHeight &&
+        !fillParent &&
         capRows &&
-        'xl:max-h-[calc(var(--cap-rows)*(var(--spacing-card)+1px)-1px)] xl:[--cap-rows:var(--cap-rows-xl)] 2xl:[--cap-rows:var(--cap-rows-2xl)]',
+        'xl:min-h-[min(max(calc(100svh-var(--header-height)),30rem),calc(var(--cap-rows)*(var(--spacing-card)+1px)-1px))] xl:[--cap-rows:var(--cap-rows-xl)] 2xl:[--cap-rows:var(--cap-rows-2xl)]',
+      fullHeight && fillParent && 'xl:min-h-480',
+      // カウント / View More 領域の高さ（装飾数字の高さ）。見出しの mb と下の領域の -mt で共有する
+      showCount
+        ? 'xl:[--side-footer-h:--spacing(108)]'
+        : indexStr
+          ? 'xl:[--side-footer-h:--spacing(160)]'
+          : 'xl:[--side-footer-h:--spacing(48)]',
       stickyCount && 'xl:pb-12!',
     ]}
-    data-js-sticky-sidebar-inner
   >
-    <h2 class="text-32 leading-none font-semibold tracking-tighter xl:text-64 xl:writing-sideways-rl">{title}</h2>
     {
       /*
-      見出しの下〜下端までを占める領域。中のカウント / View More は xl でビューポート下端に stick し、
-      この領域の内側（＝見出しのすぐ下からセクション下端まで）にとどまる。
-      bottom-8 / bottom-12 は inner の pb-8 / pb-12 と揃えて、sticky-sidebar.ts による固定時と位置がずれないようにする。
-      min-h は装飾数字（absolute）の高さ分で、見出し直下に来たときに数字が見出しへ重ならないようにする。
-      装飾数字をサイドバーの左右中央に置くため、この領域と p は幅いっぱいに広げる（self-stretch）。
-    */
+        見出しは xl でヘッダー直下に stick する。mb（カウント領域の高さ + 20px）を持たせることで、
+        セクション末尾ではカウントの 20px 上で押し出される。
+      */
     }
-    <div class="max-xl:contents xl:flex xl:min-h-0 xl:flex-1 xl:flex-col xl:justify-end xl:self-stretch">
+    <h2
+      class="text-32 leading-none font-semibold tracking-tighter xl:sticky xl:top-[calc(var(--header-height)+var(--spacing)*32)] xl:mb-[calc(var(--side-footer-h)+var(--spacing)*20)] xl:text-64 xl:writing-sideways-rl"
+    >
+      {title}
+    </h2>
+    {
+      /*
+        見出しの下〜下端までを占める領域。-mt で見出しの mb のうちカウント領域の高さ分を打ち消し、
+        この領域の上端を見出しの 20px 下に置く。中のカウント / View More は xl でビューポート下端に stick し、
+        この領域の内側（＝見出しの 20px 下からセクション下端まで）にとどまる。
+        bottom-8 / bottom-12 は inner の pb-8 / pb-12 と揃える。
+        装飾数字をサイドバーの左右中央に置くため、この領域と p は幅いっぱいに広げる（self-stretch）。
+      */
+    }
+    <div
+      class="max-xl:contents xl:-mt-(--side-footer-h) xl:flex xl:min-h-0 xl:flex-1 xl:flex-col xl:justify-end xl:self-stretch"
+    >
       <p
         class:list={[
-          'flex items-center gap-x-4 xl:sticky xl:items-end xl:pb-24',
+          'flex items-center gap-x-4 xl:sticky xl:min-h-(--side-footer-h) xl:items-end xl:pb-24',
           stickyCount ? 'pb-40! xl:bottom-12' : 'xl:bottom-8',
-          showCount ? 'xl:min-h-108' : indexStr && 'xl:min-h-160',
         ]}
       >
         {

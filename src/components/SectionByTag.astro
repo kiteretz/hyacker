@@ -27,7 +27,7 @@ export type SectionItem = {
    */
   capHeight?: boolean;
   /**
-   * true にするとセクションが main の残り高さを埋め、SideLeft はビューポート基準の高さを上限として追従する。
+   * true にするとセクションが main の残り高さを埋め、SideLeft はその高さに追従する（最低 30rem）。
    * 投稿が少なくてもフッターまで含めてビューポートに収めるため、セクション 1 つだけのページで使う。capHeight とは併用しない。
    */
   fillParent?: boolean;
