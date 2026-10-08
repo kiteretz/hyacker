@@ -46,16 +46,13 @@ const pageTitle = title ? `${title} | ${siteInfo.name}` : siteInfo.title;
     <title>{pageTitle}</title>
     <script src="@scripts/index.ts"></script>
   </head>
-  <body
-    class={twMerge(
-      'flex min-h-svh flex-col overflow-x-clip bg-border font-sans font-palt text-fg antialiased',
-      className,
-    )}
-  >
-    <Header />
-    <main class="flex flex-1 flex-col">
-      <slot />
-    </main>
-    <Footer />
+  <body class="bg-bg font-sans font-palt text-fg antialiased">
+    <div class={twMerge('flex min-h-svh flex-col overflow-x-clip bg-border', className)}>
+      <Header />
+      <main class="flex flex-1 flex-col">
+        <slot />
+      </main>
+      <Footer />
+    </div>
   </body>
 </html>
