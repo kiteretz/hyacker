@@ -4,9 +4,6 @@ description: HTML の data-* 属性を使ってカスタムデータを HTML 要
 upDate: 2025-02-21
 pubDate: 2025-02-21
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft

@@ -65,16 +65,31 @@
 
 /* Typography plugin */
 @utility prose {
-	--tw-prose-body: var(--color-neutral-900);
-	--tw-prose-headings: var(--color-neutral-900);
-	--tw-prose-bold: var(--color-neutral-900);
-	--tw-prose-bullets: var(--color-neutral-900);
-	--tw-prose-counters: var(--color-neutral-900);
+	--tw-prose-body: var(--color-fg);
+	--tw-prose-headings: var(--color-fg);
+	--tw-prose-bold: var(--color-fg);
+	--tw-prose-bullets: var(--color-fg);
+	--tw-prose-counters: var(--color-fg);
+
+	/* 上記以外はプラグイン既定のグレー系。ダークでは同プラグインの invert 値に差し替える */
+	@variant dark {
+		--tw-prose-lead: var(--tw-prose-invert-lead);
+		--tw-prose-links: var(--tw-prose-invert-links);
+		--tw-prose-hr: var(--tw-prose-invert-hr);
+		--tw-prose-quotes: var(--tw-prose-invert-quotes);
+		--tw-prose-quote-borders: var(--tw-prose-invert-quote-borders);
+		--tw-prose-captions: var(--tw-prose-invert-captions);
+		--tw-prose-kbd: var(--tw-prose-invert-kbd);
+		--tw-prose-kbd-shadows: var(--tw-prose-invert-kbd-shadows);
+		--tw-prose-code: var(--tw-prose-invert-code);
+		--tw-prose-th-borders: var(--tw-prose-invert-th-borders);
+		--tw-prose-td-borders: var(--tw-prose-invert-td-borders);
+	}
 
 	@apply max-w-none;
 
 	h2 {
-		@apply border-b pb-[0.25em] text-24 leading-normal lg:text-28;
+		@apply border-b border-border pb-[0.25em] text-24 leading-normal lg:text-28;
 	}
 	h3 {
 		@apply text-20 leading-normal lg:text-24;
@@ -83,7 +98,8 @@
 		@apply font-normal underline hover:no-underline;
 	}
 	pre {
-		@apply rounded-16 p-16 lg:p-24;
+		/* Shiki がインライン style で付けるテーマの背景色を上書きし、カード裏面（bg-neutral-800）と揃える */
+		@apply rounded-16 bg-neutral-800! p-16 lg:p-24;
 	}
 	code {
 		&::before,
@@ -104,4 +120,36 @@
 			@apply mt-0 w-full pl-0;
 		}
 	}
+}
+
+/* ナビゲーションのテキストリンク共通ホバー */
+@utility link-underline {
+	@apply underline decoration-transparent underline-offset-2 hover:decoration-fg;
+}
+
+/*
+ *	ページ全体で縦罫線を揃えるためのカラムトラック群。
+ *	サイドバー / 本文 / 右レール / カードを 1 つのグリッド上の等幅トラックに乗せる。
+ *	xl = 5 トラック（サイドバー 1 + コンテンツ 4）、2xl = 6（1 + 5）。
+ *	grid-tracks / grid-tracks-col は xl 未満の指定（max-xl:grid-cols-1 など）を呼び出し側に残す。
+ *	grid-tracks-full は core utility との競合を避けるため sm〜lg:grid-cols-* も同 utility 内に取り込む。
+ *	grid-tracks-pane を使う要素は flex を max-xl:flex にすること（xl で display:grid に切り替わる）。
+ */
+@utility grid-tracks {
+	@apply grid xl:grid-cols-5 2xl:grid-cols-6;
+}
+
+/* サイドバーを除いた残り列を占有（単一カラムのコンテンツ用） */
+@utility grid-tracks-col {
+	@apply xl:col-span-4 2xl:col-span-5;
+}
+
+/* col ＋ 中身を同じトラックに乗せる subgrid（本文＋右レール構成用） */
+@utility grid-tracks-pane {
+	@apply xl:col-span-4 xl:grid xl:grid-cols-subgrid xl:grid-rows-[auto_1fr] 2xl:col-span-5;
+}
+
+/* pane 内で全トラック幅に広がるカードグリッド（カード一覧・ストレッチフィラー） */
+@utility grid-tracks-full {
+	@apply grid gap-px sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:col-span-full xl:grid-cols-subgrid;
 }

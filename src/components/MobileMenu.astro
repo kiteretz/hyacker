@@ -1,6 +1,8 @@
 ---
 import { getPostsByTag } from '@libs/postsByTag';
 
+import ThemeSwitch from './ThemeSwitch.astro';
+
 const tags = await getPostsByTag();
 
 const mainItems: { label: string; href: string }[] = [
@@ -24,19 +26,19 @@ const subItems: { label: string; href: string; external?: boolean }[] = [
   </div>
   <div
     id="js-mobile-menu"
-    class="fixed right-0 z-modal w-full max-w-1/2 translate-x-full border-l transition-transform duration-200 ease-out group-data-[open=true]:translate-x-0"
+    class="fixed right-0 z-modal w-full max-w-1/2 translate-x-full border-l border-border transition-transform duration-200 ease-out group-data-[open=true]:translate-x-0"
     style="top: var(--header-height, 64px); height: calc(100svh - var(--header-height, 64px));"
     aria-hidden="true"
     inert
   >
-    <nav aria-label="モバイルメニュー" class="flex h-full flex-col gap-px overflow-y-auto bg-neutral-800 font-inter">
-      <ul class="flex flex-1 flex-col items-end bg-white pt-16 pb-40 font-medium">
+    <nav aria-label="モバイルメニュー" class="flex h-full flex-col gap-px overflow-y-auto bg-border font-inter">
+      <ul class="flex flex-1 flex-col items-end bg-bg pt-16 pb-40 font-medium">
         {
           mainItems.map(({ label, href }) => (
             <li>
               <a
                 href={href}
-                class="flex items-center gap-4 px-16 py-8 text-16 leading-none tracking-tight transition-opacity duration-200 hover:opacity-70"
+                class="flex items-center gap-4 px-16 py-8 text-16 leading-none tracking-tight link-underline"
               >
                 <span>{label}</span>
                 <svg
@@ -54,50 +56,60 @@ const subItems: { label: string; href: string; external?: boolean }[] = [
           ))
         }
       </ul>
-      <ul class="flex flex-1 flex-col items-end justify-end bg-white py-16 font-medium">
-        {
-          subItems.map(({ label, href, external }) => (
-            <li>
-              <a
-                href={href}
-                target={external ? '_blank' : undefined}
-                rel={external ? 'noopener noreferrer' : undefined}
-                class="flex items-center gap-4 px-16 py-4 text-16 leading-relaxed tracking-tight transition-opacity duration-200 hover:opacity-70"
-              >
-                <span>{label}</span>
-                {external ? (
-                  <svg
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    viewBox="0 0 16 16"
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linejoin="bevel"
-                      stroke-width="1.333"
-                      d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    aria-hidden="true"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    viewBox="0 0 16 16"
-                  >
-                    <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="1.333" d="M3 8h10m-4-4 4 4-4 4" />
-                  </svg>
-                )}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <div class="flex flex-1 flex-col items-end justify-between bg-bg py-16">
+        <ul class="flex flex-col items-end font-medium">
+          {
+            subItems.map(({ label, href, external }) => (
+              <li>
+                <a
+                  href={href}
+                  target={external ? '_blank' : undefined}
+                  rel={external ? 'noopener noreferrer' : undefined}
+                  class="flex items-center gap-4 px-16 py-4 text-16 leading-relaxed tracking-tight link-underline"
+                >
+                  <span>{label}</span>
+                  {external ? (
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="none"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linejoin="bevel"
+                        stroke-width="1.333"
+                        d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
+                      />
+                    </svg>
+                  ) : (
+                    <svg
+                      aria-hidden="true"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="none"
+                      viewBox="0 0 16 16"
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linejoin="bevel"
+                        stroke-width="1.333"
+                        d="M3 8h10m-4-4 4 4-4 4"
+                      />
+                    </svg>
+                  )}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+        <div class="mt-8 px-16 py-8">
+          <ThemeSwitch />
+        </div>
+      </div>
     </nav>
   </div>
 </div>

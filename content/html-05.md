@@ -4,9 +4,6 @@ description: head 要素の中に記述するメタタグの種類と、SEO や�
 upDate: 2025-01-26
 pubDate: 2025-01-26
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft

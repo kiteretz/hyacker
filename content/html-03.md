@@ -4,9 +4,6 @@ description: HTML5 で追加されたフォームの type 属性と便利な入�
 upDate: 2025-01-16
 pubDate: 2025-01-16
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft

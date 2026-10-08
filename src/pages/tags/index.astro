@@ -9,22 +9,20 @@ const tags = await getPostsByTag();
 ---
 
 <Layout title="タグ一覧">
-  <section>
-    <div class="mb-px grid xl:grid-cols-[16.625rem_1fr] xl:gap-px">
-      <SideLeft title="Tags" count={tags.length} showCount={true} />
-      <div
-        class="grid min-h-[calc(100svh-var(--header-height)-4rem)] content-start bg-white pb-40 xl:min-h-[calc(100svh-var(--header-height))] xl:pb-0"
-      >
+  <section class="flex flex-1 flex-col">
+    <div class="mb-px grid-tracks flex-1 gap-px max-xl:grid-rows-[auto_1fr]">
+      <SideLeft title="Tags" count={tags.length} showCount={true} fillParent />
+      <div class="grid-tracks-col grid content-start bg-bg pb-40 xl:pb-0">
         {
           tags.map((tag) => (
             <a
               href={`/tags/${encodeURIComponent(tag.name)}/`}
               class:list={[
-                'border-border flex items-center justify-between border-b bg-white p-16 py-10 font-inter font-palt leading-none text-neutral-800',
+                'flex items-center justify-between border-b border-border bg-bg p-16 py-10 font-inter font-palt leading-none text-fg',
                 'transition-colors duration-150',
                 'xl:pr-24 xl:pl-8',
-                'hover:bg-neutral-800 hover:text-white',
-                'focus-visible:bg-neutral-800 focus-visible:text-white focus-visible:outline-none',
+                'hover:bg-fg hover:text-bg',
+                'focus-visible:bg-fg focus-visible:text-bg focus-visible:outline-none',
               ]}
             >
               <span class="text-16 font-medium tracking-tight">{tag.name}</span>

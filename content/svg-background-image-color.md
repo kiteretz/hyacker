@@ -4,9 +4,6 @@ description: background-image に配置した SVG の fill カラーコードを
 upDate: 2026-08-03
 pubDate: 2026-08-03
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - CSS
 status: publish

@@ -1,6 +1,8 @@
 ---
 import { twMerge } from '@libs/twMerge';
 
+import ThemeSwitch from './ThemeSwitch.astro';
+
 export interface Props {
   class?: string;
 }
@@ -8,63 +10,64 @@ export interface Props {
 const { class: className } = Astro.props;
 ---
 
-<footer class={twMerge('sticky top-[100vh] border-b border-neutral-800 bg-white', className)}>
+<footer class={twMerge('sticky top-[100vh] border-border bg-bg', className)}>
   <div
     class:list={[
       'flex flex-col font-inter font-medium',
       'md:h-64 md:flex-row-reverse md:items-center md:justify-between md:px-32',
     ]}
   >
-    <nav aria-label="フッターナビゲーション">
-      <ul class="flex items-center gap-x-16 px-16 py-8 md:p-0">
-        {
-          [
-            {
-              label: 'About',
-              href: '/about/',
-            },
-            {
-              label: 'Terms',
-              href: '/term/',
-            },
-            {
-              label: 'X(Twitter)',
-              href: '/',
-              target: '_blank',
-            },
-          ].map(({ label, href, target }) => (
-            <li>
-              <a
-                href={href}
-                target={target}
-                class="flex items-center underline decoration-transparent underline-offset-2 transition duration-300 ease-in-out hover:decoration-neutral-800"
-              >
-                {label}
-                {label === 'X(Twitter)' && (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    viewBox="0 0 16 16"
-                    class=""
-                  >
-                    <path
-                      stroke="#171717"
-                      stroke-linejoin="bevel"
-                      stroke-width="1.333"
-                      d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
-                    />
-                  </svg>
-                )}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-    <p class="border-t border-neutral-800 px-16 py-8 text-right md:border-none md:p-0 md:text-left">
-      © 2025 hyacker / KITERETZ inc.
+    <div class="flex items-center justify-between px-16 py-8 md:gap-32 md:p-0">
+      <nav aria-label="フッターナビゲーション">
+        <ul class="flex items-center gap-x-16">
+          {
+            [
+              {
+                label: 'About',
+                href: '/about/',
+              },
+              {
+                label: 'Terms',
+                href: '/term/',
+              },
+              {
+                label: 'X(Twitter)',
+                href: '/',
+                target: '_blank',
+              },
+            ].map(({ label, href, target }) => (
+              <li>
+                <a href={href} target={target} class="flex items-center link-underline">
+                  {label}
+                  {label === 'X(Twitter)' && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      class=""
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linejoin="bevel"
+                        stroke-width="1.333"
+                        d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
+                      />
+                    </svg>
+                  )}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+      <ThemeSwitch />
+    </div>
+    <p
+      class="h-48 content-center border-t border-border px-16 py-8 text-right md:h-auto md:border-none md:p-0 md:text-left"
+    >
+      © 2026 hyacker / <a href="http://kiteretz.com/" target="_blank" class="link-underline">KITERETZ inc.</a>
     </p>
   </div>
 </footer>

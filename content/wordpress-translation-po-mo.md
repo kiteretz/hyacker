@@ -4,9 +4,6 @@ description: WordPress の翻訳ファイル .pot・.po・.mo の役割の違い
 upDate: 2026-08-19
 pubDate: 2026-08-19
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - WordPress
 status: publish

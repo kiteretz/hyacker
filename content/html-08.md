@@ -4,9 +4,6 @@ description: HTML の3種類のリスト要素の特徴と、適切な使い分�
 upDate: 2025-02-10
 pubDate: 2025-02-10
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft

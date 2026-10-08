@@ -4,9 +4,6 @@ description: CSS カスタムプロパティ（CSS 変数）の定義方法と�
 upDate: 2025-02-07
 pubDate: 2025-02-07
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - CSS
 status: draft

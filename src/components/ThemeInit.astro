@@ -1,0 +1,24 @@
+---
+import { DEFAULT_THEME_PREFERENCE, THEME_STORAGE_KEY } from '@libs/theme';
+---
+
+{
+  /*
+    初回描画前にテーマを確定させ、背景色などのチラつきを防ぐ。
+    スタイルシートより前・<head> の先頭付近に置き、バンドルせず同期実行させること（is:inline）。
+    適用ロジックは @scripts/modules/theme-switch の applyPreference と揃える。
+  */
+}
+<script is:inline define:vars={{ storageKey: THEME_STORAGE_KEY, defaultPreference: DEFAULT_THEME_PREFERENCE }}>
+  var preference = defaultPreference;
+  try {
+    var stored = localStorage.getItem(storageKey);
+    if (stored === 'light' || stored === 'dark') preference = stored;
+  } catch (e) {
+    // localStorage が使えない環境（プライベートモード等）は既定値のまま進める
+  }
+  var isDark =
+    preference === 'dark' || (preference === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches);
+  document.documentElement.dataset.theme = isDark ? 'dark' : 'light';
+  document.documentElement.dataset.themePreference = preference;
+</script>

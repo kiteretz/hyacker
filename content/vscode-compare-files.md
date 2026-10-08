@@ -4,9 +4,6 @@ description: VS Code のエクスプローラーから2つのファイルを選�
 upDate: 2026-08-19
 pubDate: 2026-08-19
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - VS Code
 status: publish

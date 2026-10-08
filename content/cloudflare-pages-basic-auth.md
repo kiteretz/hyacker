@@ -4,9 +4,6 @@ description: Cloudflare Pages にデプロイしているウェブサイトに�
 upDate: 2026-08-06
 pubDate: 2026-08-06
 author: Shogo
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - Cloudflare
 status: publish

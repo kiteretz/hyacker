@@ -4,9 +4,6 @@ description: CSS の Box モデル（content、padding、border、margin）の�
 upDate: 2025-02-20
 pubDate: 2025-02-20
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - "Editor's Picks"
   - CSS

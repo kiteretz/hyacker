@@ -24,6 +24,7 @@ const editorsPicks = tags.find((t) => t.name === "Editor's Picks");
         title="Editor's Picks"
         posts={editorsPicks.posts}
         href={`/tags/${encodeURIComponent(editorsPicks.name)}/`}
+        capHeight
       />
     )
   }

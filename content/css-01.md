@@ -4,9 +4,6 @@ description: CSS Flexbox の基本的なプロパティから実用的なレイ�
 upDate: 2025-01-07
 pubDate: 2025-01-07
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - CSS
 status: draft

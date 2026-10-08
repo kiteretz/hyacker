@@ -4,9 +4,6 @@ description: z-index が効かない原因とスタッキングコンテキス�
 upDate: 2025-02-12
 pubDate: 2025-02-12
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - CSS
 status: draft

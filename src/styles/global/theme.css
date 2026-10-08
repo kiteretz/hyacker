@@ -1,5 +1,17 @@
+/* `dark:` は OS 設定ではなく <html data-theme> に従う（@components/ThemeInit.astro が描画前に付与） */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
 @theme {
+	/*
+	 * ここにはライトの値を記述。ダークの値は src/styles/base/index.css で上書きする。
+	 */
+	--color-fg: var(--color-neutral-900);
+	--color-fg-muted: var(--color-neutral-400);
+	--color-bg: var(--color-white);
+	--color-border: var(--color-neutral-800);
+
 	--spacing: 0.0625rem; /* 1px */
+	--spacing-card: calc(var(--spacing) * 367); /* カード 1 枚の高さ */
 	--spacing-gutter: clamp(1rem, 2.5 * var(--cw), 2rem);
 	--spacing-gutter-0.5: calc(var(--spacing-gutter) * 0.5);
 	--spacing-gutter-0.75: calc(var(--spacing-gutter) * 0.75);
@@ -96,6 +108,7 @@
 	--ease-in-out-back: cubic-bezier(0.68, -0.6, 0.32, 1.6);
 	--ease-rotate-text: var(--ease-out-circ);
 
+	/* 浮き上がりアニメーション削除
 	--animate-card-lift: card-lift 700ms ease-in-out;
 
 	@keyframes card-lift {
@@ -106,5 +119,5 @@
 		50% {
 			transform: scale(1.05);
 		}
-	}
+	} */
 }

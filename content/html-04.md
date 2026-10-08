@@ -4,9 +4,6 @@ description: HTML の table タグを使って表を正しく作成する方法�
 upDate: 2025-01-21
 pubDate: 2025-01-21
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft
