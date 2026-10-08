@@ -47,8 +47,17 @@ const decorativeNumberClass =
   'hidden xl:absolute xl:bottom-0 xl:left-1/2 xl:block xl:-translate-x-1/2 xl:font-space-grotesk xl:leading-none xl:font-bold xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10';
 ---
 
+{
+  /*
+    xl 未満では -mb-px で margin box を border-b の 1px 分だけ縮める。sticky は margin box が
+    コンテナ内に収まるよう押し上げられるため、セクション末尾で border-b がコンテナ外の
+    区切り線（親の mb-px）に重なり、二重線にならない。
+    縮めた 1px は親グリッドの gap-px で補う（非 sticky 時に後続要素が border-b に食い込まないように）。
+    スクロール中にレイアウトを変えて二重線を消すと、iOS のオーバースクロールで高さが揺れてガタつく。
+  */
+}
 <div
-  class="max-xl:sticky max-xl:top-(--header-height) max-xl:z-50 max-xl:border-b max-xl:border-border"
+  class="max-xl:sticky max-xl:top-(--header-height) max-xl:z-50 max-xl:-mb-px max-xl:border-b max-xl:border-border"
   style={capRowsStyle}
   data-js-sticky-sidebar
 >
