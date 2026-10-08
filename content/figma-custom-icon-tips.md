@@ -6,7 +6,7 @@ pubDate: 2026-09-03
 author: とも
 tags:
   - Figma
-status: draft
+status: publish
 ---
 
 ## 回答
