@@ -36,7 +36,7 @@ Lucide / Feather / Iconify の使い分けは別記事にまとめている → 
 「解除」は一括で戻しにくい操作。コピーを取ってから実行するか、直後に `Cmd + Z` で戻せる範囲で使う。\
 スタイルや変数も一緒に外れることがあるので、解除対象のチェックを確認してから実行する。
 
-### プラグインのリンク
+## プラグインのリンク
 
 - [Destroyer](https://www.figma.com/community/plugin/1076733710017310027/destroyer) — インスタンス・スタイル・変数の一括解除
 - [Insert Big Image](https://www.figma.com/community/plugin/799646392992487942/insert-big-image) — 大きな画像を分割して配置

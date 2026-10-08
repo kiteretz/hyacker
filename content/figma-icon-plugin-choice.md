@@ -40,7 +40,7 @@ Iconify はアイコンがどのセットのものかを表示する。\
 
 Lucide のアイコンを入れるときは、コミュニティによる二次配布ファイルではなく公式の Lucide Icons プラグインを使う。
 
-### プラグインのリンク
+## プラグインのリンク
 
 - [Lucide Icons](https://www.figma.com/community/plugin/939567362549682242/lucide-icons) — 公式プラグイン。1,600 以上のアイコン
 - [Feather Icons](https://www.figma.com/community/plugin/744047966581015514/feather-icons) — 公式プラグイン
