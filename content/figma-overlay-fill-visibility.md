@@ -4,9 +4,6 @@ description: Figma でベタ塗り背景に要素を重ねると視認性が落�
 upDate: 2026-09-03
 pubDate: 2026-09-03
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - Figma
 status: draft

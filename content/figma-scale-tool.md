@@ -4,9 +4,6 @@ description: Figma で通常のリサイズだと線幅や文字サイズが変�
 upDate: 2026-09-03
 pubDate: 2026-09-03
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - Figma
 status: draft

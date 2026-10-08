@@ -4,9 +4,6 @@ description: Figma でアイコンを自作またはカスタムする際の注�
 upDate: 2026-09-03
 pubDate: 2026-09-03
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - Figma
 status: draft

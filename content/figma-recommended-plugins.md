@@ -4,9 +4,6 @@ description: Figma の作業を効率化するおすすめプラグイン（Dest
 upDate: 2026-09-03
 pubDate: 2026-09-03
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - Figma
 status: draft
