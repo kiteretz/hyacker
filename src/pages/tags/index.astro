@@ -10,7 +10,7 @@ const tags = await getPostsByTag();
 
 <Layout title="タグ一覧">
   <section class="flex flex-1 flex-col">
-    <div class="mb-px grid-tracks flex-1 max-xl:grid-rows-[auto_1fr] xl:gap-px">
+    <div class="mb-px grid-tracks flex-1 gap-px max-xl:grid-rows-[auto_1fr]">
       <SideLeft title="Tags" count={tags.length} showCount={true} fillParent />
       <div class="grid-tracks-col grid content-start bg-bg pb-40 xl:pb-0">
         {

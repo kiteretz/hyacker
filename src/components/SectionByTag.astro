@@ -63,12 +63,7 @@ const capRows = capHeight
 ---
 
 <section class:list={[fillParent && 'flex flex-1 flex-col']}>
-  <div
-    class:list={[
-      'mb-0 grid-tracks max-xl:has-data-stuck:mb-px xl:mb-px xl:gap-px',
-      fillParent && 'flex-1 max-xl:grid-rows-[auto_1fr]',
-    ]}
-  >
+  <div class:list={['mb-px grid-tracks gap-px', fillParent && 'flex-1 max-xl:grid-rows-[auto_1fr]']}>
     <SideLeft
       title={title}
       count={posts.length}
