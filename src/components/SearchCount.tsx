@@ -53,7 +53,7 @@ const SearchCount: FC = () => {
   const countStr = String(displayCount).padStart(3, '0');
 
   return (
-    <span className="hidden xl:absolute xl:bottom-0 xl:left-0 xl:block xl:font-space-grotesk xl:text-108 xl:leading-none xl:font-bold xl:text-neutral-900 xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10">
+    <span className="hidden xl:absolute xl:bottom-0 xl:left-1/2 xl:block xl:-translate-x-1/2 xl:font-space-grotesk xl:text-108 xl:leading-none xl:font-bold xl:text-fg xl:lining-nums xl:slashed-zero xl:tabular-nums xl:opacity-10">
       {countStr}
     </span>
   );

@@ -4,9 +4,6 @@ description: :hover や :nth-child などの擬似クラスと、::before・::af
 upDate: 2025-02-27
 pubDate: 2025-02-27
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - CSS
 status: draft

@@ -4,9 +4,6 @@ description: CSS カスタムプロパティを使ってテーマカラーや共
 upDate: 2025-02-05
 pubDate: 2025-02-05
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - "Editor's Picks"
   - CSS

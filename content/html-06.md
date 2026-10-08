@@ -4,9 +4,6 @@ description: HTML のアンカータグを使ったリンクの作り方と、ta
 upDate: 2025-01-31
 pubDate: 2025-01-31
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - HTML
 status: draft

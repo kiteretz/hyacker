@@ -9,7 +9,6 @@ const dummyResult = (all = false) => {
       title: '検索結果ダミー1',
       date: new Date(),
       tags: ['ダミー'],
-      img: '/assets/posts/card-thumbnail.svg',
       answer:
         'function fetchUser(id) {\n  return fetch(`/api/users/${id}`)\n    .then(res => res.json())\n    .then(data => data);\n}',
       isCode: true,
@@ -30,7 +29,6 @@ const dummyResult = (all = false) => {
       title: '検索結果ダミー3',
       date: new Date(),
       tags: ['ダミー'],
-      img: '/assets/posts/card-thumbnail.svg',
       answer:
         'function fetchUser(id) {\n  return fetch(`/api/users/${id}`)\n    .then(res => res.json())\n    .then(data => data);\n}',
       isCode: true,

@@ -8,11 +8,11 @@ import SideLeft from '@components/SideLeft.astro';
 ---
 
 <Layout title="検索結果">
-  <section>
-    <div class="mb-px grid min-h-[calc(100svh-var(--header-height))] grid-rows-[auto_1fr] gap-px">
+  <section class="flex flex-1 flex-col">
+    <div class="mb-px grid flex-1 grid-rows-[auto_1fr] gap-px">
       <SearchPageInput client:load />
       <div class="z-10 grid-tracks grid-rows-[auto_1fr] xl:grid-rows-1 xl:gap-px">
-        <SideLeft title="Result" showCount stickyCount>
+        <SideLeft title="Result" showCount stickyCount fillParent>
           <SearchCount slot="count" client:load />
         </SideLeft>
         <SearchResults client:load />

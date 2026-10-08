@@ -6,8 +6,9 @@ import { SHIKI_THEME } from '@libs/shikiConfig';
 import { getShikiHighlighter } from '@libs/shikiHighlighter';
 
 import { extractAnswer } from '@utils/extractAnswer';
-import { getGridFillerClasses, STRETCH_FILLER_CELL_CLASSES } from '@utils/gridFiller';
+import { getGridFillerClasses, getResponsiveLimitClasses, STRETCH_FILLER_CELL_CLASSES } from '@utils/gridFiller';
 
+import type { ResponsiveLimit } from '@utils/gridFiller';
 import type { CollectionEntry } from 'astro:content';
 
 export type SectionItem = {
@@ -20,16 +21,54 @@ export type SectionItem = {
   showAll?: boolean;
   /** false にすると SideLeft がビューポート基準の高さを持たず、投稿リストの高さに追従する */
   fullHeight?: boolean;
+  /**
+   * true にすると SideLeft のビューポート基準の高さを「カード 3 行分とカードリストの高さの大きい方」で
+   * 頭打ちにする（fullHeight のときのみ有効）。リストがビューポート以上ならビューポートいっぱいに伸びる。
+   */
+  capHeight?: boolean;
+  /**
+   * true にするとセクションが main の残り高さを埋め、SideLeft はビューポート基準の高さを上限として追従する。
+   * 投稿が少なくてもフッターまで含めてビューポートに収めるため、セクション 1 つだけのページで使う。capHeight とは併用しない。
+   */
+  fillParent?: boolean;
+  /** 列数の帯ごとの最大表示件数。指定すると既定の 15 件・showAll より優先し、帯ごとにカードを出し分ける */
+  limit?: ResponsiveLimit;
 };
 
 interface Props extends SectionItem {}
 
-const { title, posts, index, href, showCount = false, showAll = false, fullHeight = true } = Astro.props;
-const displayedPosts = showAll ? posts : posts.slice(0, 15);
+const {
+  title,
+  posts,
+  index,
+  href,
+  showCount = false,
+  showAll = false,
+  fullHeight = true,
+  capHeight = false,
+  fillParent = false,
+  limit,
+} = Astro.props;
+const maxPosts = limit ? Math.max(...Object.values(limit)) : showAll ? posts.length : 15;
+const displayedPosts = posts.slice(0, maxPosts);
+
+// grid-tracks のコンテンツ列数（xl = 4、2xl = 5）から各帯でのカード行数を求める
+const MIN_CAP_ROWS = 3;
+const capRows = capHeight
+  ? {
+      xl: Math.max(MIN_CAP_ROWS, Math.ceil(displayedPosts.length / 4)),
+      '2xl': Math.max(MIN_CAP_ROWS, Math.ceil(displayedPosts.length / 5)),
+    }
+  : undefined;
 ---
 
-<section>
-  <div class="mb-0 grid-tracks max-xl:has-data-stuck:mb-px xl:mb-px xl:gap-px">
+<section class:list={[fillParent && 'flex flex-1 flex-col']}>
+  <div
+    class:list={[
+      'mb-0 grid-tracks max-xl:has-data-stuck:mb-px xl:mb-px xl:gap-px',
+      fillParent && 'flex-1 max-xl:grid-rows-[auto_1fr]',
+    ]}
+  >
     <SideLeft
       title={title}
       count={posts.length}
@@ -37,12 +76,14 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
       href={href}
       showCount={showCount}
       fullHeight={fullHeight}
+      capRows={capRows}
+      fillParent={fillParent}
     />
     <div class="grid-tracks-pane flex-col max-xl:flex">
       <div class="grid-tracks-full">
         {
           await Promise.all(
-            displayedPosts.map(async (post) => {
+            displayedPosts.map(async (post, i) => {
               const extracted = extractAnswer(post.body ?? '');
               let highlightedCode: string | undefined;
               if (extracted?.isCode) {
@@ -63,6 +104,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
                   answer={extracted?.content}
                   isCode={extracted?.isCode}
                   highlightedCode={highlightedCode}
+                  className={limit && getResponsiveLimitClasses(i, limit)}
                   client:visible
                 />
               );
@@ -70,19 +112,21 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
           )
         }
         {
-          getGridFillerClasses(displayedPosts.length).map((classes) => (
-            <div aria-hidden="true" class:list={['bg-white', classes]} />
+          getGridFillerClasses(displayedPosts.length, limit).map((classes) => (
+            <div aria-hidden="true" class:list={['bg-bg', classes]} />
           ))
         }
       </div>
-      <!--
+      {
+        /*
         リストより SideLeft が高い場合に残る余白を、列ごとの空セルで埋めるストレッチフィラー。
         セル上端の横罫線は高さに寄与しないよう border ではなく inset shadow で描く。
-      -->
+      */
+      }
       <div aria-hidden="true" class="grid-tracks-full flex-1 overflow-hidden">
         {
           STRETCH_FILLER_CELL_CLASSES.map((classes) => (
-            <div class:list={['bg-white shadow-[inset_0_1px_0_0_var(--color-neutral-800)]', classes]} />
+            <div class:list={['bg-bg shadow-[inset_0_1px_0_0_var(--color-border)]', classes]} />
           ))
         }
       </div>

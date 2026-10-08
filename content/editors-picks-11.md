@@ -4,9 +4,6 @@ description: ページの読み込み速度を改善するための基本的な�
 upDate: 2025-02-25
 pubDate: 2025-02-25
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - "Editor's Picks"
   - HTML

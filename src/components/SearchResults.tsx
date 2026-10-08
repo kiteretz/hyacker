@@ -18,13 +18,13 @@ import Card from './Card';
 const GRID_CLASSES = 'grid-tracks-full';
 const SKELETON_COUNT = 10; // 2xl の 5 列でちょうど 2 行
 
-// 検索完了までのプレースホルダー。Card の front 面（h-367 / p-8 / 画像下寄せ）と同じ骨格
+// 検索完了までのプレースホルダー。Card の front 面（h-card / p-8 / 画像下寄せ）と同じ骨格
 const SkeletonCard: FC = () => (
-  <div className="grid h-367 animate-pulse grid-rows-[auto_auto_auto_1fr] bg-white p-8">
-    <div className="mx-8 mb-8 h-18 rounded-4 bg-neutral-100" />
-    <div className="mx-8 mb-4 h-14 w-1/3 rounded-4 bg-neutral-100" />
-    <div className="mx-8 h-14 w-1/2 rounded-4 bg-neutral-100" />
-    <div className="aspect-video self-end rounded-8 bg-neutral-100" />
+  <div className="grid h-card animate-pulse grid-rows-[auto_auto_auto_1fr] bg-bg p-8">
+    <div className="mx-8 mb-8 h-18 rounded-4 bg-neutral-100 dark:bg-neutral-800" />
+    <div className="mx-8 mb-4 h-14 w-1/3 rounded-4 bg-neutral-100 dark:bg-neutral-800" />
+    <div className="mx-8 h-14 w-1/2 rounded-4 bg-neutral-100 dark:bg-neutral-800" />
+    <div className="aspect-video self-end rounded-8 bg-neutral-100 dark:bg-neutral-800" />
   </div>
 );
 
@@ -54,18 +54,23 @@ const SearchResults: FC = () => {
   }, []);
 
   return (
-    <div aria-live="polite" aria-busy={results === null} className="grid-tracks-pane flex-col max-xl:flex">
+    // xl では結果が少なくてもカード 2 行分の高さを確保する（1px は行間の gap-px。余りはストレッチフィラーが埋める）
+    <div
+      aria-live="polite"
+      aria-busy={results === null}
+      className="grid-tracks-pane flex-col max-xl:flex xl:min-h-[calc(2*(var(--spacing-card)+1px)-1px)]"
+    >
       {results === null ? (
         <div aria-hidden="true" className={GRID_CLASSES}>
           {Array.from({ length: SKELETON_COUNT }, (_, i) => (
             <SkeletonCard key={i} />
           ))}
           {getGridFillerClasses(SKELETON_COUNT).map((classes, i) => (
-            <div key={i} className={twJoin('bg-white', classes)} />
+            <div key={i} className={twJoin('bg-bg', classes)} />
           ))}
         </div>
       ) : results.length === 0 ? (
-        <div className="flex-1 bg-white p-16 xl:col-span-full xl:p-32">
+        <div className="flex-1 bg-bg p-16 xl:col-span-full xl:row-span-full xl:p-32">
           <p>該当する記事はありません</p>
         </div>
       ) : (
@@ -75,7 +80,7 @@ const SearchResults: FC = () => {
               <Card key={result.href} {...result} />
             ))}
             {getGridFillerClasses(results.length).map((classes, i) => (
-              <div key={i} aria-hidden="true" className={twJoin('bg-white', classes)} />
+              <div key={i} aria-hidden="true" className={twJoin('bg-bg', classes)} />
             ))}
           </div>
           {/*
@@ -84,7 +89,7 @@ const SearchResults: FC = () => {
           */}
           <div aria-hidden="true" className="grid-tracks-full flex-1 overflow-hidden">
             {STRETCH_FILLER_CELL_CLASSES.map((classes, i) => (
-              <div key={i} className={twJoin('bg-white shadow-[inset_0_1px_0_0_var(--color-neutral-800)]', classes)} />
+              <div key={i} className={twJoin('bg-bg shadow-[inset_0_1px_0_0_var(--color-border)]', classes)} />
             ))}
           </div>
         </>

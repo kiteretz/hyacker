@@ -4,9 +4,6 @@ description: static・relative・absolute・fixed・sticky の違いと、それ
 upDate: 2025-01-22
 pubDate: 2025-01-22
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 背景の画像
 tags:
   - CSS
 status: draft

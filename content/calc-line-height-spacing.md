@@ -4,9 +4,6 @@ description: デザインカンプの余白の数値から、line-heightによ�
 upDate: 2026-08-05
 pubDate: 2026-08-05
 author: とも
-image:
-  url: /assets/posts/card-thumbnail.svg
-  alt: 画像の説明
 tags:
   - CSS
 status: publish
