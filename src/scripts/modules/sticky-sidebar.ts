@@ -74,6 +74,10 @@ function init(): void {
         sidebar!.removeAttribute('data-sidebar-tall');
         state = 'static';
         prevScrollY = window.scrollY;
+
+        // stuck中（実際にピン留めされている間）だけ立てる。SectionByTag.astro 側で
+        // border-b と mb-px の二重線を防ぐために参照する。
+        sidebar!.toggleAttribute('data-stuck', Math.abs(sidebar!.getBoundingClientRect().top - topOffset) < 1);
         return;
       }
 

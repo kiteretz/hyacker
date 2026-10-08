@@ -29,7 +29,7 @@ const displayedPosts = showAll ? posts : posts.slice(0, 15);
 ---
 
 <section>
-  <div class="mb-px grid-tracks xl:gap-px">
+  <div class="mb-0 grid-tracks max-xl:has-data-stuck:mb-px xl:mb-px xl:gap-px">
     <SideLeft
       title={title}
       count={posts.length}
