@@ -33,7 +33,7 @@
     "shiki": "^4.4.3",
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@astrojs/react": "^5.0.7",
