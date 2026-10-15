@@ -57,6 +57,10 @@ All commands are run from the root of the project, from a terminal:
 
 Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
 
+## 検索の仕様
+
+[Pagefindの組み込み、インデックスについて](https://kiteretz.notion.site/hyacker-pagefind)
+
 ## 開発規約
 
 ### import の順序
