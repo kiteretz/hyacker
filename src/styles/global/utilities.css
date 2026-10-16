@@ -108,6 +108,15 @@
 		}
 		text-wrap: nowrap;
 	}
+	/* インラインコードと kbd。pre 内の code は対象外 */
+	:not(pre) > code,
+	kbd {
+		@apply rounded-4 border border-border/50 px-[0.375em] pt-[0.125em] pb-[0.1em];
+	}
+	kbd {
+		/* プラグイン既定の box-shadow 枠をボーダーに置き換える。 */
+		box-shadow: none;
+	}
 	dl {
 		@apply grid gap-8;
 		> div {
