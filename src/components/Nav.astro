@@ -17,27 +17,23 @@ const naviItems: { label: string; href: string }[] = [
     label: 'Tags',
     href: '/tags/',
   },
-  ...tags.slice(0, 3).map(({ name }) => {
-    return { label: name, href: `/tags/${encodeURIComponent(name)}/` };
-  }),
+  ...tags
+    .filter(({ name }) => name !== "Editor's Picks")
+    .slice(0, 3)
+    .map(({ name }) => {
+      return { label: name, href: `/tags/${encodeURIComponent(name)}/` };
+    }),
 ];
 ---
 
 <nav aria-label="グローバルナビゲーション" class:list={[className]}>
   <ul class="flex flex-wrap md:h-full md:justify-end">
-    {
-      naviItems.map(({ label, href }) => (
-        <li class="flex md:h-full md:items-center md:justify-center">
-          <a
-            href={href}
-            class:list={[
-              'link-underline relative px-16 py-9 font-inter text-16 leading-none font-medium',
-            ]}
-          >
-            {label}
-          </a>
-        </li>
-      ))
-    }
+    {naviItems.map(({ label, href }) => (
+      <li class="flex md:h-full md:items-center md:justify-center">
+        <a href={href} class:list={['link-underline relative px-16 py-9 font-inter text-16 leading-none font-medium']}>
+          {label}
+        </a>
+      </li>
+    ))}
   </ul>
 </nav>
