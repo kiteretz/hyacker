@@ -1,26 +1,9 @@
 ---
-import { getPostsByTag } from '@libs/postsByTag';
+import { getNavItems } from '@libs/navItems';
 
 import ThemeSwitch from './ThemeSwitch.astro';
 
-const tags = await getPostsByTag();
-
-const mainItems: { label: string; href: string }[] = [
-  {
-    label: 'Posts',
-    href: '/post/',
-  },
-  {
-    label: 'Tags',
-    href: '/tags/',
-  },
-  ...tags
-    .filter(({ name }) => name !== "Editor's Picks")
-    .slice(0, 5)
-    .map(({ name }) => {
-      return { label: name, href: `/tags/${encodeURIComponent(name)}/` };
-    }),
-];
+const mainItems = await getNavItems(5);
 
 const subItems: { label: string; href: string; external?: boolean }[] = [
   { label: 'About', href: '/about/' },
