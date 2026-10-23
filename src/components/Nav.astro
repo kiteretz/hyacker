@@ -1,43 +1,22 @@
 ---
-import { getPostsByTag } from '@libs/postsByTag';
+import { getNavItems } from '@libs/navItems';
 
 export interface Props {
   class?: string;
 }
 
 const { class: className } = Astro.props;
-const tags = await getPostsByTag();
-
-const naviItems: { label: string; href: string }[] = [
-  {
-    label: 'Posts',
-    href: '/post/',
-  },
-  {
-    label: 'Tags',
-    href: '/tags/',
-  },
-  ...tags.slice(0, 3).map(({ name }) => {
-    return { label: name, href: `/tags/${encodeURIComponent(name)}/` };
-  }),
-];
+const navItems = await getNavItems(5);
 ---
 
 <nav aria-label="グローバルナビゲーション" class:list={[className]}>
   <ul class="flex flex-wrap md:h-full md:justify-end">
-    {
-      naviItems.map(({ label, href }) => (
-        <li class="flex md:h-full md:items-center md:justify-center">
-          <a
-            href={href}
-            class:list={[
-              'link-underline relative px-16 py-9 font-inter text-16 leading-none font-medium',
-            ]}
-          >
-            {label}
-          </a>
-        </li>
-      ))
-    }
+    {navItems.map(({ label, href }) => (
+      <li class="flex md:h-full md:items-center md:justify-center">
+        <a href={href} class:list={['link-underline relative px-16 py-9 font-inter text-16 leading-none font-medium']}>
+          {label}
+        </a>
+      </li>
+    ))}
   </ul>
 </nav>
