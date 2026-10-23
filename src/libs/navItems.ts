@@ -10,8 +10,6 @@ export const getNavItems = async (tabLimit: number): Promise<NavItem[]> => {
   const tags = await getPostsByTag();
 
   return [
-    { label: 'Posts', href: '/post/' },
-    { label: 'Tags', href: '/tags' },
     ...tags
       .filter(({ name }) => name !== "Editor's Picks")
       .slice(0, tabLimit)
