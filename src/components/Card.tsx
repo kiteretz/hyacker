@@ -21,6 +21,8 @@ export type Card = {
   isCode?: boolean;
   highlightedCode?: string;
   lang?: string;
+  // 下書き記事か（dev でのみ true になりうる。本番では draft 記事自体が描画されない）
+  isDraft?: boolean;
   /** ルート要素に足すクラス（ブレークポイントごとの表示切り替えなど） */
   className?: string;
 };
@@ -42,7 +44,20 @@ async function getClientHighlighter() {
   return getShikiHighlighter();
 }
 
-const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, highlightedCode, lang, className }) => {
+const Card: FC<Card> = ({
+  href,
+  title,
+  date,
+  tags,
+  img,
+  imgAlt,
+  answer,
+  isCode,
+  highlightedCode,
+  lang,
+  isDraft,
+  className,
+}) => {
   const [copied, setCopied] = useState(false);
   const [showLeft, setShowLeft] = useState(false);
   const [showTop, setShowTop] = useState(false);
@@ -110,6 +125,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
   return (
     <a
       href={href}
+      data-draft={isDraft || undefined}
       className={twMerge(
         'group relative block h-card bg-bg transition-all duration-200 perspective-midrange',
         isActive ? 'z-1 outline-transparent' : '',
@@ -126,7 +142,13 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
         )}
       >
         {/* front */}
-        <div className="absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-bg p-8 backface-hidden">
+        <div
+          className={twMerge(
+            'absolute inset-0 grid grid-rows-[auto_auto_auto_1fr] bg-bg p-8 backface-hidden',
+            'group-data-draft:before:absolute group-data-draft:before:inset-0 group-data-draft:before:flex group-data-draft:before:items-center group-data-draft:before:justify-center group-data-draft:before:font-space-grotesk group-data-draft:before:text-32 group-data-draft:before:font-semibold group-data-draft:before:text-fg group-data-draft:before:opacity-20 group-data-draft:before:content-["DRAFT"]',
+            'group-data-draft:bg-[repeating-linear-gradient(-45deg,color-mix(in_oklab,var(--color-fg)_20%,transparent)_0_1px,transparent_1px_8px)]',
+          )}
+        >
           <h3 className="mb-8 line-clamp-3 px-8 text-18 font-semibold sm:line-clamp-4">{title}</h3>
           <p className="px-8 font-space-grotesk text-14 text-fg-muted">{formatDate(date)}</p>
           <ul className="flex flex-wrap px-8 font-inter text-14 text-fg-muted">
@@ -151,7 +173,7 @@ const Card: FC<Card> = ({ href, title, date, tags, img, imgAlt, answer, isCode, 
             // 色がテーマのトークンに従うので、ライトでもダークでも地の色に馴染む。
             // 1 文字 = 1em 四方。25cqw で横 4 文字ぶんになる
             <div aria-hidden="true" className="@container aspect-video w-full self-end overflow-hidden">
-              <p className="font-ktrz text-[length:25cqw] leading-none whitespace-nowrap text-fg opacity-[0.03]">
+              <p className="font-ktrz text-[25cqw] leading-none whitespace-nowrap text-fg opacity-[0.03]">
                 {NO_THUMBNAIL_LINES.map((line) => (
                   <span key={line} className="block">
                     {line}
