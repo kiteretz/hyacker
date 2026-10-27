@@ -1,15 +1,13 @@
 ---
-import { getPostsByTag } from '@libs/postsByTag';
+import { getNavItems } from '@libs/navItems';
 
 import ThemeSwitch from './ThemeSwitch.astro';
 
-const tags = await getPostsByTag();
-
-const mainItems: { label: string; href: string }[] = [
-  ...tags.slice(0, 5).map(({ name }) => ({ label: name, href: `/tags/${encodeURIComponent(name)}/` })),
-];
+const mainItems = await getNavItems(5);
 
 const subItems: { label: string; href: string; external?: boolean }[] = [
+  { label: 'All Posts', href: '/post/' },
+  { label: 'Tags', href: '/tags/' },
   { label: 'About', href: '/about/' },
   { label: 'Terms', href: '/term/' },
   { label: 'X(Twitter)', href: '/', external: true },
@@ -22,8 +20,7 @@ const subItems: { label: string; href: string; external?: boolean }[] = [
     class="pointer-events-none fixed inset-x-0 bottom-0 opacity-0 transition-opacity duration-200 ease-in-out group-data-[open=true]:pointer-events-auto group-data-[open=true]:opacity-100"
     style="top: var(--header-height, 64px);"
     aria-hidden="true"
-  >
-  </div>
+  ></div>
   <div
     id="js-mobile-menu"
     class="fixed right-0 z-modal w-full max-w-1/2 translate-x-full border-l border-border transition-transform duration-200 ease-out group-data-[open=true]:translate-x-0"
@@ -33,78 +30,69 @@ const subItems: { label: string; href: string; external?: boolean }[] = [
   >
     <nav aria-label="モバイルメニュー" class="flex h-full flex-col gap-px overflow-y-auto bg-border font-inter">
       <ul class="flex flex-1 flex-col items-end bg-bg pt-16 pb-40 font-medium">
-        {
-          mainItems.map(({ label, href }) => (
-            <li>
-              <a
-                href={href}
-                class="flex items-center gap-4 px-16 py-8 text-16 leading-none tracking-tight link-underline"
+        {mainItems.map(({ label, href }) => (
+          <li>
+            <a
+              href={href}
+              class="flex items-center gap-4 px-16 py-8 text-16 leading-none tracking-tight link-underline"
+            >
+              <span>{label}</span>
+              <svg
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="none"
+                viewBox="0 0 16 16"
               >
-                <span>{label}</span>
-                <svg
-                  aria-hidden="true"
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="16"
-                  fill="none"
-                  viewBox="0 0 16 16"
-                >
-                  <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="1.333" d="M3 8h10m-4-4 4 4-4 4" />
-                </svg>
-              </a>
-            </li>
-          ))
-        }
+                <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="1.333" d="M3 8h10m-4-4 4 4-4 4" />
+              </svg>
+            </a>
+          </li>
+        ))}
       </ul>
       <div class="flex flex-1 flex-col items-end justify-between bg-bg py-16">
         <ul class="flex flex-col items-end font-medium">
-          {
-            subItems.map(({ label, href, external }) => (
-              <li>
-                <a
-                  href={href}
-                  target={external ? '_blank' : undefined}
-                  rel={external ? 'noopener noreferrer' : undefined}
-                  class="flex items-center gap-4 px-16 py-4 text-16 leading-relaxed tracking-tight link-underline"
-                >
-                  <span>{label}</span>
-                  {external ? (
-                    <svg
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="none"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linejoin="bevel"
-                        stroke-width="1.333"
-                        d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
-                      />
-                    </svg>
-                  ) : (
-                    <svg
-                      aria-hidden="true"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="16"
-                      height="16"
-                      fill="none"
-                      viewBox="0 0 16 16"
-                    >
-                      <path
-                        stroke="currentColor"
-                        stroke-linejoin="bevel"
-                        stroke-width="1.333"
-                        d="M3 8h10m-4-4 4 4-4 4"
-                      />
-                    </svg>
-                  )}
-                </a>
-              </li>
-            ))
-          }
+          {subItems.map(({ label, href, external }) => (
+            <li>
+              <a
+                href={href}
+                target={external ? '_blank' : undefined}
+                rel={external ? 'noopener noreferrer' : undefined}
+                class="flex items-center gap-4 px-16 py-4 text-16 leading-relaxed tracking-tight link-underline"
+              >
+                <span>{label}</span>
+                {external ? (
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    viewBox="0 0 16 16"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linejoin="bevel"
+                      stroke-width="1.333"
+                      d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="16"
+                    height="16"
+                    fill="none"
+                    viewBox="0 0 16 16"
+                  >
+                    <path stroke="currentColor" stroke-linejoin="bevel" stroke-width="1.333" d="M3 8h10m-4-4 4 4-4 4" />
+                  </svg>
+                )}
+              </a>
+            </li>
+          ))}
         </ul>
         <div class="mt-8 px-16 py-8">
           <ThemeSwitch />
