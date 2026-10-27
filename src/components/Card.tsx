@@ -21,7 +21,7 @@ export type Card = {
   isCode?: boolean;
   highlightedCode?: string;
   lang?: string;
-  // 下書き記事か（dev でのみ true になりうる。本番では draft 記事自体が描画されない）
+  /** 下書き記事か（dev でのみ true になりうる。本番では draft 記事自体が描画されない） */
   isDraft?: boolean;
   /** ルート要素に足すクラス（ブレークポイントごとの表示切り替えなど） */
   className?: string;
