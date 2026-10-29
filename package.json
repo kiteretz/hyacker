@@ -24,7 +24,7 @@
     "@astrojs/mdx": "^5.0.6",
     "@astrojs/rss": "^4.0.19",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^6.4.8",
+    "astro": "^7.3.3",
     "clsx": "^2.1.1",
     "jotai": "^2.20.3",
     "pagefind": "^1.5.2",
