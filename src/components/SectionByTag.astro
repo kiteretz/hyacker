@@ -76,54 +76,47 @@ const capRows = capHeight
     />
     <div class="grid-tracks-pane flex-col max-xl:flex">
       <div class="grid-tracks-full">
-        {
-          await Promise.all(
-            displayedPosts.map(async (post, i) => {
-              const extracted = extractAnswer(post.body ?? '');
-              let highlightedCode: string | undefined;
-              if (extracted?.isCode) {
-                const hl = await getShikiHighlighter();
-                highlightedCode = hl.codeToHtml(extracted.content, {
-                  lang: extracted.lang ?? 'text',
-                  theme: SHIKI_THEME,
-                });
-              }
-              return (
-                <Card
-                  href={`/post/${post.id}/`}
-                  title={post.data.title}
-                  date={post.data.pubDate}
-                  tags={post.data.tags ?? []}
-                  img={post.data.image?.url}
-                  imgAlt={post.data.image?.alt ?? undefined}
-                  answer={extracted?.content}
-                  isCode={extracted?.isCode}
-                  highlightedCode={highlightedCode}
-                  className={limit && getResponsiveLimitClasses(i, limit)}
-                  client:visible
-                />
-              );
-            }),
-          )
-        }
-        {
-          getGridFillerClasses(displayedPosts.length, limit).map((classes) => (
-            <div aria-hidden="true" class:list={['bg-bg', classes]} />
-          ))
-        }
+        {await Promise.all(
+          displayedPosts.map(async (post, i) => {
+            const extracted = extractAnswer(post.body ?? '');
+            let highlightedCode: string | undefined;
+            if (extracted?.isCode) {
+              const hl = await getShikiHighlighter();
+              highlightedCode = hl.codeToHtml(extracted.content, {
+                lang: extracted.lang ?? 'text',
+                theme: SHIKI_THEME,
+              });
+            }
+            return (
+              <Card
+                href={`/post/${post.id}/`}
+                title={post.data.title}
+                date={post.data.pubDate}
+                tags={post.data.tags ?? []}
+                img={post.data.image?.url}
+                imgAlt={post.data.image?.alt ?? undefined}
+                answer={extracted?.content}
+                isCode={extracted?.isCode}
+                highlightedCode={highlightedCode}
+                isDraft={post.data.status !== 'publish'}
+                className={limit && getResponsiveLimitClasses(i, limit)}
+                client:visible
+              />
+            );
+          }),
+        )}
+        {getGridFillerClasses(displayedPosts.length, limit).map((classes) => (
+          <div aria-hidden="true" class:list={['bg-bg', classes]} />
+        ))}
       </div>
-      {
-        /*
+      {/*
         リストより SideLeft が高い場合に残る余白を、列ごとの空セルで埋めるストレッチフィラー。
         セル上端の横罫線は高さに寄与しないよう border ではなく inset shadow で描く。
-      */
-      }
+      */}
       <div aria-hidden="true" class="grid-tracks-full flex-1 overflow-hidden">
-        {
-          STRETCH_FILLER_CELL_CLASSES.map((classes) => (
-            <div class:list={['bg-bg shadow-[inset_0_1px_0_0_var(--color-border)]', classes]} />
-          ))
-        }
+        {STRETCH_FILLER_CELL_CLASSES.map((classes) => (
+          <div class:list={['bg-bg shadow-[inset_0_1px_0_0_var(--color-border)]', classes]} />
+        ))}
       </div>
     </div>
   </div>
