@@ -13,62 +13,66 @@ const { class: className } = Astro.props;
 <footer class={twMerge('sticky top-[100vh] border-border bg-bg', className)}>
   <div
     class:list={[
-      'flex flex-col font-inter font-medium',
-      'md:h-64 md:flex-row-reverse md:items-center md:justify-between md:px-32',
+      'grid grid-cols-[1fr_auto] font-inter font-medium',
+      'lg:flex lg:h-64 lg:flex-row-reverse lg:items-center lg:justify-between lg:px-32',
     ]}
   >
-    <div class="flex items-center justify-between px-16 py-8 md:gap-32 md:p-0">
-      <nav aria-label="フッターナビゲーション">
-        <ul class="flex items-center gap-x-16">
-          {[
-            { label: 'All Posts', href: '/post/' },
-            { label: 'Tags', href: '/tags/' },
-            {
-              label: 'About',
-              href: '/about/',
-            },
-            {
-              label: 'Terms',
-              href: '/term/',
-            },
-            {
-              label: 'X(Twitter)',
-              href: '/',
-              target: '_blank',
-            },
-          ].map(({ label, href, target }) => (
-            <li>
-              <a href={href} target={target} class="flex items-center link-underline">
-                {label}
-                {label === 'X(Twitter)' && (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="16"
-                    height="16"
-                    fill="none"
-                    viewBox="0 0 16 16"
-                    class=""
-                  >
-                    <path
-                      stroke="currentColor"
-                      stroke-linejoin="bevel"
-                      stroke-width="1.333"
-                      d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
-                    />
-                  </svg>
-                )}
-              </a>
-            </li>
-          ))}
+    <div class="contents lg:flex lg:items-center lg:gap-32">
+      <nav aria-label="フッターナビゲーション" class="col-span-2 px-16 py-8 lg:p-0">
+        <ul class="flex flex-wrap items-center gap-x-16 gap-y-4 whitespace-nowrap">
+          {
+            [
+              { label: 'All Posts', href: '/post/' },
+              { label: 'Tags', href: '/tags/' },
+              {
+                label: 'About',
+                href: '/about/',
+              },
+              {
+                label: 'Terms',
+                href: '/term/',
+              },
+              {
+                label: 'X(Twitter)',
+                href: '/',
+                target: '_blank',
+              },
+            ].map(({ label, href, target }) => (
+              <li>
+                <a href={href} target={target} class="flex items-center link-underline">
+                  {label}
+                  {label === 'X(Twitter)' && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      fill="none"
+                      viewBox="0 0 16 16"
+                      class=""
+                    >
+                      <path
+                        stroke="currentColor"
+                        stroke-linejoin="bevel"
+                        stroke-width="1.333"
+                        d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
+                      />
+                    </svg>
+                  )}
+                </a>
+              </li>
+            ))
+          }
         </ul>
       </nav>
-      <ThemeSwitch />
+      <div class="col-start-2 row-start-2 flex items-center border-t border-border pr-16 lg:border-none lg:p-0">
+        <ThemeSwitch />
+      </div>
     </div>
-    <p class="h-48 content-center border-t border-border px-16 py-8 text-right md:h-auto md:border-none md:p-0 md:text-left">
+    <p
+      class="col-start-1 row-start-2 h-48 content-center border-t border-border px-16 py-8 lg:h-auto lg:border-none lg:p-0"
+    >
       © 2026 hyacker /{' '}
-      <a href="http://kiteretz.com/" target="_blank" class="link-underline">
-        KITERETZ inc.
-      </a>
+      <a href="http://kiteretz.com/" target="_blank" class="link-underline"> KITERETZ inc. </a>
     </p>
   </div>
 </footer>

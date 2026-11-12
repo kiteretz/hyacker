@@ -183,10 +183,14 @@ const Card: FC<Card> = ({
             </div>
           )}
         </div>
-        {/* back */}
+        {/*
+          back
+          ホバーできない端末ではフリップしないため裏面を描画しない。iOS Safari は backface-hidden の
+          要素もタッチを拾うので、裏面のスクロール領域が縦スクロールを奪いページがスクロールしなくなる。
+        */}
         <div
           aria-hidden="true"
-          className="absolute inset-0 flex rotate-y-180 flex-col bg-neutral-800 p-8 backface-hidden"
+          className="absolute inset-0 flex rotate-y-180 flex-col bg-neutral-800 p-8 backface-hidden [@media(hover:none)]:hidden"
         >
           {/* スクロール領域＋グラデーション */}
           <div className="relative min-h-0 flex-1">
