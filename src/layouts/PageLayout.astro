@@ -13,13 +13,11 @@ const { title, class: className } = Astro.props;
   <div class="grid-tracks gap-px max-xl:grid-cols-1">
     {/* Left sidebar */}
     <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-bg']}>
-      {
-        Astro.slots.has('sidebar-left') && (
-          <div class="px-32 py-32 pb-8">
-            <slot name="sidebar-left" />
-          </div>
-        )
-      }
+      {Astro.slots.has('sidebar-left') && (
+        <div class="px-32 py-32 pb-8">
+          <slot name="sidebar-left" />
+        </div>
+      )}
     </div>
 
     {/* Content area: inner grid */}
@@ -37,7 +35,7 @@ const { title, class: className } = Astro.props;
         </h1>
       </div>
       {/* Body */}
-      <div class:list={['bg-bg px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
+      <div class:list={['bg-bg px-16 py-32', 'md:px-32 md:pb-64', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
         <div class="prose w-full">
           <slot />
         </div>

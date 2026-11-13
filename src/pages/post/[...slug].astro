@@ -70,13 +70,11 @@ const extracted = extractAnswer(entry.body ?? '');
               <SocialIcon title={title} />
             </div>
             {/* Heading index */}
-            <div
-              class="flex flex-col self-center font-space-grotesk text-160 leading-none font-bold text-fg slashed-zero tabular-nums opacity-10"
-            >
-              <p class="relative top-16" data-section-current>01</p>
-              <p data-heading-total>
-                {headingCountStr}
+            <div class="flex flex-col self-center font-space-grotesk text-160 leading-none font-bold text-fg slashed-zero tabular-nums opacity-10">
+              <p class="relative top-16" data-section-current>
+                01
               </p>
+              <p data-heading-total>{headingCountStr}</p>
             </div>
           </div>
         </div>
@@ -107,21 +105,17 @@ const extracted = extractAnswer(entry.body ?? '');
             <div class="flex flex-col gap-8">
               <p class="font-inter text-14 leading-none text-fg-muted uppercase">Published</p>
               <div class="font-space-grotesk text-16 leading-tight">
-                <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">{formatDate(pubDate)}</time>
-                {
-                  extracted?.content && (
-                    <pre data-pagefind-meta="answer" class="hidden">
+                <time datetime={pubDate.toISOString()} data-pagefind-meta="pubDate">
+                  {formatDate(pubDate)}
+                </time>
+                {extracted?.content && <pre data-pagefind-meta="answer" class="hidden">
                       <code>{encodeURIComponent(extracted.content)}</code>
-                    </pre>
-                  )
-                }
-                {
-                  extracted?.isCode && (
-                    <span data-pagefind-meta="answerLang" class="hidden">
-                      {extracted.lang ?? 'text'}
-                    </span>
-                  )
-                }
+                    </pre>}
+                {extracted?.isCode && (
+                  <span data-pagefind-meta="answerLang" class="hidden">
+                    {extracted.lang ?? 'text'}
+                  </span>
+                )}
                 {
                   // アイキャッチ画像はページ内に描画されないため、検索結果カード用に
                   // frontmatter の URL と alt を Pagefind メタとして明示的に公開する。
@@ -145,16 +139,14 @@ const extracted = extractAnswer(entry.body ?? '');
             <div class="flex flex-col gap-8">
               <p class="font-inter text-14 leading-none text-fg-muted uppercase">Tags</p>
               <p class="flex flex-wrap text-16 leading-tight">
-                {
-                  displayTags.map((tag: string) => (
-                    <a
-                      href={`/tags/${encodeURIComponent(tag)}/`}
-                      class="flex after:mr-4 after:content-[','] last:after:content-none hover:underline"
-                    >
-                      {tag}
-                    </a>
-                  ))
-                }
+                {displayTags.map((tag: string) => (
+                  <a
+                    href={`/tags/${encodeURIComponent(tag)}/`}
+                    class="flex after:mr-4 after:content-[','] last:after:content-none hover:underline"
+                  >
+                    {tag}
+                  </a>
+                ))}
               </p>
             </div>
           </div>
@@ -165,7 +157,9 @@ const extracted = extractAnswer(entry.body ?? '');
           </div>
 
           {/* Article Body */}
-          <div class:list={['bg-bg px-16 py-32', 'md:p-32', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}>
+          <div
+            class:list={['bg-bg px-16 py-32', 'md:px-32 md:pb-64', 'xl:col-[1/-2] xl:row-2 xl:flex xl:justify-center']}
+          >
             <div class="prose w-full" data-pagefind-body>
               <Content />
             </div>
@@ -174,9 +168,7 @@ const extracted = extractAnswer(entry.body ?? '');
           {/* TOC + Ad */}
           {/* xl 未満では中身が非表示で高さ 0 になり、gap-px の罫線が 1 本余分に出るためラッパーごと消す */}
           <div class:list={['bg-bg', 'max-xl:hidden', 'xl:relative xl:col-[-2/-1] xl:row-2']}>
-            <div
-              class="pointer-events-none sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] xl:flex xl:flex-col xl:justify-between"
-            >
+            <div class="pointer-events-none sticky top-(--header-height) hidden h-[calc(100svh-var(--header-height))] xl:flex xl:flex-col xl:justify-between">
               {/* TOC */}
               <div class="pointer-events-auto flex flex-col gap-12 overflow-y-auto px-24 py-32">
                 <p class="font-inter text-14 leading-none text-fg-muted uppercase">Table of contents</p>
