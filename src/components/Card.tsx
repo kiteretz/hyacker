@@ -232,7 +232,7 @@ const Card: FC<Card> = ({
                 height="14"
                 fill="none"
                 viewBox="0 0 14 14"
-                className="mt-4"
+                className="mt-4 size-14"
               >
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M9.333 11.333h-7v-7" />
                 <path stroke="currentColor" strokeLinejoin="bevel" strokeWidth="1.167" d="M4.333 2.333h7v7h-7z" />
