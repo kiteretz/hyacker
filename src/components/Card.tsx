@@ -127,7 +127,7 @@ const Card: FC<Card> = ({
       href={href}
       data-draft={isDraft || undefined}
       className={twMerge(
-        'group relative block h-card bg-bg transition-all duration-200 perspective-midrange',
+        'group relative block h-card bg-bg transition-all duration-200 perspective-[125rem]',
         isActive ? 'z-1 outline-transparent' : '',
         className,
       )}
