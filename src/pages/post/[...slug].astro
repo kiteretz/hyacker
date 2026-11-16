@@ -60,17 +60,24 @@ const extracted = extractAnswer(entry.body ?? '');
     <div>
       <div class="grid-tracks gap-px max-xl:grid-cols-1">
         {/* Left sidebar: Share + Heading Index */}
-        <div class:list={['hidden', 'xl:flex xl:flex-col xl:bg-bg']} data-js-sticky-sidebar>
-          <div
-            class="flex h-[max(calc(100svh-var(--header-height)),30rem)] flex-col items-end justify-between px-32 py-32 pb-8"
-            data-js-sticky-sidebar-inner
-          >
-            {/* Share icons */}
-            <div class="pointer-events-auto flex flex-col items-end">
-              <SocialIcon title={title} />
-            </div>
-            {/* Heading index */}
-            <div class="flex flex-col self-center font-space-grotesk text-160 leading-none font-bold text-fg slashed-zero tabular-nums opacity-10">
+        {/*
+          SideLeft と同じ仕組み。Share はヘッダー直下に stick し、mb（数字の高さ + 20px）を持つことで
+          記事末尾では数字の 20px 上で押し出される。数字は -mt で mb を打ち消した領域内でビューポート下端に stick する。
+        */}
+        <div
+          class:list={[
+            'hidden',
+            'xl:flex xl:min-h-[max(calc(100svh-var(--header-height)),30rem)] xl:flex-col xl:bg-bg xl:px-32 xl:pt-32 xl:pb-8',
+            'xl:[--side-footer-h:--spacing(320)]',
+          ]}
+        >
+          {/* Share icons */}
+          <div class="sticky top-[calc(var(--header-height)+var(--spacing)*32)] mb-[calc(var(--side-footer-h)+var(--spacing)*20)] self-end">
+            <SocialIcon title={title} />
+          </div>
+          {/* Heading index */}
+          <div class="-mt-(--side-footer-h) flex min-h-0 flex-1 flex-col justify-end">
+            <div class="sticky bottom-8 flex flex-col self-center font-space-grotesk text-160 leading-none font-bold text-fg slashed-zero tabular-nums opacity-10">
               <p class="relative top-16" data-section-current>
                 01
               </p>
