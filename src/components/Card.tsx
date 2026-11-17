@@ -136,7 +136,7 @@ const Card: FC<Card> = ({
     >
       <div
         className={twJoin(
-          'h-full transition-transform duration-500 ease-in-out transform-3d',
+          'h-full outline outline-border transition-transform duration-500 ease-in-out transform-3d',
           canHover && 'focus-within:rotate-y-180',
           canHover && isActive && 'rotate-y-180 delay-100',
         )}
