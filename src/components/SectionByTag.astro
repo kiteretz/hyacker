@@ -53,7 +53,7 @@ const maxPosts = limit ? Math.max(...Object.values(limit)) : showAll ? posts.len
 const displayedPosts = posts.slice(0, maxPosts);
 
 // grid-tracks のコンテンツ列数（xl = 4、2xl = 5）から各帯でのカード行数を求める
-const MIN_CAP_ROWS = 3;
+const MIN_CAP_ROWS = 2;
 const capRows = capHeight
   ? {
       xl: Math.max(MIN_CAP_ROWS, Math.ceil(displayedPosts.length / 4)),
