@@ -97,7 +97,7 @@ const Card: FC<Card> = ({
     let cancelled = false;
     getClientHighlighter().then((hl) => {
       if (!cancelled) {
-        setRenderedCode(hl.codeToHtml(answer, { lang: lang ?? 'text', theme: SHIKI_THEME }));
+        setRenderedCode(hl.codeToHtml(answer, { lang: lang ?? 'text', theme: SHIKI_THEME, tabindex: false }));
       }
     });
     return () => {
@@ -137,7 +137,7 @@ const Card: FC<Card> = ({
       <div
         className={twJoin(
           'h-full outline outline-border transition-transform duration-500 ease-in-out transform-3d',
-          canHover && 'focus-within:rotate-y-180',
+          // canHover && 'focus-within:rotate-y-180',
           canHover && isActive && 'rotate-y-180 delay-100',
         )}
       >
@@ -197,6 +197,7 @@ const Card: FC<Card> = ({
             <div
               ref={scrollRef}
               onScroll={handleScroll}
+              tabIndex={-1}
               className="absolute inset-0 scrollbar-hidden overflow-auto p-8"
               style={{
                 maskImage,

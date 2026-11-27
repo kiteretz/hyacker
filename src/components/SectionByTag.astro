@@ -85,6 +85,7 @@ const capRows = capHeight
               highlightedCode = hl.codeToHtml(extracted.content, {
                 lang: extracted.lang ?? 'text',
                 theme: SHIKI_THEME,
+                tabindex: false,
               });
             }
             return (
