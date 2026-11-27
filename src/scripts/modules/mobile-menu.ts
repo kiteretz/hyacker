@@ -45,4 +45,12 @@ if (root && trigger && panel && backdrop) {
       setOpen(false);
     }
   });
+
+  // メニューを開いたままリンクで遷移し「戻る」で bfcache から復元されると、
+  // 開いた状態と html のスクロールロックが残るため閉じておく
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted && root.dataset.open === 'true') {
+      setOpen(false);
+    }
+  });
 }
