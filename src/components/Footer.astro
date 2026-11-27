@@ -20,28 +20,27 @@ const { class: className } = Astro.props;
     <div class="contents lg:flex lg:items-center lg:gap-32">
       <nav aria-label="フッターナビゲーション" class="col-span-2 px-16 py-8 lg:p-0">
         <ul class="flex flex-wrap items-center gap-x-16 gap-y-4 whitespace-nowrap">
-          {
-            [
-              { label: 'All Posts', href: '/post/' },
-              { label: 'Tags', href: '/tags/' },
-              {
-                label: 'About',
-                href: '/about/',
-              },
-              {
-                label: 'Terms',
-                href: '/term/',
-              },
-              {
-                label: 'X(Twitter)',
-                href: '/',
-                target: '_blank',
-              },
-            ].map(({ label, href, target }) => (
-              <li>
-                <a href={href} target={target} class="flex items-center link-underline">
-                  {label}
-                  {label === 'X(Twitter)' && (
+          {[
+            { label: 'All Posts', href: '/post/' },
+            { label: 'Tags', href: '/tags/' },
+            {
+              label: 'About',
+              href: '/about/',
+            },
+            {
+              label: 'Terms',
+              href: '/term/',
+            },
+            // {
+            //   label: 'X(Twitter)',
+            //   href: '/',
+            //   target: '_blank',
+            // },
+          ].map(({ label, href, target }: { label: string; href: string; target?: string }) => (
+            <li>
+              <a href={href} target={target} class="flex items-center link-underline">
+                {label}
+                {/* {label === 'X(Twitter)' && (
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -57,22 +56,22 @@ const { class: className } = Astro.props;
                         d="m4.229 11.771 7.542-7.542m-7.542 0h7.542v7.542"
                       />
                     </svg>
-                  )}
-                </a>
-              </li>
-            ))
-          }
+                  )} */}
+              </a>
+            </li>
+          ))}
         </ul>
       </nav>
       <div class="col-start-2 row-start-2 flex items-center border-t border-border pr-16 lg:border-none lg:p-0">
         <ThemeSwitch />
       </div>
     </div>
-    <p
-      class="col-start-1 row-start-2 h-48 content-center border-t border-border px-16 py-8 lg:h-auto lg:border-none lg:p-0"
-    >
+    <p class="col-start-1 row-start-2 h-48 content-center border-t border-border px-16 py-8 lg:h-auto lg:border-none lg:p-0">
       © 2026 hyacker /{' '}
-      <a href="http://kiteretz.com/" target="_blank" class="link-underline"> KITERETZ inc. </a>
+      <a href="http://kiteretz.com/" target="_blank" class="link-underline">
+        {' '}
+        KITERETZ inc.{' '}
+      </a>
     </p>
   </div>
 </footer>
