@@ -31,9 +31,9 @@ importers:
         version: 2.1.1
       jotai:
         specifier: ^3.0.1
-        version: 3.0.1(@types/react@19.2.18)(react@19.2.8)
+        version: 3.0.1(@types/react@19.3.0)(react@19.3.1)
       pagefind:
-        specifier: ^1.6.0
+        specifier: ^1.5.2
         version: 1.6.0
       rehype-external-links:
         specifier: ^3.0.0
@@ -5565,10 +5565,10 @@ snapshots:
 
   jiti@2.7.0: {}
 
-  jotai@3.0.1(@types/react@19.2.18)(react@19.2.8):
+  jotai@3.0.1(@types/react@19.3.0)(react@19.3.1):
     optionalDependencies:
-      '@types/react': 19.2.18
-      react: 19.2.8
+      '@types/react': 19.3.0
+      react: 19.3.1
 
   js-tokens@4.0.0: {}
 
